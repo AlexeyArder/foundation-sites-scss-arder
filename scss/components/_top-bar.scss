@@ -120,6 +120,12 @@ $topbar-input-margin-right: 1rem !default;
       border-radius: $topbar-input-radius;
     }
   }
+
+  @if ($list-margin-bottom != 0) {
+    ul {
+      margin-bottom: 0;
+    }
+  }
 }
 
 /// Makes sections of a top bar stack on top of each other.
