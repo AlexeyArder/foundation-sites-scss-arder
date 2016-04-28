@@ -1,0 +1,122 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group close-button
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default color of the close button.
+/// @type Color
+$closebutton-color: $global-closebutton-color !default;
+
+/// Default color of the close button when being hovered on.
+/// @type Color
+$closebutton-color-hover: $global-closebutton-color-hover !default;
+
+
+$closebutton-svg-opacity: $global-closebutton-svg-opacity !default;
+$closebutton-svg-hover-opacity: $global-closebutton-svg-hover-opacity !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Default position of the close button. The first value should be `right` or `left`, and the second value should be `top` or `bottom`.
+/// @type List
+$closebutton-position: right top !default;
+
+
+$closebutton-svg-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Right (or left) offset for a close button.
+/// @type Number
+$closebutton-offset-horizontal: 1rem !default;
+
+/// Top (or bottom) offset for a close button.
+/// @type Number
+$closebutton-offset-vertical: 1rem !default;
+
+/// Default font size of the close button.
+/// @type Number
+$closebutton-size: rem-calc(12) !default;
+
+/// The line-height of the close button. It affects the spacing of the element.
+/// @type Number
+$closebutton-lineheight: 1 !default;
+
+
+$closebutton-svg-stroke-width: 10px !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Close-button
+////////////////////////////////////////
+
+/// Adds styles for a close button, using the styles in the settings variables.
+@mixin close-button {
+  $x: nth($closebutton-position, 1);
+  $y: nth($closebutton-position, 2);
+
+  @include disable-mouse-outline;
+  #{$x}: $closebutton-offset-horizontal;
+  #{$y}: $closebutton-offset-vertical;
+  padding: 0;
+  position: absolute;
+  @if $closebutton-lineheight != $global-lineheight {
+    line-height: $closebutton-lineheight;
+  }
+  @if not $closebutton-svg-status {
+    @if $closebutton-color != $body-font-color {
+      color: $closebutton-color;
+    }
+    @if $closebutton-size != 1rem {
+      font-size: $closebutton-size;
+    }
+  } @else {
+    svg {
+      height: $closebutton-size;
+      width: $closebutton-size;
+
+      .svg-close-button {
+        stroke: $closebutton-color;
+        stroke-width: $closebutton-svg-stroke-width;
+        @if $closebutton-svg-opacity != 1 {
+          opacity: $closebutton-svg-opacity;
+        }
+      }
+    }
+  }
+  //cursor: pointer;
+
+  &:hover,
+  &:focus {
+    @if not $closebutton-svg-status {
+      color: $closebutton-color-hover;
+    } @else {
+      .svg-close-button {
+        @if ($closebutton-svg-hover-opacity != $closebutton-svg-opacity) or ($closebutton-svg-hover-opacity != 1) {
+          opacity: $closebutton-svg-hover-opacity;
+        }
+        @if $closebutton-color-hover != $closebutton-color {
+          stroke: $closebutton-color-hover;
+        }
+      }
+    }
+  }
+}
+
+@mixin foundation-close-button {
+  .close-button {
+    @include close-button;
+  }
+}

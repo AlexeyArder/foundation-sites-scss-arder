@@ -1,0 +1,117 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group label
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color for labels.
+/// @type Color
+$label-background: $global-label-background !default;
+
+/// Default text color for labels.
+/// @type Color
+$label-color: $global-label-color !default;
+
+
+$label-border-color: $global-label-border-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$label-border-width: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius of labels.
+/// @type Number
+$label-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Default fill for labels. Can either be `solid` or `hollow`.
+/// @type Keyword
+$label-fill: solid !default;
+
+$label-radius-status: true !default;
+$label-border-status: false !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default font size for labels.
+/// @type Number
+$label-font-size: 1rem !default;
+
+/// Default padding inside labels.
+/// @type Number
+$label-padding: rem-calc(6) rem-calc(10) !default;
+
+
+$label-border: $label-border-width solid $label-border-color !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Label
+////////////////////////////////////////
+
+/// Generates base styles for a label.
+@mixin label {
+  display: inline-block;
+  padding: $label-padding;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: default;
+  @if ($label-border-status) or ($label-fill == hollow) {
+    border: $label-border;
+  }
+  @if ($label-radius-status) and ($label-radius != 0) {
+    border-radius: $label-radius;
+  }
+  @if $label-font-size != 1rem {
+    font-size: $label-font-size;
+  }
+}
+
+@mixin foundation-label {
+  .label {
+    @include label;
+
+    @if $label-fill == solid {
+      background: $label-background;
+      color: $label-color;
+    } @elseif $label-fill == hollow {
+      color: $label-color;
+    }
+
+    @each $name, $color in $foundation-palette {
+      @if $name != primary {
+        &.#{$name} {
+          @if $label-fill == solid {
+            background: $color;
+            color: foreground($color);
+            @if $label-border-status {
+              border-color: $color / 2;
+            }
+          } @elseif $label-fill == hollow {
+            border-color: $color;
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+}

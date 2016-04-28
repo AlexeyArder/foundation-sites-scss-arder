@@ -1,0 +1,207 @@
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.2.1
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
+
+// Sass utilities
+// @import 'util/util'; // Already imported in all.scss.css
+
+// Global variables and styles
+@import 'global';
+
+// Components
+@import 'grid/grid';
+@import 'typography/typography';
+@import 'forms/forms';
+@import 'components/visibility';
+@import 'components/float';
+@import 'components/button';
+@import 'components/button-group';
+@import 'components/accordion-menu';
+@import 'components/accordion';
+@import 'components/badge';
+@import 'components/breadcrumbs';
+@import 'components/callout';
+@import 'components/close-button';
+@import 'components/drilldown';
+@import 'components/dropdown-menu';
+@import 'components/dropdown';
+@import 'components/flex';
+@import 'components/flex-video';
+@import 'components/label';
+@import 'components/media-object';
+@import 'components/menu';
+@import 'components/menu-icon';
+@import 'components/off-canvas';
+@import 'components/orbit';
+@import 'components/pagination';
+@import 'components/progress-bar';
+@import 'components/reveal';
+@import 'components/slider';
+@import 'components/sticky';
+@import 'components/switch';
+@import 'components/table';
+@import 'components/tabs';
+@import 'components/title-bar';
+@import 'components/top-bar';
+@import 'components/thumbnail';
+@import 'components/tooltip';
+
+@mixin foundation-everything(
+  $flex: false,
+  $foundation-typography: true,
+  $foundation-forms: true,
+  $foundation-button: true,
+  $foundation-accordion: true,
+  $foundation-accordion-menu: true,
+  $foundation-badge: true,
+  $foundation-breadcrumbs: true,
+  $foundation-button-group: true,
+  $foundation-callout: true,
+  $foundation-close-button: true,
+  $foundation-menu: true,
+  $foundation-menu-icon: true,
+  $foundation-drilldown-menu: true,
+  $foundation-dropdown: true,
+  $foundation-dropdown-menu: true,
+  $foundation-flex-video: true,
+  $foundation-label: true,
+  $foundation-media-object: true,
+  $foundation-off-canvas: true,
+  $foundation-orbit: true,
+  $foundation-pagination: true,
+  $foundation-progress-bar: true,
+  $foundation-slider: true,
+  $foundation-sticky: true,
+  $foundation-reveal: true,
+  $foundation-switch: true,
+  $foundation-table: true,
+  $foundation-tabs: true,
+  $foundation-thumbnail: true,
+  $foundation-title-bar: true,
+  $foundation-tooltip: true,
+  $foundation-top-bar: true,
+  $foundation-visibility-classes: true,
+  $foundation-float-classes: true ) {
+
+  @if $flex {
+    $global-flexbox: true !global;
+  }
+
+  @include foundation-global-styles;
+
+  @if not $flex {
+    @include foundation-grid;
+  } @else {
+    @include foundation-flex-grid;
+  }
+
+  @if $foundation-typography {
+    @include foundation-typography;
+  }
+  @if $foundation-forms {
+    @include foundation-forms;
+  }
+  @if $foundation-button {
+    @include foundation-button;
+  }
+  @if $foundation-accordion {
+    @include foundation-accordion;
+  }
+  @if $foundation-accordion-menu {
+    @include foundation-accordion-menu;
+  }
+  @if $foundation-badge {
+    @include foundation-badge;
+  }
+  @if $foundation-breadcrumbs {
+    @include foundation-breadcrumbs;
+  }
+  @if $foundation-button-group {
+    @include foundation-button-group;
+  }
+  @if $foundation-callout {
+    @include foundation-callout;
+  }
+  @if $foundation-close-button {
+    @include foundation-close-button;
+  }
+  @if $foundation-menu {
+    @include foundation-menu;
+  }
+  @if $foundation-menu-icon {
+    @include foundation-menu-icon;
+  }
+  @if $foundation-drilldown-menu {
+    @include foundation-drilldown-menu;
+  }
+  @if $foundation-dropdown {
+    @include foundation-dropdown;
+  }
+  @if $foundation-dropdown-menu {
+    @include foundation-dropdown-menu;
+  }
+  @if $foundation-flex-video {
+    @include foundation-flex-video;
+  }
+  @if $foundation-label {
+    @include foundation-label;
+  }
+  @if $foundation-media-object {
+    @include foundation-media-object;
+  }
+  @if $foundation-off-canvas {
+    @include foundation-off-canvas;
+  }
+  @if $foundation-orbit {
+    @include foundation-orbit;
+  }
+  @if $foundation-pagination {
+    @include foundation-pagination;
+  }
+  @if $foundation-progress-bar {
+    @include foundation-progress-bar;
+  }
+  @if $foundation-slider {
+    @include foundation-slider;
+  }
+  @if $foundation-sticky {
+    @include foundation-sticky;
+  }
+  @if $foundation-reveal {
+    @include foundation-reveal;
+  }
+  @if $foundation-switch {
+    @include foundation-switch;
+  }
+  @if $foundation-table {
+    @include foundation-table;
+  }
+  @if $foundation-tabs {
+    @include foundation-tabs;
+  }
+  @if $foundation-thumbnail {
+    @include foundation-thumbnail;
+  }
+  @if $foundation-title-bar {
+    @include foundation-title-bar;
+  }
+  @if $foundation-tooltip {
+    @include foundation-tooltip;
+  }
+  @if $foundation-top-bar {
+    @include foundation-top-bar;
+  }
+  @if $foundation-visibility-classes {
+    @include foundation-visibility-classes;
+  }
+  @if $foundation-float-classes {
+    @include foundation-float-classes;
+  }
+
+  @if $flex {
+    @include foundation-flex-classes;
+  }
+}

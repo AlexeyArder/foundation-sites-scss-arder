@@ -1,0 +1,59 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+//--------------------------------------
+// Sizes
+//
+/// Default margin left for label which side by side with input.
+/// @type Number
+$input-checkbox-radio-margin-left: $form-spacing / 2 !default;
+
+/// Default margin right for label which side by side with input.
+/// @type Number
+$input-checkbox-radio-margin-right: $form-spacing !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Checkboxes
+////////////////////////////////////////
+
+@mixin foundation-form-checkbox {
+  [type='file'],
+  [type='checkbox'],
+  [type='radio'] {
+    margin-bottom: $form-spacing;
+  }
+
+  // Styles for input/label siblings
+  [type='checkbox'] + label,
+  [type='radio'] + label {
+    display: inline-block;
+    margin-#{$global-left}: $input-checkbox-radio-margin-left;
+    margin-#{$global-right}: $input-checkbox-radio-margin-right;
+
+    &[for] {
+      cursor: pointer;
+    }
+
+    //margin-bottom: 0;
+    //vertical-align: baseline;
+  }
+
+  // Styles for inputs inside labels
+  label > [type='checkbox'],
+  label > [type='radio'] {
+    margin-#{$global-right}: $input-checkbox-radio-margin-left;
+  }
+
+  // Normalize file input width
+  [type='file'] {
+    width: 100%;
+  }
+}

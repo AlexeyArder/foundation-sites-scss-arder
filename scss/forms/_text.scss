@@ -1,0 +1,266 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Font color of text inputs.
+/// @type Color
+$input-color: $global-input-color !default;
+
+/// Background color of text inputs.
+/// @type Color
+$input-background: $global-input-background !default;
+
+/// Background color of focused of text inputs.
+/// @type Color
+$input-background-focus: $global-input-background-focus !default;
+
+/// Background color of disabled text inputs.
+/// @type Color
+$input-background-disabled: $global-input-background-disabled !default;
+
+/// Border color around text inputs.
+/// @type Color
+$input-border-color: $global-input-border-color !default;
+
+/// Border color around focused text inputs.
+/// @type Color
+$input-border-focus-color: $global-input-border-focus-color !default;
+
+/// Border color for shadow inside text inputs when not focused.
+/// @type Color
+$input-shadow-color: $global-input-shadow-color !default;
+
+/// Border color for shadow outside text inputs when focused.
+/// @type Color
+$input-shadow-focus-color: $global-input-shadow-focus-color !default;
+
+/// Box shadow inside text inputs when not focused.
+/// @type Shadow
+$input-shadow: $global-input-shadow !default;
+
+/// Box shadow outside text inputs when focused.
+/// @type Shadow
+$input-shadow-focus: $global-input-shadow-focus !default;
+
+/// Font color of placeholder text within text inputs.
+/// @type Color
+$input-placeholder-color: $global-input-placeholder-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+/// Border width around text inputs.
+/// @type Number
+$input-border-width: $global-form-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Radius for text inputs.
+/// @type Border
+$input-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Enables the up/down buttons that Chrome and Firefox add to `<input type='number'>` elements.
+/// @type Boolean
+$input-number-spinners: true !default;
+
+
+$input-border-status: true !default;
+$input-box-shadow-status: true !default;
+$input-radius-status: false !default;
+$submit-button-border-radius-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Font family of text inputs.
+/// @type Font
+$input-font-family: inherit !default;
+
+/// Font size of text inputs.
+/// @type Number
+$input-font-size: rem-calc(16) !default;
+
+/// Border around text inputs.
+/// @type Border
+$input-border: $input-border-width solid $global-input-border-color !default;
+
+/// Border around focused text inputs.
+/// @type Border
+$input-border-focus: $input-border-width solid $global-input-border-focus-color !default;
+
+/// Cursor to use when hovering over a disabled text input.
+/// @type Cursor
+$input-cursor-disabled: not-allowed !default;
+
+/// Properties to transition on text inputs.
+/// @type Transition
+$input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
+
+/// Default value used for margin for inputs.
+/// @type Number | List
+$input-margin: 0 0 $form-spacing !default;
+
+/// Default value used for verical padding for inputs.
+/// @type Number
+$input-padding-vertical: $form-spacing / 2 !default;
+
+/// Default value used for horizontal padding for inputs.
+/// @type Number
+$input-padding-horizontal: $form-spacing / 2 !default;
+
+/// Default value used for inputs height.
+/// @type Number
+$input-height: ($input-font-size + ($form-spacing * 1.5));
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Inputs and text areas
+////////////////////////////////////////
+
+@mixin form-element {
+  box-sizing: border-box;
+  //height: $input-height;
+  margin: $input-margin;
+  width: 100%;
+  @if $input-background != transparent {
+    background-color: $input-background;
+  }
+  @if $input-border-status {
+    border: $input-border;
+  }
+  @if ($input-radius-status) and ($input-radius != 0) {
+    border-radius: $input-radius;
+  }
+  @if $input-box-shadow-status {
+    box-shadow: $input-shadow; // Autoprefixer fix this
+  }
+  @if $input-color != $body-font-color {
+    color: $input-color;
+  }
+  @if ($input-font-family != inherit) and ($input-font-family != $body-font-family) {
+    font-family: $input-font-family;
+  }
+  @if $input-font-size != 1rem {
+    font-size: $input-font-size;
+  }
+  @if $input-padding-vertical != $input-padding-horizontal {
+    padding: $input-padding-vertical $input-padding-horizontal;
+  } @else {
+    padding: $input-padding-vertical;
+  }
+  @if has-value($input-transition) {
+    transition: $input-transition;
+  }
+
+  //display: block;
+
+  // Focus state
+  &:focus {
+    outline: none;
+    @if $input-background-focus != $input-background {
+      background-color: $input-background-focus;
+    }
+    @if $input-border-status {
+      border: $input-border-focus;
+    }
+    @if $input-box-shadow-status {
+      box-shadow: $input-shadow-focus;
+    }
+    @if has-value($input-transition) {
+      transition: $input-transition;
+    }
+  }
+}
+
+@mixin foundation-form-text {
+  // Text inputs
+  #{text-inputs()},
+  textarea {
+    @include form-element;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+
+  // Text areas
+  textarea {
+    max-width: 100%;
+
+    &[rows] {
+      height: auto;
+    }
+  }
+
+  input,
+  textarea {
+    // Placeholder text
+    &::placeholder {
+      color: $input-placeholder-color;
+    }
+
+    // Disabled/readonly state
+    &:disabled,
+    &[readonly] {
+      cursor: $input-cursor-disabled;
+      @if $input-background-disabled != $input-background {
+        background-color: $input-background-disabled;
+      }
+    }
+  }
+
+  // Reset border-radius on iOS
+  input:not([type=checkbox]):not([type=radio]) {
+    @if ($input-radius != 0) {
+      border-radius: $input-radius;
+    } @else {
+      border-radius: 0;
+    }
+  }
+
+  // Reset styles on button-like inputs
+  [type='submit'],
+  [type='button'] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    @if ($submit-button-border-radius-status) and ($input-radius != 0) {
+      border-radius: $button-radius;
+    }
+  }
+
+  // Reset Normalize setting content-box to search elements
+  // scss-lint:disable QualifyingElement
+  input[type='search'] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+  }
+
+  // Number input styles
+  [type='number'] {
+    @if not $input-number-spinners {
+      -moz-appearance: textfield;
+
+      [type='number']::-webkit-inner-spin-button,
+      [type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        //margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+////////////////////////////////////////
+// Fonts variables
+////////////////////////////////////////
+
+$font-face-path: '/fonts/';
+
+$pt-mono: true;
+
+$pt-sans: true;
+$pt-sans-caption: false;
+$pt-sans-narrow: false;
+
+$pt-serif: false;
+$pt-serif-caption: false;
+
+
+////////////////////////////////////////
+// Fonts mixin
+////////////////////////////////////////
+
+@mixin font-face-mixin(
+  $font-name,
+  $font-file-woff2,
+  $font-file-woff,
+  $font-face-font-weight: normal,
+  $font-face-font-style: normal,
+  $local-font-name: none,
+  $local-font-postscript-name: none ) {
+  @font-face {
+    font-family: $font-name;
+    @if ($local-font-name != 'none') and ($font-file-woff2 != 'none') {
+      src: local($local-font-name), // Full font name
+        local($local-font-postscript-name), // Postscript name
+        url($font-face-path + $font-file-woff2) format('woff2'),
+        url($font-face-path + $font-file-woff) format('woff');
+    } @elseif ($local-font-name == 'none') and ($font-file-woff2 != 'none') {
+      src: url($font-face-path + $font-file-woff2) format('woff2'),
+      url($font-face-path + $font-file-woff) format('woff');
+    } @elseif ($local-font-name != 'none') and ($font-file-woff2 == 'none') {
+      src: local($local-font-name), // Full font name
+        local($local-font-postscript-name), // Postscript name
+        url($font-face-path + $font-file-woff) format('woff');
+    } @elseif ($local-font-name == 'none') and ($font-file-woff2 == 'none') {
+      src: url($font-face-path + $font-file-woff) format('woff');
+    }
+    font-weight: $font-face-font-weight;
+    font-style: $font-face-font-style;
+  }
+}
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+// Fonts
+////////////////////////////////////////
+
+// Sample code
+// @include font-face-mixin(name, 'source/woff2', 'source/woff', normal, normal, local name, local-postscript-name);
+
+@if $pt-mono {
+
+  // PT Mono
+  @include font-face-mixin(PT Mono, none, 'PTMonoWeb/PTM55F_W.woff', normal, normal, PT Mono Regular, PTMono-Regular);
+
+  // PT Mono Bold
+  @include font-face-mixin(PT Mono, none, 'PTMonoWeb/PTM75F_W.woff', bold, normal, PT Mono Bold, PTMono-Bold);
+}
+
+@if $pt-sans {
+
+  // PT Sans
+  @include font-face-mixin(PT Sans, none, 'PTSansWeb/PTS55F_W.woff', normal, normal, PT Sans Regular, PTSans-Regular);
+
+  // PT Sans Italic
+  @include font-face-mixin(PT Sans, none, 'PTSansWeb/PTS56F_W.woff', normal, italic, PT Sans Italic, PTSans-Italic);
+
+  // PT Sans Bold
+  @include font-face-mixin(PT Sans, none, 'PTSansWeb/PTS75F_W.woff', bold, normal, PT Sans Bold, PTSans-Bold);
+
+  // PT Sans Bold Italic
+  @include font-face-mixin(PT Sans, none, 'PTSansWeb/PTS76F_W.woff', bold, italic, PT Sans Bold Italic, PTSans-BoldItalic);
+}
+
+
+@if $pt-sans-caption {
+
+  // PT Sans Caption
+  @include font-face-mixin(PT Sans Caption, none, 'PTSansWeb/PTC55F_W.woff', normal, normal, PT Sans Caption Regular, PTSans-Caption);
+
+  // PT Sans Caption Bold
+  @include font-face-mixin(PT Sans Caption, none, 'PTSansWeb/PTC75F_W.woff', bold, normal, PT Sans Caption Bold, PTSans-CaptionBold);
+}
+
+@if $pt-sans-narrow {
+
+  // PT Sans Narrow
+  @include font-face-mixin(PT Sans Narrow, none, 'PTSansWeb/PTN57F_W.woff', normal, normal, PT Sans Narrow Regular, PTSans-Narrow);
+
+  // PT Sans Narrow Bold
+  @include font-face-mixin(PT Sans Narrow, none, 'PTSansWeb/PTN77F_W.woff', bold, normal, PT Sans Narrow Bold, PTSans-NarrowBold);
+}
+
+@if $pt-serif {
+
+  // PT Serif
+  @include font-face-mixin(PT Serif, none, 'PTSansWeb/ptf55f_w.woff', normal, normal, PT Serif Regular, PTSerif-Regular);
+
+  // PT Serif Italic
+  @include font-face-mixin(PT Serif, none, 'PTSansWeb/ptf56f_w.woff', normal, italic, PT Serif Italic, PTSerif-Italic);
+
+  // PT Serif Bold
+  @include font-face-mixin(PT Serif, none, 'PTSansWeb/ptf75f_w.woff', bold, normal, PT Serif Bold, PTSerif-Bold);
+
+  // PT Serif Bold Italic
+  @include font-face-mixin(PT Serif, none, 'PTSansWeb/ptf76f_w.woff', bold, italic, PT Serif Bold Italic, PTSerif-BoldItalic);
+}
+
+@if $pt-serif-caption {
+
+  // PT Serif Caption
+  @include font-face-mixin(PT Serif Caption, none, 'PTSansWeb/ptz55f_w.woff', normal, normal, PT Serif Caption Regular, PTSerif-Caption);
+
+  // PT Serif Caption Italic
+  @include font-face-mixin(PT Serif Caption, none, 'PTSansWeb/ptz56f_w.woff', normal, italic, PT Serif Caption Italic, PTSerif-CaptionItalic);
+}

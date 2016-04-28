@@ -1,0 +1,126 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group progress-bar
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Background color of a progress bar.
+/// @type Color
+$progress-background: $global-progress-background !default;
+
+/// Default color of a progress bar's meter.
+/// @type Color
+$progress-meter-background: $global-progress-meter-background !default;
+
+
+$progress-text-color: $global-progress-text-color !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius of a progress bar.
+/// @type Number
+$progress-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$progress-radius-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Height of a progress bar.
+/// @type Number
+$progress-height: 1rem !default;
+
+/// Bottom margin of a progress bar.
+/// @type Number
+$progress-margin-bottom: $global-margin !default;
+
+
+$progress-text-font-size: rem-calc(10) !default;
+$progress-text-font-weight: bold !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Progress-bar
+////////////////////////////////////////
+
+/// Adds styles for a progress bar container.
+@mixin progress-container {
+  height: $progress-height;
+  margin-bottom: $progress-margin-bottom;
+  @if $progress-background != transparent {
+    background-color: $progress-background;
+  }
+  @if ($progress-radius-status) and ($progress-radius != 0) {
+    border-radius: $progress-radius;
+  }
+}
+
+/// Adds styles for the inner meter of a progress bar.
+@mixin progress-meter {
+  background-color: $progress-meter-background;
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 0%;
+  @if ($progress-radius-status) and ($progress-radius != 0) {
+    border-radius: $progress-radius;
+  }
+}
+
+/// Adds styles for text in the progress meter.
+@mixin progress-meter-text {
+  @include absolute-center;
+  margin: 0;
+  white-space: nowrap;
+  @if $progress-text-color != $body-font-color {
+    color: $progress-text-color;
+  }
+  @if $progress-text-font-size != 1rem {
+    font-size: $progress-text-font-size;
+  }
+  @if $progress-text-font-weight != normal {
+    font-weight: $progress-text-font-weight;
+  }
+
+  //position: absolute;
+}
+
+@mixin foundation-progress-bar {
+  // Progress bar
+  .progress {
+    @include progress-container;
+
+    @each $name, $color in $foundation-palette {
+      &.#{$name} {
+        .progress-meter {
+          background-color: $color;
+        }
+      }
+    }
+  }
+
+  // Inner meter
+  .progress-meter {
+    @include progress-meter;
+  }
+
+  // Inner meter text
+  .progress-meter-text {
+    @include progress-meter-text;
+  }
+}

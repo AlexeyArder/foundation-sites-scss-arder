@@ -1,0 +1,216 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group slider
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color of the slider's track.
+/// @type Color
+$slider-background: $global-slider-background !default;
+
+/// Default color of the active fill color of the slider.
+/// @type Color
+$slider-fill-background: $global-slider-fill-background !default;
+
+/// Default color of the handle for the slider.
+/// @type Color
+$slider-handle-background: $global-slider-handle-background !default;
+
+/// Default fade amount of a disabled slider.
+/// @type Number
+$slider-opacity-disabled: $global-slider-opacity-disabled !default;
+
+
+$slider-handle-hover-background-color: $global-slider-handle-hover-background-color !default;
+$slider-handle-border-color: $global-slider-handle-border-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$slider-handle-border-width: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius for slider.
+/// @type Number
+$slider-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$slider-radius-status: true !default;
+$slider-handle-border-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default height of the slider.
+/// @type Number
+$slider-height: rem-calc(4) !default;
+
+/// Default slider width of a vertical slider.
+/// @type Number
+$slider-vertical-width: $slider-height !default;
+
+/// Default height of the handle of the slider.
+/// @type Number
+$slider-handle-height: rem-calc(16) !default;
+
+/// Default width of the handle of the slider.
+/// @type Number
+$slider-handle-width: $slider-handle-height !default;
+
+/// Transition properties to apply to the slider handle and fill.
+/// @type Transition
+$slider-transition: all .2s ease-in-out !default;
+
+
+$slider-container-margin-top: rem-calc(16) !default;
+$slider-container-margin-bottom: rem-calc(32) !default;
+$slider-vertical-height: rem-calc(160) !default;
+$slider-vertical-margin: 0 rem-calc(16) !default;
+$slider-handle-border: $slider-handle-border-width solid $slider-handle-border-color !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// @group slider
+////////////////////////////////////////
+
+/// Adds the general styles for sliders.
+@mixin slider-container {
+  background-color: $slider-background;
+  cursor: pointer;
+  height: $slider-height;
+  margin-bottom: $slider-container-margin-bottom;
+  margin-top: $slider-container-margin-top;
+  position: relative;
+  touch-action: none;
+  user-select: none;
+}
+
+/// Adds the general styles for active fill for sliders.
+@mixin slider-fill {
+  display: inline-block;
+  height: $slider-height;
+  left: 0;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  transition: $slider-transition;
+  @if $slider-fill-background != $slider-background {
+    background-color: $slider-fill-background;
+  }
+
+  &.is-dragging {
+    transition: all 0s linear;
+  }
+}
+
+/// Adds the general styles for the slider handles.
+@mixin slider-handle {
+  @include disable-mouse-outline;
+  @include vertical-center;
+  background-color: $slider-handle-background;
+  display: inline-block;
+  height: $slider-handle-height;
+  left: 0;
+  position: absolute;
+  touch-action: manipulation;
+  transition: $slider-transition;
+  width: $slider-handle-width;
+  z-index: 1;
+  @if $slider-handle-border-status {
+    border: $slider-handle-border;
+  }
+  @if ($slider-radius-status) and ($slider-radius != 0) {
+    border-radius: $slider-radius;
+  }
+
+  @if $slider-handle-hover-background-color != $slider-handle-background {
+    &:hover {
+      background-color: $slider-handle-hover-background-color;
+    }
+  }
+
+  &.is-dragging {
+    transition: all 0s linear;
+  }
+}
+
+@mixin slider-disabled {
+  cursor: not-allowed;
+  opacity: $slider-opacity-disabled;
+}
+
+@mixin slider-vertical {
+  display: inline-block;
+  height: $slider-vertical-height;
+  margin: $slider-vertical-margin;
+  transform: scale(1, -1);
+  width: $slider-vertical-width;
+
+  .slider-fill {
+    max-height: 100%;
+    top: 0;
+    width: $slider-vertical-width;
+  }
+
+  .slider-handle {
+    height: $slider-handle-width;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    touch-action: manipulation;
+    transform: translateX(-50%);
+    width: $slider-handle-height;
+  }
+}
+
+@mixin foundation-slider {
+  // Container
+  .slider {
+    @include slider-container;
+  }
+
+  // Fill area
+  .slider-fill {
+    @include slider-fill;
+  }
+
+  // Draggable handle
+  .slider-handle {
+    @include slider-handle;
+  }
+
+  // Disabled state
+  .slider.disabled,
+  .slider[disabled] {
+    @include slider-disabled;
+  }
+
+  // Vertical slider
+  .slider.vertical {
+    @include slider-vertical;
+  }
+
+  // RTL support
+  @if $global-text-direction == rtl {
+    .slider:not(.vertical) {
+      transform: scale(-1, 1);
+    }
+  }
+}

@@ -1,0 +1,204 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Color of labels prefixed to an input.
+/// @type Color
+$input-prefix-color: $global-input-prefix-color !default;
+
+/// Background color of labels prefixed to an input.
+/// @type Color
+$input-prefix-background: $global-input-prefix-background !default;
+
+/// Border color around labels prefixed to an input.
+/// @type Color
+$input-prefix-border-color: $global-input-prefix-border-color !default;
+
+
+//--------------------------------------
+// Radius
+//
+
+$input-group-border-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$input-group-border-radius-status: true !default;
+$input-prefix-border-status: true !default;
+$input-prefix-global-button-border-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Border around labels prefixed to an input.
+/// @type Border
+$input-prefix-border: $input-border-width solid $input-prefix-border-color !default;
+
+/// Padding of an pre/postfixed input label.
+/// @type Number | List
+$input-prefix-padding: 0 1rem !default;
+
+/// Margin under input group.
+/// @type Number
+$input-group-margin-bottom: $form-spacing !default;
+
+/// Text align for label of input group.
+/// @type String
+$input-group-label-text-align: center !default;
+
+/// Default value used for inputs group height.
+/// @type Number
+$height: $input-height !default;
+
+/// Default value used for group label width.
+/// @type Number
+$input-group-label-width: 1% !default;
+
+/// Default value used for group button width.
+/// @type Number
+$input-group-button-width: 1% !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Input group
+////////////////////////////////////////
+
+@mixin foundation-form-prepostfix {
+  .input-group {
+    display: if($global-flexbox, flex, table);
+    margin-bottom: $input-group-margin-bottom;
+    width: 100%;
+
+    @if ($input-group-border-radius-status) and ($input-group-border-radius != 0) {
+
+      @if $global-flexbox {
+        align-items: stretch;
+      }
+
+      > :first-child {
+        border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius $input-group-border-radius 0, $input-group-border-radius 0 0 $input-group-border-radius);
+
+        // border-radius: $input-group-border-radius 0 0 $input-group-border-radius;
+      }
+
+      > :last-child {
+        > * {
+          border-radius: if($global-text-direction == rtl, $input-group-border-radius 0 0 $input-group-border-radius, 0 $input-group-border-radius $input-group-border-radius 0);
+
+          // border-radius: 0 $input-group-border-radius $input-group-border-radius 0;
+        }
+      }
+    }
+  }
+
+  %input-group-child {
+    margin: 0;
+
+    @if not $global-flexbox {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .input-group-label {
+    @extend %input-group-child;
+    padding: $input-prefix-padding;
+    text-align: $input-group-label-text-align;
+    white-space: nowrap;
+    @if $input-prefix-background != $input-background {
+      background: $input-prefix-background;
+    }
+    @if $input-prefix-color != $input-color {
+      color: $input-prefix-color;
+    }
+    @if $global-flexbox {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+    } @else {
+      height: 100%;
+      width: $input-group-label-width;
+    }
+  }
+
+  .input-group-field {
+    @extend %input-group-child;
+    @if $global-flexbox {
+      flex: 1 1 0px; //?? px
+      height: auto;
+      width: auto;
+    } @else {
+      height: $height;
+    }
+    @if $input-prefix-border-status {
+      border: $input-prefix-border;
+    }
+    @if ($input-group-border-radius-status) and ($input-group-border-radius != 0) {
+      border-radius: 0;
+    }
+  }
+
+  .input-group-button {
+    @extend %input-group-child;
+    text-align: center;
+
+    @if $global-flexbox {
+      flex: 0 0 auto;
+    } @else {
+      height: 100%;
+      width: $input-group-button-width;
+    }
+
+    a,
+    input,
+    button,
+    .button {
+      margin: 0;
+      //width: 100%;
+      @if $input-prefix-global-button-border-status {
+        border: 0;
+      }
+      @if $input-prefix-border-status {
+        height: $height - rem-calc($input-border-width * 2);
+      } @else {
+        height: $height;
+      }
+    }
+
+    // Specificity bump needed to prevent override by buttons
+    // scss-lint:disable QualifyingSelector
+    .input-group .input-group-button {
+      display: table-cell;
+    }
+  }
+
+  @if $input-prefix-border-status {
+    .input-group-label,
+    .input-group-button {
+      border: $input-prefix-border;
+
+      @if has-value($input-prefix-border) {
+        &:first-child {
+          border-#{$global-right}: 0;
+        }
+
+        &:last-child {
+          border-#{$global-left}: 0;
+        }
+      }
+    }
+  }
+}

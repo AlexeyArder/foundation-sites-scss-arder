@@ -1,0 +1,68 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group accordion-menu
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Sets accordion menu arrow color if arrow is used.
+/// @type Color
+$accordionmenu-arrow-color: $global-accordionmenu-arrow-color !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Sets if accordion menus have the default arrow styles.
+/// @type Boolean
+$accordionmenu-arrows-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+
+$accordionmenu-arrows-font-size: rem-calc(10) !default;
+$accordionmenu-arrows-right: 1rem !default;
+$accordionmenu-arrows-up-content: $global-accordionmenu-arrows-up-content !default;
+$accordionmenu-arrows-down-content: $global-accordionmenu-arrows-down-content !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Accordion-menu
+////////////////////////////////////////
+
+@mixin foundation-accordion-menu {
+  @if $accordionmenu-arrows-status {
+    .is-accordion-submenu-parent > a {
+      position: relative;
+
+      &::after {
+        content: $accordionmenu-arrows-down-content;
+        position: absolute;
+        right: $accordionmenu-arrows-right;
+        @if $menu-font-size != $accordionmenu-arrows-font-size {
+          font-size: $accordionmenu-arrows-font-size;
+          margin-top: ($menu-font-size - $accordionmenu-arrows-font-size) / 2;
+        }
+
+        //@include css-triangle(6px, $accordionmenu-arrow-color, down);
+        //margin-top: -4px;
+        //top: 50%;
+      }
+    }
+
+    .is-accordion-submenu-parent[aria-expanded='true'] > a::after {
+      content: $accordionmenu-arrows-up-content;
+
+      //transform: scaleY(-1);
+      //transform-origin: 50% 50%;
+    }
+  }
+}

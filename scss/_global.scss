@@ -1,0 +1,210 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+// scss-lint:disable ColorVariable, QualifyingElement, VendorPrefix
+
+////////////////////////////////////////
+// @group global
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Background color of the body.
+/// @type Color
+$body-background: $global-body-background !default;
+
+/// Text color of the body.
+/// @type Color
+$body-font-color: $global-body-font-color !default;
+
+/// Colors used for buttons, callouts, links, etc. There must always be a color called `primary`.
+/// @type Map
+$foundation-palette: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  success: $success-color,
+  alert: $alert-color,
+  warning: $warning-color,
+) !default;
+
+@if not map-has-key($foundation-palette, primary) {
+  @error 'In $foundation-palette, you must have a color named "primary".';
+}
+
+
+//--------------------------------------
+// Border width
+//
+/// Global value used for border width on components.
+/// @type Number
+$global-border-width: 1px !default;
+
+/// Global value used for border width on components.
+/// @type Number
+$global-form-border-width: 1px !default;
+
+/// Global value used for border width on text components.
+/// @type Number
+$global-text-border-width: 1px !default;
+
+/// Global value used for border width for horizontal line.
+/// @type Number
+$global-hr-border-width: 1px !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Global value used for all elements that have a border radius.
+/// @type Number
+$global-radius: 0 !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Enables flexbox for components that support it.
+/// @type Boolean
+$global-flexbox: true !default;
+
+/// Set to `true` to enable antialiased type, using the `-webkit-font-smoothing` and `-moz-osx-font-smoothing` CSS properties.
+/// @type Boolean
+$body-antialiased: true !default;
+
+// Sticky footer
+$sticky-footer: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Font size attribute applied to `<html>` and `<body>`. We use 100% by default so the value is inherited from the user's browser settings.
+/// @type Number
+$global-font-size: 100% !default;
+
+/// Global width of your site. Used by the grid to determine row width.
+/// @type Number
+$global-width: rem-calc(1200) !default;
+
+/// Default line height for all type. `$global-lineheight` is 24px while `$global-font-size` is 16px
+/// @type Number
+$global-lineheight: 1.35 !default;
+
+/// Font stack of the body.
+/// @type List
+$body-font-family: 'PT Sans', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+
+/// Font stack used for elements that use monospaced type, such as code samples
+/// @type String | List
+$font-family-monospace: 'PT Mono', Consolas, 'Liberation Mono', Courier, monospace !default;
+
+/// Global value used for margin on components.
+/// @type Number
+$global-margin: 1rem !default;
+
+/// Global value used for padding on components.
+/// @type Number
+$global-padding: 1rem !default;
+
+/// Global spacing for form elements.
+/// @type Number
+$global-form-spacing: rem-calc(16) !default;
+
+/// Global font weight used for normal type.
+/// @type Keyword | Number
+$global-weight-normal: normal !default;
+
+/// Global font weight used for bold type.
+/// @type Keyword | Number
+$global-weight-bold: bold !default;
+
+/// Sets the text direction of the CSS. Can be either `ltr` or `rtl`.
+/// @type Keyword
+$global-text-direction: ltr !default;
+
+// Internal variables used for text direction
+$global-left: if($global-text-direction == rtl, right, left);
+$global-right: if($global-text-direction == rtl, left, right);
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+// Global
+////////////////////////////////////////
+
+@mixin foundation-global-styles {
+
+  // These styles are applied to a <meta> tag, which is read by the Foundation JavaScript
+  .foundation-mq {
+    font-family: '#{-zf-bp-serialize($breakpoints)}';
+  }
+
+  html {
+    box-sizing: border-box;
+    // font-size: $global-font-size; // Fix in _normalize.scss
+  }
+
+  // Set box-sizing globally to handle padding and border widths
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  // Default body styles
+  body {
+    background: $body-background;
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-weight: $global-weight-normal;
+    line-height: $global-lineheight;
+    // padding: 0; // Fix with compass reset in normalize.scss
+    // margin: 0; // Fix in _normalize.scss
+
+    @if $body-antialiased {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  img {
+    // Grid defaults to get images and embeds to work properly
+    // Get rid of gap under images by making them display: inline-block; by default
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+    //-ms-interpolation-mode: bicubic; // Not work in IE 10+
+  }
+
+  // Make sure textarea takes on height automatically
+  button,
+  textarea,
+  select {
+    border-radius: $global-radius;
+  }
+
+  // Styles Google Maps and MapQuest embeds properly
+  // scss-lint:disable IdSelector
+  #map_canvas,
+  .map_canvas,
+  .mqa-display {
+    img,
+    embed,
+    object {
+      max-width: none !important;
+    }
+  }
+
+  // Internal classes to show/hide elements in JavaScript
+  .is-visible {
+    display: block !important;
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+}

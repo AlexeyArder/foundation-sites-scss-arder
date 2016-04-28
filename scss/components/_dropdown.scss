@@ -1,0 +1,108 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group dropdown
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+
+$dropdown-background: $global-dropdown-background !default;
+$dropdown-border-color: $global-dropdown-border-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$dropdown-border-width: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Border radius dropdown panes.
+/// @type Number
+$dropdown-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$dropdown-border-radius-status: true !default;
+$dropdown-border-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Padding for dropdown panes.
+/// @type List
+$dropdown-padding: 1rem !default;
+
+/// Border for dropdown panes.
+/// @type List
+$dropdown-border: $dropdown-border-width solid $dropdown-border-color !default;
+
+/// Font size for dropdown panes.
+/// @type List
+$dropdown-font-size: 1rem !default;
+
+/// Width for dropdown panes.
+/// @type Number
+$dropdown-width: rem-calc(300) !default;
+
+/// Sizes for dropdown panes. Each size is a CSS class you can apply.
+/// @type Map
+$dropdown-sizes: (
+  tiny: $dropdown-width / 3,
+  small: $dropdown-width - ($dropdown-width / 2),
+  large: $dropdown-width + ($dropdown-width / 2),
+) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Dropdown
+////////////////////////////////////////
+
+/// Applies styles for a basic dropdown.
+@mixin dropdown-container {
+  background-color: $body-background;
+  display: block;
+  padding: $dropdown-padding;
+  position: absolute;
+  visibility: hidden;
+  width: $dropdown-width;
+  z-index: 10;
+  @if $dropdown-border-status {
+    border: $dropdown-border;
+  }
+  @if ($dropdown-border-radius-status) and ($dropdown-radius != 0) {
+    border-radius: $dropdown-radius;
+  }
+  @if $dropdown-font-size != 1rem {
+    font-size: $dropdown-font-size;
+  }
+
+  &.is-open {
+    visibility: visible;
+  }
+}
+
+@mixin foundation-dropdown {
+  .dropdown-pane {
+    @include dropdown-container;
+  }
+
+  @each $name, $size in $dropdown-sizes {
+    .dropdown-pane.#{$name} {
+      width: $size;
+    }
+  }
+}

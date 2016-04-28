@@ -1,0 +1,534 @@
+// Aleksey Yanukovich
+// ttdo.ru
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+// Colors variables
+////////////////////////////////////////
+
+/// Color used for white UI items.
+/// @type Color
+$white: #fff !default;
+
+/// Color used for black UI items.
+/// @type Color
+$black: #000 !default;
+
+/// Color used for light gray UI items.
+/// @type Color
+$light-gray: #cbcbcb !default;
+
+/// Color used for medium gray UI items.
+/// @type Color
+$medium-gray: #a6a6a6 !default;
+
+/// Color used for dark gray UI items.
+/// @type Color
+$dark-gray: #595959 !default;
+
+
+/// Primary color for interactive components like links and buttons.
+/// @type Color
+$primary-color: #2199e8 !default;
+
+/// Secondary color, used with components that support the `.secondary` class.
+/// @type Color
+$secondary-color: #777 !default;
+
+/// Color to indicate a positive status or action, used with the `.success` class.
+/// @type Color
+$success-color: #3adb76 !default;
+
+/// Color to indicate a caution status or action, used with the `.warning` class.
+/// @type Color
+$warning-color: #ffae00 !default;
+
+/// Color to indicate a negative status or action, used with the `.alert` class.
+/// @type Color
+$alert-color: #ec5840 !default;
+
+//$info-color: #a0d3e8 !default;
+
+
+////////////////////////////////////////
+// Ancors variables
+////////////////////////////////////////
+
+$hover-text-not-link-color: #555;
+
+$global-anchor-color: #000080 !default;
+$global-anchor-color-hover: scale-color($global-anchor-color, $lightness: -14%) !default;
+$global-anchor-color-focus: #f00 !default;
+$global-anchor-color-visited: #00f !default;
+$global-anchor-color-active: #008000 !default;
+
+
+////////////////////////////////////////
+//  Foundation for Sites Settings
+//  -----------------------------
+//
+//  Table of Contents:
+//
+//   1. Global
+//   2. Breakpoints
+//   3. The Grid
+//   4. Base Typography
+//      4.1 Base
+//      4.2 Helpers
+//   5. Forms
+//      5.1 Text
+//      5.2 Checkbox
+//      5.2 Label
+//      5.3 Help text
+//      5.4 Input-group
+//      5.5 Fieldset
+//      5.6 Select
+//      5.7 Error
+//   6. Accordion
+//   7. Accordion Menu
+//   8. Badge
+//   9. Breadcrumbs
+//  10. Button
+//  11. Button Group
+//  12. Callout
+//  13. Close Button
+//  14. Drilldown
+//  15. Dropdown
+//  16. Dropdown Menu
+//  17. Flex Video
+//  18. Label
+//  19. Media Object
+//  20. Menu
+//  21. Off-canvas
+//  22. Orbit
+//  23. Pagination
+//  24. Progress Bar
+//  25. Reveal
+//  26. Slider
+//  27. Switch
+//  28. Table
+//  29. Tabs
+//  30. Thumbnail
+//  31. Title Bar
+//  32. Tooltip
+//  33. Top Bar
+
+
+
+// 1. Global
+// ---------
+
+$global-body-background: $white !default;
+$global-body-font-color: $black !default;
+
+$foundation-palette: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  success: $success-color,
+  alert: $alert-color,
+  warning: $warning-color,
+) !default;
+
+
+
+
+
+
+// 4. Typography
+// -------------
+// 4.1 Base
+// --------
+
+$global-header-color: $black !default;
+$global-header-small-font-color: scale-color($global-header-color, $lightness: 30%) !default;
+$global-hr-border-color: $medium-gray !default;
+$global-blockquote-color: $dark-gray !default;
+$global-blockquote-border-color: $dark-gray !default;
+$global-cite-color: #f00 !default;
+$global-cite-link-color: $dark-gray !default;
+$global-abbr-underline-color: $dark-gray !default;
+$global-code-color: $black !default;
+$global-code-background: $light-gray !default;
+$global-code-border-color: $dark-gray !default;
+$global-keystroke-color: $black !default;
+$global-keystroke-background: $light-gray !default;
+$global-keystroke-border-color: $black !default;
+$global-preformated-background: $light-gray !default;
+$global-preformated-font-color: $black !default;
+
+
+
+// 4.2 Typography Helpers
+// ----------------------
+
+$global-subheader-color: $dark-gray !default;
+
+
+
+
+
+
+// 5. Forms
+// --------
+// 5.1 Text (input)
+// ----------------
+
+$global-input-color: $black !default;
+$global-input-background: $white !default;
+$global-input-background-focus: $white !default;
+$global-input-background-disabled: $light-gray !default;
+$global-input-border-color: $medium-gray !default;
+$global-input-border-focus-color: $dark-gray !default;
+$global-input-shadow-color: rgba($black, .1) !default;
+$global-input-shadow-focus-color: $medium-gray !default;
+$global-input-shadow: inset 0 1px 2px $global-input-shadow-color !default;
+$global-input-shadow-focus: 0 0 5px $global-input-shadow-focus-color !default;
+$global-input-placeholder-color: $medium-gray !default;
+
+
+// 5.3 Help text
+// -------------
+
+$global-helptext-color: $black !default;
+
+
+
+// 5.4 Input-group
+// ---------------
+
+$global-input-prefix-color: $black !default;
+$global-input-prefix-background: $light-gray !default;
+$global-input-prefix-border-color: $global-input-border-color !default;
+
+
+
+// 5.5 Fieldset
+// ------------
+
+$global-fieldset-border-color: $medium-gray !default;
+
+
+
+// 5.5---- Meter
+// --------
+$global-meter-background: $medium-gray !default;
+$global-meter-fill-good: $success-color !default;
+$global-meter-fill-medium: $warning-color !default;
+$global-meter-fill-bad: $alert-color !default;
+
+
+
+// 5.5---- Progress
+// --------
+$global-progress-background: $medium-gray !default;
+$global-progress-meter-background: $primary-color !default;
+
+
+
+// 5.6 Select
+// ----------
+
+$global-select-background: $white !default;
+$global-select-triangle-color: $dark-gray !default;
+
+
+
+// 5.7 Error (Abide)
+// ----------------
+
+$global-input-background-invalid: $alert-color !default;
+$global-input-background-transparency-factor: .1 !default;
+$global-form-label-color-invalid: $alert-color !default;
+$global-input-error-color: $alert-color !default;
+
+
+
+
+
+
+// Components
+// ----------
+// 6. Accordion
+// ------------
+
+$global-accordion-background: $white !default;
+$global-accordion-content-background: $white !default;
+$global-accordion-item-background-hover: $light-gray !default;
+$global-accordion-content-border-color: $light-gray !default;
+$global-accordion-item-color: foreground($global-accordion-background, $primary-color) !default;
+$global-accordion-content-color: foreground($global-accordion-background, $primary-color) !default;
+
+
+
+// 7. Accordion Menu
+// -----------------
+
+$global-accordionmenu-arrow-color: $primary-color !default;
+
+
+
+// 8. Badge
+// --------
+
+$global-badge-background: $primary-color !default;
+$global-badge-color: foreground($global-badge-background) !default;
+
+
+
+// 9. Breadcrumbs
+// ---------------
+
+$global-breadcrumbs-item-color: $primary-color !default;
+$global-breadcrumbs-item-color-current: $global-body-font-color !default;
+$global-breadcrumbs-item-color-disabled: $medium-gray !default;
+$global-breadcrumbs-item-slash-color: $medium-gray !default;
+$global-breadcrumbs-item-slash-opacity: 1 !default;
+
+
+
+// 10. Button
+// ----------
+
+$global-button-background: $primary-color !default;
+$global-button-background-hover: scale-color($global-button-background, $lightness: -15%) !default;
+$global-button-color: $white !default;
+$global-button-color-alt: $black !default;
+$global-button-border-color: $black !default;
+$global-button-background-hover-lightness-coefficient: -20% !default;
+$global-button-hollow-background-hover-lightness-coefficient: -50% !default;
+$global-button-opacity-disabled: .25 !default;
+
+
+
+// 11. Button Group
+// ----------------
+
+$global-buttongroup-expand-spacing-color: $global-body-background !default;
+
+
+
+// 12. Callout
+// -----------
+
+$global-callout-background: $white !default;
+$global-callout-background-fade: 85% !default;
+$global-callout-border-color: rgba($black, .25) !default;
+$global-callout-font-color: $black !default;
+$global-callout-font-color-alt: $white !default;
+$global-callout-link-tint: 30% !default; //?? Not work
+
+
+
+// 13. Close Button
+// ----------------
+
+$global-closebutton-color: $dark-gray !default;
+$global-closebutton-color-hover: $black !default;
+$global-closebutton-svg-opacity: 1 !default;
+$global-closebutton-svg-hover-opacity: 1 !default;
+
+
+
+// 14. Drilldown
+// -------------
+
+$global-drilldown-arrow-color: $primary-color !default;
+$global-drilldown-background: $white !default;
+
+
+
+// 15. Dropdown
+// ------------
+
+$global-dropdown-background: $white !default;
+$global-dropdown-border-color: $medium-gray !default;
+
+
+
+// 16. Dropdown Menu
+// -----------------
+
+$global-dropdownmenu-background: $global-dropdown-background !default;
+$global-dropdownmenu-arrow-color: $global-anchor-color !default;
+$global-dropdownmenu-border-color: $medium-gray !default;
+$global-dropdownmenu-hover-background: $alert-color !default;
+$global-dropdownmenu-hover-color: $white !default; // inherit
+
+
+
+// 18. Label
+// ---------
+
+$global-label-background: $primary-color !default;
+$global-label-color: foreground($global-label-background) !default;
+$global-label-border-color: $global-label-background !default;
+
+
+
+// 20. Menu
+// --------
+$global-menu-item-color-active: $white !default;
+$global-menu-item-background-active: map-get($foundation-palette, primary) !default;
+$global-menu-text-color: inherit !default;
+
+
+
+// 21. Off-canvas
+// --------------
+
+$global-offcanvas-menu-background: $light-gray !default;
+$global-offcanvas-exit-background: rgba($white, .25) !default;
+$global-offcanvas-background: $black !default;
+$global-maincontent-shadow: 0 0 10px rgba($black, .5) !default;
+
+
+
+// 22. Orbit
+// ---------
+
+
+
+// 23. Pagination
+// --------------
+
+$global-pagination-item-color: $black !default;
+$global-pagination-item-background-hover: $light-gray !default;
+$global-pagination-item-background-current: $primary-color !default;
+$global-pagination-item-color-current: foreground($global-pagination-item-background-current) !default;
+$global-pagination-item-color-disabled: $medium-gray !default;
+$global-pagination-ellipsis-color: $black !default;
+$global-pagination-item-hover-color: $global-pagination-item-color !default;
+
+
+
+// 24. Progress Bar
+// ----------------
+
+$global-progress-background: $medium-gray !default;
+$global-progress-meter-background: $primary-color !default;
+$global-progress-text-color: $white !default;
+
+
+
+// 25. Reveal
+// ----------
+
+$global-reveal-background: $white !default;
+$global-reveal-border-color: $medium-gray !default;
+$global-reveal-overlay-background: rgba($black, .45) !default;
+
+
+
+// 26. Slider
+// ----------
+
+$global-slider-background: $light-gray !default;
+$global-slider-fill-background: $medium-gray !default;
+$global-slider-handle-background: $primary-color !default;
+$global-slider-opacity-disabled: .25 !default;
+$global-slider-handle-hover-background-color: scale-color($global-slider-handle-background, $lightness: -15%) !default;
+$global-slider-handle-border-color: $global-slider-handle-background !default;
+
+
+
+// 27. Switch
+// ----------
+
+$global-switch-background: $medium-gray !default;
+$global-switch-background-active: $primary-color !default;
+$global-switch-paddle-background: $white !default;
+$global-switch-container-color: $white !default;
+
+
+
+// 28. Table
+// ---------
+
+$global-table-background: $white !default;
+$global-table-color-scale: 5% !default;
+$global-table-border-color: smart-scale($global-table-background, $global-table-color-scale) !default;
+$global-table-hover-scale: 2% !default;
+$global-table-row-hover: darken($global-table-background, $global-table-hover-scale) !default;
+$global-table-row-stripe-hover: darken($global-table-background, $global-table-color-scale + $global-table-hover-scale) !default;
+$global-table-striped-background: smart-scale($global-table-background, $global-table-color-scale) !default;
+$global-table-head-background: smart-scale($global-table-background, $global-table-color-scale / 2) !default;
+$global-table-foot-background: smart-scale($global-table-background, $global-table-color-scale) !default;
+$global-table-head-font-color: $global-body-font-color !default;
+
+
+
+// 29. Tabs
+// --------
+
+$global-tab-background: $white !default;
+$global-tab-background-active: $light-gray !default;
+$global-tab-border: $light-gray !default;
+$global-tab-item-color: foreground($global-tab-background, $primary-color) !default;
+$global-tab-item-background-hover: $white !default;
+$global-tab-content-background: $white !default;
+$global-tab-content-color: foreground($global-tab-background, $primary-color) !default;
+$global-tab-content-border-color: $global-tab-border !default;
+
+
+
+// 30. Thumbnail
+// -------------
+
+$global-thumbnail-border-color: $white !default;
+$global-thumbnail-shadow: 0 0 0 1px rgba($black, .2) !default;
+$global-thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, .5) !default;
+
+
+
+// 31. Title Bar
+// -------------
+
+$global-titlebar-background: $black !default;
+$global-titlebar-color: $white !default;
+$global-titlebar-icon-color: $white !default;
+$global-titlebar-icon-color-hover: $medium-gray !default;
+
+
+
+// 32. Tooltip
+// -----------
+
+$global-tooltip-background-color: $black !default;
+$global-tooltip-color: $white !default;
+$global-tooltip-has-tip-border-bottom-color: $dark-gray !default;
+
+
+
+// 33. Top Bar
+// -----------
+
+$global-topbar-background: $light-gray !default;
+$global-topbar-link-color: $primary-color !default;
+$global-topbar-submenu-background: $global-topbar-background !default;
+
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+// Vars for settings
+// Don`t touch it
+////////////////////////////////////////
+$blockquote-border-color: $global-blockquote-border-color !default;
+$abbr-underline-color: $global-abbr-underline-color !default;
+$code-border-color: $global-code-border-color !default;
+$keystroke-border-color: $global-keystroke-border-color !default;
+$input-prefix-border-color: $global-input-prefix-border-color !default;
+$fieldset-border-color: $global-fieldset-border-color !default;
+$accordion-content-border-color: $global-accordion-content-border-color !default;
+$callout-border-color: $global-callout-border-color !default;
+$dropdown-border-color: $global-dropdown-border-color !default;
+$dropdownmenu-border-color: $global-dropdownmenu-border-color !default;
+$label-border-color: $global-label-border-color !default;
+$reveal-border-color: $global-reveal-border-color !default;
+$slider-handle-border-color: $global-slider-handle-border-color !default;
+$table-border-color: $global-table-border-color !default;
+$tab-border: $global-tab-border !default;
+$tab-content-border-color: $global-tab-content-border-color !default;
+$thumbnail-border-color: $global-thumbnail-border-color !default;
+$tooltip-has-tip-border-bottom-color: $global-tooltip-has-tip-border-bottom-color !default;

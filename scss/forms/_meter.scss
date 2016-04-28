@@ -1,0 +1,139 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group meter
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Background color of a `<meter>` element.
+/// @type Color
+$meter-background: $global-meter-background !default;
+
+/// Meter fill for an optimal value in a `<meter>` element.
+/// @type Color
+$meter-fill-good: $global-meter-fill-good !default;
+
+/// Meter fill for an average value in a `<meter>` element.
+/// @type Color
+$meter-fill-medium: $global-meter-fill-medium !default;
+
+/// Meter fill for a suboptimal value in a `<meter>` element.
+/// @type Color
+$meter-fill-bad: $global-meter-fill-bad !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Border radius of a `<meter>` element.
+/// @type Length
+$meter-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$meter-radius-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Height of a `<meter>` element.
+/// @type Length
+$meter-height: 1rem !default;
+
+/// Bottom margin of a `<meter>` element.
+/// @type Number
+$meter-margin-bottom: $global-margin !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Meter
+////////////////////////////////////////
+
+@mixin foundation-meter-element {
+  meter {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    // For Firefox
+    background: $meter-background;
+    border: 0;
+
+    display: block;
+    height: $meter-height;
+    margin-bottom: $meter-margin-bottom;
+    width: 100%;
+
+    @if $meter-radius-status and has-value($meter-radius) {
+      border-radius: $meter-radius;
+    }
+
+    // Chrome/Safari
+    &::-webkit-meter-bar {
+      background: $meter-background;
+
+      @if $meter-radius-status and has-value($meter-radius) {
+        border-radius: $meter-radius;
+      }
+    }
+
+    &::-webkit-meter-inner-element {
+      @if $meter-radius-status and has-value($meter-radius) {
+        border-radius: $meter-radius;
+      }
+    }
+
+    &::-webkit-meter-optimum-value {
+      background: $meter-fill-good;
+
+      @if $meter-radius-status and has-value($meter-radius) {
+        border-radius: $meter-radius;
+      }
+    }
+
+    &::-webkit-meter-suboptimum-value {
+      background: $meter-fill-medium;
+
+      @if $meter-radius-status and has-value($meter-radius) {
+        border-radius: $meter-radius;
+      }
+    }
+
+    &::-webkit-meter-even-less-good-value {
+      background: $meter-fill-bad;
+
+      @if $meter-radius-status and has-value($meter-radius) {
+        border-radius: $meter-radius;
+      }
+    }
+
+    &::-moz-meter-bar {
+      background: $meter-background;
+
+      @if $meter-radius-status and has-value($meter-radius) {
+        border-radius: $meter-radius;
+      }
+    }
+
+    &:-moz-meter-optimum::-moz-meter-bar {
+      background: $meter-fill-good;
+    }
+
+    &:-moz-meter-sub-optimum::-moz-meter-bar {
+      background: $meter-fill-medium;
+    }
+
+    &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+      background: $meter-fill-bad;
+    }
+  }
+}

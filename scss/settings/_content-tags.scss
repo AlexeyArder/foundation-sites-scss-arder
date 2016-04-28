@@ -1,0 +1,46 @@
+// Aleksey Yanukovich
+// ttdo.ru
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+// Content variables
+////////////////////////////////////////
+
+$content-arrow-up: '\25B2' !default;
+$content-arrow-down: '\25BC' !default;
+$content-arrow-left: '\25C0\FE0E' !default;
+$content-arrow-right: '\25B6\FE0E' !default;
+
+
+
+/// Typography
+$global-quotes-style: '\AB' '\BB' '\201E' '\201C' !default;
+$global-cite-before-content: '\2014 \0020' !default;
+
+/// Accordion-menu
+$global-accordionmenu-arrows-up-content: $content-arrow-up !default;
+$global-accordionmenu-arrows-down-content: $content-arrow-down !default;
+
+/// Accordion
+$global-accordion-plusminus-plus-content: '\002B' !default;
+$global-accordion-plusminus-minus-content: '\2212' !default;
+
+// Breadcrumbs
+$global-breadcrumbs-item-slash-content: '\002F' !default;
+
+// Button
+$global-button-dropdown-arrow-content: $content-arrow-down !default; //'▾' !default;
+
+// Drilldown
+$global-drilldown-arrow-left-content: $content-arrow-left !default;
+$global-drilldown-arrow-right-content: $content-arrow-right !default;
+
+// Dropdown-menu
+$global-dropdownmenu-arrows-down-content: $content-arrow-down !default;
+$global-dropdownmenu-arrow-left-content: $content-arrow-left !default;
+$global-dropdownmenu-arrow-right-content: $content-arrow-right !default;
+
+// Pagination
+$global-pagination-ellipsis-content: '\2026' !default;
+$global-pagination-arrows-previous-content: '\00ab' !default;
+$global-pagination-arrows-next-content: '\00bb' !default;

@@ -1,0 +1,130 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group abide
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Background color to use for invalid text inputs.
+/// @type Color
+$input-background-invalid: $global-input-background-invalid !default;
+
+/// Background transparency factor to use for invalid text inputs.
+/// @type Number
+$input-background-transparency-factor: $global-input-background-transparency-factor !default;
+
+/// Color to use for labels of invalid inputs.
+/// @type Color
+$form-label-color-invalid: $global-form-label-color-invalid !default;
+
+/// Default font color for form error text.
+/// @type Color
+$input-error-color: $global-input-error-color !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Sets if error styles should be added to inputs.
+/// @type Boolean
+$abide-inputs-status: true !default;
+
+/// Sets if error styles should be added to labels.
+/// @type Boolean
+$abide-labels-status: true !default;
+
+
+$form-error-border-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default font size for form error text.
+/// @type Number
+$input-error-font-size: $small-font-size !default;
+
+/// Default font weight for form error text.
+/// @type Keyword
+$input-error-font-weight: $global-weight-bold !default;
+
+/// Default font style for form error text.
+/// @type Keyword
+$input-error-font-style: normal !default;
+
+/// Default margin top for form error input.
+/// @type Number
+$input-error-message-margin-top: - $form-spacing / 1.2 !default;
+
+/// Default margin bottom for form error input.
+/// @type Number
+$input-error-message-margin-bottom: $form-spacing !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Error
+////////////////////////////////////////
+
+/// Styles the background and border of an input field to have an error state.
+///
+/// @param {Color} $background [$alert-color] - Color to use for the background and border.
+/// @param {Number} $background-alpha [0.1] - Transparency level of the background color.
+@mixin form-input-error(
+  $background: $input-background-invalid,
+  $background-alpha: $input-background-transparency-factor ) {
+
+  &:not(:focus) {
+    background-color: rgba($background, $background-alpha);
+    @if $form-error-border-status {
+      border-color: $background;
+    }
+  }
+}
+
+/// Adds error styles to a form element, using the values in the settings file.
+@mixin form-error {
+  color: $input-error-color;
+  display: none;
+  margin-top: $input-error-message-margin-top;
+  margin-bottom: $input-error-message-margin-bottom;
+  @if $input-error-font-size != $small-font-size {
+    font-size: $input-error-font-size;
+  }
+  @if $input-error-font-style != normal {
+    font-style: $input-error-font-style;
+  }
+  @if $input-error-font-weight != normal {
+    font-weight: $input-error-font-weight;
+  }
+}
+
+@mixin foundation-form-error {
+  @if $abide-inputs-status {
+    // Error class for invalid inputs
+    .is-invalid-input {
+      @include form-input-error;
+    }
+  }
+
+  @if $abide-labels-status {
+    // Error class for labels of invalid outputs
+    .is-invalid-label {
+      color: $form-label-color-invalid;
+    }
+  }
+
+  // Form error element
+  .form-error {
+    @include form-error;
+
+    &.is-visible {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,144 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group breadcrumbs
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Color of breadcrumb links.
+/// @type Color
+$breadcrumbs-item-color: $global-breadcrumbs-item-color !default;
+
+/// Color of the active breadcrumb link.
+/// @type Color
+$breadcrumbs-item-color-current: $global-breadcrumbs-item-color-current !default;
+
+/// Opacity of disabled breadcrumb links.
+/// @type Number
+$breadcrumbs-item-color-disabled: $global-breadcrumbs-item-color-disabled !default;
+
+
+$breadcrumbs-item-slash-color: $global-breadcrumbs-item-slash-color !default;
+
+
+//--------------------------------------
+// Content
+//
+
+$breadcrumbs-item-slash-opacity: $global-breadcrumbs-item-slash-opacity !default;
+$breadcrumbs-item-slash-content: $global-breadcrumbs-item-slash-content !default;
+
+
+//--------------------------------------
+// Status
+//
+/// If `true`, makes breadcrumb links uppercase.
+/// @type Boolean
+$breadcrumbs-item-uppercase-status: false !default;
+
+/// If `true`, adds a slash between breadcrumb links.
+/// @type Boolean
+$breadcrumbs-item-slash-status: true !default;
+
+
+$breadcrumbs-item-anchor-underline-status: false !default;
+$breadcrumbs-item-disabled-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Margin around a breadcrumbs container.
+/// @type Number
+$breadcrumbs-margin: 0 0 $global-margin 0 !default;
+
+/// Font size of breadcrumb links.
+/// @type Number
+$breadcrumbs-item-font-size: rem-calc(16) !default;
+
+/// Margin between breadcrumb items.
+/// @type Number
+$breadcrumbs-item-margin: rem-calc(10) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Breadcrumbs
+////////////////////////////////////////
+
+/// Adds styles for a breadcrumbs container, along with the styles for the `<li>` and `<a>` elements inside of it.
+@mixin breadcrumbs-container {
+  @include clearfix;
+  list-style: none;
+  margin: $breadcrumbs-margin;
+
+  // Item wrapper
+  li {
+    float: #{$global-left};
+    @if $breadcrumbs-item-color-current != $body-font-color {
+      color: $breadcrumbs-item-color-current;
+    }
+    @if ($breadcrumbs-item-font-size != inherit) and ($breadcrumbs-item-font-size != 1rem) {
+      font-size: $breadcrumbs-item-font-size;
+    }
+
+    @if $breadcrumbs-item-uppercase-status {
+      text-transform: uppercase;
+    }
+
+    @if $breadcrumbs-item-slash-status {
+      // Need to escape the backslash
+      $slash: if($global-text-direction == 'ltr', $breadcrumbs-item-slash-content, '\\');
+
+      &:not(:last-child)::after {
+        content: $slash;
+        margin-#{$global-right}: $breadcrumbs-item-margin;
+        margin-#{$global-left}: $breadcrumbs-item-margin;
+        position: relative;
+        @if ($breadcrumbs-item-slash-color != $body-font-color) or ($breadcrumbs-item-disabled-status != false) {
+          color: $breadcrumbs-item-slash-color;
+        }
+        @if $breadcrumbs-item-slash-opacity != 1 {
+          opacity: $breadcrumbs-item-slash-opacity;
+        }
+
+        //top: 1px;
+      }
+    } @else {
+      margin-#{$global-right}: $breadcrumbs-item-margin;
+    }
+
+    //cursor: default;
+  }
+
+  // Page links
+  a {
+    @if $breadcrumbs-item-color != $anchor-color {
+      color: $breadcrumbs-item-color;
+    }
+
+    @if $breadcrumbs-item-anchor-underline-status {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@mixin foundation-breadcrumbs {
+  .breadcrumbs {
+    @include breadcrumbs-container;
+
+    @if $breadcrumbs-item-disabled-status {
+      .disabled {
+        color: $breadcrumbs-item-color-disabled;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

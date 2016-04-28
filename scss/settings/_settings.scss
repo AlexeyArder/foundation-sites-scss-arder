@@ -1,0 +1,1001 @@
+//  Foundation for Sites Settings
+//  -----------------------------
+//
+//  Table of Contents:
+//
+//   1. Global
+//   2. Breakpoints
+//   3. The Grid
+//   4. Base Typography
+//      4.1 Base
+//      4.2 Helpers
+//   5. Forms
+//      5.1 Text
+//      5.2 Checkbox
+//      5.2 Label
+//      5.3 Help text
+//      5.4 Input-group
+//      5.5 Fieldset
+//      5.6 Select
+//      5.7 Error
+//   6. Accordion
+//   7. Accordion Menu
+//   8. Badge
+//   9. Breadcrumbs
+//  10. Button
+//  11. Button Group
+//  12. Callout
+//  13. Close Button
+//  14. Drilldown
+//  15. Dropdown
+//  16. Dropdown Menu
+//  17. Flex Video
+//  18. Label
+//  19. Media Object
+//  20. Menu
+//  21. Off-canvas
+//  22. Orbit
+//  23. Pagination
+//  24. Progress Bar
+//  25. Reveal
+//  26. Slider
+//  27. Switch
+//  28. Table
+//  29. Tabs
+//  30. Thumbnail
+//  31. Title Bar
+//  32. Tooltip
+//  33. Top Bar
+
+
+
+// 1. Global
+// ---------
+
+//// Colors
+// $foundation-palette: (
+//   primary: $primary-color,
+//   secondary: $secondary-color,
+//   success: $success-color,
+//   alert: $alert-color,
+//   warning: $warning-color,
+// ) !default;
+
+//// Border width
+// $global-border-width: rem-calc(1) !default;
+// $global-form-border-width: 1px !default;
+// $global-text-border-width: 1px !default;
+// $global-hr-border-width: 1px !default;
+
+//// Radius
+// $global-radius: 0 !default;
+
+//// Status
+// $global-flexbox: true !default;
+// $body-antialiased: true !default;
+// $sticky-footer: true !default;
+
+//// Sizes
+// $global-font-size: 100% !default;
+// $global-width: rem-calc(1200) !default;
+// $global-lineheight: 1.35 !default;
+// $body-font-family: 'PT Sans', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+// $font-family-monospace: 'PT Mono', Consolas, 'Liberation Mono', Courier, monospace !default;
+// $global-margin: 1rem !default;
+// $global-padding: 1rem !default;
+// $global-form-spacing: 1rem !default;
+// $global-weight-normal: normal !default;
+// $global-weight-bold: bold !default;
+// $global-text-direction: ltr !default;
+// $global-left: if($global-text-direction == rtl, right, left);
+// $global-right: if($global-text-direction == rtl, left, right);
+
+@include add-foundation-colors;
+
+
+
+
+
+// 2. Breakpoints
+// --------------
+
+// $breakpoints: (
+//   small: 0,
+//   medium: 640px,
+//   large: 1024px,
+//   xlarge: 1200px,
+//   xxlarge: 1440px,
+// );
+// $breakpoint-classes: (small medium large);
+
+
+
+// 3. The Grid
+// -----------
+
+// $grid-row-width: $global-width;
+// $grid-column-count: 12;
+// $grid-column-gutter: (
+//   small: 20px,
+//   medium: 30px,
+// );
+// $grid-column-align-edge: true;
+// $block-grid-max: 8;
+
+
+
+
+
+
+// 4. Typography
+// -------------
+// 4.1 Base
+// --------
+
+//// Status
+// $code-kbd-samp-pre-status: true !default;
+// $code-decoration-status: true !default;
+// $kbd-decoration-status: true !default;
+// $blockquote-border-status: true !default;
+// $code-border-status: true !default;
+// $kbd-border-status: true !default;
+// $code-border-radius-status: true !default;
+// $kbd-border-radius-status: true !default;
+// $preformated-border-radius-status: true !default;
+
+// Header font styles
+//// Sizes
+// $header-font-family: $body-font-family !default;
+// $header-font-weight: $global-weight-bold !default;
+// $header-font-style: normal !default;
+// $header-small-coefficient: 1 !default;
+// $header-medium-coefficient: 1 !default;
+// $header-large-coefficient: 1.2 !default;
+// $h1-font-size: rem-calc(36) !default;
+// $h2-font-size: rem-calc(31) !default;
+// $h3-font-size: rem-calc(26) !default;
+// $h4-font-size: rem-calc(22) !default;
+// $h5-font-size: rem-calc(19) !default;
+// $h6-font-size: rem-calc(16) !default;
+// $header-lineheight: 1.125 !default;
+// $header-top-margin: .5em !default;
+// $header-margin-bottom: .7em !default;
+// $header-text-rendering: optimizeLegibility !default;
+
+// Small font styles
+// $small-font-size: .75em !default;
+// $header-small-line-height: 0 !default;
+
+// Paragraph font styles
+// $paragraph-font-size: inherit !default;
+// $paragraph-lineheight: $global-lineheight !default;
+// $paragraph-margin-bottom: 1.1em !default;
+// $paragraph-text-rendering: optimizeLegibility !default;
+
+// Anchors font styles
+//// Sizes
+// $anchor-text-decoration: none !default;
+// $anchor-text-decoration-hover: none !default;
+
+// Horizontal line style
+// $hr-border-width: $global-hr-border-width !default;
+//// Sizes
+// $hr-width: $global-width !default;
+// $hr-border-style: solid !default;
+// $hr-margin: rem-calc(20) auto !default;
+
+// Lists style
+//// Sizes
+// $list-lineheight: $paragraph-lineheight !default;
+// $list-margin-bottom: $paragraph-margin-bottom !default;
+// $unordered-list-style-type: disc !default;
+// $ordered-list-style-type: decimal !default;
+// $ordered-second-list-style-type: lower-alpha !default;
+// $list-style-position: outside !default;
+// $list-side-margin: rem-calc(32) !default;
+// $list-nested-side-margin: $list-side-margin !default;
+
+// Defifnitions style
+//// Sizes
+// $defnlist-margin-bottom: 1.2rem !default;
+// $defnlist-term-weight: $global-weight-bold !default;
+// $defnlist-term-margin-bottom: .3rem !default;
+
+// Blockquote style
+//// Border width
+// $blockquote-border-width: $global-border-width !default;
+//// Sizes
+// $blockquote-border: $blockquote-border-width solid $blockquote-border-color !default;
+// $blockquote-padding: rem-calc(8 32) !default;
+// $blockquote-margin: 0 0 rem-calc(16) !default;
+
+// Cite style
+// $cite-font-size: rem-calc(13) !default;
+
+// Sub & sup
+//// Sizes
+// $sub-sup-font-size: .7em !default;
+
+// Abbreviation elements style
+//// Border width
+// $abbr-underline-width: $global-text-border-width !default;
+//// Sizes
+// $abbr-underline: $abbr-underline-width dotted $abbr-underline-color !default;
+
+// <code> tags
+//// Border width
+// $code-border-width: $global-text-border-width !default;
+//// Radius
+// $code-radius: $global-radius !default;
+//// Sizes
+// $code-font-family: $font-family-monospace !default;
+// $code-font-size: 1rem !default;
+// $code-font-weight: $global-weight-normal !default;
+// $code-border: $code-border-width solid $code-border-color !default;
+// $code-padding: rem-calc(2 4) !default;
+
+// Keyboard elements style
+//// Border width
+// $keystroke-border-width: $global-text-border-width !default;
+//// Radius
+// $keystroke-radius: $global-radius !default;
+//// Sizes
+// $keystroke-font: $font-family-monospace !default;
+// $keystroke-padding: rem-calc(2 4 0) !default;
+// $keystroke-border: $keystroke-border-width solid $keystroke-border-color !default;
+
+// Preformated block style
+//// Radius
+// $preformated-radius: $global-radius !default;
+//// Sizes
+// $preformated-font-size: $paragraph-font-size !default;
+// $preformated-line-height: $global-lineheight !default;
+// $preformated-padding: rem-calc(16 18) !default;
+// $preformated-margin: 0 0 $paragraph-margin-bottom !default;
+
+// Address
+//// Sizes
+// $address-font-size: $paragraph-font-size !default;
+// $address-font-style: italic !default;
+// $address-font-weight: normal !default;
+
+// Figcaption
+//// Sizes
+// $figcaption-font-size: $paragraph-font-size !default;
+// $figcaption-line-height: inherit !default;
+
+
+
+// 4.2 Typography Helpers
+// ----------------------
+
+/// Subheaders class
+//// Sizes
+// $subheader-lineheight: $header-lineheight !default;
+// $subheader-font-weight: $global-weight-normal !default;
+// $subheader-margin-top: .3rem !default;
+// $subheader-margin-bottom: .5rem !default;
+
+/// Lead class
+//// Sizes
+// $lead-font-size: $global-font-size * 1.3 !default;
+// $lead-lineheight: $global-lineheight * 1.3 !default;
+
+/// Stat class
+//// Sizes
+// $stat-font-size: rem-calc(32) !default;
+// $stat-line-height: 1 !default;
+// $stat-p-margin-top: -1rem !default;
+
+/// No bullet class
+// $no-bullet-margin: 0 !default;
+// $no-bullet-margin-second-level: 0 !default;
+
+
+
+
+
+
+// 5. Forms
+// --------
+
+//// Sizes
+// $form-spacing: $global-form-spacing !default;
+
+// 5.1 Text (input)
+// ----------------
+
+//// Border width
+// $input-border-width: $global-form-border-width !default;
+//// Radius
+// $input-radius: $global-radius !default;
+//// Status
+// $input-number-spinners: true !default;
+// $input-border-status: true !default;
+// $input-box-shadow-status: true !default;
+// $input-radius-status: true !default;
+// $submit-button-border-radius-status: true !default;
+//// Sizes
+// $input-font-family: inherit !default;
+// $input-font-size: rem-calc(16) !default;
+// $input-border: $input-border-width solid $global-input-border-color !default;
+// $input-border-focus: $input-border-width solid $global-input-border-focus-color !default;
+// $input-cursor-disabled: not-allowed !default;
+// $input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
+// $input-margin: 0 0 $form-spacing !default;
+// $input-padding-vertical: $form-spacing / 2 !default;
+// $input-padding-horizontal: $form-spacing / 2 !default;
+// $input-height: ($input-font-size + ($form-spacing * 1.5));
+
+
+
+// 5.2 Checkbox
+// ------------
+
+//// Sizes
+// $input-checkbox-radio-margin-left: $form-spacing / 2 !default;
+// $input-checkbox-radio-margin-right: $form-spacing !default;
+
+
+
+// 5.2 Label
+// ---------
+
+//// Status
+// $form-label-middle-status: true !default;
+//// Sizes
+// $form-label-font-size: rem-calc(14) !default;
+// $form-label-font-weight: $global-weight-normal !default;
+// $form-label-line-height: inherit !default;
+// $form-label-margin-bottom: rem-calc(4) !default;
+
+
+
+// 5.3 Help text
+// -------------
+
+//// Sizes
+// $helptext-font-size: rem-calc(13) !default;
+// $helptext-font-style: italic !default;
+// $helptext-margin-top: - ($form-spacing / 2);
+
+
+
+// 5.4 Input-group
+// ---------------
+
+//// Radius
+// $input-group-border-radius: $global-radius !default;
+//// Status
+// $input-group-border-radius-status: true !default;
+// $input-prefix-border-status: true !default;
+// $input-prefix-global-button-border-status: true !default;
+//// Sizes
+// $input-prefix-border: $input-border-width solid $input-prefix-border-color !default;
+// $input-prefix-padding: 0 1rem !default;
+// $input-group-margin-bottom: $form-spacing !default;
+// $input-group-label-text-align: center !default;
+// $height: $input-height !default;
+// $input-group-label-width: 1% !default;
+// $input-group-button-width: 1% !default;
+
+
+
+// 5.5 Fieldset
+// ------------
+
+//// Border width
+// $fieldset-border-width: $global-form-border-width !default;
+//// Radius
+// $fieldset-border-radius: $global-radius !default;
+//// Status
+// $fieldset-border-radius-status: false !default;
+//// Sizes
+// $fieldset-border: $fieldset-border-width solid $fieldset-border-color !default;
+// $fieldset-padding: rem-calc(8 16 4) !default;
+// $fieldset-margin: rem-calc(16 0) !default;
+// $legend-padding-side: rem-calc(4) !default;
+// $legend-margin-bottom: $form-spacing / 2 !default;
+
+
+
+// 5.5--- Meter
+// ------------
+
+//// Radius
+// $meter-radius: $global-radius !default;
+//// Status
+// $meter-radius-status: true !default;
+//// Sizes
+// $meter-height: 1rem !default;
+// $meter-margin-bottom: $global-margin !default;
+
+
+
+// 5.5--- Progress
+// ------------
+
+//// Radius
+// $progress-radius: $global-radius !default;
+//// Status
+// $progress-radius-status: true !default;
+//// Sizes
+// $progress-height: 1rem !default;
+// $progress-margin-bottom: $global-margin !default;
+
+
+
+// 5.6 Select
+// ----------
+
+//// Radius
+// $select-radius: $global-radius !default;
+//// Status
+// $select-style-status: true !default;
+// $select-radius-status: true !default;
+//// Sizes
+// $select-triangle-size: 9px 6px !default;
+// $select-triangle-position: $global-right center !default;
+// $select-margin: 0 0 $form-spacing !default;
+// $select-padding: ($form-spacing / 2) !default;
+
+
+
+// 5.7 Error (Abide)
+// ----------------
+
+//// Status
+// $abide-inputs-status: true !default;
+// $abide-labels-status: true !default;
+// $form-error-border-status: true !default;
+//// Sizes
+// $input-error-font-size: $small-font-size !default;
+// $input-error-font-weight: $global-weight-bold !default;
+// $input-error-font-style: normal !default;
+// $input-error-message-margin-top: - $form-spacing / 1.2 !default;
+// $input-error-message-margin-bottom: $form-spacing !default;
+
+
+
+
+
+
+// Components
+// ----------
+// 6. Accordion
+// ------------
+
+//// Border width
+// $accordion-content-border-width: $global-border-width !default;
+//// Radius
+// $accordion-container-border-radius: $global-radius !default;
+//// Status
+// $accordion-plusminus-status: true !default;
+// $accordion-container-border-radius-status: true !default;
+// $accordion-content-border-status: true !default;
+// $accordion-title-border-bottom-status: true !default;
+// $accordion-title-border-bottom-active-status: true !default;
+//// Sizes
+// $accordion-item-padding: rem-calc(20) 1rem !default;
+// $accordion-content-padding: 1rem !default;
+// $accordion-content-border: $accordion-content-border-width solid $accordion-content-border-color !default;
+// $accordion-title-font-size: rem-calc(12) !default;
+// $accordion-title-font-weight: normal !default;
+// $accordion-title-line-height: 1 !default;
+// $accordion-plusminus-font-size: rem-calc(16) !default;
+// $accordion-plusminus-font-weight: normal !default;
+// $accordion-plusminus-right: 1rem !default;
+
+
+
+// 7. Accordion Menu
+// -----------------
+
+//// Status
+// $accordionmenu-arrows-status: true !default;
+//// Sizes
+// $accordionmenu-arrows-font-size: rem-calc(10) !default;
+// $accordionmenu-arrows-right: 1rem !default;
+// $accordionmenu-arrows-up-content: $global-accordionmenu-arrows-up-content !default;
+// $accordionmenu-arrows-down-content: $global-accordionmenu-arrows-down-content !default;
+
+
+
+// 8. Badge
+// --------
+
+//// Radius
+// $badge-border-radius: 50% !default;
+//// Status
+// $badge-border-radius-status: true !default;
+//// Sizes
+// $badge-font-size: 1rem !default;
+// $badge-padding: rem-calc(2) !default;
+// $badge-line-height: 1 !default;
+// $badge-minwidth: strip-unit($badge-font-size * $badge-line-height) + ($badge-padding * 2) !default;
+// $badge-margin-left: 0 !default;
+// $badge-margin-right: 0 !default;
+
+
+
+// 9. Breadcrumbs
+// ---------------
+
+//// Status
+// $breadcrumbs-item-uppercase-status: false !default;
+// $breadcrumbs-item-slash-status: true !default;
+// $breadcrumbs-item-anchor-underline-status: false !default;
+// $breadcrumbs-item-disabled-status: true !default;
+//// Sizes
+// $breadcrumbs-margin: 0 0 $global-margin 0 !default;
+// $breadcrumbs-item-font-size: rem-calc(16) !default;
+// $breadcrumbs-item-margin: rem-calc(10) !default;
+
+
+
+// 10. Button
+// ----------
+
+//// Radius
+// $button-radius: $global-radius !default;
+//// Status
+/// Default fill for buttons. Can either be `solid` or `hollow`.
+// $button-fill: solid !default;
+// $button-hollow-hover-solid: true !default;
+// $button-border-status: true !default;
+// $button-border-radius-status: true !default;
+// $button-dropdown-status: true !default;
+// $button-disabled-status: true !default;
+//// Sizes
+// $button-margin: 0 0 $global-margin 0 !default;
+// @if $global-text-direction == 'rtl' {
+//   $button-margin: 0 0 $global-margin $global-margin !default;
+// }
+// $button-padding: .5em 1em !default;
+// $button-font-default: 1rem !default;
+// $button-sizes: (
+//   default: $button-font-default,
+//   tiny: $button-font-default - ($button-font-default / 6),
+//   small: $button-font-default - ($button-font-default / 9),
+//   large: $button-font-default + ($button-font-default / 6),
+// ) !default;
+// $button-line-height: 1 !default;
+// $button-font-weight: bold !default;
+// $button-border-width: $global-border-width !default;
+// $button-border-hollow-width: $global-border-width !default;
+// $button-border-style: solid !default;
+// $button-border-hollow-style: solid !default;
+// $button-transition: background-color .25s ease-out, color .25s ease-out !default;
+// $button-dropdown-arrow-font-size: rem-calc(10) !default;
+// $button-dropdown-arrow-padding-top: .15em !default;
+// $button-dropdown-arrow-margin-left: get-side($button-padding, right) * .8 !default;
+// $button-arrow-only-side-margin: .2em !default;
+
+
+
+// 11. Button Group
+// ----------------
+
+//// Sizes
+// $buttongroup-child-selector: '.button' !default;
+// $buttongroup-expand-max: 6 !default;
+// $buttongroup-margin: 1rem !default;
+// $buttongroup-spacing: $global-border-width !default;
+// $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
+
+
+
+// 12. Callout
+// -----------
+
+//// Border width
+// $callout-border-width: $global-border-width !default;
+//// Radius
+// $callout-radius: $global-radius !default;
+//// Status
+// $callout-border-status: true !default;
+// $callout-border-radius-status: true !default;
+// $callout-different-sizes-status: true !default;
+//// Sizes
+// $callout-border: $callout-border-width solid $callout-border-color !default;
+// $callout-margin: 0 0 1rem 0 !default;
+// $callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
+// $callout-padding-small-coefficient: .8 !default;
+// $callout-padding-large-coefficient: 1.5 !default;
+// $callout-padding-small: (get-side($callout-padding, top) * $callout-padding-small-coefficient) (get-side($callout-padding, right) * $callout-padding-small-coefficient) (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
+// $callout-padding-large: (get-side($callout-padding, top) * $callout-padding-large-coefficient) (get-side($callout-padding, right) * $callout-padding-large-coefficient) (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
+
+
+
+// 13. Close Button
+// ----------------
+
+//// Status
+// $closebutton-position: right top !default;
+// $closebutton-svg-status: true !default;
+//// Sizes
+// $closebutton-offset-horizontal: 1rem !default;
+// $closebutton-offset-vertical: 1rem !default;
+// $closebutton-size: rem-calc(12) !default;
+// $closebutton-lineheight: 1 !default;
+// $closebutton-svg-stroke-width: 10px !default;
+
+
+
+// 14. Drilldown
+// -------------
+
+//// Status
+// $drilldown-arrows-status: true !default;
+//// Sizes
+// $drilldown-transition: transform .15s linear !default;
+// $drilldown-arrow-font-size: rem-calc(8) !default;
+// $drilldown-arrow-next-margin-right: 1rem !default;
+// $drilldown-arrow-back-margin-right: rem-calc(8) !default;
+
+
+
+// 15. Dropdown
+// ------------
+
+//// Border width
+// $dropdown-border-width: $global-border-width !default;
+//// Radius
+// $dropdown-radius: $global-radius !default;
+//// Status
+// $dropdown-border-radius-status: true !default;
+// $dropdown-border-status: true !default;
+//// Sizes
+// $dropdown-padding: 1rem !default;
+// $dropdown-border: $dropdown-border-width solid $dropdown-border-color !default;
+// $dropdown-font-size: 1rem !default;
+// $dropdown-width: rem-calc(300) !default;
+// $dropdown-sizes: (
+//   tiny: $dropdown-width / 3,
+//   small: $dropdown-width - ($dropdown-width / 2),
+//   large: $dropdown-width + ($dropdown-width / 2),
+// ) !default;
+
+
+
+// 16. Dropdown Menu
+// -----------------
+
+//// Border width
+// $dropdownmenu-border-width: $global-border-width !default;
+//// Radius
+// $dropdownmenu-border-radius: $global-radius !default;
+//// Status
+// $dropdownmenu-arrows-status: true !default;
+// $dropdownmenu-border-status: true !default;
+// $dropdownmenu-border-radius-status: true !default;
+// $dropdownmenu-vertical-status: true !default;
+//// Sizes
+// $dropdownmenu-min-width: rem-calc(200) !default;
+// $dropdownmenu-border: $dropdownmenu-border-width solid $dropdownmenu-border-color !default;
+// $dropdownmenu-border-width: nth($dropdownmenu-border, 1);
+// $dropdownmenu-main-menu-has-arrow-padding-right: rem-calc(0) !default;
+// $dropdownmenu-vertical-arrows-font-size: rem-calc(10) !default;
+// $dropdownmenu-arrows-down-margin-left: rem-calc(6) !default;
+// $dropdownmenu-arrows-right: rem-calc(10) !default;
+// $dropdownmenu-horizontal-arrows-font-size: rem-calc(8) !default;
+// $dropdownmenu-arrows-left-margin-right: rem-calc(10) !default;
+// $dropdownmenu-width-when-vertical: rem-calc(200) !default;
+
+
+
+// 17. Flex Video
+// --------------
+
+//// Sizes
+// $flexvideo-margin-bottom: rem-calc(16) !default;
+// $flexvideo-ratio: 4 by 3 !default;
+// $flexvideo-ratio-widescreen: 16 by 9 !default;
+
+// @function flex-video($ratio) {
+//   $w: nth($ratio, 1);
+//   $h: nth($ratio, 3);
+//   @return $h / $w * 100%;
+// }
+
+
+
+// 18. Label
+// ---------
+
+//// Border width
+// $label-border-width: $global-border-width !default;
+//// Radius
+// $label-radius: $global-radius !default;
+//// Status
+/// Default fill for labels. Can either be `solid` or `hollow`.
+// $label-fill: solid !default;
+// $label-radius-status: true !default;
+// $label-border-status: false !default;
+//// Sizes
+// $label-font-size: 1rem !default;
+// $label-padding: rem-calc(6) rem-calc(10) !default;
+// $label-border: $label-border-width solid $label-border-color !default;
+
+
+
+// 19. Media Object
+// ----------------
+
+//// Sizes
+// $mediaobject-margin-bottom: $global-margin !default;
+// $mediaobject-section-padding: $global-padding !default;
+// $mediaobject-image-width-stacked: 100% !default;
+
+
+
+// 20. Menu
+// --------
+
+//// Status
+// $menu-first-line-zero-padiing-left-status: true !default;
+//// Sizes
+// $menu-margin: 0 !default;
+// $menu-margin-nested: 1rem !default;
+// $menu-item-padding: rem-calc(6) 1rem !default;
+// $menu-icon-spacing: .25rem !default;
+// $menu-expand-max: 6 !default;
+// $menu-font-size: rem-calc(16) !default;
+// $menu-text-font-weight: bold !default;
+
+
+
+// 21. Off-canvas
+// --------------
+
+//// Status
+// $offcanvas-fixed-reveal: true !default;
+//// Sizes
+// $offcanvas-size: rem-calc(240) !default;
+// $offcanvas-zindex: -1 !default;
+// $offcanvas-transition-length: .8s !default;
+// $offcanvas-transition-timing: ease !default;
+// $maincontent-class: 'off-canvas-content' !default;
+
+
+
+// 22. Orbit
+// ---------
+
+
+
+// 23. Pagination
+// --------------
+
+//// Radius
+// $pagination-radius: $global-radius !default;
+// $pagination-button-radius: $global-radius !default;
+//// Status
+// $pagination-mobile-items-status: true !default;
+// $pagination-arrows-status: true !default;
+// $pagination-radius-status: true !default;
+//// Sizes
+// $pagination-font-size: rem-calc(14) !default;
+// $pagination-margin-bottom: $global-margin !default;
+// $pagination-item-padding: rem-calc(3 10) !default;
+// $pagination-item-spacing: rem-calc(1) !default;
+// $pagination-arrows-margin-right: rem-calc(8) !default;
+
+
+
+// 24. Progress Bar
+// ----------------
+
+//// Radius
+// $progress-radius: $global-radius !default;
+//// Status
+// $progress-radius-status: true !default;
+//// Sizes
+// $progress-height: 1rem !default;
+// $progress-margin-bottom: $global-margin !default;
+// $progress-text-font-size: rem-calc(10) !default;
+// $progress-text-font-weight: bold !default;
+
+
+
+// 25. Reveal
+// ----------
+
+//// Border width
+// $reveal-border-width: $global-border-width !default;
+//// Radius
+// $reveal-radius: $global-radius !default;
+//// Status
+// $reveal-border-status: true !default;
+// $reveal-border-radius-status: true !default;
+//// Sizes
+// $reveal-border: $reveal-border-width solid $reveal-border-color !default;
+// $reveal-width: rem-calc(600) !default;
+// $reveal-max-width: $global-width !default;
+// $reveal-padding: rem-calc(24) !default;
+// $reveal-zindex: 1005 !default;
+// $reveal-offset: rem-calc(100) !default;
+// $reveal-sizes: (
+//   tiny: 30%,
+//   small: 50%,
+//   large: 90%
+// ) !default;
+
+
+
+// 26. Slider
+// ----------
+
+//// Border width
+// $slider-handle-border-width: $global-border-width !default;
+//// Radius
+// $slider-radius: $global-radius !default;
+//// Status
+// $slider-radius-status: true !default;
+// $slider-handle-border-status: true !default;
+//// Sizes
+// $slider-height: rem-calc(4) !default;
+// $slider-vertical-width: $slider-height !default;
+// $slider-handle-height: rem-calc(16) !default;
+// $slider-handle-width: $slider-handle-height !default;
+// $slider-transition: all .2s ease-in-out !default;
+// $slider-container-margin-top: rem-calc(16) !default;
+// $slider-container-margin-bottom: rem-calc(32) !default;
+// $slider-vertical-height: rem-calc(160) !default;
+// $slider-vertical-margin: 0 rem-calc(16) !default;
+// $slider-handle-border: $slider-handle-border-width solid $slider-handle-border-color !default;
+
+
+
+// 27. Switch
+// ----------
+
+//// Radius
+// $switch-paddle-radius: $global-radius !default;
+//// Status
+// $switch-radius: $global-radius !default;
+// $switch-radius-status: true !default;
+// $switch-different-sizes-status: true !default;
+//// Sizes
+// $switch-height: 2rem !default;
+// $switch-height-tiny-coefficient: .8 !default;
+// $switch-height-small-coefficient: .9 !default;
+// $switch-height-large-coefficient: 1.1 !default;
+// $switch-margin: $global-margin !default;
+// $switch-paddle-offset: $global-border-width !default;
+// $switch-paddle-transition: all .25s ease-out !default;
+// $switch-container-font-size: rem-calc(14) !default;
+// $switch-container-font-weight: bold !default;
+// $switch-width: 4rem !default;
+// $switch-paddle-height: $switch-height - (rem-calc(strip-unit($switch-paddle-offset)) * 2) !default;
+// $switch-paddle-width: ($switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)) / 2 !default;
+// $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
+
+
+
+// 28. Table
+// ---------
+
+//// Border width
+// $table-border-width: $global-border-width !default;
+//// Radius
+// $table-border-radius: $global-radius !default;
+//// Status
+// $show-header-for-stacked: false !default;
+// $table-radius-status: true !default;
+// $table-border-status: true !default;
+// $table-background-status: true !default;
+// $table-background-hover-status: true !default;
+//// Sizes
+//
+/// Defualt value for showing the stripe on rows of the tables, excluding the header and footer If even, the even rows will have a background color. If odd, the odd rows will have a background color. If empty, or anyother value, the table rows will have no striping.
+// $table-stripe: even !default;
+// $table-border: $table-border-width solid $table-border-color !default;
+// $table-padding: rem-calc(8 10 10) !default;
+// $table-caption-font-size: 1rem !default;
+// $table-caption-font-weight: $global-weight-bold !default;
+// $table-thead-tfoot-font-weight: $global-weight-bold !default;
+// $table-thead-tfoot-text-align: #{$global-left} !default;
+// $table-margin-bottom: $global-margin !default;
+// $table-thead-tfoot-padding: $table-padding !default;
+
+
+
+// 29. Tabs
+// --------
+
+//// Border width
+// $tab-container-border-size: $global-border-width !default;
+//// Radius
+// $tab-radius: $global-radius !default;
+//// Status
+// $tab-bootstrap-like-status: false !default;
+// $tab-vertical-status: true !default;
+// $tab-simple-status: false !default;
+// $tab-background-status: true !default;
+// $tab-content-background-status: true !default;
+// $tab-container-border-status: true !default;
+// $tab-border-status: false !default;
+// $tab-content-border-status: false !default;
+// $tab-border-radius-status: true !default;
+// $tab-container-radius-status: true !default;
+// $tab-content-horizontal-radius-status: false !default;
+// $tab-container-background-primary-status: false !default;
+//// Sizes
+// $tab-expand-max: 6 !default;
+// $tab-margin: 0 !default;
+// $tab-item-padding: rem-calc(16 24) !default;
+// $tab-content-padding: 1rem !default;
+// $tab-item-font-size: rem-calc(12) !default;
+// $tab-container-border: $tab-container-border-size solid $tab-border !default;
+// $tab-content-border: $tab-container-border-size solid $tab-content-border-color !default;
+// $tab-content-vertical-border: $tab-content-border !default;
+// $tab-title-font-weight: normal !default;
+// $tab-content-transition: all .5s ease !default;
+// $tab-content-margin-bottom: 1rem !default;
+
+
+
+// 30. Thumbnail
+// -------------
+
+//// Radius
+// $thumbnail-radius: $global-radius !default;
+//// Status
+// $thumbnail-radius-status: true !default;
+// $thumbnail-border-status: true !default;
+// $thumbnail-box-shadow-status: true !default;
+//// Sizes
+// $thumbnail-border: rem-calc(4) solid $thumbnail-border-color !default;
+// $thumbnail-margin-bottom: 0 !default;
+// $thumbnail-transition: box-shadow 200ms ease-out !default;
+
+
+
+// 31. Title Bar
+// -------------
+
+//// Sizes
+// $titlebar-padding: rem-calc(8) !default;
+// $titlebar-text-font-weight: bold !default;
+// $titlebar-icon-spacing: rem-calc(4) !default;
+
+
+
+// 32. Tooltip
+// -----------
+
+//// Border width
+// $tooltip-has-tip-border-bottom-width: $global-text-border-width !default;
+//// Radius
+// $tooltip-radius: $global-radius !default;
+//// Status
+// $tooltip-radius-status: true !default;
+// $tooltip-triangle-status: true !default;
+// $tooltip-has-tip-border-bottom-status: true !default;
+//// Sizes
+// $tooltip-padding: rem-calc(10) !default;
+// $tooltip-font-size: $small-font-size !default;
+// $tooltip-pip-width: rem-calc(8) !default;
+// $tooltip-pip-height: $tooltip-pip-width !default; //$tooltip-pip-width * .866 !default;
+// $tooltip-font-weight: bold !default;
+// $tooltip-max-width: rem-calc(160) !default;
+// $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
+// $has-tip-font-weight: bold !default;
+// $has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted $tooltip-has-tip-border-bottom-color !default;
+
+
+
+// 33. Top Bar
+// -----------
+
+//// Radius
+// $topbar-input-radius: $global-radius !default;
+//// Status
+// $topbar-input-radius-status: true !default;
+//// Sizes
+// $topbar-unstack-breakpoint: medium !default;
+// $topbar-padding: rem-calc(8 16) !default;
+// $topbar-input-width: rem-calc(200) !default;
+// $topbar-title-spacing: 1rem !default;
+// $topbar-input-margin-right: 1rem !default;

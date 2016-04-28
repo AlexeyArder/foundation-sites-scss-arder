@@ -1,0 +1,106 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group title-bar
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Background color of a title bar.
+/// @type Color
+$titlebar-background: $global-titlebar-background !default;
+
+/// Color of text inside a title bar.
+/// @type Color
+$titlebar-color: $global-titlebar-color !default;
+
+/// Color of menu icons inside a title bar.
+/// @type Color
+$titlebar-icon-color: $global-titlebar-icon-color !default;
+
+/// Color of menu icons inside a title bar on hover.
+/// @type Color
+$titlebar-icon-color-hover: $global-titlebar-icon-color-hover !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Padding inside a title bar.
+/// @type Length
+$titlebar-padding: rem-calc(8) !default;
+
+/// Font weight of text inside a title bar.
+/// @type Weight
+$titlebar-text-font-weight: bold !default;
+
+/// Spacing between the menu icon and text inside a title bar.
+/// @type Length
+$titlebar-icon-spacing: rem-calc(4) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Title-bar
+////////////////////////////////////////
+
+@mixin foundation-title-bar {
+  .title-bar {
+    padding: $titlebar-padding;
+    @if $titlebar-background != transparent {
+      background: $titlebar-background;
+    }
+    @if $titlebar-color != $body-font-color {
+      color: $titlebar-color;
+    }
+    @if $global-flexbox {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    } @else {
+      @include clearfix;
+    }
+
+    .menu-icon {
+      margin-#{$global-left}: $titlebar-icon-spacing;
+      margin-#{$global-right}: $titlebar-padding;
+    }
+  }
+
+  @if $global-flexbox {
+    // scss-lint:disable ZeroUnit
+    .title-bar-left,
+    .title-bar-right {
+      flex: 1 1 0px;
+    }
+
+    .title-bar-right {
+      text-align: right;
+    }
+  } @else {
+    .title-bar-left {
+      float: left;
+    }
+
+    .title-bar-right {
+      float: right;
+      text-align: right;
+    }
+  }
+
+  .title-bar-title {
+    display: inline-block;
+    vertical-align: middle;
+    @if $titlebar-text-font-weight != normal {
+      font-weight: $titlebar-text-font-weight;
+    }
+  }
+
+  .menu-icon.dark {
+    @include hamburger;
+  }
+}

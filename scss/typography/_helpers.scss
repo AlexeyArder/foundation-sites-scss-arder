@@ -1,0 +1,156 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group typography-helpers
+////////////////////////////////////////
+
+////////////////////////////////////////
+/// Subheaders class
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default font color for subheaders.
+/// @type Color
+$subheader-color: $global-subheader-color !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default line height for subheaders.
+/// @type Number
+$subheader-lineheight: $header-lineheight !default;
+
+/// Default font weight for subheaders.
+/// @type String
+$subheader-font-weight: $global-weight-normal !default;
+
+/// Default top margin for subhheaders.
+/// @type Number
+$subheader-margin-top: .3rem !default;
+
+/// Default bottom margin for subheaders.
+/// @type Number
+$subheader-margin-bottom: .5rem !default;
+
+
+////////////////////////////////////////
+/// Lead class
+////////////////////////////////////////
+
+//--------------------------------------
+// Sizes
+//
+/// Default font size for lead paragraphs.
+/// @type Number
+$lead-font-size: $global-font-size * 1.3 !default;
+
+/// Default line height for lead paragraphs.
+/// @type String
+$lead-lineheight: $global-lineheight * 1.3 !default;
+
+
+////////////////////////////////////////
+/// Stat class
+////////////////////////////////////////
+
+//--------------------------------------
+// Sizes
+//
+/// Default font size for statistic numbers.
+/// @type Number
+$stat-font-size: rem-calc(32) !default;
+
+/// Default line height for statistic numbers.
+/// @type Number
+$stat-line-height: 1 !default;
+
+/// Default margin top for p elements in statistic numbers class.
+/// @type Number
+$stat-p-margin-top: -1rem !default;
+
+
+////////////////////////////////////////
+/// No bullet class
+////////////////////////////////////////
+
+//--------------------------------------
+// Sizes
+//
+/// Default side margin for no-bullet class.
+/// @type Number
+$no-bullet-margin: 0 !default;
+
+/// Default side margin for second level no-bullet list class. (disable)
+/// @type Number
+$no-bullet-margin-second-level: 0 !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Helpers
+////////////////////////////////////////
+
+@mixin foundation-typography-helpers {
+
+  ////////////////////////////////////////
+  // Use to create a subheading under a main header
+  // Make sure you pair the two elements in a <header> element, like this:
+  // <header>
+  //   <h1>Heading</h1>
+  //   <h2>Subheading</h2>
+  // </header>
+
+  .subheader {
+    line-height: $subheader-lineheight;
+    margin-bottom: $subheader-margin-bottom;
+    margin-top: $subheader-margin-top;
+    @if $subheader-color != $header-color {
+      color: $subheader-color;
+    }
+    @if $subheader-font-weight != normal {
+      font-weight: $subheader-font-weight;
+    }
+  }
+
+  ////////////////////////////////////////
+  // Use to style an introductory lead, deck, blurb, etc.
+
+  .lead {
+    font-size: $lead-font-size;
+    line-height: $lead-lineheight;
+  }
+
+  ////////////////////////////////////////
+  // Use to style a large number to display a statistic
+
+  .stat {
+    font-size: $stat-font-size;
+    line-height: $stat-line-height;
+
+    p + & {
+      margin-top: $stat-p-margin-top;
+    }
+  }
+
+  ////////////////////////////////////////
+  // Use to remove the bullets from an unordered list
+
+  .no-bullet {
+    list-style: none;
+    margin-#{$global-left}: $no-bullet-margin;
+
+    //li {
+    //  ol,
+    //  ul {
+    //    list-style: none;
+    //    margin-#{$global-left}: $no-bullet-margin-second-level;
+    //  }
+    //}
+  }
+}

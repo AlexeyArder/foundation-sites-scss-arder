@@ -1,0 +1,108 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default border color for fieldsets.
+/// @type Color
+$fieldset-border-color: $global-fieldset-border-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$fieldset-border-width: $global-form-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius for fieldsets.
+/// @type Color
+$fieldset-border-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$fieldset-border-radius-status: false !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default border around custom fieldsets.
+/// @type Border
+$fieldset-border: $fieldset-border-width solid $fieldset-border-color !default;
+
+/// Default padding inside custom fieldsets.
+/// @type Number
+$fieldset-padding: rem-calc(8 16 4) !default;
+
+/// Default margin around custom fieldsets.
+/// @type Number
+$fieldset-margin: rem-calc(16 0) !default;
+
+/// Default padding between the legend text and fieldset border.
+/// @type Number
+$legend-padding-side: rem-calc(4) !default;
+
+/// Default margin bottom for legend text.
+/// @type Number
+$legend-margin-bottom: $form-spacing / 2 !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Fieldset
+////////////////////////////////////////
+
+@mixin fieldset {
+  border: $fieldset-border;
+  padding: $fieldset-padding;
+  margin: $fieldset-margin;
+  @if $fieldset-border-radius-status {
+    border-radius: $fieldset-border-radius;
+  }
+
+  @if $legend-padding-side != 0 {
+    legend {
+      // Covers up the fieldset's border to create artificial padding
+      margin-#{$global-left}: - $legend-padding-side;
+      padding-left: $legend-padding-side;
+      padding-right: $legend-padding-side;
+
+      //background: $body-background;
+      //margin: 0;
+    }
+  }
+}
+
+@mixin foundation-form-fieldset {
+  @if $legend-margin-bottom != 0 {
+    legend {
+      margin-bottom: $legend-margin-bottom;
+      max-width: 100%; //??
+    }
+  }
+
+  .fieldset {
+    @include fieldset;
+  }
+
+  // Fixed in normalize.scss
+  //fieldset {
+  //  border: 0;
+  //  margin: 0;
+  //  padding: 0;
+  //}
+}

@@ -1,0 +1,229 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group pagination
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Text color of pagination items.
+/// @type Color
+$pagination-item-color: $global-pagination-item-color !default;
+
+/// Background color of pagination items on hover.
+/// @type Color
+$pagination-item-background-hover: $global-pagination-item-background-hover !default;
+
+/// Background color of pagination item for the current page.
+/// @type Color
+$pagination-item-background-current: $global-pagination-item-background-current !default;
+
+/// Text color of the pagination item for the current page.
+/// @type Color
+$pagination-item-color-current: $global-pagination-item-color-current !default;
+
+/// Text color of a disabled pagination item.
+/// @type Color
+$pagination-item-color-disabled: $global-pagination-item-color-disabled !default;
+
+/// Color of the ellipsis in a pagination menu.
+/// @type Color
+$pagination-ellipsis-color: $global-pagination-ellipsis-color !default;
+
+
+$pagination-item-hover-color: $global-pagination-item-hover-color !default;
+
+
+//--------------------------------------
+// Content
+//
+
+$pagination-ellipsis-content: $global-pagination-ellipsis-content !default;
+$pagination-arrows-previous-content: $global-pagination-arrows-previous-content !default;
+$pagination-arrows-next-content: $global-pagination-arrows-next-content !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius for pagination items.
+/// @type Number
+$pagination-radius: $global-radius !default;
+
+
+$pagination-button-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+/// If `false`, don't display page number links on mobile, only next/previous links.
+/// @type Boolean
+$pagination-mobile-items-status: true !default;
+
+/// If `true`, arrows are added to the next and previous links of pagination.
+/// @type Boolean
+$pagination-arrows-status: true !default;
+
+
+$pagination-radius-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Font size of pagination items.
+/// @type Number
+$pagination-font-size: rem-calc(14) !default;
+
+/// Default bottom margin of the media object.
+/// @type Number
+$pagination-margin-bottom: $global-margin !default;
+
+/// Padding inside of pagination items.
+/// @type Number
+$pagination-item-padding: rem-calc(3 10) !default;
+
+/// Right margin to separate pagination items.
+/// @type Number
+$pagination-item-spacing: rem-calc(1) !default;
+
+
+$pagination-arrows-margin-right: rem-calc(8) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Pagination
+////////////////////////////////////////
+
+/// Adds styles for a pagination container. Apply this to a `<ul>`.
+@mixin pagination-container {
+  @include clearfix;
+  margin-#{$global-left}: 0;
+  margin-bottom: $pagination-margin-bottom;
+
+  // List item
+  li {
+    //display: none;
+    margin-#{$global-right}: $pagination-item-spacing;
+    @if ($pagination-radius-status) and ($pagination-radius != 0) {
+      border-radius: $pagination-radius;
+    }
+    @if $pagination-font-size != 1rem {
+      font-size: $pagination-font-size;
+    }
+
+    @if $pagination-mobile-items-status {
+      display: inline-block;
+    } @else {
+      display: none;
+
+      &:last-child,
+      &:first-child {
+        display: inline-block;
+      }
+
+      @include breakpoint(medium) {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Page links
+  a,
+  button {
+    display: block;
+    padding: $pagination-item-padding;
+    @if ($pagination-radius-status) and ($pagination-button-radius != 0) {
+      border-radius: $pagination-button-radius;
+    }
+    @if $pagination-item-color != $anchor-color {
+      color: $pagination-item-color;
+    }
+
+    &:hover {
+      @if $pagination-item-background-hover != transparent {
+        background: $pagination-item-background-hover;
+      }
+      @if $pagination-item-hover-color != $pagination-item-color {
+        color: $pagination-item-hover-color;
+      }
+    }
+  }
+}
+
+/// Adds styles for the current pagination item. Apply this to an `<a>`.
+@mixin pagination-item-current {
+  cursor: default;
+  @if $pagination-item-background-current != transparent {
+    background: $pagination-item-background-current;
+
+    &:hover {
+      background: $pagination-item-background-current;
+    }
+  }
+  @if $pagination-item-color-current != $pagination-item-color {
+    color: $pagination-item-color-current;
+  }
+}
+
+/// Adds styles for a disabled pagination item. Apply this to an `<a>`.
+@mixin pagination-item-disabled {
+  color: $pagination-item-color-disabled;
+  cursor: not-allowed;
+  padding: $pagination-item-padding;
+
+  @if $pagination-item-background-hover != transparent {
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+/// Adds styles for an ellipsis for use in a pagination list.
+@mixin pagination-ellipsis {
+  content: $pagination-ellipsis-content;
+  padding: $pagination-item-padding;
+  @if $pagination-ellipsis-color != $pagination-item-color {
+    color: $pagination-ellipsis-color;
+  }
+}
+
+@mixin foundation-pagination {
+  .pagination {
+    @include pagination-container;
+
+    .current {
+      @include pagination-item-current;
+    }
+
+    .disabled {
+      @include pagination-item-disabled;
+    }
+
+    .ellipsis::after {
+      @include pagination-ellipsis;
+    }
+  }
+
+  @if $pagination-arrows-status {
+    .pagination-previous a::before,
+    .pagination-previous.disabled::before {
+      content: $pagination-arrows-previous-content;
+      display: inline-block;
+      margin-#{$global-right}: $pagination-arrows-margin-right;
+    }
+
+    .pagination-next a::after,
+    .pagination-next.disabled::after {
+      content: $pagination-arrows-next-content;
+      display: inline-block;
+      margin-#{$global-left}: $pagination-arrows-margin-right;
+    }
+  }
+}

@@ -1,0 +1,387 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group tabs
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color of a tab bar.
+/// @type Color
+$tab-background: $global-tab-background !default;
+
+/// Active background color of a tab bar.
+/// @type Color
+$tab-background-active: $global-tab-background-active !default;
+
+/// Default border color of tab content.
+/// @type Color
+$tab-border: $global-tab-border !default;
+
+/// Default text color for items in a Menu.
+/// @type Color
+$tab-item-color: $global-tab-item-color !default;
+
+/// Default background color on hover for items in a Menu.
+$tab-item-background-hover: $global-tab-item-background-hover !default;
+
+/// Default background color of tab content.
+/// @type Color
+$tab-content-background: $global-tab-content-background !default;
+
+/// Default text color of tab content.
+/// @type Color
+$tab-content-color: $global-tab-content-color !default;
+
+/// Default border color of tab content.
+/// @type Color
+$tab-content-border-color: $global-tab-content-border-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$tab-container-border-size: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+
+$tab-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$tab-bootstrap-like-status: false !default;
+
+$tab-vertical-status: true !default;
+$tab-simple-status: false !default;
+
+$tab-background-status: true !default;
+$tab-content-background-status: true !default;
+
+$tab-container-border-status: true !default;
+$tab-border-status: false !default;
+$tab-content-border-status: false !default;
+
+$tab-border-radius-status: true !default;
+$tab-container-radius-status: true !default;
+$tab-content-horizontal-radius-status: false !default;
+
+$tab-container-background-primary-status: false !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Maximum number of `expand-n` classes to include in the CSS.
+/// @type Number
+$tab-expand-max: 6 !default;
+
+/// Default margin of the tab bar.
+/// @type Number
+$tab-margin: 0 !default;
+
+/// Default padding of a tab item.
+/// @type Number
+$tab-item-padding: rem-calc(16 24) !default;
+
+/// Default padding for tab content.
+/// @type Number | List
+$tab-content-padding: 1rem !default;
+
+/// Font size of tab items.
+/// @type Number
+$tab-item-font-size: rem-calc(12) !default;
+
+
+$tab-container-border: $tab-container-border-size solid $tab-border !default;
+$tab-content-border: $tab-container-border-size solid $tab-content-border-color !default;
+$tab-content-vertical-border: $tab-content-border !default;
+
+$tab-title-font-weight: normal !default;
+$tab-content-transition: all .5s ease !default;
+$tab-content-margin-bottom: 1rem !default;
+
+
+$tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-size)) !default; // For fix tab-item-padding
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Tabs
+////////////////////////////////////////
+
+/// Adds styles for a tab container. Apply this to a `<ul>`.
+@mixin tabs-container {
+  @include clearfix;
+  list-style-type: none;
+  margin: $tab-margin;
+  @if ($tab-background-status) and ($tab-background != transparent) {
+    background: $tab-background;
+  }
+  @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    border: $tab-container-border;
+  }
+
+  @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    border-top-left-radius: $tab-radius;
+    border-top-right-radius: $tab-radius;
+  }
+}
+
+/// Augments a tab container to have vertical tabs. Use this in conjunction with `tabs-container()`.
+@mixin tabs-container-vertical {
+
+  @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    border-bottom-left-radius: $tab-radius;
+    border-top-left-radius: $tab-radius;
+    border-top-right-radius: 0;
+  }
+
+  > li {
+    display: block;
+    float: none;
+    width: auto;
+
+    > a {
+      @if ($tab-container-border-status) and ($tab-border-status) {
+        @if $tab-bootstrap-like-status {
+          border-bottom: 0;
+          border-right: $tab-container-border;
+        } @else {
+          border: $tab-container-border;
+        }
+      }
+
+      @if $tab-bootstrap-like-status {
+        &:focus,
+        &[aria-selected='true'] {
+          //border-top: $tab-container-border;
+          //border-left: $tab-container-border;
+          //border-bottom: $tab-container-border;
+          border: $tab-container-border;
+          border-right: 0;
+          padding: (get-side($tab-item-padding, top) - $tab-container-border-size-in-rem) get-side($tab-item-padding, right) (get-side($tab-item-padding, bottom) - $tab-container-border-size-in-rem) (get-side($tab-item-padding, left) - $tab-container-border-size-in-rem);
+          @if ($tab-border-radius-status) and ($tab-radius != 0) {
+            border-bottom-left-radius: $tab-radius;
+            border-top-left-radius: $tab-radius;
+            border-top-right-radius: 0;
+          }
+        }
+      }
+    }
+
+    @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+      &:first-child > a {
+        &:hover,
+        &:focus,
+        &[aria-selected='true'] {
+          border-top-left-radius: $tab-radius;
+          border-top-right-radius: 0;
+        }
+      }
+
+      &:last-child > a {
+        &:hover,
+        &:focus,
+        &[aria-selected='true'] {
+          border-bottom-left-radius: $tab-radius;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+/// Adds styles for the links within a tab container. Apply this to the `<li>` elements inside a tab container.
+@mixin tabs-title {
+  float: #{$global-left};
+
+  > a {
+    display: block;
+    line-height: 1;
+    padding: $tab-item-padding;
+    @if $tab-item-color != $anchor-color {
+      color: $tab-item-color;
+    }
+    @if ($tab-container-border-status) and ($tab-border-status) {
+      @if $tab-bootstrap-like-status {
+        border-bottom: $tab-container-border;
+      } @else {
+        border: $tab-container-border;
+      }
+    }
+    @if ($tab-border-radius-status) and ($tab-radius != 0) and ($tab-border-status) and (not $tab-bootstrap-like-status) {
+      border-radius: $tab-radius;
+    }
+    @if $tab-item-font-size != 1rem {
+      font-size: $tab-item-font-size;
+    }
+    @if $tab-title-font-weight != normal {
+      font-weight: $tab-title-font-weight;
+    }
+
+    @if $tab-background-status {
+      &:hover {
+        background: $tab-item-background-hover;
+      }
+    }
+
+    &:focus,
+    &[aria-selected='true'] {
+      @if $tab-background-status {
+        background: $tab-background-active;
+      }
+      @if $tab-bootstrap-like-status {
+        //border-top: $tab-container-border;
+        //border-left: $tab-container-border;
+        //border-right: $tab-container-border;
+        border: $tab-container-border;
+        border-bottom: 0;
+        padding: (get-side($tab-item-padding, top) - $tab-container-border-size-in-rem) (get-side($tab-item-padding, right) - $tab-container-border-size-in-rem) get-side($tab-item-padding, bottom) (get-side($tab-item-padding, left) - $tab-container-border-size-in-rem);
+        @if ($tab-border-radius-status) and ($tab-radius != 0) {
+          border-top-left-radius: $tab-radius;
+          border-top-right-radius: $tab-radius;
+        }
+      }
+    }
+  }
+
+  @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    &:first-child > a {
+      &:hover,
+      &:focus,
+      &[aria-selected='true'] {
+        border-top-left-radius: $tab-radius;
+        border-top-right-radius: 0;
+      }
+    }
+
+    &:last-child > a {
+      &:hover,
+      &:focus,
+      &[aria-selected='true'] {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+/// Adds styles for the wrapper that surrounds a tab group's content panes.
+@mixin tabs-content {
+  transition: $tab-content-transition;
+  @if ($tab-content-background-status) and ($tab-content-background != transparent) {
+    background: $tab-content-background;
+  }
+  @if $tab-content-border-status {
+    border: $tab-content-border;
+  }
+  @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    border-top: 0;
+  }
+  @if $tab-content-margin-bottom != 0 {
+    margin-bottom: $tab-content-margin-bottom;
+  }
+
+  @if ($tab-content-horizontal-radius-status) and ($tab-radius != 0) {
+    border-bottom-left-radius: $tab-radius;
+    border-bottom-right-radius: $tab-radius;
+  }
+}
+
+/// Augments a tab content container to have a vertical style, by shifting the border around. Use this in conjunction with `tabs-content()`.
+@mixin tabs-content-vertical {
+  @if $tab-content-border-status {
+    border: $tab-content-vertical-border;
+  }
+  @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    //border-#{$global-left}: 0; //??
+  }
+
+  @if ($tab-content-horizontal-radius-status) and ($tab-radius != 0) {
+    border-radius: 0;
+  }
+}
+
+/// Adds styles for an individual tab content panel within the tab content container.
+@mixin tabs-panel {
+  display: none;
+  padding: $tab-content-padding;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+@mixin foundation-tabs {
+  .tabs {
+    @include tabs-container;
+  }
+
+  // Vertical
+  @if $tab-vertical-status {
+    .tabs.vertical {
+      @include tabs-container-vertical;
+    }
+  }
+
+  @if $tab-simple-status {
+    // Simple
+    .tabs.simple {
+      > li > a {
+        padding: 0;
+
+        @if ($tab-background-status) {
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .tabs-title {
+    @include tabs-title;
+  }
+
+  .tabs-content {
+    @include tabs-content;
+  }
+
+  @if $tab-vertical-status {
+    .tabs-content.vertical {
+      @include tabs-content-vertical;
+    }
+  }
+
+  .tabs-panel {
+    @include tabs-panel;
+  }
+
+  @if $tab-container-background-primary-status {
+    // Primary color
+    .tabs.primary {
+      background: $primary-color;
+
+      > li > a {
+        color: foreground($primary-color);
+
+        &:hover,
+        &:focus,
+        &[aria-selected='true'] {
+          background: smart-scale($primary-color);
+        }
+      }
+    }
+  }
+}

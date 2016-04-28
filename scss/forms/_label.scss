@@ -1,0 +1,84 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Color for form labels.
+/// @type Color
+$form-label-color: $black !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$form-label-middle-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Font size for form labels.
+/// @type Number
+$form-label-font-size: rem-calc(14) !default;
+
+/// Font weight for form labels.
+/// @type Keyword
+$form-label-font-weight: $global-weight-normal !default;
+
+/// Line height for form labels. The higher the number, the more space between the label and its input field.
+/// @type Number
+$form-label-line-height: inherit !default;
+
+/// Default value used for margin bottom for form labels.
+/// @type Number
+$form-label-margin-bottom: rem-calc(4) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+@mixin form-label {
+  display: block;
+  margin-bottom: $form-label-margin-bottom;
+  @if $form-label-color != $body-font-color {
+    color: $form-label-color;
+  }
+  @if $form-label-font-size != inherit {
+    font-size: $form-label-font-size;
+  }
+  @if $form-label-font-weight != normal {
+    font-weight: $form-label-font-weight;
+  }
+  @if $form-label-line-height != inherit {
+    line-height: $form-label-line-height;
+  }
+}
+
+@mixin form-label-middle {
+  $input-border-width: get-border-value($input-border, width);
+  padding: ($input-padding-vertical + rem-calc($input-border-width) + ($input-font-size - $form-label-font-size) / 2) 0;
+
+  //margin: 0 0 $form-spacing;
+}
+
+@mixin foundation-form-label {
+  label {
+    @include form-label;
+
+    @if $form-label-middle-status {
+      &.middle {
+        @include form-label-middle;
+      }
+    }
+  }
+}

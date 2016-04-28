@@ -1,0 +1,311 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group dropdown-menu
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Sets dropdown menu arrow color if arrow is used.
+/// @type Color
+$dropdownmenu-arrow-color: $global-dropdownmenu-arrow-color !default;
+
+/// Background color for dropdowns.
+/// @type Color
+$dropdownmenu-background: $global-dropdownmenu-background !default;
+
+
+$dropdownmenu-hover-background: $global-dropdownmenu-hover-background !default;
+$dropdownmenu-hover-color: $global-dropdownmenu-hover-color !default; // inherit
+$dropdownmenu-border-color: $global-dropdownmenu-border-color !default;
+
+
+//--------------------------------------
+// Content
+//
+
+$dropdownmenu-arrows-down-content: $global-dropdownmenu-arrows-down-content !default;
+$dropdownmenu-arrow-right-content: $global-dropdownmenu-arrow-right-content !default;
+$dropdownmenu-arrow-left-content: $global-dropdownmenu-arrow-left-content !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$dropdownmenu-border-width: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+
+$dropdownmenu-border-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Enables arrows for items with dropdown menus.
+/// @type Boolean
+$dropdownmenu-arrows-status: true !default;
+
+
+$dropdownmenu-border-status: true !default;
+$dropdownmenu-border-radius-status: true !default;
+$dropdownmenu-vertical-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Minimum width of dropdown sub-menus.
+/// @type Length
+$dropdownmenu-min-width: rem-calc(200) !default;
+
+/// Border for dropdown sub-menus.
+/// @type List
+$dropdownmenu-border: $dropdownmenu-border-width solid $dropdownmenu-border-color !default;
+
+// Border width for dropdown sub-menus.
+// Used to adjust top margin of a sub-menu if a border is used.
+// @type Length
+$dropdownmenu-border-width: nth($dropdownmenu-border, 1);
+
+
+$dropdownmenu-main-menu-has-arrow-padding-right: 0 !default;
+$dropdownmenu-vertical-arrows-font-size: rem-calc(10) !default;
+$dropdownmenu-arrows-down-margin-left: rem-calc(6) !default;
+
+$dropdownmenu-arrows-right: rem-calc(10) !default;
+
+$dropdownmenu-horizontal-arrows-font-size: rem-calc(8) !default;
+$dropdownmenu-arrows-left-margin-right: rem-calc(10) !default;
+
+$dropdownmenu-width-when-vertical: rem-calc(200) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Dropdown-menu
+////////////////////////////////////////
+
+@mixin left-right-arrows {
+  > a::after {
+    #{$global-right}: $dropdownmenu-arrows-right;
+
+    @if $dropdownmenu-horizontal-arrows-font-size != $menu-font-size {
+      font-size: $dropdownmenu-horizontal-arrows-font-size;
+      margin-top: ($menu-font-size - $dropdownmenu-horizontal-arrows-font-size) / 2;
+    }
+  }
+
+  &.opens-left > a::after {
+    content: $dropdownmenu-arrow-left-content;
+
+    // float: left;
+    // margin-left: 0;
+    // @if $dropdownmenu-arrows-left-margin-right != 0 {
+    //   margin-right: $dropdownmenu-arrows-left-margin-right;
+    // }
+  }
+
+  &.opens-right > a::after {
+    content: $dropdownmenu-arrow-right-content;
+  }
+}
+
+@mixin dropdown-menu-direction($dir: horizontal) {
+  @if $dir == horizontal {
+    > li.opens-left {
+      > .is-dropdown-submenu {
+        left: auto;
+        right: 0;
+        top: 100%;
+      }
+    }
+
+    > li.opens-right {
+      > .is-dropdown-submenu {
+        left: 0;
+        right: auto;
+        top: 100%;
+      }
+    }
+
+    @if $dropdownmenu-arrows-status {
+      > li.is-dropdown-submenu-parent > a {
+        position: relative;
+        @if $dropdownmenu-main-menu-has-arrow-padding-right != 0 {
+          padding-#{$global-right}: $dropdownmenu-main-menu-has-arrow-padding-right;
+        }
+      }
+
+      > li.is-dropdown-submenu-parent > a::after {
+        content: $dropdownmenu-arrows-down-content;
+        margin-left: $dropdownmenu-arrows-down-margin-left;
+        @if $dropdownmenu-vertical-arrows-font-size != $menu-font-size {
+          font-size: $dropdownmenu-vertical-arrows-font-size;
+          margin-top: ($menu-font-size - $dropdownmenu-vertical-arrows-font-size) / 2;
+        }
+      }
+    }
+  } @else if $dir == vertical {
+    > li {
+      .is-dropdown-submenu {
+        top: 0;
+      }
+
+      &.opens-left {
+        .is-dropdown-submenu {
+          left: auto;
+          right: 100%;
+        }
+      }
+
+      &.opens-right {
+        .is-dropdown-submenu {
+          left: 100%;
+          right: auto;
+        }
+      }
+
+      @if $dropdownmenu-arrows-status {
+        @include left-right-arrows;
+      }
+    }
+  } @else {
+    @warn 'The direction used for dropdown-menu-direction() must be horizontal or vertical.';
+  }
+}
+
+@mixin foundation-dropdown-menu {
+  .dropdown.menu {
+    @include dropdown-menu-direction(horizontal);
+
+    a {
+      @include disable-mouse-outline;
+    }
+
+    .no-js & ul {
+      display: none;
+    }
+
+    &.vertical {
+      @include dropdown-menu-direction(vertical);
+    }
+
+    @each $size in $breakpoint-classes {
+      @if $size != $-zf-zero-breakpoint {
+        @include breakpoint($size) {
+          &.#{$size}-horizontal {
+            @include dropdown-menu-direction(horizontal);
+          }
+
+          &.#{$size}-vertical {
+            @include dropdown-menu-direction(vertical);
+          }
+        }
+      }
+    }
+
+
+    &.align-right {
+      .is-dropdown-submenu.first-sub {
+        left: auto;
+        right: 0;
+        top: 100%;
+      }
+    }
+  }
+
+  @if $dropdownmenu-vertical-status {
+    .is-dropdown-menu.vertical {
+      width: $dropdownmenu-width-when-vertical;
+
+      &.align-right {
+        float: right;
+      }
+    }
+  }
+
+  .is-dropdown-submenu-parent {
+    position: relative;
+
+    @if $dropdownmenu-arrows-status {
+      a::after {
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    &.opens-inner .is-dropdown-submenu {
+      top: 100%;
+    }
+
+    &.opens-left .is-dropdown-submenu {
+      left: auto;
+      right: 100%;
+    }
+  }
+
+  .is-dropdown-submenu {
+    #{$global-left}: 100%;
+    display: none;
+    left: 100%;
+    min-width: $dropdownmenu-min-width;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    @if $dropdownmenu-background != transparent {
+      background: $dropdownmenu-background;
+    }
+    @if $dropdownmenu-border-status {
+      border: $dropdownmenu-border;
+    }
+    @if (not $dropdownmenu-border-radius-status) and ($dropdownmenu-border-radius != 0) {
+      border-radius: $dropdownmenu-border-radius;
+    }
+
+    .is-dropdown-submenu-parent {
+      @if $dropdownmenu-arrows-status {
+        @include left-right-arrows;
+      }
+    }
+
+    @if (type-of($dropdownmenu-border-width) == 'number') {
+      margin-top: (-$dropdownmenu-border-width);
+    }
+
+    > li {
+      width: 100%;
+
+      @if $dropdownmenu-hover-background != $dropdownmenu-background {
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: $dropdownmenu-hover-background;
+        }
+      }
+
+      @if $dropdownmenu-hover-color != inherit {
+        a:active,
+        a:focus,
+        a:hover {
+          color: $dropdownmenu-hover-color;
+        }
+      }
+    }
+
+    // [TODO] Cut back specificity
+    // scss-lint:disable SelectorDepth
+    &:not(.js-dropdown-nohover) > .is-dropdown-submenu-parent:hover > &,
+    &.js-dropdown-active {
+      display: block;
+    }
+  }
+}

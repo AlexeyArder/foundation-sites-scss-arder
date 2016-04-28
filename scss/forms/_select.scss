@@ -1,0 +1,113 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group forms
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Background color for select menus.
+/// @type Color
+$select-background: $global-select-background !default;
+
+/// Color of the dropdown triangle inside select menus. Set to `transparent` to remove it entirely.
+/// @type Color
+$select-triangle-color: $global-select-triangle-color !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius for select menus.
+/// @type Color
+$select-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$select-style-status: true !default;
+$select-radius-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Size of the dropdown triangle inside select menus.
+/// @type Number | List
+$select-triangle-size: 9px 6px !default;
+
+/// Position of the dropdown triangle inside select menus.
+/// @type Number | List
+$select-triangle-position: $global-right center !default; //$global-right ($form-spacing / 2) center !default;
+
+/// Default value used for margin for select menus.
+/// @type Number | List
+$select-margin: 0 0 $form-spacing !default;
+
+/// Default value used for padding for select menus.
+/// @type Number
+$select-padding: ($form-spacing / 2) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Select
+////////////////////////////////////////
+
+@mixin form-select {
+  margin: $select-margin;
+
+  @if $select-style-status {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: $select-background;
+    border: $input-border;
+    padding: $select-padding;
+    @if ($select-radius-status) or ($select-radius != 0) {
+      border-radius: $select-radius;
+    }
+
+    //$height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
+    //height: $height;
+    //color: $input-color;
+    //font-family: $input-font-family;
+    //font-size: $input-font-size;
+    //line-height: normal;
+
+    @if $select-triangle-color != transparent {
+      @include background-triangle($select-triangle-color);
+      background-origin: content-box;
+      background-position: $select-triangle-position;
+      background-repeat: no-repeat;
+      background-size: $select-triangle-size;
+    }
+
+    // Disabled state
+    &:disabled {
+      background-color: $input-background-disabled;
+      cursor: $input-cursor-disabled;
+    }
+
+    // Hide the dropdown arrow shown in newer IE versions
+    &::-ms-expand {
+      display: none;
+    }
+
+    &[multiple] {
+      background-image: none;
+      height: auto;
+    }
+  }
+}
+
+@mixin foundation-form-select {
+  select {
+    @include form-select;
+  }
+}

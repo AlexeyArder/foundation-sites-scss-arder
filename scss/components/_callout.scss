@@ -1,0 +1,151 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group callout
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color.
+/// @type Color
+$callout-background: $global-callout-background !default;
+
+/// Default fade value for callout backgrounds.
+/// @type Number
+$callout-background-fade: $global-callout-background-fade !default;
+
+/// Default font color for callouts.
+/// @type Color
+$callout-font-color: $global-callout-font-color !default;
+
+/// Default font color for callouts, if the callout has a dark background.
+/// @type Color
+$callout-font-color-alt: $global-callout-font-color-alt !default;
+
+/// Amount to tint links used within colored panels. Set to `false` to disable this feature.
+/// @type Number | Boolean
+$callout-link-tint: $global-callout-link-tint !default;
+
+
+$callout-border-color: $global-callout-border-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$callout-border-width: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default border radius for callouts.
+/// @type Color
+$callout-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$callout-border-status: true !default;
+$callout-border-radius-status: true !default;
+$callout-different-sizes-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default border style for callouts.
+/// @type List
+$callout-border: $callout-border-width solid $callout-border-color !default;
+
+/// Default bottom margin for callouts.
+/// @type Number
+$callout-margin: 0 0 1rem 0 !default;
+
+/// Default inner padding for callouts.
+/// @type Number
+$callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
+
+
+$callout-padding-small-coefficient: .8 !default;
+$callout-padding-large-coefficient: 1.5 !default;
+$callout-padding-small: (get-side($callout-padding, top) * $callout-padding-small-coefficient) (get-side($callout-padding, right) * $callout-padding-small-coefficient) (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
+$callout-padding-large: (get-side($callout-padding, top) * $callout-padding-large-coefficient) (get-side($callout-padding, right) * $callout-padding-large-coefficient) (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Callout
+////////////////////////////////////////
+
+/// Adds basic styles for a callout, including padding and margin.
+@mixin callout-base() {
+  margin: $callout-margin;
+  padding: $callout-padding;
+  position: relative;
+  @if $callout-border-status {
+    border: $callout-border;
+  }
+  @if ($callout-border-radius-status) and ($callout-radius != 0) {
+    border-radius: $callout-radius;
+  }
+  @if $callout-font-color != $body-font-color {
+    color: $callout-font-color;
+  }
+
+  // Respect the padding, fool.
+  > :first-child {
+    margin-top: 0;
+  }
+
+  //> p:last-of-type {
+  //  margin-bottom: 0;
+  //}
+}
+
+/// Generate quick styles for a callout using a single color as a baseline.
+/// @param {Color} $color [$callout-background] - Color to use.
+@mixin callout-style($color: $callout-background) {
+  $background: scale-color($color, $lightness: $callout-background-fade);
+
+  background-color: $background;
+}
+
+@mixin callout-size($padding) {
+  padding: $padding;
+}
+
+
+/// Adds styles for a callout.
+/// @param {Color} $color [$callout-background] - Color to use.
+@mixin callout($color: $callout-background) {
+  @include callout-base;
+  @include callout-style($color);
+}
+
+@mixin foundation-callout {
+  .callout {
+    @include callout;
+
+    @each $name, $color in $foundation-palette {
+      &.#{$name} {
+        @include callout-style($color);
+      }
+    }
+
+    &.small {
+      @include callout-size($callout-padding-small);
+    }
+
+    &.large {
+      @include callout-size($callout-padding-large);
+    }
+  }
+}

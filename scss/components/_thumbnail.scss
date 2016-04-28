@@ -1,0 +1,95 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group thumbnail
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Box shadow under thumbnail images.
+/// @type Shadow
+$thumbnail-shadow: $global-thumbnail-shadow !default;
+
+/// Box shadow under thumbnail images.
+/// @type Shadow
+$thumbnail-shadow-hover: $global-thumbnail-shadow-hover !default;
+
+
+$thumbnail-border-color: $global-thumbnail-border-color !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius for thumbnail images.
+/// @type Number
+$thumbnail-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$thumbnail-radius-status: true !default;
+$thumbnail-border-status: true !default;
+$thumbnail-box-shadow-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Border around thumbnail images.
+/// @type Border
+$thumbnail-border: rem-calc(4) solid $thumbnail-border-color !default;
+
+/// Bottom margin for thumbnail images.
+/// @type Length
+$thumbnail-margin-bottom: 0 !default;
+
+/// Transition proprties for thumbnail images.
+/// @type Transition
+$thumbnail-transition: box-shadow 200ms ease-out !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// @group thumbnail
+////////////////////////////////////////
+
+/// Adds thumbnail styles to an element.
+@mixin thumbnail {
+  display: inline-block;
+  @if $thumbnail-border-status {
+    border: $thumbnail-border;
+  }
+  @if ($thumbnail-radius-status) and ($thumbnail-radius != 0) {
+    border-radius: $thumbnail-radius;
+  }
+  @if $thumbnail-margin-bottom != 0 {
+    margin-bottom: $thumbnail-margin-bottom;
+  }
+  @if $thumbnail-box-shadow-status {
+    box-shadow: $thumbnail-shadow;
+    transition: $thumbnail-transition;
+  }
+
+  @if $thumbnail-box-shadow-status {
+    &:hover,
+    &:focus {
+      box-shadow: $thumbnail-shadow-hover;
+    }
+  }
+
+  //line-height: 0;
+  //max-width: 100%;
+}
+
+@mixin foundation-thumbnail {
+  .thumbnail {
+    @include thumbnail;
+  }
+}

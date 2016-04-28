@@ -1,0 +1,106 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group badge
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color for badges.
+/// @type Color
+$badge-background: $global-badge-background !default;
+
+/// Default text color for badges.
+/// @type Color
+$badge-color: $global-badge-color !default;
+
+
+//--------------------------------------
+// Radius
+//
+
+$badge-border-radius: 50% !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$badge-border-radius-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default font size for badges.
+/// @type Number
+$badge-font-size: 1rem !default;
+
+/// Default padding inside badges.
+/// @type Number
+$badge-padding: rem-calc(2) !default;
+
+
+$badge-line-height: 1 !default;
+
+
+/// Minimum width of a badge.
+/// @type Number
+$badge-minwidth: strip-unit($badge-font-size * $badge-line-height) + ($badge-padding * 2) !default;
+
+
+$badge-margin-left: 0 !default;
+$badge-margin-right: 0 !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Badge
+////////////////////////////////////////
+
+/// Generates the base styles for a badge.
+@mixin badge {
+  display: inline-block;
+  min-width: $badge-minwidth;
+  padding: $badge-padding;
+  text-align: center;
+  @if $badge-border-radius-status {
+    border-radius: $badge-border-radius;
+  }
+  @if $badge-font-size != inherit {
+    font-size: $badge-font-size;
+  }
+  @if $badge-line-height != $global-lineheight {
+    line-height: $badge-line-height;
+  }
+  @if $badge-margin-left != 0 {
+    margin-left: $badge-margin-left;
+  }
+  @if $badge-margin-right != 0 {
+    margin-right: $badge-margin-right;
+  }
+
+  //padding: $badge-padding-top $badge-padding $badge-padding-bottom;
+}
+
+@mixin foundation-badge {
+  .badge {
+    @include badge;
+
+    background: $badge-background;
+    color: $badge-color;
+
+    @each $name, $color in $foundation-palette {
+      @if $name != primary {
+        &.#{$name} {
+          background: $color;
+          color: foreground($color);
+        }
+      }
+    }
+  }
+}

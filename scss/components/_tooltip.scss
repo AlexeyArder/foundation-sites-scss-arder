@@ -1,0 +1,167 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group tooltip
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default color of the tooltip background.
+/// @type Color
+$tooltip-background-color: $global-tooltip-background-color !default;
+
+/// Default color of the tooltip font.
+/// @type Color
+$tooltip-color: $global-tooltip-color !default;
+
+
+$tooltip-has-tip-border-bottom-color: $global-tooltip-has-tip-border-bottom-color !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$tooltip-has-tip-border-bottom-width: $global-text-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default radius for tooltips.
+/// @type Number
+$tooltip-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$tooltip-radius-status: true !default;
+$tooltip-triangle-status: true !default;
+$tooltip-has-tip-border-bottom-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default padding of the tooltip background.
+/// @type Number
+$tooltip-padding: rem-calc(10) !default;
+
+/// Default font size of the tooltip text. By default, we recommend a smaller font size than the body copy.
+/// @type Number
+$tooltip-font-size: $small-font-size !default;
+
+/// Default pip width for tooltips.
+/// @type Number
+$tooltip-pip-width: rem-calc(8) !default;
+
+/// Default pip height for tooltips. This is helpful for calculating the distance of the tooltip from the tooltip word.
+/// @type Number
+$tooltip-pip-height: $tooltip-pip-width !default; //$tooltip-pip-width * .866 !default;
+
+/// Default font weight of the defined term.
+/// @type Keyword | Number
+$has-tip-font-weight: bold !default;
+
+/// Default border bottom of the defined term.
+/// @type List
+$has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted $tooltip-has-tip-border-bottom-color !default;
+
+
+$tooltip-font-weight: bold !default;
+$tooltip-max-width: rem-calc(160) !default;
+$tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Tooltip
+////////////////////////////////////////
+
+@mixin has-tip {
+  cursor: help;
+  display: inline-block;
+  position: relative;
+  @if $tooltip-has-tip-border-bottom-status {
+    border-bottom: $has-tip-border-bottom;
+  }
+  @if $has-tip-font-weight != normal {
+    font-weight: $has-tip-font-weight;
+  }
+}
+
+@mixin tooltip {
+  background-color: $tooltip-background-color;
+  max-width: $tooltip-max-width !important;
+  padding: $tooltip-padding;
+  position: absolute;
+  top: $tooltip-distance;
+  z-index: 10;
+  @if ($tooltip-radius-status) and ($tooltip-radius != 0) {
+    border-radius: $tooltip-radius;
+  }
+  @if $tooltip-color != $body-font-color {
+    color: $tooltip-color;
+  }
+  @if $tooltip-font-size != 1rem {
+    font-size: $tooltip-font-size;
+  }
+  @if $tooltip-font-weight != normal {
+    font-weight: $tooltip-font-weight;
+  }
+
+  &::before {
+    @if $tooltip-triangle-status {
+      @include css-triangle($tooltip-pip-width, $tooltip-background-color, up);
+    }
+    bottom: 100%;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  &.top::before {
+    @if $tooltip-triangle-status {
+      @include css-triangle($tooltip-pip-width, $tooltip-background-color, down);
+    }
+    bottom: auto;
+    top: 100%;
+  }
+
+  &.left::before {
+    @if $tooltip-triangle-status {
+      @include css-triangle($tooltip-pip-width, $tooltip-background-color, right);
+    }
+    bottom: auto;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.right::before {
+    @if $tooltip-triangle-status {
+      @include css-triangle($tooltip-pip-width, $tooltip-background-color, left);
+    }
+    bottom: auto;
+    left: auto;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+@mixin foundation-tooltip {
+  .has-tip {
+    @include has-tip;
+  }
+
+  .tooltip {
+    @include tooltip;
+  }
+}

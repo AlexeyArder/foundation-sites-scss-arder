@@ -1,0 +1,215 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group accordion
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color of an accordion group.
+/// @type Color
+$accordion-background: $global-accordion-background !default;
+
+/// Default text color for items in a Menu.
+/// @type Color
+$accordion-item-color: $global-accordion-item-color !default;
+
+/// Default background color on hover for items in a Menu.
+/// @type Color
+$accordion-item-background-hover: $global-accordion-item-background-hover !default;
+
+/// Default background color of tab content.
+/// @type Color
+$accordion-content-background: $global-accordion-content-background !default;
+
+/// Default text color of tab content.
+/// @type Color
+$accordion-content-color: $global-accordion-content-color !default;
+
+/// Default border color of tab content.
+/// @type Color
+$accordion-content-border-color: $global-accordion-content-border-color !default;
+
+
+//--------------------------------------
+// Content
+//
+
+$accordion-plusminus-plus-content: $global-accordion-plusminus-plus-content !default;
+$accordion-plusminus-minus-content: $global-accordion-plusminus-minus-content !default;
+
+
+//--------------------------------------
+// Border width
+//
+
+$accordion-content-border-width: $global-border-width !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default border radius of accordion.
+/// @type Number
+$accordion-container-border-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+/// If `true`, adds plus and minus icons to the side of each accordion title.
+/// @type Boolean
+$accordion-plusminus-status: true !default;
+
+
+$accordion-container-border-radius-status: true !default;
+$accordion-content-border-status: true !default;
+$accordion-title-border-bottom-status: true !default;
+$accordion-title-border-bottom-active-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default padding of an accordion item.
+/// @type Number | List
+$accordion-item-padding: rem-calc(20) 1rem !default;
+
+/// Default padding for tab content.
+/// @type Number | List
+$accordion-content-padding: 1rem !default;
+
+/// Default border of tab content.
+/// @type Border
+$accordion-content-border: $accordion-content-border-width solid $accordion-content-border-color !default;
+
+
+$accordion-title-font-size: rem-calc(12) !default;
+$accordion-title-font-weight: normal !default;
+$accordion-title-line-height: 1 !default;
+$accordion-plusminus-font-size: rem-calc(16) !default;
+$accordion-plusminus-font-weight: normal !default;
+$accordion-plusminus-right: 1rem !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Accordion
+////////////////////////////////////////
+
+/// Adds styles for an accordion container. Apply this to the same element that gets `data-accordion`.
+@mixin accordion-container {
+  list-style-type: none;
+  margin-#{$global-left}: 0;
+  @if $accordion-background != transparent {
+    background: $accordion-background;
+  }
+  @if $accordion-content-border-status {
+    @if $accordion-title-border-bottom-status {
+      border-left: $accordion-content-border;
+      border-right: $accordion-content-border;
+      border-top: $accordion-content-border;
+    } @else {
+      border: $accordion-content-border;
+    }
+  }
+  @if ($accordion-container-border-radius-status) and ($accordion-container-border-radius != 0) {
+    border-radius: $accordion-container-border-radius;
+  }
+}
+
+/// Adds styles for the title of an accordion item. Apply this to the link within an accordion item.
+@mixin accordion-title {
+  display: block;
+  padding: $accordion-item-padding;
+  position: relative;
+  @if ($accordion-content-border-status) and ($accordion-title-border-bottom-status != false) {
+    border-bottom: $accordion-content-border;
+  }
+  @if $accordion-item-color != $global-anchor-color {
+    color: $accordion-item-color;
+  }
+  @if $accordion-title-font-size != 1rem {
+    font-size: $accordion-title-font-size;
+  }
+  @if $accordion-title-font-weight != normal {
+    font-weight: $accordion-title-font-weight;
+  }
+  @if $accordion-title-line-height != $global-lineheight {
+    line-height: $accordion-title-line-height;
+  }
+
+  @if $accordion-item-background-hover != $accordion-background {
+    &:hover,
+    &:focus {
+      background-color: $accordion-item-background-hover;
+    }
+  }
+
+  @if ($accordion-content-border-status) and (not $accordion-title-border-bottom-active-status) {
+    .is-active > & {
+      border-bottom-width: 0;
+    }
+
+    // Remove the border on the last title
+    //:last-child > & {
+    //  border-bottom-width: 0;
+    //}
+  }
+
+  @if $accordion-plusminus-status {
+    &::before {
+      #{$global-right}: $accordion-plusminus-right;
+      content: $accordion-plusminus-plus-content;
+      position: absolute;
+      @if $accordion-plusminus-font-size != $accordion-title-font-size {
+        font-size: $accordion-plusminus-font-size;
+        margin-top: ($accordion-title-font-size - $accordion-plusminus-font-size) / 2;
+      }
+      @if $accordion-plusminus-font-weight != normal {
+        font-weight: $accordion-plusminus-font-weight;
+      }
+
+      //margin-top: -.5rem;
+      //top: 50%;
+    }
+
+    .is-active > &::before {
+      content: $accordion-plusminus-minus-content;
+    }
+  }
+}
+
+/// Adds styles for accordion content. Apply this to the content pane below an accordion item's title.
+@mixin accordion-content {
+  display: none;
+  padding: $accordion-content-padding;
+  @if ($accordion-content-background != $accordion-background) and ($accordion-content-background != transparent) {
+    background-color: $accordion-content-background;
+  }
+  @if $accordion-content-border-status {
+    border-bottom: $accordion-content-border;
+  }
+}
+
+@mixin foundation-accordion {
+  .accordion {
+    @include accordion-container;
+  }
+
+  .accordion-title {
+    @include accordion-title;
+  }
+
+  .accordion-content {
+    @include accordion-content;
+  }
+
+  //.accordion-item {
+  // This class doesn't need styles!
+  //}
+}

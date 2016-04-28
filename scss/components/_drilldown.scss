@@ -1,0 +1,125 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group drilldown
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Sets drilldown arrow color if arrow is used.
+/// @type Color
+$drilldown-arrow-color: $global-drilldown-arrow-color !default;
+
+/// Background color for drilldown submenus.
+/// @type Color
+$drilldown-background: $global-drilldown-background !default;
+
+
+//--------------------------------------
+// Content
+//
+
+$drilldown-arrow-right-content: $global-drilldown-arrow-right-content !default;
+$drilldown-arrow-left-content: $global-drilldown-arrow-left-content !default;
+
+
+//--------------------------------------
+// Status
+//
+/// Adds arrows to drilldown items with submenus, as well as the back button.
+/// @type Boolean
+$drilldown-arrows-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Transition property to use for animating menus.
+/// @type Transition
+$drilldown-transition: transform .15s linear !default;
+
+
+$drilldown-arrow-font-size: rem-calc(8) !default;
+$drilldown-arrow-next-margin-right: 1rem !default;
+$drilldown-arrow-back-margin-right: rem-calc(8) !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Drilldown
+////////////////////////////////////////
+
+@mixin foundation-drilldown-menu {
+  // Applied to the Menu container
+  .is-drilldown {
+    overflow: hidden;
+    position: relative;
+
+    li {
+      display: block !important; //??
+    }
+  }
+
+  // Applied to nested <ul>s
+  .is-drilldown-submenu {
+    #{$global-left}: 100%;
+    background: $drilldown-background;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: $drilldown-transition;
+    width: 100%;
+    z-index: -1;
+
+    &.is-active {
+      display: block;
+      transform: translateX(if($global-text-direction == ltr, -100%, 100%));
+      z-index: 1;
+    }
+
+    &.is-closing {
+      transform: translateX(if($global-text-direction == ltr, 100%, -100%));
+    }
+  }
+
+  @if $drilldown-arrows-status {
+    .is-drilldown-submenu-parent > a {
+      position: relative;
+
+      &::after {
+        #{$global-right}: $drilldown-arrow-next-margin-right;
+        content: $drilldown-arrow-right-content;
+        position: absolute;
+        @if $drilldown-arrow-font-size != $menu-font-size {
+          font-size: $drilldown-arrow-font-size;
+          padding-top: ($menu-font-size - $drilldown-arrow-font-size) / 2;
+        }
+
+        //@include css-triangle(6px, $drilldown-arrow-color, $global-right);
+        //margin-top: -6px;
+        //top: 50%;
+      }
+    }
+
+    .js-drilldown-back > a::before {
+      content: $drilldown-arrow-left-content;
+      float: $global-left;
+      margin-#{$global-right}: $drilldown-arrow-back-margin-right; // Creates space between the arrow and the text
+      @if $drilldown-arrow-font-size != $menu-font-size {
+        font-size: $drilldown-arrow-font-size;
+        padding-top: ($menu-font-size - $drilldown-arrow-font-size) / 2;
+      }
+
+      //border-#{$global-left}-width: 0;
+      //display: inline-block;
+      //vertical-align: middle;
+      //margin-#{$global-left}: .6rem; // Lines the tip of the arrow with the items below
+      //@include css-triangle(6px, $drilldown-arrow-color, $global-left);
+      //margin-top: 14px; // Aligns the arrow with the text
+    }
+  }
+}
