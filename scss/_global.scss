@@ -94,11 +94,11 @@ $global-lineheight: 1.35 !default;
 
 /// Font stack of the body.
 /// @type List
-$body-font-family: 'PT Sans', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
+$body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
 
 /// Font stack used for elements that use monospaced type, such as code samples
 /// @type String | List
-$font-family-monospace: 'PT Mono', Consolas, 'Liberation Mono', Courier, monospace !default;
+$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
 
 /// Global value used for margin on components.
 /// @type Number
