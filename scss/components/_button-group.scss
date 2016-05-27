@@ -63,6 +63,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 
   #{$child-selector} {
     margin: 0;
+    // margin-#{$global-right}: $buttongroup-spacing;
+    // margin-bottom: $buttongroup-spacing;
 
     @if $global-flexbox {
       flex: 0 0 auto;
@@ -77,14 +79,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         margin-#{$global-left}: - $button-border-width;
       }
     } @else {
-      &:not(:last-child) {
-        margin-#{$global-right}: $buttongroup-spacing;
-
-        // @if $global-flexbox {
-        //   margin-#{$global-right}: $buttongroup-spacing;
-        // } @else {
-        //   border-#{$global-right}: $buttongroup-spacing solid $body-background;
-        // }
+      &:last-child {
+        margin-#{$global-right}: 0;
       }
     }
   }
@@ -97,7 +93,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
   $count: null ) {
 
   @if not $global-flexbox {
-    margin-right: -$buttongroup-spacing;
+    margin-#{$global-right}: -$buttongroup-spacing;
 
     &::before,
     &::after {
@@ -114,14 +110,12 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         &:first-child:nth-last-child(#{$i}) {
           &, &:first-child:nth-last-child(#{$i}) ~ #{$selector} {
             display: inline-block;
-            margin-right: $buttongroup-spacing;
-            @if #{$buttongroup-spacing} is '0' {
-              width: #{percentage(1 / $i)};
-            } @else {
-              width: calc(#{percentage(1 / $i)} - #{$buttongroup-spacing});
-            }
+            width: calc(#{percentage(1 / $i)} - #{$buttongroup-spacing});
+            margin-#{$global-right}: $buttongroup-spacing;
 
-            // width: calc(#{percentage(1 / $i)} - #{$buttongroup-spacing});
+            &:last-child {
+              margin-#{$global-right}: $buttongroup-spacing * -$buttongroup-expand-max;
+            }
           }
         }
       }
@@ -140,10 +134,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
   #{$selector} {
     @if $global-flexbox {
       flex: 0 0 100%;
-      // margin-#{$global-right}: 0;
     } @else {
       width: 100%;
-      // border-#{$global-right}: $buttongroup-spacing solid transparent;
     }
 
     @if $button-border-status {
@@ -153,6 +145,19 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
       }
     }
   }
+
+  // #{$selector} {
+  //   @if $global-flexbox {
+  //     flex: 0 0 100%;
+  //   }
+  //   @else {
+  //     width: 100%;
+  //   }
+  //
+  //   &:last-child {
+  //     margin-bottom: 0;
+  //   }
+  // }
 }
 
 /// Un-stacks the buttons in a button group.
@@ -172,6 +177,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         margin-#{$global-left}: - $button-border-width;
         margin-top: 0;
       }
+
+      // margin-bottom: 0;
     }
   }
 }
@@ -220,7 +227,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 
           #{$buttongroup-child-selector} {
             display: block;
-            margin-right: 0;
+            margin-#{$global-right}: 0;
           }
         }
       }

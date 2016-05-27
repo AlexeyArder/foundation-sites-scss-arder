@@ -251,6 +251,11 @@ $button-arrow-only-side-margin: .2em !default;
   @if $button-opacity-disabled != 0 {
     opacity: $button-opacity-disabled;
   }
+
+  &:hover, &:focus {
+    background-color: $button-background;
+    color: $button-color;
+  }
 }
 
 /// Adds a dropdown arrow to a button.

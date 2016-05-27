@@ -67,7 +67,7 @@ $titlebar-icon-spacing: rem-calc(4) !default;
 
     .menu-icon {
       margin-#{$global-left}: $titlebar-icon-spacing;
-      margin-#{$global-right}: $titlebar-padding;
+      margin-#{$global-right}: $titlebar-icon-spacing;
     }
   }
 

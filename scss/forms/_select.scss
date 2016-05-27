@@ -43,7 +43,7 @@ $select-triangle-size: 9px 6px !default;
 
 /// Position of the dropdown triangle inside select menus.
 /// @type Number | List
-$select-triangle-position: $global-right center !default; //$global-right ($form-spacing / 2) center !default;
+$select-triangle-position: $global-right (-$form-spacing) center !default; //$global-right ($form-spacing / 2) center !default;
 
 /// Default value used for margin for select menus.
 /// @type Number | List
@@ -52,6 +52,9 @@ $select-margin: 0 0 $form-spacing !default;
 /// Default value used for padding for select menus.
 /// @type Number
 $select-padding: ($form-spacing / 2) !default;
+
+
+$select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
 
 
 ////////////////////////////////////////
@@ -86,6 +89,7 @@ $select-padding: ($form-spacing / 2) !default;
       background-position: $select-triangle-position;
       background-repeat: no-repeat;
       background-size: $select-triangle-size;
+      padding-#{$global-right}: $select-triangle-position-padding-right;
     }
 
     // Disabled state

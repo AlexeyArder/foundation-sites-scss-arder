@@ -66,6 +66,7 @@ $accordion-plusminus-status: true !default;
 
 
 $accordion-container-border-radius-status: true !default;
+$accordion-container-border-status: true !default;
 $accordion-content-border-status: true !default;
 $accordion-title-border-bottom-status: true !default;
 $accordion-title-border-bottom-active-status: true !default;
@@ -108,17 +109,30 @@ $accordion-plusminus-right: 1rem !default;
   @if $accordion-background != transparent {
     background: $accordion-background;
   }
-  @if $accordion-content-border-status {
-    @if $accordion-title-border-bottom-status {
-      border-left: $accordion-content-border;
-      border-right: $accordion-content-border;
-      border-top: $accordion-content-border;
-    } @else {
-      border: $accordion-content-border;
-    }
-  }
+  // @if $accordion-content-border-status {
+  //   @if $accordion-title-border-bottom-status {
+  //     border-left: $accordion-content-border;
+  //     border-right: $accordion-content-border;
+  //     border-top: $accordion-content-border;
+  //   } @else {
+  //     border: $accordion-content-border;
+  //   }
+  // }
+  // @if ($accordion-container-border-radius-status) and ($accordion-container-border-radius != 0) {
+  //   border-radius: $accordion-container-border-radius;
+  // }
+}
+
+/// Adds styles for the accordion item. Apply this to the list item within an accordion ul.
+@mixin accordion-item {
   @if ($accordion-container-border-radius-status) and ($accordion-container-border-radius != 0) {
-    border-radius: $accordion-container-border-radius;
+    &:first-child > :first-child {
+      border-radius: $accordion-container-border-radius $accordion-container-border-radius 0 0;
+    }
+
+    &:last-child > :last-child {
+      border-radius: 0 0 $accordion-container-border-radius $accordion-container-border-radius;
+    }
   }
 }
 
@@ -150,15 +164,21 @@ $accordion-plusminus-right: 1rem !default;
     }
   }
 
-  @if ($accordion-content-border-status) and (not $accordion-title-border-bottom-active-status) {
-    .is-active > & {
-      border-bottom-width: 0;
+  @if $accordion-container-border-status {
+    border: $accordion-content-border;
+    border-bottom: 0;
+    @if not $accordion-content-border-status {
+      .is-active > & {
+        border-bottom: $accordion-content-border;
+      }
     }
 
-    // Remove the border on the last title
-    //:last-child > & {
-    //  border-bottom-width: 0;
-    //}
+    :last-child:not(.is-active) > & {
+      border-bottom: $accordion-content-border;
+      @if ($accordion-container-border-radius-status) and ($accordion-container-border-radius != 0) {
+        border-radius: 0 0 $accordion-container-border-radius $accordion-container-border-radius;
+      }
+    }
   }
 
   @if $accordion-plusminus-status {
@@ -173,9 +193,6 @@ $accordion-plusminus-right: 1rem !default;
       @if $accordion-plusminus-font-weight != normal {
         font-weight: $accordion-plusminus-font-weight;
       }
-
-      //margin-top: -.5rem;
-      //top: 50%;
     }
 
     .is-active > &::before {
@@ -191,14 +208,30 @@ $accordion-plusminus-right: 1rem !default;
   @if ($accordion-content-background != $accordion-background) and ($accordion-content-background != transparent) {
     background-color: $accordion-content-background;
   }
-  @if $accordion-content-border-status {
-    border-bottom: $accordion-content-border;
+  @if $accordion-container-border-status and $accordion-content-border-status {
+    border: $accordion-content-border;
+    border-bottom: 0;
+
+    @if not $accordion-title-border-bottom-status {
+      border-top: 0;
+    }
+
+    :last-child > &:last-child {
+      border-bottom: $accordion-content-border;
+    }
+  }
+  @if $accordion-content-color != $global-body-font-color {
+    color: $accordion-content-color;
   }
 }
 
 @mixin foundation-accordion {
   .accordion {
     @include accordion-container;
+  }
+
+  .accordion-item {
+    @include accordion-item;
   }
 
   .accordion-title {
@@ -208,8 +241,4 @@ $accordion-plusminus-right: 1rem !default;
   .accordion-content {
     @include accordion-content;
   }
-
-  //.accordion-item {
-  // This class doesn't need styles!
-  //}
 }

@@ -256,7 +256,7 @@ $global-accordion-content-background: $white !default;
 $global-accordion-item-background-hover: $light-gray !default;
 $global-accordion-content-border-color: $light-gray !default;
 $global-accordion-item-color: foreground($global-accordion-background, $primary-color) !default;
-$global-accordion-content-color: foreground($global-accordion-background, $primary-color) !default;
+$global-accordion-content-color: foreground($global-accordion-content-background, $global-body-font-color) !default;
 
 
 

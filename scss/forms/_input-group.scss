@@ -106,6 +106,7 @@ $input-group-button-width: 1% !default;
 
   %input-group-child {
     margin: 0;
+    white-space: nowrap;
 
     @if not $global-flexbox {
       display: table-cell;

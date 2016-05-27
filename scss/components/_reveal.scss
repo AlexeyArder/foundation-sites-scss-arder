@@ -168,6 +168,14 @@ $reveal-sizes: (
     overflow: hidden;
   }
 
+  // html gets this class only in iOS
+  html.is-reveal-open,
+  html.is-reveal-open body {
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+  }
+
   // Overlay
   .reveal-overlay {
     @include reveal-overlay;

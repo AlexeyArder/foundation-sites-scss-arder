@@ -161,14 +161,14 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
 
       &.opens-left {
-        .is-dropdown-submenu {
+        > .is-dropdown-submenu {
           left: auto;
           right: 100%;
         }
       }
 
       &.opens-right {
-        .is-dropdown-submenu {
+        > .is-dropdown-submenu {
           left: 100%;
           right: auto;
         }
@@ -243,13 +243,23 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
     }
 
-    &.opens-inner .is-dropdown-submenu {
+    &.opens-inner > .is-dropdown-submenu {
       top: 100%;
+      @if $global-text-direction == 'rtl' {
+        right: auto;
+      } @else {
+        left: auto;
+      }
     }
 
-    &.opens-left .is-dropdown-submenu {
+    &.opens-left > .is-dropdown-submenu {
       left: auto;
       right: 100%;
+    }
+
+    &.opens-right > .is-dropdown-submenu {
+      right: auto;
+      left: 100%;
     }
   }
 
@@ -303,7 +313,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
     // [TODO] Cut back specificity
     // scss-lint:disable SelectorDepth
-    &:not(.js-dropdown-nohover) > .is-dropdown-submenu-parent:hover > &,
+    // &:not(.js-dropdown-nohover) > .is-dropdown-submenu-parent:hover > &, // why is this line needed? Opening is handled by JS and this causes some ugly flickering when the sub is re-positioned automatically...
     &.js-dropdown-active {
       display: block;
     }
