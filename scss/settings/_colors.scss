@@ -386,6 +386,14 @@ $global-maincontent-shadow: 0 0 10px rgba($black, .5) !default;
 // 22. Orbit
 // ---------
 
+$global-orbit-bullet-background: $medium-gray !default;
+$global-orbit-bullet-background-active: $dark-gray !default;
+$global-orbit-caption-background: rgba($black, .5) !default;
+$global-orbit-control-background-hover: rgba($black, .5) !default;
+$global-orbit-control-color: $white !default;
+$global-orbit-caption-color: foreground($global-orbit-caption-background)  !default;
+$global-orbit-bullet-border-color: $black !default;
+
 
 
 // 23. Pagination
