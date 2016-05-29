@@ -1,9 +1,59 @@
+////////////////////////////////////////
+/// @group menu-icon
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+
+$menu-icon-path-color: $global-menu-icon-path-color !default;
+$menu-icon-path-hover-color: $global-menu-icon-path-hover-color !default;
+
+
+//--------------------------------------
+// Sizes
+//
+
+$menu-icon-height: rem-calc(16) !default;
+$menu-icon-width: $menu-icon-height * 1.4 !default;
+$menu-icon-padding: 0 !default;
+$menu-icon-path-width: 14 !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Menu-icon
+////////////////////////////////////////
+
 @mixin foundation-menu-icon {
   .menu-icon {
-    @include hamburger($color: $titlebar-icon-color, $color-hover: $titlebar-icon-color-hover);
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    padding: $menu-icon-padding;
+
+    svg {
+      display: block;
+      height: $menu-icon-height;
+      width: $menu-icon-width;
+
+      path {
+        stroke: $menu-icon-path-color;
+        stroke-width: $menu-icon-path-width;
+
+        @if $menu-icon-path-hover-color != $menu-icon-path-color {
+          &:hover {
+            stroke: $menu-icon-path-hover-color;
+          }
+        }
+      }
+    }
+
+    // @include hamburger($color: $titlebar-icon-color, $color-hover: $titlebar-icon-color-hover);
   }
 
-  .menu-icon.dark {
-    @include hamburger;
-  }
+  // .menu-icon.dark {
+  //   @include hamburger;
+  // }
 }
