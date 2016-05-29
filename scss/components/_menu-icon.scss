@@ -31,7 +31,9 @@ $menu-icon-path-width: 14 !default;
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
-    padding: $menu-icon-padding;
+    @if $menu-icon-padding != 0 {
+      padding: $menu-icon-padding;
+    }
 
     svg {
       display: block;

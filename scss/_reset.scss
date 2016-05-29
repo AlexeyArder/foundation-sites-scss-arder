@@ -184,8 +184,9 @@ button {
   -webkit-appearance: none;
   background: transparent;
   border: 0;
+  padding: 0;
+
   // line-height: 1;
-  // padding: 0;
 
   [data-whatinput='mouse'] & {
     outline: 0;
@@ -201,6 +202,7 @@ html input[disabled] {
 // SVG
 ////////////////////////////////////////
 
+// Fix SVG height bug on some devices
 svg {
-  max-height: 100%; // Fix height bug on some devices
+  max-height: 100%;
 }
