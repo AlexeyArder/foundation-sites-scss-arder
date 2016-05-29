@@ -237,11 +237,13 @@ $orbit-caption-width: 100% !default;
   text-align: $orbit-bullet-align;
 
   button {
-    width: $orbit-bullet-diameter;
     height: $orbit-bullet-diameter;
     margin: $orbit-bullet-margin;
-    background-color: $orbit-bullet-background;
+    width: $orbit-bullet-diameter;
 
+    @if $orbit-bullet-background != transparent {
+      background-color: $orbit-bullet-background;
+    }
     @if $orbit-bullet-border-status and ($orbit-bullet-border != none) {
       border: $orbit-bullet-border;
     }
