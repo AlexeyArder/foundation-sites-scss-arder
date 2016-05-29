@@ -99,19 +99,20 @@ $global-anchor-color-active: #008000 !default;
 //  18. Label
 //  19. Media Object
 //  20. Menu
-//  21. Off-canvas
-//  22. Orbit
-//  23. Pagination
-//  24. Progress Bar
-//  25. Reveal
-//  26. Slider
-//  27. Switch
-//  28. Table
-//  29. Tabs
-//  30. Thumbnail
-//  31. Title Bar
-//  32. Tooltip
-//  33. Top Bar
+//  21. Menu Icon
+//  22. Off-canvas
+//  23. Orbit
+//  24. Pagination
+//  25. Progress Bar
+//  26. Reveal
+//  27. Slider
+//  28. Switch
+//  29. Table
+//  30. Tabs
+//  31. Thumbnail
+//  32. Title Bar
+//  33. Tooltip
+//  34. Top Bar
 
 
 
@@ -373,7 +374,14 @@ $global-menu-text-color: inherit !default;
 
 
 
-// 21. Off-canvas
+// 21. Menu Icon
+// --------
+$global-menu-icon-path-color: $white !default;
+$global-menu-icon-path-hover-color: $white !default;
+
+
+
+// 22. Off-canvas
 // --------------
 
 $global-offcanvas-menu-background: $light-gray !default;
@@ -383,7 +391,7 @@ $global-maincontent-shadow: 0 0 10px rgba($black, .5) !default;
 
 
 
-// 22. Orbit
+// 23. Orbit
 // ---------
 
 $global-orbit-bullet-background: $medium-gray !default;
@@ -396,7 +404,7 @@ $global-orbit-bullet-border-color: $black !default;
 
 
 
-// 23. Pagination
+// 24. Pagination
 // --------------
 
 $global-pagination-item-color: $black !default;
@@ -409,7 +417,7 @@ $global-pagination-item-hover-color: $global-pagination-item-color !default;
 
 
 
-// 24. Progress Bar
+// 25. Progress Bar
 // ----------------
 
 $global-progress-background: $medium-gray !default;
@@ -418,7 +426,7 @@ $global-progress-text-color: $white !default;
 
 
 
-// 25. Reveal
+// 26. Reveal
 // ----------
 
 $global-reveal-background: $white !default;
@@ -427,7 +435,7 @@ $global-reveal-overlay-background: rgba($black, .45) !default;
 
 
 
-// 26. Slider
+// 27. Slider
 // ----------
 
 $global-slider-background: $light-gray !default;
@@ -439,7 +447,7 @@ $global-slider-handle-border-color: $global-slider-handle-background !default;
 
 
 
-// 27. Switch
+// 28. Switch
 // ----------
 
 $global-switch-background: $medium-gray !default;
@@ -449,7 +457,7 @@ $global-switch-container-color: $white !default;
 
 
 
-// 28. Table
+// 29. Table
 // ---------
 
 $global-table-background: $white !default;
@@ -465,7 +473,7 @@ $global-table-head-font-color: $global-body-font-color !default;
 
 
 
-// 29. Tabs
+// 30. Tabs
 // --------
 
 $global-tab-background: $white !default;
@@ -479,7 +487,7 @@ $global-tab-content-border-color: $global-tab-border !default;
 
 
 
-// 30. Thumbnail
+// 31. Thumbnail
 // -------------
 
 $global-thumbnail-border-color: $white !default;
@@ -488,7 +496,7 @@ $global-thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, .5) !default;
 
 
 
-// 31. Title Bar
+// 32. Title Bar
 // -------------
 
 $global-titlebar-background: $black !default;
@@ -498,7 +506,7 @@ $global-titlebar-icon-color-hover: $medium-gray !default;
 
 
 
-// 32. Tooltip
+// 33. Tooltip
 // -----------
 
 $global-tooltip-background-color: $black !default;
@@ -507,7 +515,7 @@ $global-tooltip-has-tip-border-bottom-color: $dark-gray !default;
 
 
 
-// 33. Top Bar
+// 34. Top Bar
 // -----------
 
 $global-topbar-background: $light-gray !default;

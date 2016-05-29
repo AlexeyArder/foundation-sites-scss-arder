@@ -33,19 +33,20 @@
 //  18. Label
 //  19. Media Object
 //  20. Menu
-//  21. Off-canvas
-//  22. Orbit
-//  23. Pagination
-//  24. Progress Bar
-//  25. Reveal
-//  26. Slider
-//  27. Switch
-//  28. Table
-//  29. Tabs
-//  30. Thumbnail
-//  31. Title Bar
-//  32. Tooltip
-//  33. Top Bar
+//  21. Menu Icon
+//  22. Off-canvas
+//  23. Orbit
+//  24. Pagination
+//  25. Progress Bar
+//  26. Reveal
+//  27. Slider
+//  28. Switch
+//  29. Table
+//  30. Tabs
+//  31. Thumbnail
+//  32. Title Bar
+//  33. Tooltip
+//  34. Top Bar
 
 
 
@@ -746,7 +747,18 @@
 
 
 
-// 21. Off-canvas
+// 21. Menu Icon
+// ----------------
+
+//// Sizes
+// $menu-icon-height: rem-calc(16) !default;
+// $menu-icon-width: $menu-icon-height * 1.4 !default;
+// $menu-icon-padding: 0 !default;
+// $menu-icon-path-width: 14 !default;
+
+
+
+// 22. Off-canvas
 // --------------
 
 //// Status
@@ -760,7 +772,7 @@
 
 
 
-// 22. Orbit
+// 23. Orbit
 // ---------
 
 //// Radius
@@ -795,7 +807,7 @@
 
 
 
-// 23. Pagination
+// 24. Pagination
 // --------------
 
 //// Radius
@@ -814,7 +826,7 @@
 
 
 
-// 24. Progress Bar
+// 25. Progress Bar
 // ----------------
 
 //// Radius
@@ -829,7 +841,7 @@
 
 
 
-// 25. Reveal
+// 26. Reveal
 // ----------
 
 //// Border width
@@ -854,7 +866,7 @@
 
 
 
-// 26. Slider
+// 27. Slider
 // ----------
 
 //// Border width
@@ -878,7 +890,7 @@
 
 
 
-// 27. Switch
+// 28. Switch
 // ----------
 
 //// Radius
@@ -904,7 +916,7 @@
 
 
 
-// 28. Table
+// 29. Table
 // ---------
 
 //// Border width
@@ -932,7 +944,7 @@
 
 
 
-// 29. Tabs
+// 30. Tabs
 // --------
 
 //// Border width
@@ -967,7 +979,7 @@
 
 
 
-// 30. Thumbnail
+// 31. Thumbnail
 // -------------
 
 //// Radius
@@ -983,17 +995,18 @@
 
 
 
-// 31. Title Bar
+// 32. Title Bar
 // -------------
 
 //// Sizes
-// $titlebar-padding: rem-calc(8) !default;
+// $titlebar-padding: rem-calc(11 8 12) !default;
 // $titlebar-text-font-weight: bold !default;
-// $titlebar-icon-spacing: rem-calc(4) !default;
+// $titlebar-icon-spacing-left: rem-calc(4) !default;
+// $titlebar-icon-spacing-right: rem-calc(4) !default;
 
 
 
-// 32. Tooltip
+// 33. Tooltip
 // -----------
 
 //// Border width
@@ -1017,7 +1030,7 @@
 
 
 
-// 33. Top Bar
+// 34. Top Bar
 // -----------
 
 //// Radius
