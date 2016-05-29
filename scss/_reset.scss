@@ -196,3 +196,11 @@ button[disabled],
 html input[disabled] {
   cursor: not-allowed;
 }
+
+////////////////////////////////////////
+// SVG
+////////////////////////////////////////
+
+svg {
+  max-height: 100%; // Fix height bug on some devices
+}
