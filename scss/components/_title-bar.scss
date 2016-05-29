@@ -31,7 +31,7 @@ $titlebar-icon-color-hover: $global-titlebar-icon-color-hover !default;
 //
 /// Padding inside a title bar.
 /// @type Length
-$titlebar-padding: rem-calc(8) !default;
+$titlebar-padding: rem-calc(11 8 12) !default;
 
 /// Font weight of text inside a title bar.
 /// @type Weight
@@ -39,7 +39,8 @@ $titlebar-text-font-weight: bold !default;
 
 /// Spacing between the menu icon and text inside a title bar.
 /// @type Length
-$titlebar-icon-spacing: rem-calc(4) !default;
+$titlebar-icon-spacing-left: rem-calc(4) !default;
+$titlebar-icon-spacing-right: rem-calc(4) !default;
 
 
 ////////////////////////////////////////
@@ -50,6 +51,7 @@ $titlebar-icon-spacing: rem-calc(4) !default;
 
 @mixin foundation-title-bar {
   .title-bar {
+    line-height: 1;
     padding: $titlebar-padding;
     @if $titlebar-background != transparent {
       background: $titlebar-background;
@@ -66,8 +68,12 @@ $titlebar-icon-spacing: rem-calc(4) !default;
     }
 
     .menu-icon {
-      margin-#{$global-left}: $titlebar-icon-spacing;
-      margin-#{$global-right}: $titlebar-icon-spacing;
+      @if $titlebar-icon-spacing-left != 0 {
+        margin-#{$global-left}: $titlebar-icon-spacing-left;
+      }
+      @if $titlebar-icon-spacing-right != 0 {
+        margin-#{$global-right}: $titlebar-icon-spacing-right;
+      }
     }
   }
 
