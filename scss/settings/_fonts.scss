@@ -33,8 +33,8 @@ $font-face-path: '/fonts/';
     } @elseif ($local-font-name == 'none') and ($font-file-woff2 == 'none') {
       src: url($font-face-path + $font-file-woff) format('woff');
     }
-    font-weight: $font-face-font-weight;
     font-style: $font-face-font-style;
+    font-weight: $font-face-font-weight;
   }
 }
 
@@ -46,4 +46,6 @@ $font-face-path: '/fonts/';
 ////////////////////////////////////////
 
 // Sample code
-// @include font-face-mixin(name, 'source/woff2', 'source/woff', normal, normal, local name, local-postscript-name);
+// @include font-face-mixin('name', 'source/woff2', 'source/woff', font-style, font-weight, local name, local-postscript-name);
+//
+//@include font-face-mixin('PT Mono', none, 'PTMonoWeb/PTM55F_W.woff', italic, normal, none, none);
