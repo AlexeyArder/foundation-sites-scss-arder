@@ -21,6 +21,7 @@ $dropdownmenu-background: $global-dropdownmenu-background !default;
 $dropdownmenu-hover-background: $global-dropdownmenu-hover-background !default;
 $dropdownmenu-hover-color: $global-dropdownmenu-hover-color !default; // inherit
 $dropdownmenu-border-color: $global-dropdownmenu-border-color !default;
+$dropdownmenu-shadow: $global-dropdownmenu-shadow !default;
 
 
 //--------------------------------------
@@ -57,6 +58,7 @@ $dropdownmenu-arrows-status: true !default;
 $dropdownmenu-border-status: true !default;
 $dropdownmenu-border-radius-status: true !default;
 $dropdownmenu-vertical-status: true !default;
+$dropdownmenu-shadow-status: false !default;
 
 
 //--------------------------------------
@@ -282,6 +284,9 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     @if (not $dropdownmenu-border-radius-status) and ($dropdownmenu-border-radius != 0) {
       border-radius: $dropdownmenu-border-radius;
     }
+    @if $dropdownmenu-shadow-status {
+      box-shadow: $dropdownmenu-shadow;
+    }
 
     .is-dropdown-submenu-parent {
       @if $dropdownmenu-arrows-status {
@@ -313,7 +318,6 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
     }
 
-    // [TODO] Cut back specificity
     // scss-lint:disable SelectorDepth
     // &:not(.js-dropdown-nohover) > .is-dropdown-submenu-parent:hover > &, // why is this line needed? Opening is handled by JS and this causes some ugly flickering when the sub is re-positioned automatically...
     &.js-dropdown-active {
