@@ -80,7 +80,7 @@ $dropdownmenu-border-width: nth($dropdownmenu-border, 1);
 
 $dropdownmenu-main-menu-has-arrow-padding-right: 0 !default;
 $dropdownmenu-vertical-arrows-font-size: rem-calc(10) !default;
-$dropdownmenu-arrows-down-margin-left: rem-calc(6) !default;
+$dropdownmenu-arrows-down-margin-right: rem-calc(0) !default;
 
 $dropdownmenu-arrows-right: rem-calc(10) !default;
 
@@ -150,7 +150,9 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
       > li.is-dropdown-submenu-parent > a::after {
         content: $dropdownmenu-arrows-down-content;
-        margin-left: $dropdownmenu-arrows-down-margin-left;
+        @if $dropdownmenu-arrows-down-margin-right != 0 {
+          margin-#{$global-right}: $dropdownmenu-arrows-down-margin-right;
+        }
         @if $dropdownmenu-vertical-arrows-font-size != $menu-font-size {
           font-size: $dropdownmenu-vertical-arrows-font-size;
           margin-top: -(($menu-font-size - $dropdownmenu-vertical-arrows-font-size) / 2);
