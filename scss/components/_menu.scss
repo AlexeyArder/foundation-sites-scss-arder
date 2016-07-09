@@ -334,7 +334,7 @@ $menu-text-font-weight: bold !default;
 
     @if $menu-first-line-zero-padiing-left-status {
       &:not(.nested) > li:first-child:not(.is-submenu-item) > a,
-      &.vertical:not(.nested) > li:not(.is-submenu-item) > a {
+      &.vertical:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
         padding-#{$global-left}: 0;
       }
     }
