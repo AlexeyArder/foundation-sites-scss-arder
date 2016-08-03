@@ -357,4 +357,11 @@ $menu-text-font-weight: bold !default;
   .no-js [data-responsive-menu] ul {
     display: none;
   }
+
+  .menu-first-line-zero-padiing.menu {
+    &:not(.nested) > li:first-child:not(.is-submenu-item) > a,
+    &.vertical:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
+      padding-#{$global-left}: 0;
+    }
+  }
 }
