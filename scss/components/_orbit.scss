@@ -148,6 +148,7 @@ $orbit-caption-width: 100% !default;
 
 @mixin orbit-image {
   width: 100%;
+
   @if $orbit-image-margin != 0 {
     margin: $orbit-image-margin; // Already define in reset.scss
   }
@@ -163,6 +164,7 @@ $orbit-caption-width: 100% !default;
   padding: $orbit-caption-padding;
   position: absolute;
   width: $orbit-caption-width;
+
   @if $orbit-caption-background != transparent {
     background-color: $orbit-caption-background;
   }
@@ -175,6 +177,7 @@ $orbit-caption-width: 100% !default;
 @mixin orbit-control {
   @include disable-mouse-outline;
   @include vertical-center;
+
   padding: $orbit-control-padding;
   z-index: $orbit-control-zindex;
 
@@ -201,7 +204,7 @@ $orbit-caption-width: 100% !default;
 
   @if $orbit-control-content-status {
     &::after {
-      content: $orbit-control-content-previous ;
+      content: $orbit-control-content-previous;
 
       @if $orbit-control-content-rotate-status {
         display: inline-block;
@@ -297,11 +300,13 @@ $orbit-caption-width: 100% !default;
 
     .orbit-previous {
       @extend %orbit-control;
+
       @include orbit-previous;
     }
 
     .orbit-next {
       @extend %orbit-control;
+
       @include orbit-next;
     }
   }
