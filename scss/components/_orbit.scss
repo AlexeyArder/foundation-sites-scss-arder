@@ -106,6 +106,7 @@ $orbit-image-max-width: 100% !default;
 $orbit-caption-bottom: 0 !default;
 $orbit-caption-margin-bottom: 0 !default; // Use $orbit-caption-bottom instead
 $orbit-caption-width: 100% !default;
+$orbit-caption-height: auto !default;
 
 
 ////////////////////////////////////////
@@ -167,6 +168,9 @@ $orbit-caption-width: 100% !default;
 
   @if $orbit-caption-background != transparent {
     background-color: $orbit-caption-background;
+  }
+  @if $orbit-caption-height != auto {
+    height: $orbit-caption-height;
   }
   @if $orbit-caption-margin-bottom != 0 {
     margin-bottom: $orbit-caption-margin-bottom;
