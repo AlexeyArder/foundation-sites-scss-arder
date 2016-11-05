@@ -77,13 +77,15 @@ $meter-margin-bottom: $global-margin !default;
       border-radius: $meter-radius;
     }
 
-    // Chrome/Safari
+    // Chrome/Safari/Edge
     &::-webkit-meter-bar {
       background: $meter-background;
 
       @if $meter-radius-status and has-value($meter-radius) {
         border-radius: $meter-radius;
       }
+
+      border: 0; //??
     }
 
     &::-webkit-meter-inner-element {

@@ -47,6 +47,18 @@ $table-foot-background: $global-table-foot-background !default;
 /// @type Color
 $table-head-font-color: $global-table-head-font-color !default;
 
+/// Default font color for footer.
+/// @type Color
+$table-foot-font-color: $global-table-foot-font-color !default;
+
+/// Default color of header rows on hover.
+/// @type List
+$table-head-row-hover: $global-table-head-row-hover !default;
+
+/// Default color of footer rows on hover.
+/// @type List
+$table-foot-row-hover: $global-table-foot-row-hover !default;
+
 
 $table-border-color: $global-table-border-color !default;
 
@@ -133,16 +145,29 @@ $table-thead-tfoot-padding: $table-padding !default;
     }
   }
 
-  // Table head and foot
-  thead,
-  tfoot {
+  // Table head
+  thead {
     @if ($table-background-status) and ($table-head-background != $table-background) {
       background: $table-head-background;
     }
     @if $table-head-font-color != $body-font-color {
       color: $table-head-font-color;
     }
+  }
 
+  // Table foot
+  tfoot {
+    @if ($table-background-status) and ($table-foot-background != $table-background) {
+      background: $table-foot-background;
+    }
+    @if $table-foot-font-color != $body-font-color {
+      color: $table-foot-font-color;
+    }
+  }
+
+  // Table head and foot
+  thead,
+  tfoot {
     // Rows within head and foot
     @if $table-background-status {
       tr {
@@ -216,7 +241,25 @@ $table-thead-tfoot-padding: $table-padding !default;
 
 /// Slightly darkens the table rows on hover.
 @mixin table-hover {
-  tr {
+  @if $table-head-row-hover != $table-head-background {
+    thead tr {
+      //Darkens the table header rows on hover.
+      &:hover {
+        background-color: $table-head-row-hover;
+      }
+    }
+  }
+
+  @if $table-foot-row-hover != $table-foot-background {
+    tfoot tr {
+      //Darkens the table footer rows on hover.
+      &:hover {
+        background-color: $table-foot-row-hover;
+      }
+    }
+  }
+
+  tbody tr {
     //Darkens the non-striped table rows on hover.
     &:hover {
       background-color: $table-row-hover;

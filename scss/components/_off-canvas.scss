@@ -76,6 +76,7 @@ $maincontent-class: 'off-canvas-content' !default;
 
   .off-canvas-wrapper-inner {
     @include clearfix;
+    min-height: 100%; //??
     position: relative;
     transition: transform $offcanvas-transition-length $offcanvas-transition-timing;
     width: 100%;

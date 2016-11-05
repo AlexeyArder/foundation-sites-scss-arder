@@ -89,8 +89,9 @@ $reveal-sizes: (
 
 /// Adds styles for a modal overlay.
 /// @param {Color} $background [$reveal-overlay-background] - Background color of the overlay.
-@mixin reveal-overlay {
-  background-color: $reveal-overlay-background;
+@mixin reveal-overlay(
+  $background: $reveal-overlay-background ) {
+  background-color: $background;
   bottom: 0;
   display: none;
   left: 0;
@@ -171,7 +172,7 @@ $reveal-sizes: (
   // html gets this class only in iOS
   html.is-reveal-open,
   html.is-reveal-open body {
-    height: 100%;
+    min-height: 100%;
     overflow: hidden;
     user-select: none;
   }

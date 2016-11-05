@@ -29,10 +29,16 @@ $button-color-alt: $global-button-color-alt !default;
 /// @type List
 $button-opacity-disabled: $global-button-opacity-disabled !default;
 
+/// Background color lightness on hover for buttons.
+/// @type Number
+$button-background-hover-lightness: $global-button-background-hover-lightness !default;
+
+/// Color lightness on hover for hollow buttons.
+/// @type Number
+$button-hollow-hover-lightness: $global-button-hollow-hover-lightness !default;
+
 
 $button-border-color: $global-button-border-color !default;
-$button-background-hover-lightness-coefficient: $global-button-background-hover-lightness-coefficient !default;
-$button-hollow-background-hover-lightness-coefficient: $global-button-hollow-background-hover-lightness-coefficient !default;
 
 
 //--------------------------------------
@@ -167,13 +173,14 @@ $button-arrow-only-side-margin: .2em !default;
 @mixin button-style(
   $background: $button-background,
   $background-hover: $button-background-hover,
-  $color: $button-color ) {
+  $color: $button-color,
+  $background-hover-lightness: $button-background-hover-lightness ) {
   @if $color == auto {
     $color: foreground($background, $button-color-alt, $button-color);
   }
 
   @if $background-hover == auto {
-    $background-hover: scale-color($background, $lightness: $button-background-hover-lightness-coefficient);
+    $background-hover: scale-color($background, $lightness: $background-hover-lightness);
   }
 
   //@if lightness($background) >= 70% {
@@ -228,8 +235,10 @@ $button-arrow-only-side-margin: .2em !default;
 }
 
 @mixin button-hollow-style(
-  $color: $primary-color ) {
-  $color-hover: scale-color($color, $lightness: $button-hollow-background-hover-lightness-coefficient);
+  $color: $primary-color,
+  $hover-lightness: $button-hollow-hover-lightness ) {
+
+  $color-hover: scale-color($color, $lightness: $hover-lightness);
 
   border: $button-border-hollow-width $button-border-hollow-style $color;
   color: $color;
@@ -246,14 +255,14 @@ $button-arrow-only-side-margin: .2em !default;
 }
 
 /// Adds disabled styles to a button by fading the element, reseting the cursor, and disabling pointer events.
-@mixin button-disabled {
+@mixin button-disabled($color: $primary-color) {
   cursor: not-allowed;
   @if $button-opacity-disabled != 0 {
     opacity: $button-opacity-disabled;
   }
 
   &:hover, &:focus {
-    background-color: $button-background;
+    background-color: $color;
     color: $button-color;
   }
 }
@@ -362,6 +371,12 @@ $button-arrow-only-side-margin: .2em !default;
       &.disabled,
       &[disabled] {
         @include button-disabled;
+
+        @each $name, $color in $foundation-palette {
+          &.#{$name} {
+            @include button-disabled($color);
+          }
+        }
       }
     }
 

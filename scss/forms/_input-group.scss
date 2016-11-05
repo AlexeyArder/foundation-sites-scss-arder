@@ -140,7 +140,7 @@ $input-group-button-width: 1% !default;
     @if $global-flexbox {
       flex: 1 1 0px; //?? px
       height: auto;
-      width: auto;
+      // width: auto;
     } @else {
       height: $height;
     }
@@ -181,8 +181,10 @@ $input-group-button-width: 1% !default;
 
     // Specificity bump needed to prevent override by buttons
     // scss-lint:disable QualifyingSelector
-    .input-group .input-group-button {
-      display: table-cell;
+    @if not $global-flexbox {
+      .input-group .input-group-button {
+        display: table-cell;
+      }
     }
   }
 

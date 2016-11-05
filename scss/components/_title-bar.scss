@@ -105,8 +105,4 @@ $titlebar-icon-spacing-right: rem-calc(4) !default;
       font-weight: $titlebar-text-font-weight;
     }
   }
-
-  .menu-icon.dark {
-    @include hamburger;
-  }
 }

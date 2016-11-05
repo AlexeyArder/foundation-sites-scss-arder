@@ -68,7 +68,7 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
   .is-drilldown-submenu {
     #{$global-left}: 100%;
     background: $drilldown-background;
-    height: 100%;
+    // height: 100%;
     position: absolute;
     top: 0;
     transition: $drilldown-transition;

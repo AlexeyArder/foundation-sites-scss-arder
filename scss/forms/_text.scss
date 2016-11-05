@@ -127,6 +127,9 @@ $input-padding-horizontal: $form-spacing / 2 !default;
 /// @type Number
 $input-height: ($input-font-size + ($form-spacing * 1.5));
 
+/// Border radius for buttons, defaulted to global-radius.
+/// @type Number
+// $button-radius: $global-radius !default; //??
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -256,8 +259,8 @@ $input-height: ($input-font-size + ($form-spacing * 1.5));
     @if not $input-number-spinners {
       -moz-appearance: textfield;
 
-      [type='number']::-webkit-inner-spin-button,
-      [type='number']::-webkit-outer-spin-button {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
         -webkit-appearance: none;
         //margin: 0;
       }

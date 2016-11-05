@@ -295,8 +295,8 @@ $global-button-background-hover: scale-color($global-button-background, $lightne
 $global-button-color: $white !default;
 $global-button-color-alt: $black !default;
 $global-button-border-color: $black !default;
-$global-button-background-hover-lightness-coefficient: -20% !default;
-$global-button-hollow-background-hover-lightness-coefficient: -50% !default;
+$global-button-background-hover-lightness: -20% !default;
+$global-button-hollow-hover-lightness: -50% !default;
 $global-button-opacity-disabled: .25 !default;
 
 
@@ -470,6 +470,9 @@ $global-table-striped-background: smart-scale($global-table-background, $global-
 $global-table-head-background: smart-scale($global-table-background, $global-table-color-scale / 2) !default;
 $global-table-foot-background: smart-scale($global-table-background, $global-table-color-scale) !default;
 $global-table-head-font-color: $global-body-font-color !default;
+$global-table-foot-font-color: $global-body-font-color !default;
+$global-table-head-row-hover: darken($global-table-head-background, $global-table-hover-scale) !default;
+$global-table-foot-row-hover: darken($global-table-foot-background, $global-table-hover-scale) !default;
 
 
 
