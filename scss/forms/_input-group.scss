@@ -138,8 +138,9 @@ $input-group-button-width: 1% !default;
   .input-group-field {
     @extend %input-group-child;
     @if $global-flexbox {
-      flex: 1 1 0px; //?? px
+      flex: 1 1 0px; // sass-lint:disable-line zero-unit
       height: auto;
+      min-width: 0;
       // width: auto;
     } @else {
       height: $height;
@@ -166,8 +167,15 @@ $input-group-button-width: 1% !default;
     a,
     input,
     button,
-    .button {
-      margin: 0;
+    .button,
+    label {
+      @extend %input-group-child;
+      @if $input-font-size != $global-font-size {
+        font-size: $input-font-size;
+      }
+      padding-top: 0;
+      padding-bottom: 0;
+      // margin: 0;
       //width: 100%;
       @if $input-prefix-global-button-border-status {
         border: 0;
@@ -180,7 +188,6 @@ $input-group-button-width: 1% !default;
     }
 
     // Specificity bump needed to prevent override by buttons
-    // scss-lint:disable QualifyingSelector
     @if not $global-flexbox {
       .input-group .input-group-button {
         display: table-cell;

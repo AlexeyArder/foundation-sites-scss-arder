@@ -2,8 +2,6 @@
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
-// scss-lint:disable ZeroUnit
-
 ////////////////////////////////////////
 /// @group breakpoints
 ////////////////////////////////////////
@@ -18,7 +16,13 @@ $breakpoints: (
   xxlarge: 1440px,
 ) !default;
 
+/// The largest named breakpoint in which to include print as a media type
+/// @type Keyword
+$print-breakpoint: large !default;
+
 $-zf-zero-breakpoint: small !default;
+
+$-zf-breakpoints-keys: map-to-list($breakpoints, 'keys');
 
 @if nth(map-values($breakpoints), 1) != 0 {
   @error 'Your smallest breakpoint (defined in $breakpoints) must be set to "0".';
@@ -128,14 +132,22 @@ $breakpoint-classes: (small medium large) !default;
 /// @output If the breakpoint is "0px and larger", outputs the content as-is. Otherwise, outputs the content wrapped in a media query.
 @mixin breakpoint($value) {
   $str: breakpoint($value);
+  $bp: index($-zf-breakpoints-keys, $value);
+  $pbp: index($-zf-breakpoints-keys, $print-breakpoint);
 
   // If $str is still an empty string, no media query is needed
   @if $str == '' {
     @content;
-  } @else {
-    // Otherwise, wrap the content in a media query
-    @media screen and #{$str} {
-      @content;
+  } @else { // Otherwise, wrap the content in a media query
+    // For named breakpoints less than or equal to $print-breakpoint, add print to the media types
+    @if $bp != null and $bp <= $pbp {
+      @media print, screen and #{$str} {
+        @content;
+      }
+    } @else {
+      @media screen and #{$str} {
+        @content;
+      }
     }
   }
 }
@@ -185,23 +197,33 @@ $breakpoint-classes: (small medium large) !default;
   }
 }
 
-/// Get a value for a breakpoint from a responsive config map. If the config map has the key `$value`, the exact breakpoint value is returned. If the config map does *not* have the breakpoint, the value matching the next lowest breakpoint in the config map is returned.
+/// Get a value for a breakpoint from a responsive config map or single value.
+/// - If the config is a single value, return it regardless of `$value`.
+/// - If the config is a map and has the key `$value`, the exact breakpoint value is returned.
+/// - If the config is a map and does *not* have the breakpoint, the value matching the next lowest breakpoint in the config map is returned.
 /// @access private
 ///
-/// @param {Map} $map - Input config map.
+/// @param {Number|Map} $map - Responsive config map or single value.
 /// @param {Keyword} $value - Breakpoint name to use.
 ///
 /// @return {Mixed} The corresponding breakpoint value.
 @function -zf-get-bp-val($map, $value) {
+  // If the given map is a single value, return it
+  @if type-of($map) == 'number' {
+    @return $map;
+  }
+
   // Check if the breakpoint name exists globally
   @if not map-has-key($breakpoints, $value) {
     @return null;
-  } @else if map-has-key($map, $value) {
-    // Check if the breakpoint name exists in the local config map
+  }
+  // Check if the breakpoint name exists in the local config map
+  @else if map-has-key($map, $value) {
     // If it does, just return the value
     @return map-get($map, $value);
-  } @else {
-    // Otherwise, find the next lowest breakpoint and return that value
+  }
+  // Otherwise, find the next lowest breakpoint and return that value
+  @else {
     $anchor: null;
     $found: false;
 
@@ -219,19 +241,6 @@ $breakpoint-classes: (small medium large) !default;
     @return map-get($map, $anchor);
   }
 }
-
-// Legacy breakpoint variables
-// These will be removed in 6.3
-$small-up: null;
-$small-only: null;
-$medium-up: null;
-$medium-only: null;
-$large-up: null;
-$large-only: null;
-$xlarge-up: null;
-$xlarge-only: null;
-$xxlarge-up: null;
-$xxlarge-only: null;
 
 @if map-has-key($breakpoints, small) {
   $small-up: screen;
@@ -255,5 +264,4 @@ $xxlarge-only: null;
 
 @if map-has-key($breakpoints, xxlarge) {
   $xxlarge-up: unquote('screen and #{breakpoint(xxlarge)}');
-  $xxlarge-only: unquote('screen and #{breakpoint(xxlarge only)}');
 }

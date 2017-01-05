@@ -25,28 +25,30 @@
 //  10. Button
 //  11. Button Group
 //  12. Callout
-//  13. Close Button
-//  14. Drilldown
-//  15. Dropdown
-//  16. Dropdown Menu
-//  17. Flex Video
-//  18. Label
-//  19. Media Object
-//  20. Menu
-//  21. Menu Icon
-//  22. Off-canvas
-//  23. Orbit
-//  24. Pagination
-//  25. Progress Bar
-//  26. Reveal
-//  27. Slider
-//  28. Switch
-//  29. Table
-//  30. Tabs
-//  31. Thumbnail
-//  32. Title Bar
-//  33. Tooltip
-//  34. Top Bar
+//  13. Card
+//  14. Close Button
+//  15. Drilldown
+//  16. Dropdown
+//  17. Dropdown Menu
+//  18. Flex Video
+//  19. Label
+//  20. Media Object
+//  21. Menu
+//  22. Menu Icon
+//  23. Off-canvas
+//  24. Orbit
+//  25. Pagination
+//  26. Progress Bar
+//  27. Responsive-embed
+//  28. Reveal
+//  29. Slider
+//  30. Switch
+//  31. Table
+//  32. Tabs
+//  33. Thumbnail
+//  34. Title Bar
+//  35. Tooltip
+//  36. Top Bar
 
 
 
@@ -106,6 +108,7 @@
 //   xlarge: 1200px,
 //   xxlarge: 1440px,
 // );
+// $print-breakpoint: large;
 // $breakpoint-classes: (small medium large);
 
 
@@ -309,6 +312,7 @@
 // $input-border-width: $global-form-border-width !default;
 //// Radius
 // $input-radius: $global-radius !default;
+// $form-button-radius: $global-radius !default;
 //// Status
 // $input-number-spinners: true !default;
 // $input-border-status: true !default;
@@ -318,6 +322,7 @@
 //// Sizes
 // $input-font-family: inherit !default;
 // $input-font-size: rem-calc(16) !default;
+// $input-font-weight: $global-weight-normal !default;
 // $input-border: $input-border-width solid $global-input-border-color !default;
 // $input-border-focus: $input-border-width solid $global-input-border-focus-color !default;
 // $input-cursor-disabled: not-allowed !default;
@@ -496,7 +501,7 @@
 //// Status
 // $accordionmenu-arrows-status: true !default;
 //// Sizes
-// $accordionmenu-arrows-font-size: rem-calc(10) !default;
+// $accordionmenu-arrow-size: rem-calc(10) !default;
 // $accordionmenu-arrows-right: 1rem !default;
 // $accordionmenu-arrows-up-content: $global-accordionmenu-arrows-up-content !default;
 // $accordionmenu-arrows-down-content: $global-accordionmenu-arrows-down-content !default;
@@ -553,6 +558,7 @@
 // @if $global-text-direction == 'rtl' {
 //   $button-margin: 0 0 $global-margin $global-margin !default;
 // }
+// $button-transition: background-color .25s ease-out, color .25s ease-out !default;
 // $button-padding: .5em 1em !default;
 // $button-font-default: 1rem !default;
 // $button-sizes: (
@@ -567,7 +573,6 @@
 // $button-border-hollow-width: $global-border-width !default;
 // $button-border-style: solid !default;
 // $button-border-hollow-style: solid !default;
-// $button-transition: background-color .25s ease-out, color .25s ease-out !default;
 // $button-dropdown-arrow-font-size: rem-calc(10) !default;
 // $button-dropdown-arrow-padding-top: .15em !default;
 // $button-dropdown-arrow-margin-left: get-side($button-padding, right) * .8 !default;
@@ -578,6 +583,8 @@
 // 11. Button Group
 // ----------------
 
+//// Radius
+// $buttongroup-radius-on-each: false !default;
 //// Sizes
 // $buttongroup-child-selector: '.button' !default;
 // $buttongroup-expand-max: 6 !default;
@@ -609,35 +616,61 @@
 
 
 
-// 13. Close Button
+// 13. Card
+// --------
+//// Radius
+// $card-border-radius: $global-radius !default;
+//// Status
+// $card-background-status: true !default;
+// $card-border-status: true !default;
+// $card-border-radius-status: true !default;
+// $card-shadow-status: true !default;
+//// Sizes
+// $card-shadow: none !default;
+// $card-padding: $global-padding !default;
+// $card-margin: 0 0 $global-margin !default;
+// $card-border: $global-border-width solid $card-border-color !default;
+
+
+
+// 14. Close Button
 // ----------------
 
 //// Status
 // $closebutton-position: right top !default;
 // $closebutton-svg-status: true !default;
 //// Sizes
-// $closebutton-offset-horizontal: 1rem !default;
-// $closebutton-offset-vertical: 1rem !default;
-// $closebutton-size: rem-calc(12) !default;
+// $closebutton-offset-horizontal: (
+//   small: rem-calc(10),
+//   medium: rem-calc(12)
+// ) !default;
+// $closebutton-offset-vertical: (
+//   small: rem-calc(10),
+//   medium: rem-calc(14)
+// ) !default;
+// $closebutton-size: (
+//   small: rem-calc(9),
+//   medium: rem-calc(14)
+// ) !default;
 // $closebutton-lineheight: 1 !default;
 // $closebutton-svg-stroke-width: 10px !default;
 
 
 
-// 14. Drilldown
+// 15. Drilldown
 // -------------
 
 //// Status
 // $drilldown-arrows-status: true !default;
 //// Sizes
 // $drilldown-transition: transform .15s linear !default;
-// $drilldown-arrow-font-size: rem-calc(8) !default;
+// $drilldown-arrow-size: rem-calc(8) !default;
 // $drilldown-arrow-next-margin-right: 1rem !default;
 // $drilldown-arrow-back-margin-right: rem-calc(8) !default;
 
 
 
-// 15. Dropdown
+// 16. Dropdown
 // ------------
 
 //// Border width
@@ -660,7 +693,7 @@
 
 
 
-// 16. Dropdown Menu
+// 17. Dropdown Menu
 // -----------------
 
 //// Border width
@@ -677,9 +710,9 @@
 // $dropdownmenu-min-width: rem-calc(200) !default;
 // $dropdownmenu-border: $dropdownmenu-border-width solid $dropdownmenu-border-color !default;
 // $dropdownmenu-border-width: nth($dropdownmenu-border, 1);
-// $dropdownmenu-main-menu-has-arrow-padding-right: rem-calc(0) !default;
-// $dropdownmenu-vertical-arrows-font-size: rem-calc(10) !default;
-// $dropdownmenu-arrows-down-margin-right: rem-calc(0) !default;
+// $dropdownmenu-arrow-size: rem-calc(10) !default;
+// $dropdownmenu-main-menu-has-arrow-padding-right: 0 !default;
+// $dropdownmenu-arrows-down-margin-right: 0 !default;
 // $dropdownmenu-arrows-right: rem-calc(10) !default;
 // $dropdownmenu-horizontal-arrows-font-size: rem-calc(8) !default;
 // $dropdownmenu-arrows-left-margin-right: rem-calc(10) !default;
@@ -687,7 +720,7 @@
 
 
 
-// 17. Flex Video
+// 18. Flex Video
 // --------------
 
 //// Sizes
@@ -703,7 +736,7 @@
 
 
 
-// 18. Label
+// 19. Label
 // ---------
 
 //// Border width
@@ -722,7 +755,7 @@
 
 
 
-// 19. Media Object
+// 20. Media Object
 // ----------------
 
 //// Sizes
@@ -732,7 +765,7 @@
 
 
 
-// 20. Menu
+// 21. Menu
 // --------
 
 //// Status
@@ -745,10 +778,12 @@
 // $menu-expand-max: 6 !default;
 // $menu-font-size: rem-calc(16) !default;
 // $menu-text-font-weight: bold !default;
+// $menu-border-width: 1px !default;
+// $menu-border-style: solid !default;
 
 
 
-// 21. Menu Icon
+// 22. Menu Icon
 // ----------------
 
 //// Sizes
@@ -759,7 +794,7 @@
 
 
 
-// 22. Off-canvas
+// 23. Off-canvas
 // --------------
 
 //// Status
@@ -770,10 +805,12 @@
 // $offcanvas-transition-length: .8s !default;
 // $offcanvas-transition-timing: ease !default;
 // $maincontent-class: 'off-canvas-content' !default;
+// $offcanvas-push-zindex: 1 !default;
+// $offcanvas-overlap-zindex: 10 !default;
 
 
 
-// 23. Orbit
+// 24. Orbit
 // ---------
 
 //// Radius
@@ -809,7 +846,7 @@
 
 
 
-// 24. Pagination
+// 25. Pagination
 // --------------
 
 //// Radius
@@ -829,7 +866,7 @@
 
 
 
-// 25. Progress Bar
+// 26. Progress Bar
 // ----------------
 
 //// Radius
@@ -844,7 +881,19 @@
 
 
 
-// 26. Reveal
+// 27. Responsive-embed
+// ----------
+
+//// Sizes
+// $responsive-embed-margin-bottom: rem-calc(16) !default;
+// $responsive-embed-ratios: (
+//   default: 16 by 9,
+//   fourbythree: 4 by 3
+// ) !default;
+
+
+
+// 28. Reveal
 // ----------
 
 //// Border width
@@ -869,7 +918,7 @@
 
 
 
-// 27. Slider
+// 29. Slider
 // ----------
 
 //// Border width
@@ -893,7 +942,7 @@
 
 
 
-// 28. Switch
+// 30. Switch
 // ----------
 
 //// Radius
@@ -919,7 +968,7 @@
 
 
 
-// 29. Table
+// 31. Table
 // ---------
 
 //// Border width
@@ -928,6 +977,7 @@
 // $table-border-radius: $global-radius !default;
 //// Status
 // $show-header-for-stacked: false !default;
+// $table-is-striped: true !default;
 // $table-radius-status: true !default;
 // $table-border-status: true !default;
 // $table-background-status: true !default;
@@ -947,7 +997,7 @@
 
 
 
-// 30. Tabs
+// 32. Tabs
 // --------
 
 //// Border width
@@ -982,7 +1032,7 @@
 
 
 
-// 31. Thumbnail
+// 33. Thumbnail
 // -------------
 
 //// Radius
@@ -998,7 +1048,7 @@
 
 
 
-// 32. Title Bar
+// 34. Title Bar
 // -------------
 
 //// Sizes
@@ -1009,7 +1059,7 @@
 
 
 
-// 33. Tooltip
+// 35. Tooltip
 // -----------
 
 //// Border width
@@ -1033,7 +1083,7 @@
 
 
 
-// 34. Top Bar
+// 36. Top Bar
 // -----------
 
 //// Radius

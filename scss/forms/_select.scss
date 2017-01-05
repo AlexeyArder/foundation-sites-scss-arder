@@ -67,8 +67,7 @@ $select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
   margin: $select-margin;
 
   @if $select-style-status {
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    appearance: none;
     background-color: $select-background;
     border: $input-border;
     padding: $select-padding;
@@ -90,6 +89,22 @@ $select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
       background-repeat: no-repeat;
       background-size: $select-triangle-size;
       padding-#{$global-right}: $select-triangle-position-padding-right;
+    }
+
+    @if has-value($input-transition) {
+      transition: $input-transition;
+    }
+
+    // Focus state
+    &:focus {
+      outline: none;
+      border: $input-border-focus;
+      background-color: $input-background-focus;
+      box-shadow: $input-shadow-focus;
+
+      @if has-value($input-transition) {
+        transition: $input-transition;
+      }
     }
 
     // Disabled state

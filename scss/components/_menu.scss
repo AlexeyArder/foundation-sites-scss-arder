@@ -17,6 +17,15 @@ $menu-item-color-active: $global-menu-item-color-active !default;
 /// @type Color
 $menu-item-background-active: $global-menu-item-background-active !default;
 
+/// Background color for an hovered menu item.
+/// @type Color
+$menu-item-background-hover: $global-menu-item-background-hover !default;
+
+/// Color for bordered menu
+/// @type Color
+$menu-border: $global-menu-border !default;
+
+
 $menu-text-color: $global-menu-text-color !default;
 
 
@@ -53,6 +62,8 @@ $menu-expand-max: 6 !default;
 
 $menu-font-size: rem-calc(16) !default;
 $menu-text-font-weight: bold !default;
+$menu-border-width: 1px !default;
+$menu-border-style: solid !default;
 
 
 ////////////////////////////////////////
@@ -102,6 +113,7 @@ $menu-text-font-weight: bold !default;
 
   // Reset styles of inner elements
   input,
+  select,
   a,
   button {
     margin-bottom: 0;
@@ -111,13 +123,16 @@ $menu-text-font-weight: bold !default;
 /// Expands the items of a Menu, so each item is the same width.
 @mixin menu-expand {
   @if $global-flexbox {
-    // scss-lint:disable ZeroUnit
     > li {
-      flex: 1 1 0px;
+      flex: 1 1 0px; // scss-lint:disable ZeroUnit
     }
   } @else {
     display: table;
     table-layout: fixed;
+    width: 100%;
+  }
+
+  > li:first-child:last-child {
     width: 100%;
   }
 }
@@ -268,24 +283,32 @@ $menu-text-font-weight: bold !default;
     @include menu-base;
     @include menu-icons;
 
-    // Orientation
-    @include menu-direction(horizontal);
+    // Default orientation: horizontal
+    &, &.horizontal {
+      @include menu-direction(horizontal);
+    }
 
+    // Even-width modifier for horizontal orientation
+    &.expanded {
+      @include menu-expand;
+    }
+
+    // Vertical orientation modifier
     &.vertical {
       @include menu-direction(vertical);
     }
 
-    @each $size in $breakpoint-classes {
-      @if $size != $-zf-zero-breakpoint {
-        @include breakpoint($size) {
-          &.#{$size}-horizontal {
-            @include menu-direction(horizontal);
-          }
+    @include -zf-each-breakpoint($small: false) {
+      &.#{$-zf-size}-horizontal {
+        @include menu-direction(horizontal);
+      }
 
-          &.#{$size}-vertical {
-            @include menu-direction(vertical);
-          }
-        }
+      &.#{$-zf-size}-expanded {
+        @include menu-expand;
+      }
+
+      &.#{$-zf-size}-vertical {
+        @include menu-direction(vertical);
       }
     }
 
@@ -307,18 +330,24 @@ $menu-text-font-weight: bold !default;
       }
     }
 
-    // Even-width
-    &.expanded {
-      @include menu-expand;
-
-      > li:first-child:last-child {
-        width: 100%;
-      }
-    }
+    // // Even-width
+    // &.expanded {
+    //   @include menu-expand;
+    //
+    //   > li:first-child:last-child {
+    //     width: 100%;
+    //   }
+    // }
 
     // Vertical icons
     &.icon-top {
       @include menu-icons(top, $base: false);
+      // Make vertical menu with icons on top work
+      &.vertical {
+        a > span {
+          margin: auto;
+        }
+      }
     }
 
     // Nesting
@@ -336,6 +365,23 @@ $menu-text-font-weight: bold !default;
       &:not(.nested) > li:first-child:not(.is-submenu-item) > a,
       &.vertical:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
         padding-#{$global-left}: 0;
+      }
+    }
+
+    // Menu with border
+    &.menu-bordered {
+      li {
+        border: $menu-border-width $menu-border-style $menu-border;
+        &:not(:first-child) {
+          border-top: 0;
+        }
+      }
+    }
+
+    // Menu with background hover
+    &.menu-hover {
+      li:hover {
+        background-color: $menu-item-background-hover;
       }
     }
   }

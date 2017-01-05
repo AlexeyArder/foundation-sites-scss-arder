@@ -114,7 +114,7 @@ $topbar-input-margin-right: 1rem !default;
   }
 
   input.button,
-  button {
+  button { // sass-lint:disable-line no-qualifying-elements
     width: auto;
     @if ($topbar-input-radius-status) and ($topbar-input-radius != 0) {
       border-radius: $topbar-input-radius;
@@ -153,7 +153,6 @@ $topbar-input-margin-right: 1rem !default;
   @if $global-flexbox {
     flex-wrap: nowrap;
 
-    // scss-lint:disable ZeroUnit
     .top-bar-left {
       flex: 1 1 auto;
     }
@@ -197,7 +196,7 @@ $topbar-input-margin-right: 1rem !default;
   @if $global-flexbox {
     .top-bar-title {
       flex: 0 0 auto;
-      margin-right: $topbar-title-spacing;
+      margin: $topbar-title-spacing;
     }
 
     .top-bar-left,
@@ -206,8 +205,13 @@ $topbar-input-margin-right: 1rem !default;
     }
   } @else {
     .top-bar-title {
+      display: inline-block;
       float: left;
-      margin-right: $topbar-title-spacing;
+      padding: $topbar-title-spacing;
+
+      // .menu-icon {
+      //   bottom: 2px;
+      // }
     }
 
     .top-bar-left {

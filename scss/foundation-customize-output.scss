@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.3.0
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -24,12 +24,13 @@
 @import 'components/badge';
 @import 'components/breadcrumbs';
 @import 'components/callout';
+@import 'components/card';
 @import 'components/close-button';
 @import 'components/drilldown';
 @import 'components/dropdown-menu';
 @import 'components/dropdown';
 @import 'components/flex';
-@import 'components/flex-video';
+// @import 'components/flex-video';
 @import 'components/label';
 @import 'components/media-object';
 @import 'components/menu';
@@ -38,6 +39,7 @@
 @import 'components/orbit';
 @import 'components/pagination';
 @import 'components/progress-bar';
+@import 'components/responsive-embed';
 @import 'components/reveal';
 @import 'components/slider';
 @import 'components/sticky';
@@ -60,13 +62,14 @@
   $foundation-breadcrumbs: true,
   $foundation-button-group: true,
   $foundation-callout: true,
+  $foundation-card: true,
   $foundation-close-button: true,
   $foundation-menu: true,
   $foundation-menu-icon: true,
   $foundation-drilldown-menu: true,
   $foundation-dropdown: true,
   $foundation-dropdown-menu: true,
-  $foundation-flex-video: true,
+  // $foundation-flex-video: true,
   $foundation-label: true,
   $foundation-media-object: true,
   $foundation-off-canvas: true,
@@ -75,6 +78,7 @@
   $foundation-progress-bar: true,
   $foundation-slider: true,
   $foundation-sticky: true,
+  $foundation-responsive-embed: true,
   $foundation-reveal: true,
   $foundation-switch: true,
   $foundation-table: true,
@@ -125,6 +129,9 @@
   @if $foundation-callout {
     @include foundation-callout;
   }
+  @if $foundation-callout {
+    @include foundation-card;
+  }
   @if $foundation-close-button {
     @include foundation-close-button;
   }
@@ -143,9 +150,9 @@
   @if $foundation-dropdown-menu {
     @include foundation-dropdown-menu;
   }
-  @if $foundation-flex-video {
-    @include foundation-flex-video;
-  }
+  // @if $foundation-flex-video {
+  //   @include foundation-flex-video;
+  // }
   @if $foundation-label {
     @include foundation-label;
   }
@@ -169,6 +176,9 @@
   }
   @if $foundation-sticky {
     @include foundation-sticky;
+  }
+  @if $foundation-responsive-embed {
+    @include foundation-responsive-embed;
   }
   @if $foundation-reveal {
     @include foundation-reveal;

@@ -41,8 +41,11 @@ $drilldown-arrows-status: true !default;
 /// @type Transition
 $drilldown-transition: transform .15s linear !default;
 
+/// Sets drilldown arrow size if arrow is used.
+/// @type Length
+$drilldown-arrow-size: rem-calc(8) !default;
 
-$drilldown-arrow-font-size: rem-calc(8) !default;
+
 $drilldown-arrow-next-margin-right: 1rem !default;
 $drilldown-arrow-back-margin-right: rem-calc(8) !default;
 
@@ -60,7 +63,11 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
     position: relative;
 
     li {
-      display: block !important; //??
+      display: block;
+    }
+
+    &.animate-height {
+      transition: height 0.5s;
     }
   }
 
@@ -68,7 +75,6 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
   .is-drilldown-submenu {
     #{$global-left}: 100%;
     background: $drilldown-background;
-    // height: 100%;
     position: absolute;
     top: 0;
     transition: $drilldown-transition;
@@ -86,6 +92,10 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
     }
   }
 
+  .drilldown-submenu-cover-previous {
+    min-height: 100%;
+  }
+
   @if $drilldown-arrows-status {
     .is-drilldown-submenu-parent > a {
       position: relative;
@@ -94,9 +104,9 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
         #{$global-right}: $drilldown-arrow-next-margin-right;
         content: $drilldown-arrow-right-content;
         position: absolute;
-        @if $drilldown-arrow-font-size != $menu-font-size {
-          font-size: $drilldown-arrow-font-size;
-          padding-top: ($menu-font-size - $drilldown-arrow-font-size) / 2;
+        @if $drilldown-arrow-size != $menu-font-size {
+          font-size: $drilldown-arrow-size;
+          padding-top: ($menu-font-size - $drilldown-arrow-size) / 2;
         }
 
         //@include css-triangle(6px, $drilldown-arrow-color, $global-right);
@@ -109,9 +119,9 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
       content: $drilldown-arrow-left-content;
       float: $global-left;
       margin-#{$global-right}: $drilldown-arrow-back-margin-right; // Creates space between the arrow and the text
-      @if $drilldown-arrow-font-size != $menu-font-size {
-        font-size: $drilldown-arrow-font-size;
-        padding-top: ($menu-font-size - $drilldown-arrow-font-size) / 2;
+      @if $drilldown-arrow-size != $menu-font-size {
+        font-size: $drilldown-arrow-size;
+        padding-top: ($menu-font-size - $drilldown-arrow-size) / 2;
       }
 
       //border-#{$global-left}-width: 0;

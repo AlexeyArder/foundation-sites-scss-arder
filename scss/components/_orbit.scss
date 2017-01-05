@@ -122,6 +122,7 @@ $orbit-caption-height: auto !default;
 
 /// Adds styles for the inner Orbit slide container. These styles are used on the `.orbit-container` class.
 @mixin orbit-container {
+  height: 0; // Prevent FOUC by not showing until JS sets height
   list-style: none;
   margin: $orbit-container-margin;
   overflow: hidden;
@@ -130,7 +131,6 @@ $orbit-caption-height: auto !default;
 
 /// Adds styles for the individual slides of an Orbit slider. These styles are used on the `.orbit-slide` class.
 @mixin orbit-slide {
-  max-height: 100%;
   width: 100%;
 
   &.no-motionui {
@@ -162,7 +162,8 @@ $orbit-caption-height: auto !default;
 /// Adds styles for an orbit slide caption. These styles are used on the `.orbit-caption` class.
 @mixin orbit-caption {
   bottom: $orbit-caption-bottom;
-  color: $orbit-caption-color;
+  // color: $orbit-caption-color;
+  color: color-pick-contrast($orbit-caption-background);
   padding: $orbit-caption-padding;
   position: absolute;
   width: $orbit-caption-width;

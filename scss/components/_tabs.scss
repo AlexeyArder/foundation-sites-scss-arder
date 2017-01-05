@@ -13,9 +13,17 @@
 /// @type Color
 $tab-background: $global-tab-background !default;
 
+/// Font color of tab item.
+/// @type Color
+$tab-color: $global-tab-color !default;
+
 /// Active background color of a tab bar.
 /// @type Color
 $tab-background-active: $global-tab-background-active !default;
+
+/// Active font color of tab item.
+/// @type Color
+$tab-active-color: $global-tab-active-color !default;
 
 /// Default border color of tab content.
 /// @type Color
@@ -23,7 +31,7 @@ $tab-border: $global-tab-border !default;
 
 /// Default text color for items in a Menu.
 /// @type Color
-$tab-item-color: $global-tab-item-color !default;
+// $tab-item-color: $global-tab-item-color !default;
 
 /// Default background color on hover for items in a Menu.
 $tab-item-background-hover: $global-tab-item-background-hover !default;
@@ -121,12 +129,16 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 ////////////////////////////////////////
 
 /// Adds styles for a tab container. Apply this to a `<ul>`.
-@mixin tabs-container {
+@mixin tabs-container (
+  $margin: $tab-margin,
+  $background: $tab-background,
+  $border-color: $tab-container-border
+) {
   @include clearfix;
   list-style-type: none;
-  margin: $tab-margin;
-  @if ($tab-background-status) and ($tab-background != transparent) {
-    background: $tab-background;
+  margin: $margin;
+  @if ($tab-background-status) and ($background != transparent) {
+    background: $background;
   }
   @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
     border: $tab-container-border;
@@ -204,15 +216,22 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Adds styles for the links within a tab container. Apply this to the `<li>` elements inside a tab container.
-@mixin tabs-title {
+@mixin tabs-title (
+  $padding: $tab-item-padding,
+  $font-size: $tab-item-font-size,
+  $color: $tab-color,
+  $color-active: $tab-active-color,
+  $background-hover: $tab-item-background-hover,
+  $background-active: $tab-background-active
+) {
   float: #{$global-left};
 
   > a {
     display: block;
     line-height: 1;
-    padding: $tab-item-padding;
-    @if $tab-item-color != $anchor-color {
-      color: $tab-item-color;
+    padding: $padding;
+    @if $color != $anchor-color {
+      color: $color;
     }
     @if ($tab-container-border-status) and ($tab-border-status) {
       @if $tab-bootstrap-like-status {
@@ -224,16 +243,21 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
     @if ($tab-border-radius-status) and ($tab-radius != 0) and ($tab-border-status) and (not $tab-bootstrap-like-status) {
       border-radius: $tab-radius;
     }
-    @if $tab-item-font-size != 1rem {
-      font-size: $tab-item-font-size;
+    @if $font-size != 1rem {
+      font-size: $font-size;
     }
     @if $tab-title-font-weight != normal {
       font-weight: $tab-title-font-weight;
     }
 
-    @if $tab-background-status {
-      &:hover {
+
+    &:hover {
+      @if $tab-background-status {
         background: $tab-item-background-hover;
+      }
+
+      @if $color-active != $anchor-color-hover {
+        color: $color-active;
       }
     }
 
@@ -241,6 +265,9 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
     &[aria-selected='true'] {
       @if $tab-background-status {
         background: $tab-background-active;
+      }
+      @if $color-active != $anchor-color-hover {
+        color: $color-active;
       }
       @if $tab-bootstrap-like-status {
         //border-top: $tab-container-border;
@@ -278,16 +305,23 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Adds styles for the wrapper that surrounds a tab group's content panes.
-@mixin tabs-content {
+@mixin tabs-content (
+  $background: $tab-content-background,
+  $color: $tab-content-color,
+  $border-color: $tab-content-border
+) {
   transition: $tab-content-transition;
-  @if ($tab-content-background-status) and ($tab-content-background != transparent) {
-    background: $tab-content-background;
+  @if ($tab-content-background-status) and ($background != transparent) {
+    background: $background;
   }
   @if $tab-content-border-status {
     border: $tab-content-border;
   }
   @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
     border-top: 0;
+  }
+  @if $color != $body-font-color {
+    color: $color;
   }
   @if $tab-content-margin-bottom != 0 {
     margin-bottom: $tab-content-margin-bottom;
@@ -300,7 +334,9 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Augments a tab content container to have a vertical style, by shifting the border around. Use this in conjunction with `tabs-content()`.
-@mixin tabs-content-vertical {
+@mixin tabs-content-vertical (
+  $border-color: $tab-content-border
+) {
   @if $tab-content-border-status {
     border: $tab-content-vertical-border;
   }
@@ -314,11 +350,13 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Adds styles for an individual tab content panel within the tab content container.
-@mixin tabs-panel {
+@mixin tabs-panel (
+  $padding: $tab-content-padding
+) {
   display: none;
-  padding: $tab-content-padding;
+  padding: $padding;
 
-  &.is-active {
+  &[aria-hidden="false"] {
     display: block;
   }
 }
@@ -374,7 +412,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
       background: $primary-color;
 
       > li > a {
-        color: foreground($primary-color);
+        color: color-pick-contrast($primary-color);
 
         &:hover,
         &:focus,

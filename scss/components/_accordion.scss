@@ -87,8 +87,11 @@ $accordion-content-padding: 1rem !default;
 /// @type Border
 $accordion-content-border: $accordion-content-border-width solid $accordion-content-border-color !default;
 
-
+/// Font size of accordion titles.
+/// @type Number
 $accordion-title-font-size: rem-calc(12) !default;
+
+
 $accordion-title-font-weight: normal !default;
 $accordion-title-line-height: 1 !default;
 $accordion-plusminus-font-size: rem-calc(16) !default;
@@ -103,11 +106,13 @@ $accordion-plusminus-right: 1rem !default;
 ////////////////////////////////////////
 
 /// Adds styles for an accordion container. Apply this to the same element that gets `data-accordion`.
-@mixin accordion-container {
+@mixin accordion-container (
+  $background: $accordion-background
+) {
   list-style-type: none;
   margin-#{$global-left}: 0;
   @if $accordion-background != transparent {
-    background: $accordion-background;
+    background: $background;
   }
   // @if $accordion-content-border-status {
   //   @if $accordion-title-border-bottom-status {
@@ -137,18 +142,24 @@ $accordion-plusminus-right: 1rem !default;
 }
 
 /// Adds styles for the title of an accordion item. Apply this to the link within an accordion item.
-@mixin accordion-title {
+@mixin accordion-title (
+  $padding: $accordion-item-padding,
+  $font-size: $accordion-title-font-size,
+  $color: $accordion-item-color,
+  $border: $accordion-content-border,
+  $background-hover: $accordion-item-background-hover
+) {
   display: block;
-  padding: $accordion-item-padding;
+  padding: $padding;
   position: relative;
   @if ($accordion-content-border-status) and ($accordion-title-border-bottom-status != false) {
-    border-bottom: $accordion-content-border;
+    border-bottom: $border;
   }
-  @if $accordion-item-color != $global-anchor-color {
-    color: $accordion-item-color;
+  @if $color != $global-anchor-color {
+    color: $color;
   }
-  @if $accordion-title-font-size != 1rem {
-    font-size: $accordion-title-font-size;
+  @if $font-size != 1rem {
+    font-size: $font-size;
   }
   @if $accordion-title-font-weight != normal {
     font-weight: $accordion-title-font-weight;
@@ -157,24 +168,24 @@ $accordion-plusminus-right: 1rem !default;
     line-height: $accordion-title-line-height;
   }
 
-  @if $accordion-item-background-hover != $accordion-background {
+  @if $background-hover != $accordion-background {
     &:hover,
     &:focus {
-      background-color: $accordion-item-background-hover;
+      background-color: $background-hover;
     }
   }
 
   @if $accordion-container-border-status {
-    border: $accordion-content-border;
+    border: $border;
     border-bottom: 0;
     @if not $accordion-content-border-status {
       .is-active > & {
-        border-bottom: $accordion-content-border;
+        border-bottom: $border;
       }
     }
 
     :last-child:not(.is-active) > & {
-      border-bottom: $accordion-content-border;
+      border-bottom: $border;
       @if ($accordion-container-border-radius-status) and ($accordion-container-border-radius != 0) {
         border-radius: 0 0 $accordion-container-border-radius $accordion-container-border-radius;
       }
@@ -186,9 +197,9 @@ $accordion-plusminus-right: 1rem !default;
       #{$global-right}: $accordion-plusminus-right;
       content: $accordion-plusminus-plus-content;
       position: absolute;
-      @if $accordion-plusminus-font-size != $accordion-title-font-size {
+      @if $accordion-plusminus-font-size != $font-size {
         font-size: $accordion-plusminus-font-size;
-        margin-top: ($accordion-title-font-size - $accordion-plusminus-font-size) / 2;
+        margin-top: ($font-size - $accordion-plusminus-font-size) / 2;
       }
       @if $accordion-plusminus-font-weight != normal {
         font-weight: $accordion-plusminus-font-weight;
@@ -202,14 +213,19 @@ $accordion-plusminus-right: 1rem !default;
 }
 
 /// Adds styles for accordion content. Apply this to the content pane below an accordion item's title.
-@mixin accordion-content {
+@mixin accordion-content (
+  $padding: $accordion-content-padding,
+  $border: $accordion-content-border,
+  $background: $accordion-content-background,
+  $color: $accordion-content-color
+) {
   display: none;
-  padding: $accordion-content-padding;
-  @if ($accordion-content-background != $accordion-background) and ($accordion-content-background != transparent) {
-    background-color: $accordion-content-background;
+  padding: $padding;
+  @if ($background != $accordion-background) and ($background != transparent) {
+    background-color: $background;
   }
   @if $accordion-container-border-status and $accordion-content-border-status {
-    border: $accordion-content-border;
+    border: $border;
     border-bottom: 0;
 
     @if not $accordion-title-border-bottom-status {
@@ -217,11 +233,11 @@ $accordion-plusminus-right: 1rem !default;
     }
 
     :last-child > &:last-child {
-      border-bottom: $accordion-content-border;
+      border-bottom: $border;
     }
   }
-  @if $accordion-content-color != $global-body-font-color {
-    color: $accordion-content-color;
+  @if $color != $global-body-font-color {
+    color: $color;
   }
 }
 

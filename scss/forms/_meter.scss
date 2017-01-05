@@ -61,8 +61,7 @@ $meter-margin-bottom: $global-margin !default;
 
 @mixin foundation-meter-element {
   meter {
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    appearance: none;
 
     // For Firefox
     background: $meter-background;
@@ -126,15 +125,15 @@ $meter-margin-bottom: $global-margin !default;
       }
     }
 
-    &:-moz-meter-optimum::-moz-meter-bar {
+    &:-moz-meter-optimum::-moz-meter-bar { // sass-lint:disable-line force-pseudo-nesting
       background: $meter-fill-good;
     }
 
-    &:-moz-meter-sub-optimum::-moz-meter-bar {
+    &:-moz-meter-sub-optimum::-moz-meter-bar { // sass-lint:disable-line force-pseudo-nesting
       background: $meter-fill-medium;
     }
 
-    &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    &:-moz-meter-sub-sub-optimum::-moz-meter-bar { // sass-lint:disable-line force-pseudo-nesting
       background: $meter-fill-bad;
     }
   }

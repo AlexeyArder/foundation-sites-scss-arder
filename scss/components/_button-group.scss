@@ -14,6 +14,14 @@ $buttongroup-expand-spacing-color: $global-buttongroup-expand-spacing-color !def
 
 
 //--------------------------------------
+// Radius
+//
+/// Determines if $button-radius is applied to each button or the button group as a whole. Use $global-radius in _settings.scss to change radius.
+/// @type Boolean
+$buttongroup-radius-on-each: false !default;
+
+
+//--------------------------------------
 // Sizes
 //
 /// Selector for the buttons inside a button group.
@@ -83,6 +91,20 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         margin-#{$global-right}: 0;
       }
     }
+
+    @if not $buttongroup-radius-on-each {
+      border-radius: 0;
+
+      &:first-child {
+        border-top-#{$global-left}-radius: $button-radius;
+        border-bottom-#{$global-left}-radius: $button-radius;
+      }
+
+      &:last-child {
+        border-top-#{$global-right}-radius: $button-radius;
+        border-bottom-#{$global-right}-radius: $button-radius;
+      }
+    }
   }
 }
 
@@ -101,10 +123,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     }
   }
 
-  // scss-lint:disable ZeroUnit
   #{$selector} {
     @if $global-flexbox {
-      flex: 1 1 0px;
+      flex: 1 1 0px; // scss-lint:disable ZeroUnit
     } @else {
       @for $i from 2 through $buttongroup-expand-max {
         &:first-child:nth-last-child(#{$i}) {
@@ -144,6 +165,21 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         margin-top: - $button-border-width;
       }
     }
+
+    @if not $buttongroup-radius-on-each {
+      // border-radius: 0;
+
+      &:first-child{
+        border-bottom-#{$global-left}-radius: 0;
+        border-top-#{$global-right}-radius: $button-radius;
+      }
+
+      &:last-child {
+        // margin-bottom: 0; //??
+        border-bottom-#{$global-left}-radius: $button-radius;
+        border-top-#{$global-right}-radius: 0;
+      }
+    }
   }
 
   // #{$selector} {
@@ -164,10 +200,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 /// @param {String} $selector [$buttongroup-child-selector] - Selector for the buttons inside the button group.
 @mixin button-group-unstack(
   $selector: $buttongroup-child-selector ) {
-  // scss-lint:disable ZeroUnit
   #{$selector} {
     @if $global-flexbox {
-      flex: 1 1 0px;
+      flex: 1 1 0px; // scss-lint:disable ZeroUnit
     } @else {
       width: auto;
     }
@@ -179,6 +214,18 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
       }
 
       // margin-bottom: 0;
+    }
+
+    @if not $buttongroup-radius-on-each {
+      &:first-child {
+        border-bottom-#{$global-left}-radius: $button-radius;
+        border-top-#{$global-right}-radius: 0;
+      }
+
+      &:last-child {
+        border-bottom-#{$global-left}-radius: 0;
+        border-top-#{$global-right}-radius: $button-radius;
+      }
     }
   }
 }
@@ -221,7 +268,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         @include button-group-unstack;
       }
 
-      &.expanded {
+      &.expanded { // sass-lint:disable-line force-element-nesting
         @include breakpoint(small only) {
           display: block;
 

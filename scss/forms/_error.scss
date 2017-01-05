@@ -74,15 +74,19 @@ $input-error-message-margin-bottom: $form-spacing !default;
 /// Styles the background and border of an input field to have an error state.
 ///
 /// @param {Color} $background [$alert-color] - Color to use for the background and border.
-/// @param {Number} $background-alpha [0.1] - Transparency level of the background color.
+/// @param {Number} $background-lighten [10%] - Lightness level of the background color.
 @mixin form-input-error(
   $background: $input-background-invalid,
-  $background-alpha: $input-background-transparency-factor ) {
+  $background-lighten: $input-background-transparency-factor ) {
 
   &:not(:focus) {
-    background-color: rgba($background, $background-alpha);
+    background-color: mix($background, $white, $background-lighten);
     @if $form-error-border-status {
       border-color: $background;
+    }
+
+    &::placeholder {
+      color: $background;
     }
   }
 }

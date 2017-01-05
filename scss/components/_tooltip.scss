@@ -98,11 +98,11 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
 
 @mixin tooltip {
   background-color: $tooltip-background-color;
-  max-width: $tooltip-max-width !important;
+  max-width: $tooltip-max-width;
   padding: $tooltip-padding;
   position: absolute;
   top: $tooltip-distance;
-  z-index: 10;
+  z-index: 1200;
   @if ($tooltip-radius-status) and ($tooltip-radius != 0) {
     border-radius: $tooltip-radius;
   }

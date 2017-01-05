@@ -65,7 +65,9 @@ $pagination-button-radius: $global-radius !default;
 /// @type Boolean
 $pagination-mobile-items-status: true !default;
 
-/// If `false`, don't display current page number on mobile.
+/// If `true`, display the current page number on mobile even if `$pagination-mobile-items` is set to `false`.
+/// This parameter will only override the visibility setting of the current item for `$pagination-mobile-items: false;`,
+/// it will not affect the current page number visibility when `$pagination-mobile-items` is set to `true`.
 /// @type Boolean
 $pagination-mobile-current-item: false !default;
 
@@ -107,20 +109,28 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 ////////////////////////////////////////
 
 /// Adds styles for a pagination container. Apply this to a `<ul>`.
-@mixin pagination-container {
+@mixin pagination-container (
+  $margin-bottom: $pagination-margin-bottom,
+  $font-size: $pagination-font-size,
+  $spacing: $pagination-item-spacing,
+  $radius: $pagination-radius,
+  $color: $pagination-item-color,
+  $padding: $pagination-item-padding,
+  $background-hover: $pagination-item-background-hover
+) {
   @include clearfix;
   margin-#{$global-left}: 0;
-  margin-bottom: $pagination-margin-bottom;
+  margin-bottom: $margin-bottom;
 
   // List item
   li {
     //display: none;
-    margin-#{$global-right}: $pagination-item-spacing;
-    @if ($pagination-radius-status) and ($pagination-radius != 0) {
-      border-radius: $pagination-radius;
+    margin-#{$global-right}: $spacing;
+    @if ($pagination-radius-status) and ($radius != 0) {
+      border-radius: $radius;
     }
-    @if $pagination-font-size != 1rem {
-      font-size: $pagination-font-size;
+    @if $font-size != 1rem {
+      font-size: $font-size;
     }
 
     @if $pagination-mobile-items-status {
@@ -149,17 +159,17 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   a,
   button {
     display: block;
-    padding: $pagination-item-padding;
+    padding: $padding;
     @if ($pagination-radius-status) and ($pagination-button-radius != 0) {
       border-radius: $pagination-button-radius;
     }
-    @if $pagination-item-color != $anchor-color {
-      color: $pagination-item-color;
+    @if $color != $anchor-color {
+      color: $color;
     }
 
     &:hover {
-      @if $pagination-item-background-hover != transparent {
-        background: $pagination-item-background-hover;
+      @if $background-hover != transparent {
+        background: $background-hover;
       }
       @if $pagination-item-hover-color != $pagination-item-color {
         color: $pagination-item-hover-color;
@@ -169,25 +179,32 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 }
 
 /// Adds styles for the current pagination item. Apply this to an `<a>`.
-@mixin pagination-item-current {
+@mixin pagination-item-current (
+  $padding: $pagination-item-padding,
+  $background-current: $pagination-item-background-current,
+  $color-current: $pagination-item-color-current
+) {
   cursor: default;
-  @if $pagination-item-background-current != transparent {
-    background: $pagination-item-background-current;
+  @if $background-current != transparent {
+    background: $background-current;
 
     &:hover {
-      background: $pagination-item-background-current;
+      background: $background-current;
     }
   }
-  @if $pagination-item-color-current != $pagination-item-color {
-    color: $pagination-item-color-current;
+  @if $color-current != $pagination-item-color {
+    color: $color-current;
   }
 }
 
 /// Adds styles for a disabled pagination item. Apply this to an `<a>`.
-@mixin pagination-item-disabled {
-  color: $pagination-item-color-disabled;
+@mixin pagination-item-disabled (
+  $padding: $pagination-item-padding,
+  $color: $pagination-item-color-disabled
+) {
+  color: $color;
   cursor: not-allowed;
-  padding: $pagination-item-padding;
+  padding: $padding;
 
   @if $pagination-item-background-hover != transparent {
     &:hover {
@@ -197,11 +214,14 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 }
 
 /// Adds styles for an ellipsis for use in a pagination list.
-@mixin pagination-ellipsis {
+@mixin pagination-ellipsis (
+  $padding: $pagination-item-padding,
+  $color: $pagination-ellipsis-color
+) {
   content: $pagination-ellipsis-content;
-  padding: $pagination-item-padding;
-  @if $pagination-ellipsis-color != $pagination-item-color {
-    color: $pagination-ellipsis-color;
+  padding: $padding;
+  @if $color != $pagination-item-color {
+    color: $color;
   }
 }
 

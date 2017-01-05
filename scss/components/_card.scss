@@ -1,0 +1,161 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////////////////////////////////////////
+/// @group card
+////////////////////////////////////////
+
+//--------------------------------------
+// Colors
+//
+/// Default background color.
+/// @type Color
+$card-background: $global-card-background !default;
+
+/// Default font color for cards.
+/// @type Color
+$card-font-color: $global-card-font-color !default;
+
+/// Default background.
+/// @type Color
+$card-divider-background: $global-card-divider-background !default;
+
+
+$card-border-color: $global-card-border-color !default;
+
+
+//--------------------------------------
+// Radius
+//
+/// Default border radius.
+/// @type List
+$card-border-radius: $global-radius !default;
+
+
+//--------------------------------------
+// Status
+//
+
+$card-background-status: true !default;
+$card-border-status: true !default;
+$card-border-radius-status: true !default;
+$card-shadow-status: true !default;
+
+
+//--------------------------------------
+// Sizes
+//
+/// Default card shadow.
+/// @type List
+$card-shadow: none !default;
+
+/// Default padding.
+/// @type Number
+$card-padding: $global-padding !default;
+
+/// Default bottom margin.
+/// @type number
+$card-margin: 0 0 $global-margin !default;
+
+/// Default border style.
+/// @type List
+$card-border: $global-border-width solid $card-border-color !default;
+
+
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+/// Card
+////////////////////////////////////////
+
+/// Adds styles for a card container.
+/// @param {Color} $background - Background color of the card.
+/// @param {Color} $color - font color of the card.
+/// @param {Number} $margin - Bottom margin of the card.
+/// @param {List} $border - Border around the card.
+/// @param {List} $radius - border radius of the card.
+/// @param {List} $shadow - box shadow of the card.
+@mixin card-container(
+  $background: $card-background,
+  $color: $card-font-color,
+  $margin: $card-margin,
+  $border: $card-border,
+  $radius: $card-border-radius,
+  $shadow: $card-shadow
+) {
+  @if $global-flexbox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  margin: $margin;
+  overflow: hidden;
+  @if $card-background-status and ($background != transparent) and ($background != $body-background) {
+    background: $background;
+  }
+  @if $card-border-status {
+    border: $border;
+  }
+  @if $card-border-radius-status {
+    border-radius: $radius;
+  }
+  @if $card-shadow-status and ($shadow != none) {
+    box-shadow: $shadow;
+  }
+  @if $card-font-color != $body-font-color {
+    color: $card-font-color;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/// Adds styles for a card divider.
+@mixin card-divider(
+  $background: $card-divider-background,
+  $padding: $card-padding
+) {
+  @if $global-flexbox {
+    flex: 0 1 auto;
+  }
+
+  padding: $padding;
+  @if $card-background-status and ($background != transparent) and ($background != $body-background) {
+    background: $background;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/// Adds styles for a card section.
+@mixin card-section(
+  $padding: $card-padding
+) {
+  @if $global-flexbox {
+    flex: 1 0 auto;
+  }
+
+  padding: $padding;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin foundation-card {
+  .card {
+    @include card-container;
+  }
+
+  .card-divider {
+    @include card-divider;
+  }
+
+  .card-section {
+    @include card-section;
+  }
+}

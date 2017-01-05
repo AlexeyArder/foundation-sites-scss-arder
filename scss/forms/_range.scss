@@ -64,12 +64,10 @@ $slider-opacity-disabled: .25 !default;
 ////////////////////////////////////////
 
 @mixin foundation-range-input {
-  // scss-lint:disable QualifyingElement
-  input[type="range"] {
+  input[type="range"] { // sass-lint:disable-line no-qualifying-elements
     $margin: ($slider-handle-height - $slider-height) / 2;
 
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
     display: block;
     width: 100%;
     height: auto;
@@ -91,6 +89,7 @@ $slider-opacity-disabled: .25 !default;
       opacity: $slider-opacity-disabled;
     }
 
+    // sass-lint:disable no-vendor-prefix
     // Chrome/Safari
     &::-webkit-slider-runnable-track {
       height: $slider-height;

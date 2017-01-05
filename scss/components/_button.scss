@@ -21,7 +21,7 @@ $button-background-hover: $global-button-background-hover !default;
 /// @type List
 $button-color: $global-button-color !default;
 
-/// Font color for buttons, if the background is light.
+/// Alternative font color for buttons.
 /// @type List
 $button-color-alt: $global-button-color-alt !default;
 
@@ -36,6 +36,10 @@ $button-background-hover-lightness: $global-button-background-hover-lightness !d
 /// Color lightness on hover for hollow buttons.
 /// @type Number
 $button-hollow-hover-lightness: $global-button-hollow-hover-lightness !default;
+
+/// Coloring classes. A map of classes to output in your CSS, like `.secondary`, `.success`, and so on.
+/// @type Map
+$button-palette: $foundation-palette !default;
 
 
 $button-border-color: $global-button-border-color !default;
@@ -53,7 +57,7 @@ $button-dropdown-arrow-content: $global-button-dropdown-arrow-content !default;
 //
 /// Border radius for buttons, defaulted to global-radius.
 /// @type Number
-$button-radius: $global-radius !default;
+$button-radius: 6px;//$global-radius !default;
 
 
 //--------------------------------------
@@ -83,6 +87,10 @@ $button-margin: 0 0 $global-margin 0 !default;
   $button-margin: 0 0 $global-margin $global-margin !default;
 }
 
+/// transitions for buttons.
+/// @type List
+$button-transition: background-color .25s ease-out, color .25s ease-out !default;
+
 /// Padding inside buttons.
 /// @type List
 $button-padding: .5em 1em !default;
@@ -108,8 +116,6 @@ $button-border-width: $global-border-width !default;
 $button-border-hollow-width: $global-border-width !default;
 $button-border-style: solid !default;
 $button-border-hollow-style: solid !default;
-
-$button-transition: background-color .25s ease-out, color .25s ease-out !default;
 
 $button-dropdown-arrow-font-size: rem-calc(10) !default;
 $button-dropdown-arrow-padding-top: .1em !default;
@@ -176,7 +182,7 @@ $button-arrow-only-side-margin: .2em !default;
   $color: $button-color,
   $background-hover-lightness: $button-background-hover-lightness ) {
   @if $color == auto {
-    $color: foreground($background, $button-color-alt, $button-color);
+    $color: color-pick-contrast($background, ($button-color, $button-color-alt));
   }
 
   @if $background-hover == auto {
@@ -336,7 +342,7 @@ $button-arrow-only-side-margin: .2em !default;
     }
 
     // Colors
-    @each $name, $color in $foundation-palette {
+    @each $name, $color in $button-palette {
       @if $button-fill == solid {
         &.#{$name} {
           @include button-style($color, auto, auto);
@@ -358,7 +364,7 @@ $button-arrow-only-side-margin: .2em !default;
         @include button-hollow;
         @include button-hollow-style;
 
-        @each $name, $color in $foundation-palette {
+        @each $name, $color in $button-palette {
           &.#{$name} {
             @include button-hollow-style($color);
           }
@@ -372,7 +378,7 @@ $button-arrow-only-side-margin: .2em !default;
       &[disabled] {
         @include button-disabled;
 
-        @each $name, $color in $foundation-palette {
+        @each $name, $color in $button-palette {
           &.#{$name} {
             @include button-disabled($color);
           }

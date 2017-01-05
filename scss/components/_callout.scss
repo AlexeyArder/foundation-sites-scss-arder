@@ -96,9 +96,9 @@ $callout-padding-large: (get-side($callout-padding, top) * $callout-padding-larg
   @if ($callout-border-radius-status) and ($callout-radius != 0) {
     border-radius: $callout-radius;
   }
-  @if $callout-font-color != $body-font-color {
-    color: $callout-font-color;
-  }
+  // @if $callout-font-color != $body-font-color {
+  //   color: $callout-font-color;
+  // }
 
   // Respect the padding, fool.
   > :first-child {
@@ -116,6 +116,10 @@ $callout-padding-large: (get-side($callout-padding, top) * $callout-padding-larg
   $background: scale-color($color, $lightness: $callout-background-fade);
 
   background-color: $background;
+  @if $callout-font-color != $body-font-color {
+    // color: $callout-font-color;
+    color: color-pick-contrast($background, ($callout-font-color, $callout-font-color-alt));
+  }
 }
 
 @mixin callout-size($padding) {

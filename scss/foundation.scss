@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.2.3
+ * Version 6.3.0
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -24,12 +24,13 @@
 @import 'components/badge';
 @import 'components/breadcrumbs';
 @import 'components/callout';
+@import 'components/card';
 @import 'components/close-button';
 @import 'components/drilldown';
 @import 'components/dropdown-menu';
 @import 'components/dropdown';
 @import 'components/flex';
-@import 'components/flex-video';
+// @import 'components/flex-video';
 @import 'components/label';
 @import 'components/media-object';
 @import 'components/menu';
@@ -38,6 +39,7 @@
 @import 'components/orbit';
 @import 'components/pagination';
 @import 'components/progress-bar';
+@import 'components/responsive-embed';
 @import 'components/reveal';
 @import 'components/slider';
 @import 'components/sticky';
@@ -69,13 +71,14 @@
   @include foundation-breadcrumbs;
   @include foundation-button-group;
   @include foundation-callout;
+  @include foundation-card;
   @include foundation-close-button;
   @include foundation-menu;
   @include foundation-menu-icon;
   @include foundation-drilldown-menu;
   @include foundation-dropdown;
   @include foundation-dropdown-menu;
-  @include foundation-flex-video;
+  // @include foundation-flex-video;
   @include foundation-label;
   @include foundation-media-object;
   @include foundation-off-canvas;
@@ -84,6 +87,7 @@
   @include foundation-progress-bar;
   @include foundation-slider;
   @include foundation-sticky;
+  @include foundation-responsive-embed;
   @include foundation-reveal;
   @include foundation-switch;
   @include foundation-table;

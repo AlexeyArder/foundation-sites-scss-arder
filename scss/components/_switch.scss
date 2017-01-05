@@ -84,6 +84,11 @@ $switch-paddle-height: $switch-height - (rem-calc(strip-unit($switch-paddle-offs
 $switch-paddle-width: ($switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)) / 2 !default;
 $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 
+// $switch-width: $switch-height * 2;
+// $paddle-height: $switch-height - (rem-calc($switch-paddle-offset) * 2);
+// $paddle-width: $switch-height - (rem-calc($switch-paddle-offset) * 2);
+// $paddle-active-offest: $switch-width - $paddle-width - rem-calc($switch-paddle-offset);
+
 
 ////////////////////////////////////////
 /// Switch
@@ -202,8 +207,7 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 /// Changes the size of a switch by modifying the size of the body and paddle. Apply this to a switch container.
 /// @param {Number} $font-size [1rem] - Font size of label text within the switch.
 /// @param {Number} $width [4rem] - Width of the switch body.
-/// @param {Number} $height [2rem] - Height of the switch body.
-/// @param {Number} $paddle-width [1.5rem] - Width of the switch paddle.
+/// @param {Number} $switch-height [2rem] - Height of the switch body.
 /// @param {Number} $paddle-offset [0.25rem] - Spacing between the switch paddle and the edge of the switch body.
 @mixin switch-size(
   $font-size: $switch-container-font-size,

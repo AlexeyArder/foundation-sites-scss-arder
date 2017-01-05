@@ -14,7 +14,7 @@
   }
 
   .sticky {
-    position: absolute;
+    position: relative;
     transform: translate3d(0, 0, 0);
     z-index: 0;
   }
@@ -34,7 +34,7 @@
 
   .sticky.is-anchored {
     left: auto;
-    position: absolute;
+    position: relative;
     right: auto;
 
     &.is-at-bottom {

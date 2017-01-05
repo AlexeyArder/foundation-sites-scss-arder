@@ -53,8 +53,7 @@ $progress-margin-bottom: $global-margin !default;
 
 @mixin foundation-progress-element {
   progress {
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    appearance: none;
 
     // For Firefox
     background: $progress-background;
@@ -109,7 +108,7 @@ $progress-margin-bottom: $global-margin !default;
     }
 
     // For IE and Edge
-    &::-ms-fill{
+    &::-ms-fill {
       @if hasvalue($progress-radius) {
         border-radius: $progress-radius;
       }

@@ -72,12 +72,13 @@ $thumbnail-transition: box-shadow 200ms ease-out !default;
   @if $thumbnail-margin-bottom != 0 {
     margin-bottom: $thumbnail-margin-bottom;
   }
+}
+
+@mixin thumbnail-link {
   @if $thumbnail-box-shadow-status {
     box-shadow: $thumbnail-shadow;
     transition: $thumbnail-transition;
-  }
 
-  @if $thumbnail-box-shadow-status {
     &:hover,
     &:focus {
       box-shadow: $thumbnail-shadow-hover;
@@ -91,5 +92,9 @@ $thumbnail-transition: box-shadow 200ms ease-out !default;
 @mixin foundation-thumbnail {
   .thumbnail {
     @include thumbnail;
+  }
+
+  a.thumbnail {
+    @include thumbnail-link;
   }
 }

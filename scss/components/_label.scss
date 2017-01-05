@@ -17,6 +17,14 @@ $label-background: $global-label-background !default;
 /// @type Color
 $label-color: $global-label-color !default;
 
+/// Alternate text color for labels.
+/// @type Color
+$label-color-alt: $global-label-color-alt !default;
+
+/// Coloring classes. A map of classes to output in your CSS, like `.secondary`, `.success`, and so on.
+/// @type Map
+$label-palette: $foundation-palette !default;
+
 
 $label-border-color: $global-label-border-color !default;
 
@@ -97,19 +105,17 @@ $label-border: $label-border-width solid $label-border-color !default;
       color: $label-color;
     }
 
-    @each $name, $color in $foundation-palette {
-      @if $name != primary {
-        &.#{$name} {
-          @if $label-fill == solid {
-            background: $color;
-            color: foreground($color);
-            @if $label-border-status {
-              border-color: $color / 2;
-            }
-          } @elseif $label-fill == hollow {
-            border-color: $color;
-            color: $color;
+    @each $name, $color in $label-palette {
+      &.#{$name} {
+        @if $label-fill == solid {
+          background: $color;
+          color: color-pick-contrast($color, ($label-color, $label-color-alt));
+          @if $label-border-status {
+            border-color: $color / 2;
           }
+        } @elseif $label-fill == hollow {
+          border-color: $color;
+          color: color-pick-contrast($color, ($label-color, $label-color-alt));
         }
       }
     }
