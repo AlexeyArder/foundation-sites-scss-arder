@@ -362,50 +362,48 @@ $menu-border-style: solid !default;
     }
 
     @if $menu-first-line-zero-padiing-left-status {
-      .menu-first-line-zero-padiing.menu {
-        &:not(.nested) > li:first-child:not(.is-submenu-item) > a {
-          padding-#{$global-left}: 0;
-        }
+      &:not(.nested) > li:first-child:not(.is-submenu-item) > a {
+        padding-#{$global-left}: 0;
+      }
 
-        &.vertical:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
-          padding-#{$global-left}: 0;
-        }
+      &.vertical:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
+        padding-#{$global-left}: 0;
+      }
 
-        &.vertical:not(.nested) {
-          &.medium-horizontal > li:not(.is-submenu-item) > a  {
-            @include breakpoint(small down) {
-              padding-#{$global-left}: 0;
-            }
-          }
-
-          &.large-horizontal > li:not(.is-submenu-item) > a  {
-            @include breakpoint(medium down) {
-              padding-#{$global-left}: 0;
-            }
-          }
-
-          &.xlarge-horizontal > li:not(.is-submenu-item) > a  {
-            @include breakpoint(large down) {
-              padding-#{$global-left}: 0;
-            }
-          }
-
-          &.xxlarge-horizontal > li:not(.is-submenu-item) > a  {
-            @include breakpoint(xlarge down) {
-              padding-#{$global-left}: 0;
-            }
-          }
-
-          &.xxxlarge-horizontal > li:not(.is-submenu-item) > a  {
-            @include breakpoint(xxlarge down) {
-              padding-#{$global-left}: 0;
-            }
+      &.vertical:not(.nested) {
+        &.medium-horizontal > li:not(.is-submenu-item) > a  {
+          @include breakpoint(small down) {
+            padding-#{$global-left}: 0;
           }
         }
 
-        &:not(.nested) > li:last-child:not(.is-submenu-item) > a {
-          padding-#{$global-right}: 0;
+        &.large-horizontal > li:not(.is-submenu-item) > a  {
+          @include breakpoint(medium down) {
+            padding-#{$global-left}: 0;
+          }
         }
+
+        &.xlarge-horizontal > li:not(.is-submenu-item) > a  {
+          @include breakpoint(large down) {
+            padding-#{$global-left}: 0;
+          }
+        }
+
+        &.xxlarge-horizontal > li:not(.is-submenu-item) > a  {
+          @include breakpoint(xlarge down) {
+            padding-#{$global-left}: 0;
+          }
+        }
+
+        &.xxxlarge-horizontal > li:not(.is-submenu-item) > a  {
+          @include breakpoint(xxlarge down) {
+            padding-#{$global-left}: 0;
+          }
+        }
+      }
+
+      &:not(.nested) > li:last-child:not(.is-submenu-item) > a {
+        padding-#{$global-right}: 0;
       }
     }
 
