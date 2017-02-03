@@ -223,9 +223,9 @@
 @mixin -zf-each-breakpoint($small: true) {
   $list: $breakpoint-classes;
 
-  @if not $small {
-    $list: sl-remove($list, $-zf-zero-breakpoint);
-  }
+  // @if not $small {
+  //   $list: sl-remove($list, $-zf-zero-breakpoint);
+  // }
 
   @each $name in $list {
     $-zf-size: $name !global;
