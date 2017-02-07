@@ -88,18 +88,28 @@ $input-group-button-width: 1% !default;
         align-items: stretch;
       }
 
-      > :first-child {
+      > :first-child:not([type=checkbox]):not([type=radio]) {
         border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius $input-group-border-radius 0, $input-group-border-radius 0 0 $input-group-border-radius);
 
         // border-radius: $input-group-border-radius 0 0 $input-group-border-radius;
+
+        > * {
+          border-radius: if($global-text-direction == rtl, 0 ($input-group-border-radius - $input-border-width) ($input-group-border-radius - $input-border-width) 0, ($input-group-border-radius - $input-border-width) 0 0 ($input-group-border-radius - $input-border-width));
+        }
       }
 
-      > :last-child {
+      > :last-child:not([type=checkbox]):not([type=radio]) {
+        border-radius: if($global-text-direction == rtl, $input-group-border-radius 0 0 $input-group-border-radius, 0 $input-group-border-radius $input-group-border-radius 0);
+
         > * {
-          border-radius: if($global-text-direction == rtl, $input-group-border-radius 0 0 $input-group-border-radius, 0 $input-group-border-radius $input-group-border-radius 0);
+          border-radius: if($global-text-direction == rtl, 0 ($input-group-border-radius - $input-border-width) 0 0 ($input-group-border-radius - $input-border-width), 0 ($input-group-border-radius - $input-border-width) ($input-group-border-radius - $input-border-width) 0);
 
           // border-radius: 0 $input-group-border-radius $input-group-border-radius 0;
         }
+      }
+
+      > :not(:first-child):not(:last-child):not([type=checkbox]):not([type=radio]) {
+        border-radius: 0;
       }
     }
   }
