@@ -88,13 +88,15 @@ $input-group-button-width: 1% !default;
         align-items: stretch;
       }
 
+      $input-group-border-radius-minus-border: $input-group-border-radius - $input-border-width;
+
       > :first-child:not([type=checkbox]):not([type=radio]) {
         border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius $input-group-border-radius 0, $input-group-border-radius 0 0 $input-group-border-radius);
 
         // border-radius: $input-group-border-radius 0 0 $input-group-border-radius;
 
         > * {
-          border-radius: if($global-text-direction == rtl, 0 ($input-group-border-radius - $input-border-width) ($input-group-border-radius - $input-border-width) 0, ($input-group-border-radius - $input-border-width) 0 0 ($input-group-border-radius - $input-border-width));
+          border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius-minus-border $input-group-border-radius-minus-border 0, $input-group-border-radius-minus-border 0 0 $input-group-border-radius-minus-border);
         }
       }
 
@@ -102,7 +104,7 @@ $input-group-button-width: 1% !default;
         border-radius: if($global-text-direction == rtl, $input-group-border-radius 0 0 $input-group-border-radius, 0 $input-group-border-radius $input-group-border-radius 0);
 
         > * {
-          border-radius: if($global-text-direction == rtl, 0 ($input-group-border-radius - $input-border-width) 0 0 ($input-group-border-radius - $input-border-width), 0 ($input-group-border-radius - $input-border-width) ($input-group-border-radius - $input-border-width) 0);
+          border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius-minus-border 0 0 $input-group-border-radius-minus-border, 0 $input-group-border-radius-minus-border $input-group-border-radius-minus-border 0);
 
           // border-radius: 0 $input-group-border-radius $input-group-border-radius 0;
         }
