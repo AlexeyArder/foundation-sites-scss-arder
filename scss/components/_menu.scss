@@ -61,6 +61,7 @@ $menu-expand-max: 6 !default;
 
 
 $menu-font-size: rem-calc(16) !default;
+$menu-font-weight: bold !default;
 $menu-text-font-weight: bold !default;
 $menu-border-width: 1px !default;
 $menu-border-style: solid !default;
@@ -76,6 +77,9 @@ $menu-border-style: solid !default;
 @mixin menu-base {
   margin: $menu-margin;
   list-style-type: none;
+  @if $menu-font-weight != normal {
+    font-weight: $menu-font-weight;
+  }
 
   @if $global-flexbox {
     align-items: center;
