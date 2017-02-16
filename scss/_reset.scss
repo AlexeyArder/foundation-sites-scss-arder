@@ -129,23 +129,11 @@ blockquote::after {
   content: none;
 }
 
-a img {
-  border: 0;
-}
+// a img {
+//   border: 0;
+// }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section,
-summary {
+hgroup {
   display: block;
 }
 
