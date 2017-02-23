@@ -208,4 +208,12 @@ $global-right: if($global-text-direction == rtl, left, right);
   .is-hidden {
     display: none !important;
   }
+
+  .hide-text-inside-link span {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    overflow: hidden;
+    top: -10px;
+  }
 }
