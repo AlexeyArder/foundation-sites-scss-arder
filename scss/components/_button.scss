@@ -122,7 +122,7 @@ $button-border-hollow-style: solid !default;
 
 $button-dropdown-arrow-font-size: rem-calc(10) !default;
 $button-dropdown-arrow-padding-top: .1em !default;
-$button-dropdown-arrow-margin-left: get-side($button-padding, right) * .8 !default;
+$button-dropdown-arrow-margin-left-coefficient: .8 !default;
 $button-arrow-only-side-margin: .2em !default;
 
 
@@ -158,10 +158,10 @@ $button-arrow-only-side-margin: .2em !default;
   @if $button-line-height != $global-lineheight {
     line-height: $button-line-height;
   }
-  @if (type-of($button-padding) == 'map') {
-    @each $size, $padding in $button-padding {
-      @include breakpoint($size) {
-        padding: $padding;
+  @if type-of($button-padding) == 'map' {
+    @each $breakpoint, $value in $button-padding {
+      @include breakpoint($breakpoint) {
+        padding: $value;
       }
     }
   } @else {
@@ -300,21 +300,29 @@ $button-arrow-only-side-margin: .2em !default;
 /// @param {Color} $color [white] - Color of the arrow.
 /// @param {Number} $offset [$button-padding] - Distance between the arrow and the text of the button. Defaults to whatever the right padding of a button is.
 @mixin button-dropdown(
-  //$size: .4em,
-  //$color: $white,
-  $offset: get-side($button-padding, right)) {
+  // $size: .4em,
+  // $color: $white,
+  $offset: $button-padding ) {
 
   &::after {
     content: $button-dropdown-arrow-content;
     display: inline-block;
     float: #{$global-right};
-    margin-#{$global-left}: $button-dropdown-arrow-margin-left;
     position: relative;
     @if ($button-dropdown-arrow-font-size != inherit) and ($button-dropdown-arrow-font-size != 1em) {
       font-size: $button-dropdown-arrow-font-size;
       @if $button-dropdown-arrow-font-size != $button-font-default {
         margin-top: (strip-unit($button-font-default - $button-dropdown-arrow-font-size) * 1em) / 2 + $button-dropdown-arrow-padding-top;
       }
+    }
+    @if type-of($offset) == 'map' {
+      @each $breakpoint, $value in $offset {
+        @include breakpoint($breakpoint) {
+          margin-#{$global-left}:  get-side($value, right) * $button-dropdown-arrow-margin-left-coefficient;
+        }
+      }
+    } @else {
+      margin-#{$global-left}: get-side($offset, right) * $button-dropdown-arrow-margin-left-coefficient;
     }
 
     //@include css-triangle($size, $color, down);
@@ -437,8 +445,25 @@ $button-arrow-only-side-margin: .2em !default;
       // Button with dropdown arrow only
       &.arrow-only::after {
         float: none;
-        margin-#{$global-left}: $button-arrow-only-side-margin - (get-side($button-padding, right));
-        margin-#{$global-right}: $button-arrow-only-side-margin - (get-side($button-padding, right));
+
+        @if type-of($button-padding) == 'map' {
+          @each $breakpoint, $value in $button-padding {
+            @include breakpoint($breakpoint) {
+              margin-#{$global-left}: $button-arrow-only-side-margin - (get-side($value, right));
+            }
+          }
+        } @else {
+          margin-#{$global-left}: $button-arrow-only-side-margin - (get-side($button-padding, right));
+        }
+        @if type-of($button-padding) == 'map' {
+          @each $breakpoint, $value in $button-padding {
+            @include breakpoint($breakpoint) {
+              margin-#{$global-right}: $button-arrow-only-side-margin - (get-side($value, right));
+            }
+          }
+        } @else {
+          margin-#{$global-right}: $button-arrow-only-side-margin - (get-side($button-padding, right));
+        }
         @if $button-dropdown-arrow-font-size != $button-font-default {
           line-height: 0;
           margin-top: 0;

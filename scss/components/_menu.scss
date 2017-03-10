@@ -49,7 +49,7 @@ $menu-margin-nested: 1rem !default;
 
 /// Padding for items in a menu.
 /// @type Number
-$menu-item-padding: rem-calc(6 16) !default;
+$menu-item-padding: rem-calc(6) rem-calc(16) !default;
 
 /// Spacing between an icon and text in a menu item.
 /// @type Number
@@ -108,15 +108,16 @@ $menu-border-style: solid !default;
   > li > a {
     display: block;
     line-height: 1;
-    @if (type-of($menu-item-padding) == 'map') {
-     @each $size, $padding in $menu-item-padding {
-       @include breakpoint($size) {
-         padding: $padding;
-       }
-     }
-   } @else {
-     padding: $menu-item-padding;
-   }
+
+    @if type-of($menu-item-padding) == 'map' {
+      @each $breakpoint, $value in $menu-item-padding {
+        @include breakpoint($breakpoint) {
+          padding: $value;
+        }
+      }
+    } @else {
+      padding: $menu-item-padding;
+    }
 
     &:focus {
       outline: 0;
@@ -218,7 +219,15 @@ $menu-border-style: solid !default;
   $margin-dir: direction-opposite($dir);
 
   margin-#{$no-margin-dir}: 0;
-  margin-#{$margin-dir}: get-side($menu-item-padding, $margin-dir);
+  @if type-of($menu-item-padding) == 'map' {
+    @each $breakpoint, $value in $menu-item-padding {
+      @include breakpoint($breakpoint) {
+        margin-#{$margin-dir}: get-side($value, $margin-dir);
+      }
+    }
+  } @else {
+    margin-#{$margin-dir}: get-side($menu-item-padding, $margin-dir);
+  }
 }
 
 /// Adds styles for a nested Menu, by adding `margin-left` to the menu.
@@ -302,12 +311,20 @@ $menu-border-style: solid !default;
 
 @mixin menu-text {
   //line-height: 1;
-  padding: $menu-item-padding;
   @if $menu-text-color != inherit {
     color: $menu-text-color;
   }
   @if $menu-text-font-weight != normal {
     font-weight: $menu-text-font-weight;
+  }
+  @if type-of($menu-item-padding) == 'map' {
+    @each $breakpoint, $value in $menu-item-padding {
+      @include breakpoint($breakpoint) {
+        padding: $value;
+      }
+    }
+  } @else {
+    padding: $menu-item-padding;
   }
 }
 

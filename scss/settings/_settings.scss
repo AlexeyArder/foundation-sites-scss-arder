@@ -560,7 +560,7 @@ $global-weight-bold: bold !default;
 //   $button-margin: 0 0 $global-margin $global-margin !default;
 // }
 // $button-transition: background-color .25s ease-out, color .25s ease-out !default;
-// $button-padding: .5em 1em !default;
+// $button-padding: .5em 1em !default; // Use only em. You can use map
 // $button-font-default: 1rem !default;
 // $button-sizes: (
 //   default: $button-font-default,
@@ -576,7 +576,7 @@ $global-weight-bold: bold !default;
 // $button-border-hollow-style: solid !default;
 // $button-dropdown-arrow-font-size: rem-calc(10) !default;
 // $button-dropdown-arrow-padding-top: .15em !default;
-// $button-dropdown-arrow-margin-left: get-side($button-padding, right) * .8 !default;
+// $button-dropdown-arrow-margin-left-coefficient: .8 !default;
 // $button-arrow-only-side-margin: .2em !default;
 
 
@@ -774,7 +774,7 @@ $global-weight-bold: bold !default;
 //// Sizes
 // $menu-margin: 0 !default;
 // $menu-margin-nested: 1rem !default;
-// $menu-item-padding: rem-calc(6) 1rem !default;
+// $menu-item-padding: rem-calc(6) rem-calc(16) !default; // You can use map
 // $menu-icon-spacing: .25rem !default;
 // $menu-expand-max: 6 !default;
 // $menu-font-size: rem-calc(16) !default;
