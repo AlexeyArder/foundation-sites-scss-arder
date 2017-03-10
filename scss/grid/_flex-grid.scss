@@ -145,7 +145,7 @@
     &.expanded {
       @include grid-row-size(expand);
 
-      .row {
+      .row:not(.expanded) {
         margin-right: auto;
         margin-left: auto;
       }
