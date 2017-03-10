@@ -108,7 +108,15 @@ $menu-border-style: solid !default;
   > li > a {
     display: block;
     line-height: 1;
-    padding: $menu-item-padding;
+    @if (type-of($menu-item-padding) == 'map') {
+     @each $size, $padding in $menu-item-padding {
+       @include breakpoint($size) {
+         padding: $padding;
+       }
+     }
+   } @else {
+     padding: $menu-item-padding;
+   }
 
     &:focus {
       outline: 0;
@@ -143,7 +151,9 @@ $menu-border-style: solid !default;
 
 /// Sets the direction of a Menu.
 /// @param {Keyword} $dir [horizontal] - Direction of the Menu. Can be `horizontal` or `vertical`.
-@mixin menu-direction($dir: horizontal) {
+@mixin menu-direction(
+  $dir: horizontal ) {
+
   @if $dir == horizontal {
     @if $global-flexbox {
       flex-wrap: nowrap;
@@ -180,16 +190,35 @@ $menu-border-style: solid !default;
 }
 
 /// Creates a simple Menu, which has no padding or hover state.
-@mixin menu-simple {
+/// @param {Keyword} $dir [$global-left] - Direction of the menu. Set to `null` to do not generate styles for direction.
+@mixin menu-simple(
+  $dir: $global-left ) {
+
   li {
     display: inline-block;
     line-height: 1;
-    margin-#{$global-right}: get-side($menu-item-padding, $global-right);
+    vertical-align: top;
+
+    @if $dir != null {
+      @include menu-simple-direction($dir);
+    }
   }
 
   a {
     padding: 0;
   }
+}
+
+/// Direction modifier for a simple Menu
+/// @param {Keyword} $dir [$global-left] - Direction of the menu
+@mixin menu-simple-direction(
+  $dir: $global-left ) {
+
+  $no-margin-dir: $dir;
+  $margin-dir: direction-opposite($dir);
+
+  margin-#{$no-margin-dir}: 0;
+  margin-#{$margin-dir}: get-side($menu-item-padding, $margin-dir);
 }
 
 /// Adds styles for a nested Menu, by adding `margin-left` to the menu.
@@ -319,6 +348,10 @@ $menu-border-style: solid !default;
     // Simple
     &.simple {
       @include menu-simple;
+
+      &.align-#{$global-right} {
+        @include menu-simple-direction($global-right);
+      }
     }
 
     // Align right
@@ -438,7 +471,12 @@ $menu-border-style: solid !default;
     text-align: center;
 
     > .menu {
-      display: inline-block;
+      @if $global-flexbox {
+        @include flex-align($x: center, $y: top);
+      } @else {
+        display: inline-block;
+        vertical-align: top;
+      }
     }
   }
 

@@ -149,6 +149,7 @@ hgroup {
 
 pre {
   word-wrap: break-word;
+  overflow: auto;
 }
 
 ////////////////////////////////////////
@@ -163,6 +164,7 @@ textarea {
 
 // Make select elements 100% width by default
 select {
+  box-sizing: border-box;
   width: 100%;
 }
 

@@ -20,6 +20,8 @@ $responsive-embed-ratios: (
   fourbythree: 4 by 3
 ) !default;
 
+// WARNING: Will be removed in version 6.4
+$responsive-embed-ratio: default;
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -52,7 +54,8 @@ $responsive-embed-ratios: (
 }
 
 @mixin foundation-responsive-embed {
-  .responsive-embed, .flex-video {
+  .responsive-embed,
+  .flex-video {
     @include responsive-embed($ratio: default);
 
     $ratios: map-remove($responsive-embed-ratios, default);
@@ -70,5 +73,5 @@ $responsive-embed-ratios: (
 }
 
 @mixin flex-video($ratio: $responsive-embed-ratio) {
-  @include responsive-embed;
+  @include responsive-embed($ratio);
 }

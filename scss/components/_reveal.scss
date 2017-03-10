@@ -124,8 +124,7 @@ $reveal-sizes: (
   }
 
   // Make sure rows don't have a min-width on them
-  .column,
-  .columns {
+  .column {
     min-width: 0;
   }
 
@@ -175,6 +174,7 @@ $reveal-sizes: (
   html.is-reveal-open body {
     min-height: 100%;
     overflow: hidden;
+    position: fixed;
     user-select: none;
   }
 

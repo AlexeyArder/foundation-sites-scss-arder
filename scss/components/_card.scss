@@ -104,7 +104,7 @@ $card-border: $global-border-width solid $card-border-color !default;
     box-shadow: $shadow;
   }
   @if $card-font-color != $body-font-color {
-    color: $card-font-color;
+    color: $color;
   }
 
   & > :last-child {

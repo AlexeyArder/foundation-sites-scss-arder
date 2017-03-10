@@ -108,12 +108,15 @@ $button-sizes: (
   large: $button-font-default + ($button-font-default / 6),
 ) !default;
 
+/// Border width for hollow outline buttons
+/// @type Number
+$button-hollow-border-width: $global-border-width !default;
+
 
 $button-line-height: 1 !default;
 $button-font-weight: normal !default;
 
 $button-border-width: $global-border-width !default;
-$button-border-hollow-width: $global-border-width !default;
 $button-border-style: solid !default;
 $button-border-hollow-style: solid !default;
 
@@ -135,7 +138,6 @@ $button-arrow-only-side-margin: .2em !default;
   cursor: pointer;
   display: inline-block;
   margin: $button-margin;
-  padding: $button-padding;
   position: relative;
   text-align: center;
   transition: $button-transition;
@@ -155,6 +157,15 @@ $button-arrow-only-side-margin: .2em !default;
   }
   @if $button-line-height != $global-lineheight {
     line-height: $button-line-height;
+  }
+  @if (type-of($button-padding) == 'map') {
+    @each $size, $padding in $button-padding {
+      @include breakpoint($size) {
+        padding: $padding;
+      }
+    }
+  } @else {
+    padding: $button-padding;
   }
 
   //-webkit-appearance: none;
@@ -242,11 +253,12 @@ $button-arrow-only-side-margin: .2em !default;
 
 @mixin button-hollow-style(
   $color: $primary-color,
-  $hover-lightness: $button-hollow-hover-lightness ) {
+  $hover-lightness: $button-hollow-hover-lightness,
+  $border-width: $button-hollow-border-width ) {
 
   $color-hover: scale-color($color, $lightness: $hover-lightness);
 
-  border: $button-border-hollow-width $button-border-hollow-style $color;
+  border: $border-width $button-border-hollow-style $color;
   color: $color;
 
   &:visited {
@@ -261,15 +273,25 @@ $button-arrow-only-side-margin: .2em !default;
 }
 
 /// Adds disabled styles to a button by fading the element, reseting the cursor, and disabling pointer events.
-@mixin button-disabled($color: $primary-color) {
+/// @param [Color] $background [$primary-color] - Background color of the disabled button.
+/// @param [Color] $color [$button-color] - Text color of the disabled button. Set to `auto` to have the mixin automatically generate a color based on the background color.
+@mixin button-disabled(
+  $background: $primary-color,
+  $color: $button-color ) {
+
   cursor: not-allowed;
+  @if $color == auto {
+    $color: color-pick-contrast($background, ($button-color, $button-color-alt));
+  }
   @if $button-opacity-disabled != 0 {
     opacity: $button-opacity-disabled;
   }
 
-  &:hover, &:focus {
-    background-color: $color;
-    color: $button-color;
+  &,
+  &:hover,
+  &:focus {
+    background-color: $background;
+    color: $color;
   }
 }
 
@@ -380,7 +402,7 @@ $button-arrow-only-side-margin: .2em !default;
 
         @each $name, $color in $button-palette {
           &.#{$name} {
-            @include button-disabled($color);
+            @include button-disabled($color, auto);
           }
         }
       }
@@ -394,6 +416,20 @@ $button-arrow-only-side-margin: .2em !default;
         @if $button-fill == hollow {
           &::after {
             border-top-color: $button-background;
+          }
+        }
+
+        &.hollow {
+          &::after {
+            border-top-color: $button-background;
+          }
+
+          @each $name, $color in $button-palette {
+            &.#{$name} {
+              &::after {
+                border-top-color: $color;
+              }
+            }
           }
         }
       }

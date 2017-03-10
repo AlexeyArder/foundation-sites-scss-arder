@@ -83,11 +83,11 @@
 // $global-lineheight: 1.35 !default;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !default;
 // $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
-// $global-margin: 1rem !default;
-// $global-padding: 1rem !default;
-// $global-form-spacing: 1rem !default;
-// $global-weight-normal: normal !default;
-// $global-weight-bold: bold !default;
+$global-margin: 1rem !default;
+$global-padding: 1rem !default;
+$global-form-spacing: 1rem !default;
+$global-weight-normal: normal !default;
+$global-weight-bold: bold !default;
 // $global-text-direction: ltr !default;
 // $global-left: if($global-text-direction == rtl, right, left);
 // $global-right: if($global-text-direction == rtl, left, right);
@@ -123,6 +123,7 @@
 //   medium: 30px,
 // );
 // $grid-column-align-edge: true;
+// $grid-column-alias: 'columns' !default;
 // $block-grid-max: 8;
 
 
@@ -567,10 +568,10 @@
 //   small: $button-font-default - ($button-font-default / 9),
 //   large: $button-font-default + ($button-font-default / 6),
 // ) !default;
+// $button-hollow-border-width: $global-border-width !default;
 // $button-line-height: 1 !default;
 // $button-font-weight: bold !default;
 // $button-border-width: $global-border-width !default;
-// $button-border-hollow-width: $global-border-width !default;
 // $button-border-style: solid !default;
 // $button-border-hollow-style: solid !default;
 // $button-dropdown-arrow-font-size: rem-calc(10) !default;
