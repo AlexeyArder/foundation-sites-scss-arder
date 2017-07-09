@@ -1,6 +1,7 @@
 @import '../scss/foundation-customize-output';
 
 @include foundation-everything(
+  $xy-grid: true,
   $foundation-typography: true,
   $foundation-forms: true,
   $foundation-button: true,
@@ -36,5 +37,6 @@
   $foundation-tooltip: true,
   $foundation-top-bar: true,
   $foundation-visibility-classes: true,
-  $foundation-float-classes: true
+  $foundation-float-classes: true,
+  $prototype: false
 );

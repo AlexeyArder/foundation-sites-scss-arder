@@ -152,6 +152,15 @@ pre {
   overflow: auto;
 }
 
+// Make reset inherit font-family instead of settings sans-serif
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
 ////////////////////////////////////////
 // Global resets for forms
 ////////////////////////////////////////

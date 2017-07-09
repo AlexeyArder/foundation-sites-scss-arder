@@ -61,6 +61,12 @@ $meter-margin-bottom: $global-margin !default;
 
 @mixin foundation-meter-element {
   meter {
+    // Disable `-webkit-appearance: none` from getting prefixed,
+    // We have disabled autoprefixer first and are just only using
+    // `-moz-appearance: none` as a prefix and neglecting the webkit.
+
+    /*! autoprefixer: off */
+    -moz-appearance: none;
     appearance: none;
 
     // For Firefox

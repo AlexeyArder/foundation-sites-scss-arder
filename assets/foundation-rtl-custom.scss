@@ -3,6 +3,7 @@ $global-text-direction: rtl;
 @import '../scss/foundation-customize-output';
 
 @include foundation-everything (
+  $xy-grid: true,
   $foundation-typography: true,
   $foundation-forms: true,
   $foundation-button: true,
@@ -38,5 +39,6 @@ $global-text-direction: rtl;
   $foundation-tooltip: true,
   $foundation-top-bar: true,
   $foundation-visibility-classes: true,
-  $foundation-float-classes: true
+  $foundation-float-classes: true,
+  $prototype: false
 );

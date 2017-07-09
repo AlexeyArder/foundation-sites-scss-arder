@@ -75,6 +75,7 @@
 
 //// Status
 // $global-flexbox: true !default;
+// $global-prototype-breakpoints: false !default;
 // $body-antialiased: true !default;
 
 //// Sizes
@@ -85,9 +86,12 @@
 // $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
 $global-margin: 1rem !default;
 $global-padding: 1rem !default;
+$global-position: 1rem !default;
 $global-form-spacing: 1rem !default;
 $global-weight-normal: normal !default;
 $global-weight-bold: bold !default;
+$global-menu-padding: 0.7rem 1rem !default;
+$global-menu-nested-margin: 1rem !default;
 // $global-text-direction: ltr !default;
 // $global-left: if($global-text-direction == rtl, right, left);
 // $global-right: if($global-text-direction == rtl, left, right);
@@ -315,6 +319,7 @@ $global-weight-bold: bold !default;
 // $input-radius: $global-radius !default;
 // $form-button-radius: $global-radius !default;
 //// Status
+// $input-height-status: false !default;
 // $input-number-spinners: true !default;
 // $input-border-status: true !default;
 // $input-box-shadow-status: true !default;
@@ -324,14 +329,14 @@ $global-weight-bold: bold !default;
 // $input-font-family: inherit !default;
 // $input-font-size: rem-calc(16) !default;
 // $input-font-weight: $global-weight-normal !default;
+// $input-line-height: $global-lineheight !default;
 // $input-border: $input-border-width solid $global-input-border-color !default;
 // $input-border-focus: $input-border-width solid $global-input-border-focus-color !default;
 // $input-cursor-disabled: not-allowed !default;
 // $input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
 // $input-margin: 0 0 $form-spacing !default;
-// $input-padding-vertical: $form-spacing / 2 !default;
-// $input-padding-horizontal: $form-spacing / 2 !default;
-// $input-height: ($input-font-size + ($form-spacing * 1.5));
+// $input-padding: $form-spacing / 2 !default;
+// $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')); // - rem-calc(1)
 
 
 
@@ -443,7 +448,7 @@ $global-weight-bold: bold !default;
 // $select-triangle-size: 9px 6px !default;
 // $select-triangle-position: $global-right (-$form-spacing) center !default;
 // $select-margin: 0 0 $form-spacing !default;
-// $select-padding: ($form-spacing / 2) !default;
+// $select-padding: $input-padding !default;
 // $select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
 
 
@@ -503,9 +508,16 @@ $global-weight-bold: bold !default;
 // $accordionmenu-arrows-status: true !default;
 //// Sizes
 // $accordionmenu-arrow-size: rem-calc(10) !default;
+// $accordionmenu-padding: $global-menu-padding !default;
+// $accordionmenu-submenu-padding: $accordionmenu-padding !default;
+// $accordionmenu-nested-margin: $global-menu-nested-margin !default;
+// $accordionmenu-border: null !default;
+// $accordionmenu-submenu-toggle-background: null !default;
+// $accordion-submenu-toggle-border: $accordionmenu-border !default;
+// $accordionmenu-submenu-toggle-width: $accordionmenu-arrow-size + 2rem !default;
+// $accordionmenu-submenu-toggle-height: null !default;
 // $accordionmenu-arrows-right: 1rem !default;
-// $accordionmenu-arrows-up-content: $global-accordionmenu-arrows-up-content !default;
-// $accordionmenu-arrows-down-content: $global-accordionmenu-arrows-down-content !default;
+// $accordionmenu-submenu-ul-margin-bottom: 0 !default;
 
 
 
@@ -531,7 +543,7 @@ $global-weight-bold: bold !default;
 
 //// Status
 // $breadcrumbs-item-uppercase-status: false !default;
-// $breadcrumbs-item-slash-status: true !default;
+// $breadcrumbs-item-separator-status: true !default;
 // $breadcrumbs-item-anchor-underline-status: false !default;
 // $breadcrumbs-item-disabled-status: true !default;
 //// Sizes
@@ -554,7 +566,9 @@ $global-weight-bold: bold !default;
 // $button-border-radius-status: true !default;
 // $button-dropdown-status: true !default;
 // $button-disabled-status: true !default;
+// $button-clear-status: true !default;
 //// Sizes
+// $button-font-family: inherit !default;
 // $button-margin: 0 0 $global-margin 0 !default;
 // @if $global-text-direction == 'rtl' {
 //   $button-margin: 0 0 $global-margin $global-margin !default;
@@ -629,7 +643,7 @@ $global-weight-bold: bold !default;
 //// Sizes
 // $card-shadow: none !default;
 // $card-padding: $global-padding !default;
-// $card-margin: 0 0 $global-margin !default;
+// $card-margin-bottom: 0 0 $global-margin !default;
 // $card-border: $global-border-width solid $card-border-color !default;
 
 
@@ -668,6 +682,9 @@ $global-weight-bold: bold !default;
 // $drilldown-arrow-size: rem-calc(8) !default;
 // $drilldown-arrow-next-margin-right: 1rem !default;
 // $drilldown-arrow-back-margin-right: rem-calc(8) !default;
+// $drilldown-padding: $global-menu-padding !default;
+// $drilldown-nested-margin: 0 !default;
+// $drilldown-submenu-padding: $drilldown-padding !default;
 
 
 
@@ -712,12 +729,24 @@ $global-weight-bold: bold !default;
 // $dropdownmenu-border: $dropdownmenu-border-width solid $dropdownmenu-border-color !default;
 // $dropdownmenu-border-width: nth($dropdownmenu-border, 1);
 // $dropdownmenu-arrow-size: rem-calc(10) !default;
+// $dropdownmenu-arrow-padding: 1.5rem !default;
+// $dropdownmenu-padding: $global-menu-padding !default;
+// $dropdownmenu-nested-margin: 0 !default;
+// $dropdownmenu-submenu-padding: $dropdownmenu-padding !default;
 // $dropdownmenu-main-menu-has-arrow-padding-right: 0 !default;
 // $dropdownmenu-arrows-down-margin-right: 0 !default;
 // $dropdownmenu-arrows-right: rem-calc(10) !default;
 // $dropdownmenu-horizontal-arrows-font-size: rem-calc(8) !default;
 // $dropdownmenu-arrows-left-margin-right: rem-calc(10) !default;
 // $dropdownmenu-width-when-vertical: rem-calc(200) !default;
+
+
+
+// 19. Flexbox Utilities
+// ---------------------
+
+$flex-source-ordering-count: 6;
+$flexbox-responsive-breakpoints: true;
 
 
 
@@ -777,6 +806,7 @@ $global-weight-bold: bold !default;
 // $menu-item-padding: rem-calc(6) rem-calc(16) !default; // You can use map
 // $menu-icon-spacing: .25rem !default;
 // $menu-expand-max: 6 !default;
+// $menu-simple-margin: 1rem !default;
 // $menu-font-size: rem-calc(16) !default;
 // $menu-font-weight: bold !default;
 // $menu-text-font-weight: bold !default;
@@ -803,12 +833,15 @@ $global-weight-bold: bold !default;
 // $offcanvas-fixed-reveal: true !default;
 //// Sizes
 // $offcanvas-size: rem-calc(240) !default;
-// $offcanvas-zindex: -1 !default;
+// $offcanvas-vertical-size: rem-calc(240) !default;
 // $offcanvas-transition-length: .8s !default;
 // $offcanvas-transition-timing: ease !default;
 // $maincontent-class: 'off-canvas-content' !default;
-// $offcanvas-push-zindex: 1 !default;
-// $offcanvas-overlap-zindex: 10 !default;
+// $offcanvas-push-zindex: 12 !default;
+// $offcanvas-overlap-zindex: 13 !default;
+// $offcanvas-reveal-zindex: 12 !default;
+// $offcanvas-inner-shadow-size: rem-calc(20) !default;
+// $offcanvas-overlay-zindex: 11 !default;
 
 
 
@@ -880,6 +913,201 @@ $global-weight-bold: bold !default;
 // $progress-margin-bottom: $global-margin !default;
 // $progress-text-font-size: rem-calc(10) !default;
 // $progress-text-font-weight: bold !default;
+
+
+
+// 29. Prototype Arrow
+// -------------------
+
+$prototype-arrow-directions: (
+  down,
+  up,
+  right,
+  left
+);
+$prototype-arrow-size: 0.4375rem;
+$prototype-arrow-color: $black;
+
+
+
+// 30. Prototype Border-Box
+// ------------------------
+
+$prototype-border-box-breakpoints: $global-prototype-breakpoints;
+
+
+
+// 31. Prototype Border-None
+// -------------------------
+
+$prototype-border-none-breakpoints: $global-prototype-breakpoints;
+
+
+
+// 32. Prototype Bordered
+// ----------------------
+
+$prototype-bordered-breakpoints: $global-prototype-breakpoints;
+$prototype-border-width: rem-calc(1);
+$prototype-border-type: solid;
+$prototype-border-color: $medium-gray;
+
+
+
+// 33. Prototype Display
+// ---------------------
+
+$prototype-display-breakpoints: $global-prototype-breakpoints;
+$prototype-display: (
+  inline,
+  inline-block,
+  block,
+  table,
+  table-cell
+);
+
+
+
+// 34. Prototype Font-Styling
+// --------------------------
+
+$prototype-font-breakpoints: $global-prototype-breakpoints;
+$prototype-wide-letter-spacing: rem-calc(4);
+$prototype-font-normal: $global-weight-normal;
+$prototype-font-bold: $global-weight-bold;
+
+
+
+// 35. Prototype List-Style-Type
+// -----------------------------
+
+$prototype-list-breakpoints: $global-prototype-breakpoints;
+$prototype-style-type-unordered: (
+  disc,
+  circle,
+  square
+);
+$prototype-style-type-ordered: (
+  decimal,
+  lower-alpha,
+  lower-latin,
+  lower-roman,
+  upper-alpha,
+  upper-latin,
+  upper-roman
+);
+
+
+
+// 36. Prototype Overflow
+// ----------------------
+
+$prototype-overflow-breakpoints: $global-prototype-breakpoints;
+$prototype-overflow: (
+  visible,
+  hidden,
+  scroll
+);
+
+
+
+// 37. Prototype Position
+// ----------------------
+
+$prototype-position-breakpoints: $global-prototype-breakpoints;
+$prototype-position: (
+  static,
+  relative,
+  absolute,
+  fixed
+);
+$prototype-position-z-index: 975;
+
+
+
+// 38. Prototype Rounded
+// ---------------------
+
+$prototype-rounded-breakpoints: $global-prototype-breakpoints;
+$prototype-border-radius: rem-calc(3);
+
+
+
+// 39. Prototype Separator
+// -----------------------
+
+$prototype-separator-breakpoints: $global-prototype-breakpoints;
+$prototype-separator-align: center;
+$prototype-separator-height: rem-calc(2);
+$prototype-separator-width: 3rem;
+$prototype-separator-background: $primary-color;
+$prototype-separator-margin-top: $global-margin;
+
+
+
+// 40. Prototype Shadow
+// --------------------
+
+$prototype-shadow-breakpoints: $global-prototype-breakpoints;
+$prototype-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),
+                       0 2px 10px 0 rgba(0,0,0,.12);
+
+
+
+// 41. Prototype Sizing
+// --------------------
+
+$prototype-sizing-breakpoints: $global-prototype-breakpoints;
+$prototype-sizing: (
+  width,
+  height
+);
+$prototype-sizes: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+);
+
+
+
+// 42. Prototype Spacing
+// ---------------------
+
+$prototype-spacing-breakpoints: $global-prototype-breakpoints;
+$prototype-spacers-count: 3;
+
+
+
+// 43. Prototype Text-Decoration
+// -----------------------------
+
+$prototype-decoration-breakpoints: $global-prototype-breakpoints;
+$prototype-text-decoration: (
+  overline,
+  underline,
+  line-through,
+);
+
+
+
+// 44. Prototype Text-Transformation
+// ---------------------------------
+
+$prototype-transformation-breakpoints: $global-prototype-breakpoints;
+$prototype-text-transformation: (
+  lowercase,
+  uppercase,
+  capitalize
+);
+
+
+
+// 45. Prototype Text-Utilities
+// ----------------------------
+
+$prototype-utilities-breakpoints: $global-prototype-breakpoints;
+$prototype-text-overflow: ellipsis;
 
 
 
@@ -988,6 +1216,7 @@ $global-weight-bold: bold !default;
 //
 /// Defualt value for showing the stripe on rows of the tables, excluding the header and footer If even, the even rows will have a background color. If odd, the odd rows will have a background color. If empty, or anyother value, the table rows will have no striping.
 // $table-stripe: even !default;
+// $table-stack-breakpoint: medium !default;
 // $table-border: $table-border-width solid $table-border-color !default;
 // $table-padding: rem-calc(8 10 10) !default;
 // $table-caption-font-size: 1rem !default;
@@ -1077,10 +1306,10 @@ $global-weight-bold: bold !default;
 // $tooltip-font-size: $small-font-size !default;
 // $tooltip-pip-width: rem-calc(8) !default;
 // $tooltip-pip-height: $tooltip-pip-width !default; //$tooltip-pip-width * .866 !default;
-// $tooltip-font-weight: bold !default;
+// $has-tip-cursor: help !default;
 // $tooltip-max-width: rem-calc(160) !default;
+// $tooltip-font-weight: bold !default;
 // $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
-// $has-tip-font-weight: bold !default;
 // $has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted $tooltip-has-tip-border-bottom-color !default;
 
 
@@ -1098,3 +1327,20 @@ $global-weight-bold: bold !default;
 // $topbar-input-width: rem-calc(200) !default;
 // $topbar-title-spacing: 1rem !default;
 // $topbar-input-margin-right: 1rem !default;
+
+
+
+// 56. Xy Grid
+// -----------
+
+// $xy-grid: true;
+// $grid-container: $global-width;
+// $grid-columns: 12;
+// $grid-margin-gutters: (
+//   small: 20px,
+//   medium: 30px
+// );
+// $grid-padding-gutters: $grid-margin-gutters;
+// $grid-container-padding: $grid-padding-gutters;
+// $grid-container-max: $global-width;
+// $block-grid-max: 8;

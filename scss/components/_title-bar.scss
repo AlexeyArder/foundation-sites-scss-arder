@@ -62,7 +62,7 @@ $titlebar-icon-spacing-right: rem-calc(4) !default;
     @if $global-flexbox {
       align-items: center;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
     } @else {
       @include clearfix;
     }

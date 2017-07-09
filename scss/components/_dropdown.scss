@@ -77,7 +77,7 @@ $dropdown-sizes: (
 /// Applies styles for a basic dropdown.
 @mixin dropdown-container {
   background-color: $body-background;
-  display: block;
+  display: none;
   padding: $dropdown-padding;
   position: absolute;
   visibility: hidden;
@@ -93,7 +93,13 @@ $dropdown-sizes: (
     font-size: $dropdown-font-size;
   }
 
+  // Allow an intermittent state to do positioning before making visible.
+  &.is-opening {
+    display: block;
+  }
+
   &.is-open {
+    display: block;
     visibility: visible;
   }
 }

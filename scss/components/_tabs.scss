@@ -356,7 +356,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
   display: none;
   padding: $padding;
 
-  &[aria-hidden="false"] {
+  &.is-active {
     display: block;
   }
 }

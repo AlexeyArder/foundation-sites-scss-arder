@@ -141,16 +141,11 @@ $no-bullet-margin-second-level: 0 !default;
   ////////////////////////////////////////
   // Use to remove the bullets from an unordered list
 
-  .no-bullet {
-    list-style: none;
-    margin-#{$global-left}: $no-bullet-margin;
-
-    //li {
-    //  ol,
-    //  ul {
-    //    list-style: none;
-    //    margin-#{$global-left}: $no-bullet-margin-second-level;
-    //  }
-    //}
+  ul, ol {
+    // Use to remove numbers from ordered list & bullets from unordered list
+    &.no-bullet {
+      list-style: none;
+      margin-#{$global-left}: 0;
+    }
   }
 }

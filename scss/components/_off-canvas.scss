@@ -17,9 +17,13 @@ $offcanvas-background: $global-offcanvas-background !default;
 /// @type Color
 $offcanvas-exit-background: $global-offcanvas-exit-background !default;
 
-/// Box shadow for the off-canvas panel.
+/// Box shadow for the off-canvas overlap panel.
 /// @type Shadow
 $offcanvas-shadow: $global-offcanvas-shadow !default;
+
+/// Inner box shadow color for the off-canvas push panel.
+/// @type Color
+$offcanvas-inner-shadow-color: $global-offcanvas-inner-shadow-color !default;
 
 
 //--------------------------------------
@@ -41,10 +45,6 @@ $offcanvas-size: rem-calc(240) !default;
 /// @type Number
 $offcanvas-vertical-size: rem-calc(240) !default;
 
-/// Z-index of an off-canvas panel using the `reveal-for-*` classes or mixin.
-/// @type Number
-$offcanvas-reveal-zindex: 1 !default;
-
 /// Length of the animation on an off-canvas panel.
 /// @type Number
 $offcanvas-transition-length: .8s !default;
@@ -58,11 +58,23 @@ $maincontent-class: 'off-canvas-content' !default;
 
 /// Z-index of an off-canvas panel with the `push` transition.
 /// @type Number
-$offcanvas-push-zindex: 1 !default;
+$offcanvas-push-zindex: 12 !default;
 
 /// Z-index of an off-canvas panel with the `overlap` transition.
 /// @type Number
-$offcanvas-overlap-zindex: 10 !default;
+$offcanvas-overlap-zindex: 13 !default;
+
+/// Z-index of an off-canvas panel using the `reveal-for-*` classes or mixin.
+/// @type Number
+$offcanvas-reveal-zindex: 12 !default;
+
+/// Inner box shadow size for the off-canvas push panel.
+/// @type Number
+$offcanvas-inner-shadow-size: rem-calc(20) !default;
+
+/// Z-index of an off-canvas content overlay.
+/// @type Number
+$offcanvas-overlay-zindex: 11 !default;
 
 
 ////////////////////////////////////////
@@ -73,6 +85,12 @@ $offcanvas-overlap-zindex: 10 !default;
 
 /// Adds baseline styles for off-canvas. This CSS is required to make the other pieces work.
 @mixin off-canvas-basics {
+  // Checks the z-indexes and increase them due to backwards compatibility.
+  // This is necessary because the overlay's z-index is new since v6.4 and may be identical to the user custom settings of the push z-index.
+  @if $offcanvas-push-zindex <= $offcanvas-overlay-zindex { $offcanvas-push-zindex: $offcanvas-overlay-zindex + 1 !global; }
+  @if $offcanvas-overlap-zindex <= $offcanvas-push-zindex { $offcanvas-overlap-zindex: $offcanvas-push-zindex + 1 !global; }
+  @if $offcanvas-reveal-zindex <= $offcanvas-overlay-zindex { $offcanvas-reveal-zindex: $offcanvas-overlay-zindex + 1 !global; }
+
   // Hides overflow on body when an off-canvas panel is open.
   .is-off-canvas-open {
     overflow: hidden;
@@ -90,6 +108,7 @@ $offcanvas-overlap-zindex: 10 !default;
     transition: opacity $offcanvas-transition-length $offcanvas-transition-timing, visibility $offcanvas-transition-length $offcanvas-transition-timing;
     visibility: hidden;
     width: 100%;
+    z-index: $offcanvas-overlay-zindex;
 
     &.is-visible {
       opacity: 1;
@@ -133,7 +152,19 @@ $offcanvas-overlap-zindex: 10 !default;
   background: $background;
   backface-visibility: hidden;
   transition: transform $transition;
+
+  // Set the off-canvas z-index.
   z-index: $offcanvas-push-zindex;
+
+  // Hide inactive off-canvas within the content that have the same position
+  &.is-closed {
+    visibility: hidden;
+  }
+
+  // Increase CSS specificity
+  &.is-transition-push {
+    z-index: $offcanvas-push-zindex;
+  }
 
   // Overlap only styles.
   &.is-transition-overlap {
@@ -164,9 +195,19 @@ $offcanvas-overlap-zindex: 10 !default;
     transform: translateX(-$size);
     width: $size;
 
+    // Sets the position for nested off-canvas element
+    @at-root .#{$maincontent-class} .off-canvas.position-#{$position} {
+      transform: translateX(-$size);
+      &.is-transition-overlap.is-open {
+        transform: translate(0, 0);
+      }
+    }
+
     // Sets the open position for the content
-    &.is-open ~ .#{$maincontent-class} {
-      transform: translateX($size);
+    @at-root .#{$maincontent-class}.is-open-#{$position} {
+      &.has-transition-push {
+        transform: translateX($size);
+      }
     }
   }
   @else if $position == right {
@@ -177,9 +218,19 @@ $offcanvas-overlap-zindex: 10 !default;
     transform: translateX($size);
     width: $size;
 
+    // Sets the position for nested off-canvas element
+    @at-root .#{$maincontent-class} .off-canvas.position-#{$position} {
+      transform: translateX($size);
+      &.is-transition-overlap.is-open {
+        transform: translate(0, 0);
+      }
+    }
+
     // Sets the open position for the content
-    &.is-open ~ .#{$maincontent-class} {
-      transform: translateX(-$size);
+    @at-root .#{$maincontent-class}.is-open-#{$position} {
+      &.has-transition-push {
+        transform: translateX(-$size);
+      }
     }
   }
   @else if $position == top {
@@ -190,9 +241,19 @@ $offcanvas-overlap-zindex: 10 !default;
     transform: translateY(-$size);
     width: 100%;
 
+    // Sets the position for nested off-canvas element
+    @at-root .#{$maincontent-class} .off-canvas.position-#{$position} {
+      transform: translateY(-$size);
+      &.is-transition-overlap.is-open {
+        transform: translate(0, 0);
+      }
+    }
+
     // Sets the open position for the content
-    &.is-open ~ .#{$maincontent-class} {
-      transform: translateY($size);
+    @at-root .#{$maincontent-class}.is-open-#{$position} {
+      &.has-transition-push {
+        transform: translateY($size);
+      }
     }
   }
   @else if $position == bottom {
@@ -203,58 +264,58 @@ $offcanvas-overlap-zindex: 10 !default;
     transform: translateY($size);
     width: 100%;
 
+    // Sets the position for nested off-canvas element
+    @at-root .#{$maincontent-class} .off-canvas.position-#{$position} {
+      transform: translateY($size);
+      &.is-transition-overlap.is-open {
+        transform: translate(0, 0);
+      }
+    }
+
     // Sets the open position for the content
-    &.is-open ~ .#{$maincontent-class} {
-      transform: translateY(-$size);
+    @at-root .#{$maincontent-class}.is-open-#{$position} {
+      &.has-transition-push {
+        transform: translateY(-$size);
+      }
     }
   }
 
-  // If $offcanvas-shadow is set, add it as a pseudo-element.
-  // This mimics the off-canvas panel having a lower z-index, without having to have one.
-  @if $offcanvas-shadow {
-    &.is-transition-push::after {
-      position: absolute;
 
+  // If $offcanvas-inner-shadow-size is set, add inner box-shadow.
+  // This mimics the off-canvas panel having a lower z-index, without having to have one.
+  @if $offcanvas-inner-shadow-size {
+    &.is-transition-push {
       @if $position == left {
-        height: 100%;
-        right: 0;
-        top: 0;
-        width: 1px;
+        @include inner-side-shadow(right, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
       }
       @else if $position == right {
-        height: 100%;
-        left: 0;
-        top: 0;
-        width: 1px;
+        @include inner-side-shadow(left, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
       }
       @else if $position == top {
-        bottom: 0;
-        height: 1px;
-        left: 0;
-        width: 100%;
+        @include inner-side-shadow(bottom, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
       }
       @else if $position == bottom {
-        height: 1px;
-        left: 0;
-        top: 0;
-        width: 100%;
+        @include inner-side-shadow(top, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
       }
-
-      box-shadow: $offcanvas-shadow;
-      content: " ";
     }
-  }
-
-  // No transform on overlap transition
-  &.is-transition-overlap.is-open ~ .#{$maincontent-class} {
-    transform: none;
   }
 }
 
 /// Sets the styles for the content container.
 @mixin off-canvas-content() {
   backface-visibility: hidden;
+  transform: none;
   transition: transform $offcanvas-transition-length $offcanvas-transition-timing;
+
+  // Transform scope until the element is closed (makes sure transitionend gets triggered)
+  &.has-transition-push {
+    transform: translate(0, 0);
+  }
+
+  // Consider element & content, nested in another content
+  .off-canvas.is-open {
+    transform: translate(0, 0);
+  }
 }
 
 /// Adds styles that reveal an off-canvas panel.
@@ -263,15 +324,55 @@ $position: left,
 $zindex: $offcanvas-reveal-zindex,
 $content: $maincontent-class
 ) {
+  transition: none;
   transform: none;
+  visibility: visible;
   z-index: $zindex;
 
   @if not $offcanvas-fixed-reveal {
     position: absolute;
   }
 
+  .close-button {
+     display: none;
+   }
+
+   // Consider revealed element is nested in content
+   .#{$maincontent-class} & {
+     transform: none;
+   }
+
+   @at-root .#{$content}.has-reveal-#{$position} {
+     margin-#{$position}: $offcanvas-size;
+   }
+
+   // backwards compatibility (prior to v6.4)
   & ~ .#{$content} {
     margin-#{$position}: $offcanvas-size;
+  }
+}
+
+/// Overrides the off-canvas styles
+@mixin in-canvas() {
+  visibility: visible;
+  height: auto;
+  position: static;
+  background: inherit;
+  width: inherit;
+  overflow: inherit;
+  transition: inherit;
+
+  // Increase CSS specificity
+  &.position-left,
+  &.position-right,
+  &.position-top,
+  &.position-bottom {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .close-button {
+    display: none;
   }
 }
 
@@ -285,7 +386,13 @@ $content: $maincontent-class
 
   // Off-canvas container
   .off-canvas {
-    @include off-canvas-base;
+    @include off-canvas-base
+
+    // Force position absolute for nested off-canvas because fixed doesn't work for push transition within the transform scope.
+    // @at-root .#{$maincontent-class} & {
+    //   // NOTE: since overlap transition is currently forced if nested, there's no need to force position absolute until nested push transition is supported.
+    //   // position: absolute;
+    // }
   }
 
   // Off-canvas container with absolute position
@@ -329,6 +436,17 @@ $content: $maincontent-class
 
         .position-bottom.reveal-for-#{$name} {
           @include off-canvas-reveal(bottom);
+        }
+      }
+    }
+  }
+
+  // Move in-canvas for larger screens
+  @each $name, $value in $breakpoint-classes {
+    @if $name != $-zf-zero-breakpoint {
+      @include breakpoint($name) {
+        .off-canvas.in-canvas-for-#{$name} {
+          @include in-canvas;
         }
       }
     }

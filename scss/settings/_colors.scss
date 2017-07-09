@@ -121,6 +121,10 @@ $global-anchor-color-active: #008000 !default;
 // 1. Global
 // ---------
 
+/// Global tolerance for color pick contrast.
+/// @type Number
+$global-color-pick-contrast-tolerance: 0 !default;
+
 $global-body-background: $white !default;
 $global-body-font-color: $black !default;
 
@@ -274,6 +278,7 @@ $global-accordion-content-color: $global-body-font-color !default;
 // -----------------
 
 $global-accordionmenu-arrow-color: $primary-color !default;
+$global-accordionmenu-item-background: null !default; // null
 
 
 
@@ -292,8 +297,8 @@ $global-badge-color-alt: $black !default;
 $global-breadcrumbs-item-color: $primary-color !default;
 $global-breadcrumbs-item-color-current: $global-body-font-color !default;
 $global-breadcrumbs-item-color-disabled: $medium-gray !default;
-$global-breadcrumbs-item-slash-color: $medium-gray !default;
-$global-breadcrumbs-item-slash-opacity: 1 !default;
+$global-breadcrumbs-item-separator-color: $medium-gray !default;
+$global-breadcrumbs-item-separator-opacity: 1 !default;
 
 
 
@@ -355,6 +360,7 @@ $global-closebutton-svg-hover-opacity: 1 !default;
 
 $global-drilldown-arrow-color: $primary-color !default;
 $global-drilldown-background: $white !default;
+$global-drilldown-submenu-background: $white !default;
 
 
 
@@ -375,6 +381,9 @@ $global-dropdownmenu-border-color: $medium-gray !default;
 $global-dropdownmenu-hover-background: $alert-color !default;
 $global-dropdownmenu-hover-color: $white !default; // inherit
 $global-dropdownmenu-shadow: 0 0 6px 1px rgba($black, .1) !default;
+$dropdownmenu-submenu-background: $global-dropdownmenu-background !default;
+$global-dropdown-menu-item-color-active: get-color(primary) !default;
+$global-dropdown-menu-item-background-active: transparent !default;
 
 
 // 19. Label
@@ -411,6 +420,7 @@ $global-offcanvas-background: $light-gray !default;
 $global-offcanvas-exit-background: rgba($white, .25) !default;
 $global-offcanvas-background: $black !default;
 $global-offcanvas-shadow: 0 0 10px rgba($black, .7) !default;
+$global-offcanvas-inner-shadow-color: rgba($black, 0.25) !default;
 
 
 

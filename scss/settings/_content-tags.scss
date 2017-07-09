@@ -31,7 +31,8 @@ $global-accordion-plusminus-plus-content: '\002B' !default;
 $global-accordion-plusminus-minus-content: '\2212' !default;
 
 // Breadcrumbs
-$global-breadcrumbs-item-slash-content: '\002F' !default;
+$global-breadcrumbs-item-separator-item: '\002F' !default;
+$global-breadcrumbs-item-separator-item-rtl: '\\' !default;
 
 // Button
 $global-button-dropdown-arrow-content: $content-arrow-down !default; //'▾' !default;

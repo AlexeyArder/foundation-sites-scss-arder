@@ -1,3 +1,6 @@
 @import '../scss/foundation';
 
-@include foundation-everything($flex: true);
+@include foundation-everything(
+  $flex: true,
+  $prototype: false
+);

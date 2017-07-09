@@ -87,6 +87,16 @@ $reveal-sizes: (
 /// Reveal
 ////////////////////////////////////////
 
+// Placeholder selector for medium-and-up modals
+// Prevents duplicate CSS when defining multiple Reveal sizes
+@include breakpoint(medium) {
+  %reveal-centered {
+    left: auto;
+    margin: 0 auto;
+    right: auto;
+  }
+}
+
 /// Adds styles for a modal overlay.
 /// @param {Color} $background [$reveal-overlay-background] - Background color of the overlay.
 @mixin reveal-overlay(
@@ -142,7 +152,7 @@ $reveal-sizes: (
   $max-width: $reveal-max-width ) {
   @include breakpoint(medium) {
     @extend %reveal-centered;
-    max-width: $reveal-max-width;
+    max-width: $max-width;
     width: $width;
   }
 }
@@ -192,16 +202,6 @@ $reveal-sizes: (
     overflow-y: auto;
     position: relative;
     top: $reveal-offset;
-
-    // Placeholder selector for medium-and-up modals
-    // Prevents duplicate CSS when defining multiple Reveal sizes
-    @include breakpoint(medium) {
-      %reveal-centered {
-        left: auto;
-        margin: 0 auto;
-        right: auto;
-      }
-    }
 
     // Remove padding
     &.collapse {

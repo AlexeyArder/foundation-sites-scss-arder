@@ -114,6 +114,12 @@ $accordion-plusminus-right: 1rem !default;
   @if $accordion-background != transparent {
     background: $background;
   }
+
+  &[disabled] {
+    .accordion-title {
+      cursor: not-allowed;
+    }
+  }
   // @if $accordion-content-border-status {
   //   @if $accordion-title-border-bottom-status {
   //     border-left: $accordion-content-border;

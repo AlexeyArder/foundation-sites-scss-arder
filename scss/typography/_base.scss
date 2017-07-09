@@ -964,15 +964,21 @@ $figcaption-line-height: inherit !default;
   ////////////////////////////////////////
   // Abbreviations
 
-  abbr {
-    color: $body-font-color;
+  // abbr {
+  //   color: $body-font-color;
+  //   cursor: help;
+  //
+  //   //text-transform: uppercase;
+  //
+  //   &[title] {
+  //     border-bottom: $abbr-underline;
+  //   }
+  // }
+
+  abbr, abbr[title] {
+    border-bottom: $abbr-underline;
     cursor: help;
-
-    //text-transform: uppercase;
-
-    &[title] {
-      border-bottom: $abbr-underline;
-    }
+    text-decoration: none;
   }
 
   ////////////////////////////////////////

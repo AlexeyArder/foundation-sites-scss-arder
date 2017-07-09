@@ -128,7 +128,6 @@ $slider-handle-border: $slider-handle-border-width solid $slider-handle-border-c
   display: inline-block;
   height: $slider-handle-height;
   left: 0;
-  position: absolute;
   touch-action: manipulation;
   transition: $slider-transition;
   width: $slider-handle-width;
@@ -139,6 +138,8 @@ $slider-handle-border: $slider-handle-border-width solid $slider-handle-border-c
   @if ($slider-radius-status) and ($slider-radius != 0) {
     border-radius: $slider-radius;
   }
+
+  // position: absolute;
 
   @if $slider-handle-hover-background-color != $slider-handle-background {
     &:hover {

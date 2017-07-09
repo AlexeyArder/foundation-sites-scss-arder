@@ -17,6 +17,19 @@ $dropdownmenu-arrow-color: $global-dropdownmenu-arrow-color !default;
 /// @type Color
 $dropdownmenu-background: $global-dropdownmenu-background !default;
 
+/// Background color for dropdowns.
+/// @type Color
+$dropdownmenu-submenu-background: $global-dropdownmenu-submenu-background !default;
+
+/// Text color of an active dropdown menu item. Explicit override for menu defaults
+/// @type Color
+$dropdown-menu-item-color-active: $global-dropdown-menu-item-color-active !default;
+
+/// Background color of an active dropdown menu item. Explicit override for menu defaults
+/// @type Color
+$dropdown-menu-item-background-active: $global-dropdown-menu-item-background-active !default;
+
+
 
 $dropdownmenu-hover-background: $global-dropdownmenu-hover-background !default;
 $dropdownmenu-hover-color: $global-dropdownmenu-hover-color !default; // inherit
@@ -81,8 +94,23 @@ $dropdownmenu-border-width: nth($dropdownmenu-border, 1);
 /// @type Length
 $dropdownmenu-arrow-size: rem-calc(10) !default;
 
+// Sets dropdown menu arrow padding for aligning the arrow correctly.
+/// @type Length
+$dropdownmenu-arrow-padding: 1.5rem !default;
 
-$dropdownmenu-main-menu-has-arrow-padding-right: 0 !default;
+/// Padding for top level items.
+/// @type Number
+$dropdownmenu-padding: $global-menu-padding !default;
+
+/// Sets dropdown menu nested margin
+/// @type Number
+$dropdownmenu-nested-margin: 0 !default;
+
+/// Padding for sub-menu items.
+/// @type Number
+$dropdownmenu-submenu-padding: $dropdownmenu-padding !default;
+
+
 $dropdownmenu-arrows-down-margin-right: 0 !default;
 $dropdownmenu-arrows-right: rem-calc(10) !default;
 $dropdownmenu-horizontal-arrows-font-size: rem-calc(8) !default;
@@ -96,7 +124,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 /// Dropdown-menu
 ////////////////////////////////////////
 
-@mixin left-right-arrows {
+@mixin zf-dropdown-left-right-arrows {
   > a::after {
     #{$global-right}: $dropdownmenu-arrows-right;
 
@@ -143,8 +171,8 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     @if $dropdownmenu-arrows-status {
       > li.is-dropdown-submenu-parent > a {
         position: relative;
-        @if $dropdownmenu-main-menu-has-arrow-padding-right != 0 {
-          padding-#{$global-right}: $dropdownmenu-main-menu-has-arrow-padding-right;
+        @if $dropdownmenu-arrow-padding != 0 {
+          padding-#{$global-right}: $dropdownmenu-arrow-padding;
         }
       }
 
@@ -170,6 +198,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
         > .is-dropdown-submenu {
           left: auto;
           right: 100%;
+          top: 0; //??
         }
       }
 
@@ -181,7 +210,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
 
       @if $dropdownmenu-arrows-status {
-        @include left-right-arrows;
+        @include zf-dropdown-left-right-arrows;
       }
     }
   } @else {
@@ -195,10 +224,25 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
     a {
       @include disable-mouse-outline;
+      padding: $dropdownmenu-padding;
+    }
+
+    // Active state
+    .is-active > a {
+      @if $dropdown-menu-item-background-active != transparent {
+        background: $dropdown-menu-item-background-active;
+      }
+      @if $dropdown-menu-item-color-active != transparent {
+        color: $dropdown-menu-item-color-active;
+      }
     }
 
     .no-js & ul {
       display: none;
+    }
+
+    .nested.is-dropdown-submenu {
+      @include menu-nested($dropdownmenu-nested-margin);
     }
 
     &.vertical {
@@ -277,8 +321,8 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     position: absolute;
     top: 0;
     z-index: 1;
-    @if $dropdownmenu-background != transparent {
-      background: $dropdownmenu-background;
+    @if $dropdownmenu-submenu-background != transparent {
+      background: $dropdownmenu-submenu-background;
     }
     @if $dropdownmenu-border-status {
       border: $dropdownmenu-border;
@@ -290,9 +334,13 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       box-shadow: $dropdownmenu-shadow;
     }
 
+    .dropdown & a {
+      padding: $dropdownmenu-submenu-padding;
+    }
+
     .is-dropdown-submenu-parent {
       @if $dropdownmenu-arrows-status {
-        @include left-right-arrows;
+        @include zf-dropdown-left-right-arrows;
       }
     }
 

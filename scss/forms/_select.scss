@@ -51,7 +51,7 @@ $select-margin: 0 0 $form-spacing !default;
 
 /// Default value used for padding for select menus.
 /// @type Number
-$select-padding: ($form-spacing / 2) !default;
+$select-padding: $input-padding !default;
 
 
 $select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
@@ -70,9 +70,19 @@ $select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
     appearance: none;
     background-color: $select-background;
     border: $input-border;
+    // font-weight: $input-font-weight;
     padding: $select-padding;
     @if ($select-radius-status) or ($select-radius != 0) {
       border-radius: $select-radius;
+    }
+    @if $input-font-weight != $global-weight-normal {
+      font-weight: $input-font-weight;
+    }
+    @if $input-height-status {
+      height: $input-height;
+    }
+    @if $input-line-height != $global-lineheight {
+      line-height: $input-line-height;
     }
 
     //$height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));

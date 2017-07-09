@@ -21,17 +21,24 @@ $breadcrumbs-item-color-current: $global-breadcrumbs-item-color-current !default
 /// @type Number
 $breadcrumbs-item-color-disabled: $global-breadcrumbs-item-color-disabled !default;
 
-/// Color of breadcrumb slash.
+/// Color of breadcrumb item.
 /// @type Color
-$breadcrumbs-item-slash-color: $global-breadcrumbs-item-slash-color !default;
+$breadcrumbs-item-separator-color: $global-breadcrumbs-item-separator-color !default;
 
 
 //--------------------------------------
 // Content
 //
+/// Used character for the breadcrumb separator.
+/// @type Content
+$breadcrumbs-item-separator-item: $global-breadcrumbs-item-separator-item !default;
 
-$breadcrumbs-item-slash-opacity: $global-breadcrumbs-item-slash-opacity !default;
-$breadcrumbs-item-slash-content: $global-breadcrumbs-item-slash-content !default;
+/// Used character for the breadcrumb separator in rtl mode.
+/// @type Content
+$breadcrumbs-item-separator-item-rtl: $global-breadcrumbs-item-separator-item-rtl !default;
+
+
+$breadcrumbs-item-separator-opacity: $global-breadcrumbs-item-separator-opacity !default;
 
 
 //--------------------------------------
@@ -41,9 +48,9 @@ $breadcrumbs-item-slash-content: $global-breadcrumbs-item-slash-content !default
 /// @type Boolean
 $breadcrumbs-item-uppercase-status: false !default;
 
-/// If `true`, adds a slash between breadcrumb links.
+/// If `true`, adds a seperator between breadcrumb links.
 /// @type Boolean
-$breadcrumbs-item-slash-status: true !default;
+$breadcrumbs-item-separator-status: true !default;
 
 
 $breadcrumbs-item-anchor-underline-status: false !default;
@@ -92,20 +99,20 @@ $breadcrumbs-item-margin: rem-calc(10) !default;
       text-transform: uppercase;
     }
 
-    @if $breadcrumbs-item-slash-status {
-      // Need to escape the backslash
-      $slash: if($global-text-direction == 'ltr', $breadcrumbs-item-slash-content, '\\');
+    @if $breadcrumbs-item-separator-status {
+      // Need to escape the backseparator
+      $separator: if($global-text-direction == 'ltr', $breadcrumbs-item-separator-item, $breadcrumbs-item-separator-item-rtl);
 
       &:not(:last-child)::after {
-        content: $slash;
+        content: $separator;
         margin-#{$global-right}: $breadcrumbs-item-margin;
         margin-#{$global-left}: $breadcrumbs-item-margin;
         position: relative;
-        @if ($breadcrumbs-item-slash-color != $body-font-color) or ($breadcrumbs-item-disabled-status != false) {
-          color: $breadcrumbs-item-slash-color;
+        @if ($breadcrumbs-item-separator-color != $body-font-color) or ($breadcrumbs-item-disabled-status != false) {
+          color: $breadcrumbs-item-separator-color;
         }
-        @if $breadcrumbs-item-slash-opacity != 1 {
-          opacity: $breadcrumbs-item-slash-opacity;
+        @if $breadcrumbs-item-separator-opacity != 1 {
+          opacity: $breadcrumbs-item-separator-opacity;
         }
 
         //top: 1px;

@@ -81,7 +81,7 @@ $form-button-radius: $global-radius !default;
 /// @type Boolean
 $input-number-spinners: true !default;
 
-
+$input-height-status: false !default;
 $input-border-status: true !default;
 $input-box-shadow-status: true !default;
 $input-radius-status: false !default;
@@ -103,6 +103,10 @@ $input-font-size: rem-calc(16) !default;
 /// @type Keyword
 $input-font-weight: $global-weight-normal !default;
 
+/// Line height of text inputs.
+/// @type Keyword
+$input-line-height: $global-lineheight !default;
+
 /// Border around text inputs.
 /// @type Border
 $input-border: $input-border-width solid $global-input-border-color !default;
@@ -123,17 +127,13 @@ $input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
 /// @type Number | List
 $input-margin: 0 0 $form-spacing !default;
 
-/// Default value used for verical padding for inputs.
+/// Padding of text inputs.
 /// @type Number
-$input-padding-vertical: $form-spacing / 2 !default;
-
-/// Default value used for horizontal padding for inputs.
-/// @type Number
-$input-padding-horizontal: $form-spacing / 2 !default;
+$input-padding: $form-spacing / 2 !default;
 
 /// Default value used for inputs height.
 /// @type Number
-$input-height: ($input-font-size + ($form-spacing * 1.5));
+$input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')); // - rem-calc(1)
 
 /// Border radius for buttons, defaulted to global-radius.
 /// @type Number
@@ -147,8 +147,8 @@ $input-height: ($input-font-size + ($form-spacing * 1.5));
 
 @mixin form-element {
   box-sizing: border-box;
-  //height: $input-height;
   margin: $input-margin;
+  padding: $input-padding;
   width: 100%;
   @if $input-background != transparent {
     background-color: $input-background;
@@ -171,10 +171,14 @@ $input-height: ($input-font-size + ($form-spacing * 1.5));
   @if $input-font-size != 1rem {
     font-size: $input-font-size;
   }
-  @if $input-padding-vertical != $input-padding-horizontal {
-    padding: $input-padding-vertical $input-padding-horizontal;
-  } @else {
-    padding: $input-padding-vertical;
+  @if $input-font-weight != $global-weight-normal {
+    font-weight: $input-font-weight;
+  }
+  @if $input-height-status {
+    height: $input-height;
+  }
+  @if $input-line-height != $global-lineheight {
+    line-height: $input-line-height;
   }
   @if has-value($input-transition) {
     transition: $input-transition;

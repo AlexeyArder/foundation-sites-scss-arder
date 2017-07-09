@@ -102,6 +102,10 @@ $table-background-hover-status: true !default;
 /// @type Keyword
 $table-stripe: even !default;
 
+/// Breakpoint at which stacked table switches from mobile to desktop view.
+/// @type Breakpoint
+$table-stack-breakpoint: medium !default;
+
 /// Default style for table border.
 /// @type List
 $table-border: $table-border-width solid $table-border-color !default;
@@ -281,6 +285,7 @@ $table-thead-tfoot-padding: $table-padding !default;
   $stripe: $table-stripe,
   $nest: false
 ) {
+  border-collapse: collapse;
   margin-bottom: $table-margin-bottom;
   width: 100%;
   @if ($table-radius-status) and ($table-border-radius != 0) {
@@ -372,12 +377,8 @@ $table-thead-tfoot-padding: $table-padding !default;
 @mixin table-stack($header: $show-header-for-stacked) {
   @if $header {
     thead {
-      th:first-child {
-        display: block;
-      }
-
       th {
-        display: none;
+        display: block;
       }
     }
   } @else {
@@ -407,7 +408,7 @@ $table-thead-tfoot-padding: $table-padding !default;
   }
 
   table.stack {
-    @include breakpoint(medium down) {
+    @include breakpoint($table-stack-breakpoint down) {
       @include table-stack;
     }
   }
