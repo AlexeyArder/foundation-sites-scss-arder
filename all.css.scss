@@ -3,9 +3,19 @@
 @import 'scss/reset';
 
 ////////////////////
+// Foundation vendor
+// Sass utilities need for Foundation util
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/true';
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/contain';
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/purge';
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/remove';
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/replace';
+@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/to-list';
+
 // Foundation
 // Sass utilities need for settings files
-@import 'scss/util/util';
+@import '../../bower_components/foundation-sites/scss/util/util';
 
 // All settings
 @import 'scss/settings/fonts';
@@ -14,7 +24,7 @@
 @import 'scss/settings/settings';
 
 // Grid type + all styles
-@import 'assets/base-flex';
+@import 'assets/base-flex-custom';
 // @import 'assets/base';
 
 // Motion UI
