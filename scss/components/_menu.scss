@@ -103,9 +103,10 @@ $menu-border-style: solid !default;
   .button {
     line-height: 1;
     text-decoration: none;
-    white-space: nowrap;
     display: block;
     padding: $menu-item-padding;
+
+    // white-space: nowrap;
   }
 
   // Reset styles of inner elements

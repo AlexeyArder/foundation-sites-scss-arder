@@ -35,7 +35,7 @@ $input-group-border-radius: $global-radius !default;
 
 $input-group-border-radius-status: true !default;
 $input-prefix-border-status: true !default;
-$input-prefix-global-button-border-status: true !default;
+$input-prefix-global-button-border-status: false !default;
 
 
 //--------------------------------------
@@ -170,6 +170,7 @@ $input-group-button-width: 1% !default;
     text-align: center;
 
     @if $global-flexbox {
+      display: flex;
       flex: 0 0 auto;
     } @else {
       height: 100%;
@@ -182,6 +183,12 @@ $input-group-button-width: 1% !default;
     .button,
     label {
       @extend %input-group-child;
+      @if $global-flexbox {
+        height: auto;
+        align-self: stretch;
+      } @else {
+        height: $height;
+      }
       @if $input-font-size != $global-font-size {
         font-size: $input-font-size;
       }
@@ -189,14 +196,16 @@ $input-group-button-width: 1% !default;
       padding-bottom: 0;
       // margin: 0;
       //width: 100%;
-      @if $input-prefix-global-button-border-status {
+      @if not $input-prefix-global-button-border-status {
         border: 0;
       }
-      @if $input-prefix-border-status {
-        height: $height - rem-calc($input-border-width * 2);
-      } @else {
-        height: $height;
-      }
+
+      // Possibly don't need anymore
+      // @if $input-prefix-border-status {
+      //   height: $height - rem-calc($input-border-width * 2);
+      // } @else {
+      //   height: $height;
+      // }
     }
 
     // Specificity bump needed to prevent override by buttons

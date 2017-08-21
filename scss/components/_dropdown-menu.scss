@@ -178,6 +178,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
       > li.is-dropdown-submenu-parent > a::after {
         content: $dropdownmenu-arrows-down-content;
+        #{$global-left}: auto; //??
         @if $dropdownmenu-arrows-down-margin-right != 0 {
           margin-#{$global-right}: $dropdownmenu-arrows-down-margin-right;
         }
@@ -290,6 +291,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       a::after {
         position: absolute;
         right: 0;
+        #{$global-left}: auto; //??
       }
     }
 

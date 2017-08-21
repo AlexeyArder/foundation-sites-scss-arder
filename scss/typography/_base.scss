@@ -253,7 +253,7 @@ $anchor-color-active: $global-anchor-color-active !default;
 //--------------------------------------
 // Sizes
 //
-/// Default text deocration for links.
+/// Default text decration for links.
 /// @type String
 $anchor-text-decoration: none !default;
 
@@ -685,7 +685,13 @@ $figcaption-line-height: inherit !default;
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
     font-style: $header-font-style;
     margin-bottom: $header-margin-bottom;
     margin-top: $header-top-margin;
@@ -731,7 +737,7 @@ $figcaption-line-height: inherit !default;
   //   @include breakpoint($size) {
   //     @each $header, $header-defs in $headers {
   //       $font-size-temp: 1rem;
-  //       #{$header} {
+  //       #{$header}, .#{$header} {
   //
   //         @if map-has-key($header-defs, font-size) {
   //           $font-size-temp: rem-calc(map-get($header-defs, font-size));

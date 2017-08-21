@@ -142,6 +142,10 @@ $global-text-direction: ltr !default;
 $global-left: if($global-text-direction == rtl, right, left);
 $global-right: if($global-text-direction == rtl, left, right);
 
+/// Button cursor's value, `auto` by default
+/// @type Keyword
+// $global-button-cursor: auto !default; // See this settings in the _reset.scss file
+
 
 ////////////////////////////////////////
 ////////////////////////////////////////
