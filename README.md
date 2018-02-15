@@ -5,4 +5,4 @@ Bower install
 
     bower install --save foundation-sites-scss-arder
     
-Description coming soon…
+Description... Maybe later. 
