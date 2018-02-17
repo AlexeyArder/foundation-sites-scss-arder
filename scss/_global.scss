@@ -97,7 +97,7 @@ $global-lineheight: 1.35 !default;
 
 /// Font stack of the body.
 /// @type List
-$body-font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+$body-font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif !default;
 
 /// Font stack used for elements that use monospaced type, such as code samples
 /// @type String | List
