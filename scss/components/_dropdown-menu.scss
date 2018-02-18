@@ -318,7 +318,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
   .is-dropdown-submenu {
     #{$global-left}: 100%;
     display: none;
-    left: 100%;
+    // left: 100%;
     min-width: $dropdownmenu-min-width;
     position: absolute;
     top: 0;
