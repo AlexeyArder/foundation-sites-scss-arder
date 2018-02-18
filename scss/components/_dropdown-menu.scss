@@ -329,7 +329,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     @if $dropdownmenu-border-status {
       border: $dropdownmenu-border;
     }
-    @if (not $dropdownmenu-border-radius-status) and ($dropdownmenu-border-radius != 0) {
+    @if $dropdownmenu-border-radius-status and ($dropdownmenu-border-radius != 0) {
       border-radius: $dropdownmenu-border-radius;
     }
     @if $dropdownmenu-shadow-status {
