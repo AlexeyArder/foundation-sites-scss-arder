@@ -132,6 +132,11 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
       border-bottom: $accordionmenu-border;
     }
 
+    .is-accordion-submenu {
+      list-style: none;
+      margin-#{$global-left}: 0;
+    }
+
     li {
       width: 100%;
 
