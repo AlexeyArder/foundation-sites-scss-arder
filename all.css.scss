@@ -17,12 +17,13 @@
 // Sass utilities need for settings files
 @import '../../bower_components/foundation-sites/scss/util/util';
 
-// All settings
+// --- Settings ---
 @import 'scss/settings/fonts';
 @import 'scss/settings/colors';
 @import 'scss/settings/content-tags';
 @import 'scss/settings/settings';
 
+// --- Components ---
 // Grid type + all styles
 @import 'assets/base-flex-custom';
 // @import 'assets/base';
