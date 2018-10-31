@@ -142,8 +142,8 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
   &.top {
     &::before {
       @include css-triangle($tooltip-pip-width, $tooltip-background-color, down);
-      top: 100%;
       bottom: auto;
+      top: 100%;
     }
 
     &.align-center::before {
@@ -168,8 +168,8 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
   &.right {
     &::before {
       @include css-triangle($tooltip-pip-width, $tooltip-background-color, left);
-      right: 100%;
       left: auto;
+      right: 100%;
     }
 
     &.align-center::before {

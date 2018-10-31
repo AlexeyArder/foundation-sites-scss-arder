@@ -91,7 +91,7 @@ $global-position: 1rem !default;
 $global-form-spacing: 1rem !default;
 $global-weight-normal: normal !default;
 $global-weight-bold: bold !default;
-$global-menu-padding: 0.7rem 1rem !default;
+$global-menu-padding: .7rem 1rem !default;
 $global-menu-nested-margin: 1rem !default;
 // $global-text-direction: ltr !default;
 // $global-left: if($global-text-direction == rtl, right, left);
@@ -593,6 +593,7 @@ $global-menu-nested-margin: 1rem !default;
 //   $button-margin: 0 0 $global-margin $global-margin !default;
 // }
 // $button-transition: background-color .25s ease-out, color .25s ease-out !default;
+// $button-responsive-expanded: false !default;
 // $button-padding: .5em 1em !default; // Use only em. You can use map
 // $button-font-default: 1rem !default;
 // $button-sizes: (
@@ -1077,7 +1078,6 @@ $flexbox-responsive-breakpoints: true;
 // $tab-content-horizontal-radius-status: false !default;
 // $tab-container-background-primary-status: false !default;
 //// Sizes
-// $tab-expand-max: 6 !default;
 // $tab-margin: 0 !default;
 // $tab-item-padding: rem-calc(16 24) !default;
 // $tab-content-padding: 1rem !default;

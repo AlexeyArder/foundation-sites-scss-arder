@@ -134,7 +134,7 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
     }
 
     &.animate-height {
-      transition: height 0.5s;
+      transition: height .5s;
     }
   }
 
@@ -167,8 +167,8 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
   // The top level <ul>
   .drilldown {
     a {
-      padding: $drilldown-padding;
       background: $drilldown-background;
+      padding: $drilldown-padding;
     }
 
     // Applied to submenu <ul>s
@@ -182,9 +182,9 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
       #{$global-left}: 100%;
 
       &.is-active {
-        z-index: 1;
         display: block;
         transform: translateX(if($global-text-direction == ltr, -100%, 100%));
+        z-index: 1;
       }
 
       &.is-closing {

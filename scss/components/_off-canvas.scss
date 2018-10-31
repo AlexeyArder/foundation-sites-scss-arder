@@ -210,6 +210,7 @@ $offcanvas-overlay-zindex: 11 !default;
           transform: translateX(-$size);
         }
       }
+
       &.is-transition-overlap.is-open {
         transform: translate(0, 0);
       }
@@ -225,8 +226,7 @@ $offcanvas-overlay-zindex: 11 !default;
         }
       }
     }
-  }
-  @else if $position == right {
+  } @else if $position == right {
     height: 100%;
     overflow-y: auto;
     right: 0;
@@ -245,6 +245,7 @@ $offcanvas-overlay-zindex: 11 !default;
           transform: translateX($size);
         }
       }
+
       &.is-transition-overlap.is-open {
         transform: translate(0, 0);
       }
@@ -260,8 +261,7 @@ $offcanvas-overlay-zindex: 11 !default;
         }
       }
     }
-  }
-  @else if $position == top {
+  } @else if $position == top {
     left: 0;
     overflow-x: auto;
     top: 0;
@@ -280,6 +280,7 @@ $offcanvas-overlay-zindex: 11 !default;
           transform: translateY(-$size);
         }
       }
+
       &.is-transition-overlap.is-open {
         transform: translate(0, 0);
       }
@@ -295,16 +296,15 @@ $offcanvas-overlay-zindex: 11 !default;
         }
       }
     }
-  }
-  @else if $position == bottom {
+  } @else if $position == bottom {
     bottom: 0;
     left: 0;
     overflow-x: auto;
     width: 100%;
     @each $name, $size in $sizes {
       @include breakpoint($name) {
-        transform: translateY($size);
         height: $size;
+        transform: translateY($size);
       }
     }
 
@@ -315,6 +315,7 @@ $offcanvas-overlay-zindex: 11 !default;
           transform: translateY($size);
         }
       }
+
       &.is-transition-overlap.is-open {
         transform: translate(0, 0);
       }
@@ -339,14 +340,11 @@ $offcanvas-overlay-zindex: 11 !default;
     &.is-transition-push {
       @if $position == left {
         @include inner-side-shadow(right, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
-      }
-      @else if $position == right {
+      } @else if $position == right {
         @include inner-side-shadow(left, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
-      }
-      @else if $position == top {
+      } @else if $position == top {
         @include inner-side-shadow(bottom, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
-      }
-      @else if $position == bottom {
+      } @else if $position == bottom {
         @include inner-side-shadow(top, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
       }
     }
@@ -410,10 +408,10 @@ $breakpoint: small
   visibility: visible;
   height: auto;
   position: static;
-  background: inherit;
-  width: inherit;
-  overflow: inherit;
-  transition: inherit;
+  background: none;
+  width: auto;
+  overflow: visible;
+  transition: none;
 
   // Increase CSS specificity
   &.position-left,
@@ -457,12 +455,15 @@ $breakpoint: small
   .position-left {
     @include off-canvas-position(left, horizontal);
   }
+
   .position-right {
     @include off-canvas-position(right, horizontal);
   }
+
   .position-top {
     @include off-canvas-position(top, vertical);
   }
+
   .position-bottom {
     @include off-canvas-position(bottom, vertical);
   }

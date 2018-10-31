@@ -107,10 +107,10 @@ $select-triangle-position-padding-right: ($form-spacing * 1.5) !default;
 
     // Focus state
     &:focus {
-      outline: none;
-      border: $input-border-focus;
       background-color: $input-background-focus;
+      border: $input-border-focus;
       box-shadow: $input-shadow-focus;
+      outline: none;
 
       @if has-value($input-transition) {
         transition: $input-transition;

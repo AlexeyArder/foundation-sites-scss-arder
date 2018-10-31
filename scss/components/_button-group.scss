@@ -28,7 +28,7 @@ $buttongroup-radius-on-each: false !default;
 /// @type String
 $buttongroup-child-selector: '.button' !default;
 
-/// Maximum number of buttons that can be in an even-width button group.
+/// Maximum number of buttons that can be in an even-width button group. (Only needed when $global-flexbox: false;)
 /// @type Number
 $buttongroup-expand-max: 6 !default;
 
@@ -133,8 +133,10 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
       flex: 1 1 0px; // scss-lint:disable ZeroUnit
     } @else {
       // One child
-      &:first-child:last-child {
-        width: 100%;
+      &:first-child {
+        &:last-child {
+          width: calc(100% - #{$spacing});
+        }
       }
 
       // Two or more childreen
@@ -180,7 +182,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     @if not $buttongroup-radius-on-each {
       // border-radius: 0;
 
-      &:first-child{
+      &:first-child {
         border-bottom-#{$global-left}-radius: 0;
         border-top-#{$global-right}-radius: $button-radius;
       }
@@ -213,7 +215,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
   $selector: $buttongroup-child-selector ) {
   #{$selector} {
     @if $global-flexbox {
-      flex: 1 1 0px; // scss-lint:disable ZeroUnit
+      flex: 0 0 auto;
     } @else {
       width: auto;
     }
@@ -255,7 +257,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     &.expanded { @include button-group-expand; }
 
     // Colors
-    @each $name, $color in $foundation-palette {
+    @each $name, $color in $button-palette {
       @if $button-fill != hollow {
         &.#{$name} #{$buttongroup-child-selector} {
           @include button-style($color, auto, auto);
@@ -272,6 +274,10 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     &.stacked-for-small,
     &.stacked-for-medium {
       @include button-group-stack;
+
+      &.expanded {
+        @include button-group-expand;
+      }
     }
 
     &.stacked-for-small {
@@ -279,7 +285,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         @include button-group-unstack;
       }
 
-      &.expanded { // sass-lint:disable-line force-element-nesting
+      &.expanded {
         @include breakpoint(small only) {
           display: block;
 
@@ -294,6 +300,17 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     &.stacked-for-medium {
       @include breakpoint(large) {
         @include button-group-unstack;
+      }
+
+      &.expanded {
+        @include breakpoint(medium down) {
+          display: block;
+
+          #{$buttongroup-child-selector} {
+            display: block;
+            margin-#{$global-right}: 0;
+          }
+        }
       }
     }
   }

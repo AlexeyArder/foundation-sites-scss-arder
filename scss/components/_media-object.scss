@@ -33,8 +33,42 @@ $mediaobject-image-width-stacked: 100% !default;
   margin-bottom: $mediaobject-margin-bottom;
   display: if($global-flexbox, flex, block);
 
+  // @if $global-flexbox {
+  //   flex-wrap: nowrap;
+  // }
+
+  img {
+    max-width: none;
+  }
+
   @if $global-flexbox {
     flex-wrap: nowrap;
+
+    &.stack-for-#{$-zf-zero-breakpoint} {
+      @include breakpoint($-zf-zero-breakpoint only) {
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .stack-for-#{$-zf-zero-breakpoint} & {
+    @include breakpoint($-zf-zero-breakpoint only) {
+      @include media-object-stack;
+    }
+  }
+
+  @if $global-flexbox {
+    &.main-section {
+      flex: 1 1 0px; // sass-lint:disable-line zero-unit
+    }
+  } @else {
+    &.middle {
+      vertical-align: middle;
+    }
+
+    &.bottom {
+      vertical-align: bottom;
+    }
   }
 }
 
@@ -82,41 +116,9 @@ $mediaobject-image-width-stacked: 100% !default;
 @mixin foundation-media-object {
   .media-object {
     @include media-object-container;
-
-    img {
-      max-width: none;
-    }
-
-    @if $global-flexbox {
-      &.stack-for-#{$-zf-zero-breakpoint} {
-        @include breakpoint($-zf-zero-breakpoint only) {
-          flex-wrap: wrap;
-        }
-      }
-    }
-
-    &.stack-for-#{$-zf-zero-breakpoint} .media-object-section {
-      @include breakpoint($-zf-zero-breakpoint only) {
-        @include media-object-stack;
-      }
-    }
   }
 
   .media-object-section {
     @include media-object-section;
-
-    @if $global-flexbox {
-      &.main-section {
-        flex: 1 1 0px; // scss-lint:disable ZeroUnit
-      }
-    } @else {
-      &.middle {
-        vertical-align: middle;
-      }
-
-      &.bottom {
-        vertical-align: bottom;
-      }
-    }
   }
 }

@@ -89,10 +89,6 @@ $tab-container-background-primary-status: false !default;
 //--------------------------------------
 // Sizes
 //
-/// Maximum number of `expand-n` classes to include in the CSS.
-/// @type Number
-$tab-expand-max: 6 !default;
-
 /// Default margin of the tab bar.
 /// @type Number
 $tab-margin: 0 !default;
@@ -227,6 +223,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
   float: #{$global-left};
 
   > a {
+    @include disable-mouse-outline;
     display: block;
     line-height: 1;
     padding: $padding;

@@ -131,6 +131,7 @@ $orbit-caption-height: auto !default;
 
 /// Adds styles for the individual slides of an Orbit slider. These styles are used on the `.orbit-slide` class.
 @mixin orbit-slide {
+  position: absolute;
   width: 100%;
 
   &.no-motionui {

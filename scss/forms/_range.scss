@@ -64,18 +64,18 @@ $slider-opacity-disabled: .25 !default;
 ////////////////////////////////////////
 
 @mixin foundation-range-input {
-  input[type="range"] { // sass-lint:disable-line no-qualifying-elements
+  input[type='range'] {  // sass-lint:disable-line no-qualifying-elements
     $margin: ($slider-handle-height - $slider-height) / 2;
 
     appearance: none;
-    display: block;
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    margin-top: $margin;
-    margin-bottom: $margin;
     border: 0;
+    cursor: pointer;
+    display: block;
+    height: auto;
     line-height: 1;
+    margin-bottom: $margin;
+    margin-top: $margin;
+    width: 100%;
 
     @if has-value($slider-radius) {
       border-radius: $slider-radius;
@@ -92,16 +92,16 @@ $slider-opacity-disabled: .25 !default;
     // sass-lint:disable no-vendor-prefix
     // Chrome/Safari
     &::-webkit-slider-runnable-track {
-      height: $slider-height;
       background: $slider-background;
+      height: $slider-height;
     }
 
-    &::-webkit-slider-handle {
-      -webkit-appearance: none;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
       background: $slider-handle-background;
-      width: $slider-handle-width;
       height: $slider-handle-height;
       margin-top: -$margin;
+      width: $slider-handle-width;
 
       @if has-value($slider-radius) {
         border-radius: $slider-radius;
@@ -110,17 +110,17 @@ $slider-opacity-disabled: .25 !default;
 
     // Firefox
     &::-moz-range-track {
-      -moz-appearance: none;
-      height: $slider-height;
+      -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
       background: $slider-background;
+      height: $slider-height;
     }
 
     &::-moz-range-thumb {
-      -moz-appearance: none;
+      -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
       background: $slider-handle-background;
-      width: $slider-handle-width;
       height: $slider-handle-height;
       margin-top: -$margin;
+      width: $slider-handle-width;
 
       @if has-value($slider-radius) {
         border-radius: $slider-radius;
@@ -129,20 +129,20 @@ $slider-opacity-disabled: .25 !default;
 
     // Internet Explorer
     &::-ms-track {
-      height: $slider-height;
       background: $slider-background;
-      color: transparent;
       border: 0;
-      overflow: visible;
-      border-top: $margin solid $body-background;
       border-bottom: $margin solid $body-background;
+      border-top: $margin solid $body-background;
+      color: transparent;
+      height: $slider-height;
+      overflow: visible;
     }
 
     &::-ms-thumb {
       background: $slider-handle-background;
-      width: $slider-handle-width;
-      height: $slider-handle-height;
       border: 0;
+      height: $slider-handle-height;
+      width: $slider-handle-width;
 
       @if has-value($slider-radius) {
         border-radius: $slider-radius;
@@ -160,8 +160,8 @@ $slider-opacity-disabled: .25 !default;
     @at-root {
       output {
         line-height: $slider-handle-height;
-        vertical-align: middle;
         margin-left: .5em;
+        vertical-align: middle;
       }
     }
   }

@@ -82,10 +82,7 @@ $closebutton-svg-stroke-width: 10px !default;
   @if type-of($value) == 'number' {
     // If it is, just return the number
     @return $value;
-  }
-
-  // Check if the size name exists in the value map
-  @else if map-has-key($value, $size) {
+  } @else if map-has-key($value, $size) { // Check if the size name exists in the value map
     // If it does, return the value
     @return map-get($value, $size);
   }

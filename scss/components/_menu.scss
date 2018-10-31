@@ -101,10 +101,10 @@ $menu-border-style: solid !default;
 
   a,
   .button {
-    line-height: 1;
-    text-decoration: none;
     display: block;
+    line-height: 1;
     padding: $menu-item-padding;
+    text-decoration: none;
 
     // white-space: nowrap;
   }
@@ -144,12 +144,10 @@ $menu-border-style: solid !default;
   @if $alignment == left {
     @if $global-flexbox {
       justify-content: flex-start;
-    }
-    @else {
+    } @else {
       text-align: $global-left;
     }
-  }
-  @else if $alignment == right {
+  } @else if $alignment == right {
     @if $global-flexbox {
       li {
         display: flex;
@@ -168,8 +166,7 @@ $menu-border-style: solid !default;
           text-align: $global-right;
         }
       }
-    }
-    @else {
+    } @else {
       text-align: $global-right;
 
       .submenu li {
@@ -182,8 +179,7 @@ $menu-border-style: solid !default;
         }
       }
     }
-  }
-  @else if $alignment == center {
+  } @else if $alignment == center {
     @if $global-flexbox {
       li {
         display: flex;
@@ -193,8 +189,7 @@ $menu-border-style: solid !default;
           justify-content: flex-start;
         }
       }
-    }
-    @else {
+    } @else {
       text-align: center;
 
       .submenu li {
@@ -209,8 +204,8 @@ $menu-border-style: solid !default;
 @mixin menu-direction($dir: horizontal) {
   @if $dir == horizontal {
     @if $global-flexbox {
-      flex-wrap: wrap;
       flex-direction: row;
+      flex-wrap: wrap;
     } @else {
       li {
         display: inline-block;
@@ -218,8 +213,8 @@ $menu-border-style: solid !default;
     }
   } @else if $dir == vertical {
     @if $global-flexbox {
-      flex-wrap: nowrap;
       flex-direction: column;
+      flex-wrap: nowrap;
     } @else {
       li {
         display: block;
@@ -332,8 +327,7 @@ $menu-border-style: solid !default;
         }
       }
     }
-  }
-  @else if $position == right {
+  } @else if $position == right {
     li a {
       @if $global-flexbox {
         flex-flow: row nowrap;
@@ -349,8 +343,7 @@ $menu-border-style: solid !default;
         }
       }
     }
-  }
-  @else if $position == top {
+  } @else if $position == top {
     li a {
       @if $global-flexbox {
         flex-flow: column nowrap;
@@ -371,8 +364,7 @@ $menu-border-style: solid !default;
         }
       }
     }
-  }
-  @else if $position == bottom {
+  } @else if $position == bottom {
     li a {
       @if $global-flexbox {
         flex-flow: column nowrap;
@@ -418,7 +410,8 @@ $menu-border-style: solid !default;
     @include menu-base;
 
     // Default orientation: horizontal
-    &, &.horizontal {
+    &,
+    &.horizontal {
       @include menu-direction(horizontal);
     }
 
@@ -438,7 +431,8 @@ $menu-border-style: solid !default;
     }
 
     // Breakpoint specific versions
-    @include -zf-each-breakpoint($small: false) {
+    @include -zf-each-breakpoint(
+      $small: false) {
       &.#{$-zf-size}-horizontal {
         @include menu-direction(horizontal);
       }
@@ -524,31 +518,31 @@ $menu-border-style: solid !default;
       }
 
       &.vertical:not(.nested) {
-        &.medium-horizontal > li:not(.is-submenu-item) > a  {
+        &.medium-horizontal > li:not(.is-submenu-item) > a {
           @include breakpoint(small down) {
             padding-#{$global-left}: 0;
           }
         }
 
-        &.large-horizontal > li:not(.is-submenu-item) > a  {
+        &.large-horizontal > li:not(.is-submenu-item) > a {
           @include breakpoint(medium down) {
             padding-#{$global-left}: 0;
           }
         }
 
-        &.xlarge-horizontal > li:not(.is-submenu-item) > a  {
+        &.xlarge-horizontal > li:not(.is-submenu-item) > a {
           @include breakpoint(large down) {
             padding-#{$global-left}: 0;
           }
         }
 
-        &.xxlarge-horizontal > li:not(.is-submenu-item) > a  {
+        &.xxlarge-horizontal > li:not(.is-submenu-item) > a {
           @include breakpoint(xlarge down) {
             padding-#{$global-left}: 0;
           }
         }
 
-        &.xxxlarge-horizontal > li:not(.is-submenu-item) > a  {
+        &.xxxlarge-horizontal > li:not(.is-submenu-item) > a {
           @include breakpoint(xxlarge down) {
             padding-#{$global-left}: 0;
           }
@@ -571,31 +565,31 @@ $menu-border-style: solid !default;
         }
 
         &.vertical:not(.nested) {
-          &.medium-horizontal > li:not(.is-submenu-item) > a  {
+          &.medium-horizontal > li:not(.is-submenu-item) > a {
             @include breakpoint(small down) {
               padding-#{$global-left}: 0;
             }
           }
 
-          &.large-horizontal > li:not(.is-submenu-item) > a  {
+          &.large-horizontal > li:not(.is-submenu-item) > a {
             @include breakpoint(medium down) {
               padding-#{$global-left}: 0;
             }
           }
 
-          &.xlarge-horizontal > li:not(.is-submenu-item) > a  {
+          &.xlarge-horizontal > li:not(.is-submenu-item) > a {
             @include breakpoint(large down) {
               padding-#{$global-left}: 0;
             }
           }
 
-          &.xxlarge-horizontal > li:not(.is-submenu-item) > a  {
+          &.xxlarge-horizontal > li:not(.is-submenu-item) > a {
             @include breakpoint(xlarge down) {
               padding-#{$global-left}: 0;
             }
           }
 
-          &.xxxlarge-horizontal > li:not(.is-submenu-item) > a  {
+          &.xxxlarge-horizontal > li:not(.is-submenu-item) > a {
             @include breakpoint(xxlarge down) {
               padding-#{$global-left}: 0;
             }
@@ -612,6 +606,7 @@ $menu-border-style: solid !default;
     &.menu-bordered {
       li {
         border: $menu-border-width $menu-border-style $menu-border;
+
         &:not(:first-child) {
           border-top: 0;
         }
@@ -621,7 +616,9 @@ $menu-border-style: solid !default;
     // Menu with background hover
     &.menu-hover {
       li:hover {
-        background-color: $menu-item-background-hover;
+        @if $menu-item-background-hover != transparent {
+          background-color: $menu-item-background-hover;
+        }
       }
     }
   }

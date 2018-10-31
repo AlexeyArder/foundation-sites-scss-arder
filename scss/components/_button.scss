@@ -92,9 +92,13 @@ $button-margin: 0 0 $global-margin 0 !default;
   $button-margin: 0 0 $global-margin $global-margin !default;
 }
 
-/// transitions for buttons.
+/// Transitions for buttons.
 /// @type List
 $button-transition: background-color .25s ease-out, color .25s ease-out !default;
+
+/// Additional responsive classes for .expanded
+/// @type Boolean
+$button-responsive-expanded: false !default;
 
 /// Padding inside buttons.
 /// @type List
@@ -175,7 +179,7 @@ $button-arrow-only-side-margin: .2em !default;
     padding: $button-padding;
   }
 
-  //-webkit-appearance: none;
+  //-webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
   //vertical-align: middle;
 }
 
@@ -296,8 +300,8 @@ $button-arrow-only-side-margin: .2em !default;
 }
 
 /// Adds disabled styles to a button by fading the element, reseting the cursor, and disabling pointer events.
-/// @param [Color] $background [$button-background] - Background color of the disabled button.
-/// @param [Color] $color [$button-color] - Text color of the disabled button. Set to `auto` to have the mixin automatically generate a color based on the background color.
+/// @param {Color} $background [$button-background] - Background color of the disabled button.
+/// @param {Color} $color [$button-color] - Text color of the disabled button. Set to `auto` to have the mixin automatically generate a color based on the background color.
 @mixin button-disabled(
   $background: $button-background,
   $color: $button-color ) {
@@ -325,7 +329,7 @@ $button-arrow-only-side-margin: .2em !default;
 @mixin button-dropdown(
   // $size: .4em,
   // $color: $white,
-  $offset: get-side($button-padding, right) * $button-dropdown-arrow-margin-left-coefficient ) {
+  $offset: get-side($button-padding, right) * $button-dropdown-arrow-margin-left-coefficient) {
 
   &::after {
     content: $button-dropdown-arrow-content;
@@ -341,7 +345,7 @@ $button-arrow-only-side-margin: .2em !default;
     @if type-of($offset) == 'map' {
       @each $breakpoint, $value in $offset {
         @include breakpoint($breakpoint) {
-          margin-#{$global-left}:  get-side($value, right) * $button-dropdown-arrow-margin-left-coefficient;
+          margin-#{$global-left}: get-side($value, right) * $button-dropdown-arrow-margin-left-coefficient;
         }
       }
     } @else {
@@ -392,6 +396,30 @@ $button-arrow-only-side-margin: .2em !default;
 
     &.expanded {
       @include button-expand;
+    }
+
+    @if $button-responsive-expanded {
+      @each $size in $breakpoint-classes {
+        @include breakpoint(#{$size} only) {
+          &.#{$size}-only-expanded {
+            @include button-expand;
+          }
+        }
+
+        @if $size != $-zf-zero-breakpoint {
+          @include breakpoint(#{$size} down) {
+            &.#{$size}-down-expanded {
+              @include button-expand;
+            }
+          }
+
+          @include breakpoint(#{$size}) {
+            &.#{$size}-expanded {
+              @include button-expand;
+            }
+          }
+        }
+      }
     }
 
     // Colors
@@ -445,8 +473,8 @@ $button-arrow-only-side-margin: .2em !default;
         // @include button-hollow;
         // @include button-hollow-style;
 
-        border-color: transparent;
         background-color: transparent;
+        border-color: transparent;
 
         &,
         &:hover,
@@ -540,7 +568,7 @@ $button-arrow-only-side-margin: .2em !default;
     font-family: inherit;
   }
 
-  a.button {
+  a.button { // sass-lint:disable-line no-qualifying-elements
     &:hover,
     &:focus {
       text-decoration: none; //??

@@ -120,8 +120,8 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
   }
 
   &.align-right .is-accordion-submenu-parent > a::after {
-    right: auto;
     left: $accordionmenu-arrows-right;
+    right: auto;
   }
 }
 
@@ -141,9 +141,9 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
       width: 100%;
 
       @if $accordionmenu-border {
-        border-top: $accordionmenu-border;
-        border-right: $accordionmenu-border;
         border-left: $accordionmenu-border;
+        border-right: $accordionmenu-border;
+        border-top: $accordionmenu-border;
       }
     }
 
@@ -194,8 +194,8 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
 
   @if $accordionmenu-border {
     .is-accordion-submenu li {
-      border-right: 0;
       border-left: 0;
+      border-right: 0;
     }
   }
 

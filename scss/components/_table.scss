@@ -2,7 +2,7 @@
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
-// sass-lint:disable force-element-nesting, no-qualifying-elements
+// sass-lint:disable no-qualifying-elements
 
 ////////////////////////////////////////
 /// @group table
@@ -135,8 +135,8 @@ $table-thead-tfoot-padding: $table-padding !default;
     // If stripe is set to even, darken the even rows.
     @if $stripe == even {
       &:nth-child(even) {
-        border-bottom: 0;
         background-color: $table-striped-background;
+        border-bottom: 0;
       }
     } @else if $stripe == odd { // If stripe is set to odd, darken the odd rows.
       &:nth-child(odd) {
@@ -148,9 +148,9 @@ $table-thead-tfoot-padding: $table-padding !default;
 
 @mixin -zf-table-unstripe() {
   tr {
+    background-color: $table-background;
     border-bottom: 0;
     border-bottom: $table-border;
-    background-color: $table-background;
   }
 }
 
@@ -353,7 +353,7 @@ $table-thead-tfoot-padding: $table-padding !default;
         &:not(.unstriped) tr:nth-of-type(even):hover {
           background-color: $table-row-stripe-hover;
         }
-      } @elseif ($table-stripe == odd) { // Darkens the odd striped table rows.
+      } @else if ($table-stripe == odd) { // Darkens the odd striped table rows.
         &:not(.unstriped) tr:nth-of-type(odd):hover {
           background-color: $table-row-stripe-hover;
         }
@@ -363,7 +363,7 @@ $table-thead-tfoot-padding: $table-padding !default;
         &.striped tr:nth-of-type(even):hover {
           background-color: $table-row-stripe-hover;
         }
-      } @elseif ($table-stripe == odd) { // Darkens the odd striped table rows.
+      } @else if ($table-stripe == odd) { // Darkens the odd striped table rows.
         &.striped tr:nth-of-type(odd):hover {
           background-color: $table-row-stripe-hover;
         }
@@ -425,9 +425,5 @@ $table-thead-tfoot-padding: $table-padding !default;
 
   .table-scroll {
     overflow-x: auto;
-
-    table {
-      width: auto;
-    }
   }
 }

@@ -29,7 +29,7 @@ $subheader-lineheight: $header-lineheight !default;
 /// @type String
 $subheader-font-weight: $global-weight-normal !default;
 
-/// Default top margin for subhheaders.
+/// Default top margin for subheaders.
 /// @type Number
 $subheader-margin-top: .3rem !default;
 
@@ -141,7 +141,8 @@ $no-bullet-margin-second-level: 0 !default;
   ////////////////////////////////////////
   // Use to remove the bullets from an unordered list
 
-  ul, ol {
+  ol,
+  ul {
     // Use to remove numbers from ordered list & bullets from unordered list
     &.no-bullet {
       list-style: none;

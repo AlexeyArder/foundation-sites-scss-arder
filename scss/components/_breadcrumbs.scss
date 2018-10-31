@@ -103,19 +103,21 @@ $breadcrumbs-item-margin: rem-calc(10) !default;
       // Need to escape the backseparator
       $separator: if($global-text-direction == 'ltr', $breadcrumbs-item-separator-item, $breadcrumbs-item-separator-item-rtl);
 
-      &:not(:last-child)::after {
-        content: $separator;
-        margin-#{$global-right}: $breadcrumbs-item-margin;
-        margin-#{$global-left}: $breadcrumbs-item-margin;
-        position: relative;
-        @if ($breadcrumbs-item-separator-color != $body-font-color) or ($breadcrumbs-item-disabled-status != false) {
-          color: $breadcrumbs-item-separator-color;
-        }
-        @if $breadcrumbs-item-separator-opacity != 1 {
-          opacity: $breadcrumbs-item-separator-opacity;
-        }
+      &:not(:last-child) {
+        &::after {
+          content: $separator;
+          margin-#{$global-right}: $breadcrumbs-item-margin;
+          margin-#{$global-left}: $breadcrumbs-item-margin;
+          position: relative;
+          @if ($breadcrumbs-item-separator-color != $body-font-color) or ($breadcrumbs-item-disabled-status != false) {
+            color: $breadcrumbs-item-separator-color;
+          }
+          @if $breadcrumbs-item-separator-opacity != 1 {
+            opacity: $breadcrumbs-item-separator-opacity;
+          }
 
-        //top: 1px;
+          //top: 1px;
+        }
       }
     } @else {
       margin-#{$global-right}: $breadcrumbs-item-margin;

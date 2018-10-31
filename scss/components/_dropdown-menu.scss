@@ -30,7 +30,8 @@ $dropdown-menu-item-color-active: $global-dropdown-menu-item-color-active !defau
 $dropdown-menu-item-background-active: $global-dropdown-menu-item-background-active !default;
 
 
-
+$dropdownmenu-background-active: $global-dropdownmenu-background-active !default;
+$dropdownmenu-color-active: $global-dropdownmenu-color-active !default;
 $dropdownmenu-hover-background: $global-dropdownmenu-hover-background !default;
 $dropdownmenu-hover-color: $global-dropdownmenu-hover-color !default; // inherit
 $dropdownmenu-border-color: $global-dropdownmenu-border-color !default;
@@ -152,7 +153,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
 @mixin dropdown-menu-direction($dir: horizontal) {
   @if $dir == horizontal {
-    > li.opens-left {
+    > li.opens-left { // sass-lint:disable-line no-qualifying-elements
       > .is-dropdown-submenu {
         left: auto;
         right: 0;
@@ -160,7 +161,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
     }
 
-    > li.opens-right {
+    > li.opens-right { // sass-lint:disable-line no-qualifying-elements
       > .is-dropdown-submenu {
         left: 0;
         right: auto;
@@ -169,14 +170,14 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     }
 
     @if $dropdownmenu-arrows-status {
-      > li.is-dropdown-submenu-parent > a {
+      > li.is-dropdown-submenu-parent > a { // sass-lint:disable-line no-qualifying-elements
         position: relative;
         @if $dropdownmenu-arrow-padding != 0 {
           padding-#{$global-right}: $dropdownmenu-arrow-padding;
         }
       }
 
-      > li.is-dropdown-submenu-parent > a::after {
+      > li.is-dropdown-submenu-parent > a::after { // sass-lint:disable-line no-qualifying-elements
         content: $dropdownmenu-arrows-down-content;
         #{$global-left}: auto; //??
         @if $dropdownmenu-arrows-down-margin-right != 0 {
@@ -220,16 +221,33 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 }
 
 @mixin foundation-dropdown-menu {
-  .dropdown.menu {
+  .menu.dropdown {
     @include dropdown-menu-direction(horizontal);
 
     a {
       @include disable-mouse-outline;
-      padding: $dropdownmenu-padding;
     }
 
-    // Active state
-    .is-active > a {
+    // Top-level item
+    > li > a {
+      padding: $dropdownmenu-padding;
+      @if $dropdownmenu-background != transparent {
+        background: $dropdownmenu-background;
+      }
+    }
+
+    // Top-level item active state
+    > li.is-active > a {
+      @if $dropdownmenu-background-active != transparent {
+        background: $dropdownmenu-background-active;
+      }
+      @if $dropdownmenu-color-active != transparent {
+        color: $dropdownmenu-color-active;
+      }
+    }
+
+    // Submenu active state
+    .is-dropdown-submenu .is-active > a {
       @if $dropdown-menu-item-background-active != transparent {
         background: $dropdown-menu-item-background-active;
       }
@@ -310,8 +328,8 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     }
 
     &.opens-right > .is-dropdown-submenu {
-      right: auto;
       left: 100%;
+      right: auto;
     }
   }
 
@@ -355,19 +373,16 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     > li {
       width: 100%;
 
-      @if $dropdownmenu-hover-background != $dropdownmenu-background {
+      a {
         &:active,
         &:focus,
         &:hover {
-          background-color: $dropdownmenu-hover-background;
-        }
-      }
-
-      @if $dropdownmenu-hover-color != inherit {
-        a:active,
-        a:focus,
-        a:hover {
-          color: $dropdownmenu-hover-color;
+          @if $dropdownmenu-hover-background != $dropdownmenu-background {
+            background: $dropdownmenu-hover-background;
+          }
+          @if $dropdownmenu-hover-color != inherit {
+            color: $dropdownmenu-hover-color;
+          }
         }
       }
     }

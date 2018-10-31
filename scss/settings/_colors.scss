@@ -375,15 +375,17 @@ $global-dropdown-border-color: $medium-gray !default;
 // 17. Dropdown Menu
 // -----------------
 
-$global-dropdownmenu-background: $global-dropdown-background !default;
+$global-dropdownmenu-background: transparent !default;
 $global-dropdownmenu-arrow-color: $global-anchor-color !default;
 $global-dropdownmenu-border-color: $medium-gray !default;
+$global-dropdownmenu-background-active: $white !default;
+$global-dropdownmenu-color-active: get-color(primary) !default;
 $global-dropdownmenu-hover-background: $alert-color !default;
 $global-dropdownmenu-hover-color: $white !default; // inherit
 $global-dropdownmenu-shadow: 0 0 6px 1px rgba($black, .1) !default;
-$dropdownmenu-submenu-background: $global-dropdownmenu-background !default;
-$global-dropdown-menu-item-color-active: get-color(primary) !default;
-$global-dropdown-menu-item-background-active: transparent !default;
+$global-dropdownmenu-submenu-background: $white !default;
+$global-dropdown-menu-item-color-active: $white !default;
+$global-dropdown-menu-item-background-active: get-color(primary) !default;
 
 
 // 19. Label
@@ -420,7 +422,7 @@ $global-offcanvas-background: $light-gray !default;
 $global-offcanvas-exit-background: rgba($white, .25) !default;
 $global-offcanvas-background: $black !default;
 $global-offcanvas-shadow: 0 0 10px rgba($black, .7) !default;
-$global-offcanvas-inner-shadow-color: rgba($black, 0.25) !default;
+$global-offcanvas-inner-shadow-color: rgba($black, .25) !default;
 
 
 

@@ -89,6 +89,7 @@ $reveal-sizes: (
 
 // Placeholder selector for medium-and-up modals
 // Prevents duplicate CSS when defining multiple Reveal sizes
+// This should be in the same breakpoint then `@mixin reveal-modal-width`
 @include breakpoint(medium) {
   %reveal-centered {
     left: auto;
@@ -105,7 +106,7 @@ $reveal-sizes: (
   bottom: 0;
   display: none;
   left: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: fixed;
   right: 0;
   top: 0;
@@ -150,8 +151,10 @@ $reveal-sizes: (
 @mixin reveal-modal-width(
   $width: $reveal-width,
   $max-width: $reveal-max-width ) {
+  // Extends must be made outside of breakpoints for compatibility with newer Sass versions (libsass v3.5)
+  @extend %reveal-centered;
+
   @include breakpoint(medium) {
-    @extend %reveal-centered;
     max-width: $max-width;
     width: $width;
   }
@@ -159,15 +162,16 @@ $reveal-sizes: (
 
 /// Creates a full-screen modal, which stretches the full width and height of the window.
 @mixin reveal-modal-fullscreen {
+  bottom: 0;
+  height: 100%;
   left: 0;
   margin-left: 0;
-  width: 100%;
-  height: 100%;
-  height: 100vh; // sass-lint:disable-line no-duplicate-properties
-  min-height: 100vh;
   max-width: none;
+  // height: 100vh; // sass-lint:disable-line no-duplicate-properties
+  min-height: 100%;
+  right: 0;
   top: 0;
-  bottom: 0;
+  width: 100%;
   @if $reveal-border-status {
     border: 0;
     // border-radius: 0;
@@ -175,17 +179,19 @@ $reveal-sizes: (
 }
 
 @mixin foundation-reveal {
-  body.is-reveal-open { // sass-lint:disable-line no-qualifying-elements
-    overflow: hidden;
-  }
-
-  // html gets this class only in iOS
-  html.is-reveal-open,
-  html.is-reveal-open body {
-    min-height: 100%;
-    overflow: hidden;
+  /// Disables the scroll when Reveal is shown to prevent the background from shifting
+  html.is-reveal-open {
+    overflow-y: hidden;
     position: fixed;
-    user-select: none;
+    width: 100%;
+
+    &.zf-has-scroll {
+      overflow-y: scroll;
+    }
+
+    body { // sass-lint:disable-line no-qualifying-elements
+      overflow-y: hidden;
+    }
   }
 
   // Overlay

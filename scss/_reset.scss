@@ -148,8 +148,8 @@ hgroup {
 //}
 
 pre {
-  word-wrap: break-word;
   overflow: auto;
+  word-wrap: break-word;
 }
 
 // Make reset inherit font-family instead of settings sans-serif
@@ -182,8 +182,8 @@ button {
   appearance: none;
   background: transparent;
   border: 0;
-  padding: 0;
   cursor: auto;
+  padding: 0;
 
   // line-height: 1;
 

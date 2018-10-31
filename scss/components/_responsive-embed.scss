@@ -20,9 +20,6 @@ $responsive-embed-ratios: (
   fourbythree: 4 by 3
 ) !default;
 
-// WARNING: Will be removed in version 6.4
-$responsive-embed-ratio: default;
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -68,10 +65,10 @@ $responsive-embed-ratio: default;
   }
 }
 
-@mixin foundation-flex-video {
-  @include foundation-responsive-embed;
-}
-
-@mixin flex-video($ratio: $responsive-embed-ratio) {
-  @include responsive-embed($ratio);
-}
+// @mixin foundation-flex-video {
+//   @include foundation-responsive-embed;
+// }
+//
+// @mixin flex-video($ratio: $responsive-embed-ratio) {
+//   @include responsive-embed($ratio);
+// }

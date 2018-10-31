@@ -223,11 +223,6 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-sid
 
   input,
   textarea {
-    // Placeholder text
-    &::placeholder {
-      color: $input-placeholder-color;
-    }
-
     // Disabled/readonly state
     &:disabled,
     &[readonly] {
@@ -266,13 +261,18 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-sid
   // Number input styles
   [type='number'] {
     @if not $input-number-spinners {
-      -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefix
+      -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefixes
 
       &::-webkit-inner-spin-button,
       &::-webkit-outer-spin-button {
-        -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefix
+        -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
         //margin: 0;
       }
     }
+  }
+
+  // Placeholder text
+  ::placeholder {
+    color: $input-placeholder-color;
   }
 }

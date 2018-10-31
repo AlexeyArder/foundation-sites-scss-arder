@@ -59,7 +59,7 @@ $input-group-label-text-align: center !default;
 
 /// Default value used for inputs group height.
 /// @type Number
-$height: $input-height !default;
+// $height: $input-height !default;
 
 /// Default value used for group label width.
 /// @type Number
@@ -77,6 +77,8 @@ $input-group-button-width: 1% !default;
 ////////////////////////////////////////
 
 @mixin foundation-form-prepostfix {
+  $height: ($input-font-size * $input-line-height) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) + rem-calc(1); //??
+
   .input-group {
     display: if($global-flexbox, flex, table);
     margin-bottom: $input-group-margin-bottom;
@@ -95,7 +97,8 @@ $input-group-button-width: 1% !default;
 
         // border-radius: $input-group-border-radius 0 0 $input-group-border-radius;
 
-        > * {
+        &,
+        &.input-group-button > * {
           border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius-minus-border $input-group-border-radius-minus-border 0, $input-group-border-radius-minus-border 0 0 $input-group-border-radius-minus-border);
         }
       }
@@ -103,7 +106,8 @@ $input-group-button-width: 1% !default;
       > :last-child:not([type=checkbox]):not([type=radio]) {
         border-radius: if($global-text-direction == rtl, $input-group-border-radius 0 0 $input-group-border-radius, 0 $input-group-border-radius $input-group-border-radius 0);
 
-        > * {
+        &,
+        &.input-group-button > * {
           border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius-minus-border 0 0 $input-group-border-radius-minus-border, 0 $input-group-border-radius-minus-border $input-group-border-radius-minus-border 0);
 
           // border-radius: 0 $input-group-border-radius $input-group-border-radius 0;
@@ -151,11 +155,7 @@ $input-group-button-width: 1% !default;
     @extend %input-group-child;
     @if $global-flexbox {
       flex: 1 1 0px; // sass-lint:disable-line zero-unit
-      height: auto;
       min-width: 0;
-      // width: auto;
-    } @else {
-      height: $height;
     }
     @if $input-prefix-border-status {
       border: $input-prefix-border;
@@ -184,18 +184,16 @@ $input-group-button-width: 1% !default;
     label {
       @extend %input-group-child;
       @if $global-flexbox {
-        height: auto;
         align-self: stretch;
+        height: auto;
       } @else {
         height: $height;
       }
+      padding-bottom: 0;
+      padding-top: 0;
       @if $input-font-size != $global-font-size {
         font-size: $input-font-size;
       }
-      padding-top: 0;
-      padding-bottom: 0;
-      // margin: 0;
-      //width: 100%;
       @if not $input-prefix-global-button-border-status {
         border: 0;
       }
@@ -210,8 +208,10 @@ $input-group-button-width: 1% !default;
 
     // Specificity bump needed to prevent override by buttons
     @if not $global-flexbox {
-      .input-group .input-group-button {
-        display: table-cell;
+      .input-group {
+        .input-group-button {
+          display: table-cell;
+        }
       }
     }
   }

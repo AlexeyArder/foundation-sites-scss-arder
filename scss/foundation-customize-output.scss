@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.4.3
+ * Version 6.5.0
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -11,8 +11,8 @@
 // Global variables and styles
 @import 'global';
 
-// Components
-@import  '../../../bower_components/foundation-sites/scss/grid/grid';
+// --- Components ---
+@import '../../../bower_components/foundation-sites/scss/grid/grid';
 @import '../../../bower_components/foundation-sites/scss/xy-grid/xy-grid';
 @import 'typography/typography';
 @import 'forms/forms';
@@ -56,7 +56,6 @@
 @mixin foundation-everything(
   $flex: true,
   $xy-grid: true,
-  $prototype: false,
   $foundation-typography: true,
   $foundation-forms: true,
   $foundation-button: true,
@@ -99,25 +98,30 @@
     $global-flexbox: true !global;
   }
 
-  @include foundation-global-styles;
-
-  @if not $flex {
-    @include foundation-grid;
-  } @else {
-    @if $xy-grid {
-      @include foundation-xy-grid-classes;
-    }
-    @else {
-      @include foundation-flex-grid;
-    }
+  @if $xy-grid {
+    $xy-grid: true !global;
   }
 
+  // Global styles
+  @include foundation-global-styles;
   @if $foundation-typography {
     @include foundation-typography;
   }
   @if $foundation-forms {
     @include foundation-forms;
   }
+
+  // Grids
+  @if not $flex {
+    @include foundation-grid;
+  } @else {
+    @if $xy-grid {
+      @include foundation-xy-grid-classes;
+    } @else {
+      @include foundation-flex-grid;
+    }
+  }
+
   @if $foundation-button {
     @include foundation-button;
   }

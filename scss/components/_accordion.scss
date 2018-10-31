@@ -190,6 +190,11 @@ $accordion-plusminus-right: 1rem !default;
       }
     }
 
+    // It didn't work
+    // :last-child {
+    //   &:not(.is-active) > & {
+    //   }
+    // }
     :last-child:not(.is-active) > & {
       border-bottom: $border;
       @if ($accordion-container-border-radius-status) and ($accordion-container-border-radius != 0) {

@@ -2,7 +2,7 @@
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
-// sass-lint:disable force-attribute-nesting, force-pseudo-nesting, no-color-literals, no-qualifying-elements
+// sass-lint:disable no-color-literals, no-qualifying-elements
 
 ////////////////////////////////////////
 // @group global
@@ -29,11 +29,7 @@ $body-font-color: $global-body-font-color !default;
 //   warning: $warning-color,
 // ) !default;
 //
-// $primary-color: get-color(primary);
-// $secondary-color: get-color(secondary);
-// $success-color: get-color(success);
-// $warning-color: get-color(warning);
-// $alert-color: get-color(alert);
+// @include add-foundation-colors;
 
 
 //--------------------------------------
@@ -129,7 +125,7 @@ $global-weight-bold: bold !default;
 
 /// Global value used for all menu styles. Can be overwritten at individual menu component level.
 /// @type Number
-$global-menu-padding: 0.7rem 1rem !default;
+$global-menu-padding: .7rem 1rem !default;
 
 /// Global value used for all menu styles. Nested margin for submenu.
 $global-menu-nested-margin: 1rem !default;
@@ -141,6 +137,9 @@ $global-text-direction: ltr !default;
 // Internal variables used for text direction
 $global-left: if($global-text-direction == rtl, right, left);
 $global-right: if($global-text-direction == rtl, left, right);
+
+// Internal variable that contains the flex justifying options
+$-zf-flex-justify: -zf-flex-justify($global-text-direction);
 
 /// Button cursor's value, `auto` by default
 /// @type Keyword
@@ -178,15 +177,15 @@ $global-right: if($global-text-direction == rtl, left, right);
     font-family: $body-font-family;
     font-weight: $global-weight-normal;
     line-height: $global-lineheight;
-    @if $body-background != white {
+    @if $body-background != $white {
       background: $body-background;
     }
     // padding: 0; // Fix with compass reset in normalize.scss
     // margin: 0; // Fix in _normalize.scss
 
     @if $body-antialiased {
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; // sass-lint:disable-line no-vendor-prefixes
+      -webkit-font-smoothing: antialiased; // sass-lint:disable-line no-vendor-prefixes
     }
   }
 
@@ -230,9 +229,9 @@ $global-right: if($global-text-direction == rtl, left, right);
 
   .hide-text-inside-link span {
     height: 1px;
-    width: 1px;
-    position: absolute;
     overflow: hidden;
+    position: absolute;
     top: -10px;
+    width: 1px;
   }
 }

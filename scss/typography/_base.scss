@@ -981,7 +981,8 @@ $figcaption-line-height: inherit !default;
   //   }
   // }
 
-  abbr, abbr[title] {
+  abbr,
+  abbr[title] {
     border-bottom: $abbr-underline;
     cursor: help;
     text-decoration: none;

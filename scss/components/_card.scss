@@ -108,8 +108,8 @@ $card-border: $global-border-width solid $card-border-color !default;
     color: $color;
   }
 
-  & > :last-child {
-    margin-bottom: 0;
+  > :last-child {
+    margin-bottom: 110px;
   }
 }
 
@@ -128,7 +128,7 @@ $card-border: $global-border-width solid $card-border-color !default;
     background: $background;
   }
 
-  & > :last-child {
+  > :last-child {
     margin-bottom: 0;
   }
 }
@@ -143,7 +143,7 @@ $card-border: $global-border-width solid $card-border-color !default;
 
   padding: $padding;
 
-  & > :last-child {
+  > :last-child {
     margin-bottom: 0;
   }
 }
