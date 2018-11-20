@@ -516,7 +516,8 @@ $button-arrow-only-side-margin: .2em !default;
           }
         }
 
-        &.hollow {
+        &.hollow,
+        &.clear {
           &::after {
             border-top-color: $button-background;
           }
