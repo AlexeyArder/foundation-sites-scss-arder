@@ -5,17 +5,17 @@
 ////////////////////
 // Foundation vendor
 // Sass utilities need for Foundation util
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/true';
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/contain';
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/purge';
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/remove';
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/replace';
-@import '../../bower_components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/to-list';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/true';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/functions/contain';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/functions/purge';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/functions/remove';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/functions/replace';
+@import '../../node_modules/foundation-sites/_vendor/sassy-lists/stylesheets/functions/to-list';
 
 // Foundation
 // Sass utilities need for settings files
-@import '../../bower_components/foundation-sites/scss/util/util';
+@import '../../node_modules/foundation-sites/scss/util/util';
 
 // --- Settings ---
 @import 'scss/settings/fonts';
