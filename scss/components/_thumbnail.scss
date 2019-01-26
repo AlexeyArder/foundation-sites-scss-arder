@@ -17,9 +17,7 @@ $thumbnail-shadow: $global-thumbnail-shadow !default;
 /// @type Shadow
 $thumbnail-shadow-hover: $global-thumbnail-shadow-hover !default;
 
-
 $thumbnail-border-color: $global-thumbnail-border-color !default;
-
 
 //--------------------------------------
 // Radius
@@ -28,7 +26,6 @@ $thumbnail-border-color: $global-thumbnail-border-color !default;
 /// @type Number
 $thumbnail-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -36,7 +33,6 @@ $thumbnail-radius: $global-radius !default;
 $thumbnail-radius-status: true !default;
 $thumbnail-border-status: true !default;
 $thumbnail-box-shadow-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -52,7 +48,6 @@ $thumbnail-margin-bottom: 0 !default;
 /// Transition proprties for thumbnail images.
 /// @type Transition
 $thumbnail-transition: box-shadow 200ms ease-out !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////

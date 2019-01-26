@@ -31,7 +31,6 @@ $body-font-color: $global-body-font-color !default;
 //
 // @include add-foundation-colors;
 
-
 //--------------------------------------
 // Border width
 //
@@ -51,14 +50,12 @@ $global-text-border-width: 1px !default;
 /// @type Number
 $global-hr-border-width: 1px !default;
 
-
 //--------------------------------------
 // Radius
 //
 /// Global value used for all elements that have a border radius.
 /// @type Number
 $global-radius: 0 !default;
-
 
 //--------------------------------------
 // Status
@@ -74,7 +71,6 @@ $global-prototype-breakpoints: false !default;
 /// Set to `true` to enable antialiased type, using the `-webkit-font-smoothing` and `-moz-osx-font-smoothing` CSS properties.
 /// @type Boolean
 $body-antialiased: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -97,7 +93,7 @@ $body-font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto�
 
 /// Font stack used for elements that use monospaced type, such as code samples
 /// @type String | List
-$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
+$font-family-monospace: Consolas, "Liberation Mono", Courier, monospace !default;
 
 /// Global value used for margin on components.
 /// @type Number
@@ -145,7 +141,6 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
 /// @type Keyword
 // $global-button-cursor: auto !default; // See this settings in the _reset.scss file
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -153,10 +148,9 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
 ////////////////////////////////////////
 
 @mixin foundation-global-styles {
-
   // These styles are applied to a <meta> tag, which is read by the Foundation JavaScript
   .foundation-mq {
-    font-family: '#{-zf-bp-serialize($breakpoints)}';
+    font-family: "#{-zf-bp-serialize($breakpoints)}";
   }
 
   html {
@@ -177,7 +171,7 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
     font-family: $body-font-family;
     font-weight: $global-weight-normal;
     line-height: $global-lineheight;
-    @if $body-background != $white {
+    @if $body-background != $absolute-white {
       background: $body-background;
     }
     // padding: 0; // Fix with compass reset in normalize.scss
@@ -204,18 +198,6 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
   textarea,
   select {
     border-radius: $global-radius;
-  }
-
-  // Styles Google Maps and MapQuest embeds properly
-  // sass-lint:disable-line no-ids
-  #map_canvas,
-  .map_canvas,
-  .mqa-display {
-    img,
-    embed,
-    object {
-      max-width: none !important;
-    }
   }
 
   // Internal classes to show/hide elements in JavaScript

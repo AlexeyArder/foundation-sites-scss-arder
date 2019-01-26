@@ -21,7 +21,6 @@ $slider-fill-background: $medium-gray !default;
 /// @type Color
 $slider-handle-background: $primary-color !default;
 
-
 //--------------------------------------
 // Radius
 //
@@ -29,13 +28,11 @@ $slider-handle-background: $primary-color !default;
 /// @type Number
 $slider-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $slider-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -56,7 +53,6 @@ $slider-handle-width: 1.4rem !default;
 /// @type Number
 $slider-opacity-disabled: .25 !default;
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -64,7 +60,8 @@ $slider-opacity-disabled: .25 !default;
 ////////////////////////////////////////
 
 @mixin foundation-range-input {
-  input[type='range'] {  // sass-lint:disable-line no-qualifying-elements
+  input[type="range"] {
+    // sass-lint:disable-line no-qualifying-elements
     $margin: ($slider-handle-height - $slider-height) / 2;
 
     appearance: none;
@@ -79,10 +76,6 @@ $slider-opacity-disabled: .25 !default;
 
     @if has-value($slider-radius) {
       border-radius: $slider-radius;
-    }
-
-    &:focus {
-      outline: 0;
     }
 
     &[disabled] {
@@ -155,6 +148,10 @@ $slider-opacity-disabled: .25 !default;
 
     &::-ms-fill-upper {
       background: $slider-background;
+    }
+
+    &:focus {
+      outline: 0;
     }
 
     @at-root {

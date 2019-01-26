@@ -21,20 +21,17 @@ $topbar-link-color: $global-topbar-link-color !default;
 /// @type Color
 $topbar-submenu-background: $global-topbar-submenu-background !default;
 
-
 //--------------------------------------
 // Radius
 //
 
 $topbar-input-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $topbar-input-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -55,9 +52,7 @@ $topbar-input-width: rem-calc(200) !default;
 /// @type Number
 $topbar-title-spacing: 1rem !default;
 
-
 $topbar-input-margin-right: 1rem !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -114,7 +109,8 @@ $topbar-input-margin-right: 1rem !default;
   }
 
   input.button,
-  button { // sass-lint:disable-line no-qualifying-elements
+  button {
+    // sass-lint:disable-line no-qualifying-elements
     width: auto;
     @if ($topbar-input-radius-status) and ($topbar-input-radius != 0) {
       border-radius: $topbar-input-radius;

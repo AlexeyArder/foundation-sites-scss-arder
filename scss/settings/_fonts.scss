@@ -2,7 +2,7 @@
 // Fonts variables
 ////////////////////////////////////////
 
-$font-face-path: '/fonts/';
+$font-face-path: "/assets/fonts/";
 
 ////////////////////////////////////////
 // Fonts mixin
@@ -15,29 +15,30 @@ $font-face-path: '/fonts/';
   $font-face-font-style: normal,
   $font-face-font-weight: normal,
   $local-font-name: none,
-  $local-font-postscript-name: none ) {
+  $local-font-postscript-name: none
+) {
   @font-face {
     font-family: $font-name;
-    @if ($local-font-name != 'none') and ($font-file-woff2 != 'none') {
-      src: local($local-font-name), // Full font name
-        local($local-font-postscript-name), // Postscript name
-        url($font-face-path + $font-file-woff2) format('woff2'),
-        url($font-face-path + $font-file-woff) format('woff');
-    } @elseif ($local-font-name == 'none') and ($font-file-woff2 != 'none') {
-      src: url($font-face-path + $font-file-woff2) format('woff2'),
-      url($font-face-path + $font-file-woff) format('woff');
-    } @elseif ($local-font-name != 'none') and ($font-file-woff2 == 'none') {
-      src: local($local-font-name), // Full font name
-        local($local-font-postscript-name), // Postscript name
-        url($font-face-path + $font-file-woff) format('woff');
-    } @elseif ($local-font-name == 'none') and ($font-file-woff2 == 'none') {
-      src: url($font-face-path + $font-file-woff) format('woff');
+    @if ($local-font-name != "none") and ($font-file-woff2 != "none") {
+      src: local($local-font-name), local($local-font-postscript-name),
+        url($font-face-path+$font-file-woff2) format("woff2"),
+        url($font-face-path+$font-file-woff) format("woff");
+    }
+    @else if ($local-font-name == 'none') and ($font-file-woff2 != 'none') {
+      src: url($font-face-path+$font-file-woff2) format("woff2"),
+        url($font-face-path+$font-file-woff) format("woff");
+    }
+    @else if ($local-font-name != 'none') and ($font-file-woff2 == 'none') {
+      src: local($local-font-name), local($local-font-postscript-name),
+        url($font-face-path+$font-file-woff) format("woff");
+    }
+    @else if ($local-font-name == 'none') and ($font-file-woff2 == 'none') {
+      src: url($font-face-path+$font-file-woff) format("woff");
     }
     font-style: $font-face-font-style;
     font-weight: $font-face-font-weight;
   }
 }
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -46,4 +47,12 @@ $font-face-path: '/fonts/';
 ////////////////////////////////////////
 
 // Sample code
-// @include font-face-mixin('name', 'source/woff2', 'source/woff', font-style, font-weight, local name, local-postscript-name);
+@include font-face-mixin(
+  "name",
+  "source/woff2",
+  "source/woff",
+  font-style,
+  font-weight,
+  local name,
+  local-postscript-name
+);

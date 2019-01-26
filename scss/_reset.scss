@@ -1,8 +1,6 @@
 ////////////////////////////////////////
-// Compass reset
+// Custom reset based on Bootstrap and Foundation reset styles
 ////////////////////////////////////////
-
-// @import "compass/reset"; not necessary because all code include bottom
 
 html,
 body,
@@ -25,6 +23,7 @@ code,
 dd,
 del,
 details,
+dialog,
 dfn,
 div,
 dl,
@@ -95,7 +94,8 @@ video {
 }
 
 html {
-  line-height: 1;
+  // font-family: sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 ol,
@@ -133,11 +133,6 @@ blockquote::after {
 //   border: 0;
 // }
 
-hgroup {
-  display: block;
-}
-
-
 ////////////////////////////////////////
 // Custom reset
 ////////////////////////////////////////
@@ -153,7 +148,6 @@ pre {
 }
 
 // Make reset inherit font-family instead of settings sans-serif
-button,
 input,
 optgroup,
 select,
@@ -183,11 +177,11 @@ button {
   background: transparent;
   border: 0;
   cursor: auto;
+  font-family: inherit;
+  font-size: inherit;
   padding: 0;
 
-  // line-height: 1;
-
-  [data-whatinput='mouse'] & {
+  [data-whatinput="mouse"] & {
     outline: 0;
   }
 }
@@ -205,3 +199,15 @@ html input[disabled] {
 svg {
   max-height: 100%;
 }
+
+// Styles Google Maps and MapQuest embeds properly
+// sass-lint:disable-line no-ids
+// #map_canvas,
+// .map_canvas,
+// .mqa-display {
+//   img,
+//   embed,
+//   object {
+//     max-width: none !important;
+//   }
+// }

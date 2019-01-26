@@ -6,33 +6,28 @@
 // Content variables
 ////////////////////////////////////////
 
-$content-arrow-up: '\25B2' !default;
-$content-arrow-down: '\25BC' !default;
-$content-arrow-left: '\25C0\FE0E' !default;
-$content-arrow-right: '\25B6\FE0E' !default;
-
-
+$content-arrow-up: "\25B2" !default;
+$content-arrow-down: "\25BC" !default;
+$content-arrow-left: "\25C0\FE0E" !default;
+$content-arrow-right: "\25B6\FE0E" !default;
 
 /// Typography
 /// Pseudo content for `<cite>` elements.
 /// @type String
-$global-cite-before-content: '\2014 \0020' !default;
-
-
-$global-quotes-style: '\AB' '\BB' '\201E' '\201C' !default;
-
+$global-cite-before-content: "\2014 \0020" !default;
+$global-quotes-style: "\AB" "\BB" "\201E" "\201C" !default;
 
 /// Accordion-menu
 $global-accordionmenu-arrows-up-content: $content-arrow-up !default;
 $global-accordionmenu-arrows-down-content: $content-arrow-down !default;
 
 /// Accordion
-$global-accordion-plusminus-plus-content: '\002B' !default;
-$global-accordion-plusminus-minus-content: '\2212' !default;
+$global-accordion-plusminus-plus-content: "\002B" !default;
+$global-accordion-plusminus-minus-content: "\2212" !default;
 
 // Breadcrumbs
-$global-breadcrumbs-item-separator-item: '\002F' !default;
-$global-breadcrumbs-item-separator-item-rtl: '\\' !default;
+$global-breadcrumbs-item-separator-item: "\002F" !default;
+$global-breadcrumbs-item-separator-item-rtl: "\\" !default;
 
 // Button
 $global-button-dropdown-arrow-content: $content-arrow-down !default; //'▾' !default;
@@ -51,6 +46,6 @@ $global-orbit-control-content-previous: $content-arrow-up !default;
 $global-orbit-control-content-next: $content-arrow-up !default;
 
 // Pagination
-$global-pagination-ellipsis-content: '\2026' !default;
-$global-pagination-arrows-previous-content: '\00ab' !default;
-$global-pagination-arrows-next-content: '\00bb' !default;
+$global-pagination-ellipsis-content: "\2026" !default;
+$global-pagination-arrows-previous-content: "\00ab" !default;
+$global-pagination-arrows-next-content: "\00bb" !default;

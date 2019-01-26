@@ -21,9 +21,7 @@ $card-font-color: $global-card-font-color !default;
 /// @type Color
 $card-divider-background: $global-card-divider-background !default;
 
-
 $card-border-color: $global-card-border-color !default;
-
 
 //--------------------------------------
 // Radius
@@ -31,7 +29,6 @@ $card-border-color: $global-card-border-color !default;
 /// Default border radius.
 /// @type List
 $card-border-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -41,7 +38,6 @@ $card-background-status: true !default;
 $card-border-status: true !default;
 $card-border-radius-status: true !default;
 $card-shadow-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -61,7 +57,6 @@ $card-margin-bottom: $global-margin !default;
 /// Default border style.
 /// @type List
 $card-border: $global-border-width solid $card-border-color !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -92,7 +87,9 @@ $card-border: $global-border-width solid $card-border-color !default;
 
   margin: $margin;
   overflow: hidden;
-  @if $card-background-status and ($background != transparent) and ($background != $body-background) {
+  @if $card-background-status and
+    ($background != transparent) and
+    ($background != $body-background) {
     background: $background;
   }
   @if $card-border-status {
@@ -124,7 +121,9 @@ $card-border: $global-border-width solid $card-border-color !default;
   }
 
   padding: $padding;
-  @if $card-background-status and ($background != transparent) and ($background != $body-background) {
+  @if $card-background-status and
+    ($background != transparent) and
+    ($background != $body-background) {
     background: $background;
   }
 
@@ -134,9 +133,7 @@ $card-border: $global-border-width solid $card-border-color !default;
 }
 
 /// Adds styles for a card section.
-@mixin card-section(
-  $padding: $card-padding
-) {
+@mixin card-section($padding: $card-padding) {
   @if $global-flexbox {
     flex: 1 0 auto;
   }

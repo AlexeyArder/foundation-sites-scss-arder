@@ -13,13 +13,11 @@
 /// @type Color
 $form-label-color: $black !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $form-label-middle-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -39,7 +37,6 @@ $form-label-line-height: inherit !default;
 /// Default value used for margin bottom for form labels.
 /// @type Number
 $form-label-margin-bottom: rem-calc(4) !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -66,7 +63,13 @@ $form-label-margin-bottom: rem-calc(4) !default;
 
 @mixin form-label-middle {
   $input-border-width: get-border-value($input-border, width);
-  padding: (((get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) / 2) + rem-calc($input-border-width) + ($input-font-size - $form-label-font-size) / 2) 0;
+  padding: (
+      (
+        (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) / 2
+      ) + rem-calc($input-border-width) +
+      ($input-font-size - $form-label-font-size) / 2
+    )
+    0;
 
   //margin: 0 0 $form-spacing;
 }

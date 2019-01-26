@@ -13,16 +13,13 @@
 /// @type Color
 $dropdown-background: $global-dropdown-background !default;
 
-
 $dropdown-border-color: $global-dropdown-border-color !default;
-
 
 //--------------------------------------
 // Border width
 //
 
 $dropdown-border-width: $global-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -31,14 +28,12 @@ $dropdown-border-width: $global-border-width !default;
 /// @type Number
 $dropdown-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $dropdown-border-radius-status: true !default;
 $dropdown-border-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -63,10 +58,15 @@ $dropdown-width: rem-calc(300) !default;
 /// @type Map
 $dropdown-sizes: (
   tiny: $dropdown-width / 3,
-  small: $dropdown-width - ($dropdown-width / 2),
-  large: $dropdown-width + ($dropdown-width / 2),
+  small: $dropdown-width -
+    (
+      $dropdown-width / 2
+    ),
+  large: $dropdown-width +
+    (
+      $dropdown-width / 2
+    )
 ) !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////

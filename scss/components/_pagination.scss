@@ -33,9 +33,7 @@ $pagination-item-color-disabled: $global-pagination-item-color-disabled !default
 /// @type Color
 $pagination-ellipsis-color: $global-pagination-ellipsis-color !default;
 
-
 $pagination-item-hover-color: $global-pagination-item-hover-color !default;
-
 
 //--------------------------------------
 // Content
@@ -45,7 +43,6 @@ $pagination-ellipsis-content: $global-pagination-ellipsis-content !default;
 $pagination-arrows-previous-content: $global-pagination-arrows-previous-content !default;
 $pagination-arrows-next-content: $global-pagination-arrows-next-content !default;
 
-
 //--------------------------------------
 // Radius
 //
@@ -53,9 +50,7 @@ $pagination-arrows-next-content: $global-pagination-arrows-next-content !default
 /// @type Number
 $pagination-radius: $global-radius !default;
 
-
 $pagination-button-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -75,9 +70,7 @@ $pagination-mobile-current-item: false !default;
 /// @type Boolean
 $pagination-arrows-status: true !default;
 
-
 $pagination-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -98,9 +91,7 @@ $pagination-item-padding: rem-calc(3 10) !default;
 /// @type Number
 $pagination-item-spacing: rem-calc(1) !default;
 
-
 $pagination-arrows-margin-right: rem-calc(8) !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -109,7 +100,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 ////////////////////////////////////////
 
 /// Adds styles for a pagination container. Apply this to a `<ul>`.
-@mixin pagination-container (
+@mixin pagination-container(
   $margin-bottom: $pagination-margin-bottom,
   $font-size: $pagination-font-size,
   $spacing: $pagination-item-spacing,
@@ -179,7 +170,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 }
 
 /// Adds styles for the current pagination item. Apply this to an `<a>`.
-@mixin pagination-item-current (
+@mixin pagination-item-current(
   $padding: $pagination-item-padding,
   $background-current: $pagination-item-background-current,
   $color-current: $pagination-item-color-current
@@ -198,7 +189,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 }
 
 /// Adds styles for a disabled pagination item. Apply this to an `<a>`.
-@mixin pagination-item-disabled (
+@mixin pagination-item-disabled(
   $padding: $pagination-item-padding,
   $color: $pagination-item-color-disabled
 ) {
@@ -214,7 +205,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 }
 
 /// Adds styles for an ellipsis for use in a pagination list.
-@mixin pagination-ellipsis (
+@mixin pagination-ellipsis(
   $padding: $pagination-item-padding,
   $color: $pagination-ellipsis-color
 ) {

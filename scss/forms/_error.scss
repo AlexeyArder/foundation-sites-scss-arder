@@ -25,7 +25,6 @@ $form-label-color-invalid: $global-form-label-color-invalid !default;
 /// @type Color
 $input-error-color: $global-input-error-color !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -37,9 +36,7 @@ $abide-inputs-status: true !default;
 /// @type Boolean
 $abide-labels-status: true !default;
 
-
 $form-error-border-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -58,12 +55,11 @@ $input-error-font-style: normal !default;
 
 /// Default margin top for form error input.
 /// @type Number
-$input-error-message-margin-top: - $form-spacing / 1.2 !default;
+$input-error-message-margin-top: -$form-spacing / 1.2 !default;
 
 /// Default margin bottom for form error input.
 /// @type Number
 $input-error-message-margin-bottom: $form-spacing !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -77,8 +73,8 @@ $input-error-message-margin-bottom: $form-spacing !default;
 /// @param {Number} $background-lighten [10%] - Lightness level of the background color.
 @mixin form-input-error(
   $background: $input-background-invalid,
-  $background-lighten: $input-background-transparency-factor ) {
-
+  $background-lighten: $input-background-transparency-factor
+) {
   &:not(:focus) {
     background-color: mix($background, $white, $background-lighten);
     @if $form-error-border-status {

@@ -17,7 +17,6 @@ $input-checkbox-radio-margin-left: $form-spacing / 2 !default;
 /// @type Number
 $input-checkbox-radio-margin-right: $form-spacing !default;
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -25,15 +24,15 @@ $input-checkbox-radio-margin-right: $form-spacing !default;
 ////////////////////////////////////////
 
 @mixin foundation-form-checkbox {
-  [type='file'],
-  [type='checkbox'],
-  [type='radio'] {
+  [type="file"],
+  [type="checkbox"],
+  [type="radio"] {
     margin-bottom: $form-spacing;
   }
 
   // Styles for input/label siblings
-  [type='checkbox'] + label,
-  [type='radio'] + label {
+  [type="checkbox"] + label,
+  [type="radio"] + label {
     display: inline-block;
     margin-#{$global-left}: $input-checkbox-radio-margin-left;
     margin-#{$global-right}: $input-checkbox-radio-margin-right;
@@ -47,13 +46,13 @@ $input-checkbox-radio-margin-right: $form-spacing !default;
   }
 
   // Styles for inputs inside labels
-  label > [type='checkbox'],
-  label > [type='radio'] {
+  label > [type="checkbox"],
+  label > [type="radio"] {
     margin-#{$global-right}: $input-checkbox-radio-margin-left;
   }
 
   // Normalize file input width
-  [type='file'] {
+  [type="file"] {
     width: 100%;
   }
 }

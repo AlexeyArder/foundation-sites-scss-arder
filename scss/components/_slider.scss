@@ -25,17 +25,14 @@ $slider-handle-background: $global-slider-handle-background !default;
 /// @type Number
 $slider-opacity-disabled: $global-slider-opacity-disabled !default;
 
-
 $slider-handle-hover-background-color: $global-slider-handle-hover-background-color !default;
 $slider-handle-border-color: $global-slider-handle-border-color !default;
-
 
 //--------------------------------------
 // Border width
 //
 
 $slider-handle-border-width: $global-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -44,14 +41,12 @@ $slider-handle-border-width: $global-border-width !default;
 /// @type Number
 $slider-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $slider-radius-status: true !default;
 $slider-handle-border-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -76,13 +71,12 @@ $slider-handle-width: $slider-handle-height !default;
 /// @type Transition
 $slider-transition: all .2s ease-in-out !default;
 
-
 $slider-container-margin-top: rem-calc(16) !default;
 $slider-container-margin-bottom: rem-calc(32) !default;
 $slider-vertical-height: rem-calc(160) !default;
 $slider-vertical-margin: 0 rem-calc(16) !default;
-$slider-handle-border: $slider-handle-border-width solid $slider-handle-border-color !default;
-
+$slider-handle-border: $slider-handle-border-width solid
+  $slider-handle-border-color !default;
 
 ////////////////////////////////////////
 ////////////////////////////////////////

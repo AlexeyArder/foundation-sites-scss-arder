@@ -21,13 +21,11 @@ $input-prefix-background: $global-input-prefix-background !default;
 /// @type Color
 $input-prefix-border-color: $global-input-prefix-border-color !default;
 
-
 //--------------------------------------
 // Radius
 //
 
 $input-group-border-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -36,7 +34,6 @@ $input-group-border-radius: $global-radius !default;
 $input-group-border-radius-status: true !default;
 $input-prefix-border-status: true !default;
 $input-prefix-global-button-border-status: false !default;
-
 
 //--------------------------------------
 // Sizes
@@ -69,7 +66,6 @@ $input-group-label-width: 1% !default;
 /// @type Number
 $input-group-button-width: 1% !default;
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -77,44 +73,76 @@ $input-group-button-width: 1% !default;
 ////////////////////////////////////////
 
 @mixin foundation-form-prepostfix {
-  $height: ($input-font-size * $input-line-height) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) + rem-calc(1); //??
+  $height: ($input-font-size * $input-line-height) +
+    (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) +
+    rem-calc(1); //??
 
   .input-group {
     display: if($global-flexbox, flex, table);
     margin-bottom: $input-group-margin-bottom;
     width: 100%;
 
-    @if ($input-group-border-radius-status) and ($input-group-border-radius != 0) {
-
+    @if ($input-group-border-radius-status) and
+      ($input-group-border-radius != 0) {
       @if $global-flexbox {
         align-items: stretch;
       }
 
-      $input-group-border-radius-minus-border: $input-group-border-radius - $input-border-width;
+      $input-group-border-radius-minus-border: $input-group-border-radius -
+        $input-border-width;
 
-      > :first-child:not([type=checkbox]):not([type=radio]) {
-        border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius $input-group-border-radius 0, $input-group-border-radius 0 0 $input-group-border-radius);
+      > :first-child:not([type="checkbox"]):not([type="radio"]) {
+        border-radius: if(
+          $global-text-direction == rtl,
+          0 $input-group-border-radius $input-group-border-radius 0,
+          $input-group-border-radius 0 0 $input-group-border-radius
+        );
 
         // border-radius: $input-group-border-radius 0 0 $input-group-border-radius;
 
         &,
         &.input-group-button > * {
-          border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius-minus-border $input-group-border-radius-minus-border 0, $input-group-border-radius-minus-border 0 0 $input-group-border-radius-minus-border);
+          border-radius: if(
+            $global-text-direction == rtl,
+            0
+              $input-group-border-radius-minus-border
+              $input-group-border-radius-minus-border
+              0,
+            $input-group-border-radius-minus-border
+              0
+              0
+              $input-group-border-radius-minus-border
+          );
         }
       }
 
-      > :last-child:not([type=checkbox]):not([type=radio]) {
-        border-radius: if($global-text-direction == rtl, $input-group-border-radius 0 0 $input-group-border-radius, 0 $input-group-border-radius $input-group-border-radius 0);
+      > :last-child:not([type="checkbox"]):not([type="radio"]) {
+        border-radius: if(
+          $global-text-direction == rtl,
+          $input-group-border-radius 0 0 $input-group-border-radius,
+          0 $input-group-border-radius $input-group-border-radius 0
+        );
 
         &,
         &.input-group-button > * {
-          border-radius: if($global-text-direction == rtl, 0 $input-group-border-radius-minus-border 0 0 $input-group-border-radius-minus-border, 0 $input-group-border-radius-minus-border $input-group-border-radius-minus-border 0);
+          border-radius: if(
+            $global-text-direction == rtl,
+            0
+              $input-group-border-radius-minus-border
+              0
+              0
+              $input-group-border-radius-minus-border,
+            0
+              $input-group-border-radius-minus-border
+              $input-group-border-radius-minus-border
+              0
+          );
 
           // border-radius: 0 $input-group-border-radius $input-group-border-radius 0;
         }
       }
 
-      > :not(:first-child):not(:last-child):not([type=checkbox]):not([type=radio]) {
+      > :not(:first-child):not(:last-child):not([type="checkbox"]):not([type="radio"]) {
         border-radius: 0;
       }
     }
@@ -160,7 +188,8 @@ $input-group-button-width: 1% !default;
     @if $input-prefix-border-status {
       border: $input-prefix-border;
     }
-    @if ($input-group-border-radius-status) and ($input-group-border-radius != 0) {
+    @if ($input-group-border-radius-status) and
+      ($input-group-border-radius != 0) {
       border-radius: 0;
     }
   }

@@ -21,7 +21,6 @@ $mediaobject-section-padding: $global-padding !default;
 /// @type Number
 $mediaobject-image-width-stacked: 100% !default;
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -74,8 +73,7 @@ $mediaobject-image-width-stacked: 100% !default;
 
 /// Adds styles for sections within a media object.
 /// @param {Number} $padding [$mediaobject-section-padding] - Padding between sections.
-@mixin media-object-section(
-  $padding: $mediaobject-section-padding ) {
+@mixin media-object-section($padding: $mediaobject-section-padding) {
   @if $global-flexbox {
     flex: 0 1 auto;
   } @else {

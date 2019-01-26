@@ -17,16 +17,13 @@ $tooltip-background-color: $global-tooltip-background-color !default;
 /// @type Color
 $tooltip-color: $global-tooltip-color !default;
 
-
 $tooltip-has-tip-border-bottom-color: $global-tooltip-has-tip-border-bottom-color !default;
-
 
 //--------------------------------------
 // Border width
 //
 
 $tooltip-has-tip-border-bottom-width: $global-text-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -35,7 +32,6 @@ $tooltip-has-tip-border-bottom-width: $global-text-border-width !default;
 /// @type Number
 $tooltip-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -43,7 +39,6 @@ $tooltip-radius: $global-radius !default;
 $tooltip-radius-status: true !default;
 $tooltip-triangle-status: true !default;
 $tooltip-has-tip-border-bottom-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -78,12 +73,11 @@ $tooltip-max-width: rem-calc(160) !default;
 
 /// Default border bottom of the defined term.
 /// @type List
-$has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted $tooltip-has-tip-border-bottom-color !default;
-
+$has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted
+  $tooltip-has-tip-border-bottom-color !default;
 
 $tooltip-font-weight: bold !default;
 $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -141,7 +135,11 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
 
   &.top {
     &::before {
-      @include css-triangle($tooltip-pip-width, $tooltip-background-color, down);
+      @include css-triangle(
+        $tooltip-pip-width,
+        $tooltip-background-color,
+        down
+      );
       bottom: auto;
       top: 100%;
     }
@@ -154,7 +152,11 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
 
   &.left {
     &::before {
-      @include css-triangle($tooltip-pip-width, $tooltip-background-color, right);
+      @include css-triangle(
+        $tooltip-pip-width,
+        $tooltip-background-color,
+        right
+      );
       left: 100%;
     }
 
@@ -167,7 +169,11 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
 
   &.right {
     &::before {
-      @include css-triangle($tooltip-pip-width, $tooltip-background-color, left);
+      @include css-triangle(
+        $tooltip-pip-width,
+        $tooltip-background-color,
+        left
+      );
       left: auto;
       right: 100%;
     }

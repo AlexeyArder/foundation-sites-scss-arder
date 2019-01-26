@@ -17,14 +17,12 @@ $accordionmenu-arrow-color: $global-accordionmenu-arrow-color !default;
 /// @type Color
 $accordionmenu-item-background: $global-accordionmenu-item-background !default;
 
-
 //--------------------------------------
 // Content
 //
 
 $accordionmenu-arrows-up-content: $global-accordionmenu-arrows-up-content !default;
 $accordionmenu-arrows-down-content: $global-accordionmenu-arrows-down-content !default;
-
 
 //--------------------------------------
 // Status
@@ -33,15 +31,12 @@ $accordionmenu-arrows-down-content: $global-accordionmenu-arrows-down-content !d
 /// @type Boolean
 $accordionmenu-arrows-status: true !default;
 
-
 //--------------------------------------
 // Sizes
 //
 /// Sets accordion menu arrow size if arrow is used.
 /// @type Length
 $accordionmenu-arrow-size: rem-calc(10) !default;
-
-
 
 /// Sets accordion menu padding.
 /// @type Number
@@ -75,10 +70,8 @@ $accordionmenu-submenu-toggle-width: $accordionmenu-arrow-size + 2rem !default;
 /// @type Number
 $accordionmenu-submenu-toggle-height: null !default;
 
-
 $accordionmenu-arrows-right: 1rem !default;
 $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -107,7 +100,7 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
     }
   }
 
-  .is-accordion-submenu-parent[aria-expanded='true'] > a::after {
+  .is-accordion-submenu-parent[aria-expanded="true"] > a::after {
     content: $accordionmenu-arrows-up-content;
 
     // transform: rotate(180deg);
@@ -126,7 +119,6 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
 }
 
 @mixin foundation-accordion-menu {
-
   .accordion-menu {
     @if $accordionmenu-border {
       border-bottom: $accordionmenu-border;
@@ -148,13 +140,16 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
     }
 
     @if $accordionmenu-submenu-padding != $accordionmenu-padding {
-      a,
-      &.menu > li > a {
+      a {
         padding: $accordionmenu-padding;
       }
 
       .is-accordion-submenu a {
         padding: $accordionmenu-submenu-padding;
+      }
+
+      &.menu > li > a {
+        padding: $accordionmenu-padding;
       }
     } @else {
       a,
@@ -185,7 +180,8 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
     }
 
     // Fix margin under submenu ul elements
-    @if (get-side($menu-margin, bottom)) != $accordionmenu-submenu-ul-margin-bottom {
+    @if (get-side($menu-margin, bottom)) !=
+      $accordionmenu-submenu-ul-margin-bottom {
       ul {
         margin-bottom: $accordionmenu-submenu-ul-margin-bottom;
       }
@@ -245,7 +241,7 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
     }
 
     // Rotate the arrow when menu is open
-    &[aria-expanded='true']::after {
+    &[aria-expanded="true"]::after {
       content: $accordionmenu-arrows-up-content;
 
       // transform: scaleY(-1);

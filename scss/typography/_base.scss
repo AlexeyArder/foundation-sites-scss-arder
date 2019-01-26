@@ -22,10 +22,11 @@
 //   - Citations <cite>
 //   - Keystrokes <kbd>
 
-
 //--------------------------------------
 // Status
 //
+$header-small-status: true !default;
+
 $code-kbd-samp-pre-status: true !default;
 
 $code-decoration-status: true !default;
@@ -49,7 +50,6 @@ $preformated-border-radius-status: true !default;
 /// Color of headers.
 /// @type Color
 $header-color: $global-header-color !default;
-
 
 //--------------------------------------
 // Sizes
@@ -85,33 +85,45 @@ $h6-font-size: rem-calc(16) !default;
 /// @type Map
 $header-sizes: (
   small: (
-    'h1, .h1': $h1-font-size - ($h1-font-size / (6 / $header-small-coefficient)),
-    'h2, .h2': $h2-font-size - ($h1-font-size / (8 / $header-small-coefficient)),
-    'h3, .h3': $h3-font-size - ($h1-font-size / (11 / $header-small-coefficient)),
-    'h4, .h4': $h4-font-size - ($h1-font-size / (18 / $header-small-coefficient)),
-    'h5, .h5': $h5-font-size - ($h1-font-size / (25 / $header-small-coefficient)),
-    'h6, .h6': $h6-font-size,
+    "h1, .h1": $h1-font-size -
+      (
+        $h1-font-size / (6 / $header-small-coefficient)
+      ),
+    "h2, .h2": $h2-font-size -
+      (
+        $h1-font-size / (8 / $header-small-coefficient)
+      ),
+    "h3, .h3": $h3-font-size -
+      (
+        $h1-font-size / (11 / $header-small-coefficient)
+      ),
+    "h4, .h4": $h4-font-size -
+      (
+        $h1-font-size / (18 / $header-small-coefficient)
+      ),
+    "h5, .h5": $h5-font-size -
+      (
+        $h1-font-size / (25 / $header-small-coefficient)
+      ),
+    "h6, .h6": $h6-font-size
   ),
   medium: (
-    'h1, .h1': $h1-font-size * $header-medium-coefficient,
-    'h2, .h2': $h2-font-size * $header-medium-coefficient,
-    'h3, .h3': $h3-font-size * $header-medium-coefficient,
-    'h4, .h4': $h4-font-size * $header-medium-coefficient,
-    'h5, .h5': $h5-font-size * $header-medium-coefficient,
-    'h6, .h6': $h6-font-size * $header-medium-coefficient,
+    "h1, .h1": $h1-font-size * $header-medium-coefficient,
+    "h2, .h2": $h2-font-size * $header-medium-coefficient,
+    "h3, .h3": $h3-font-size * $header-medium-coefficient,
+    "h4, .h4": $h4-font-size * $header-medium-coefficient,
+    "h5, .h5": $h5-font-size * $header-medium-coefficient,
+    "h6, .h6": $h6-font-size * $header-medium-coefficient
   ),
   large: (
-    'h1, .h1': $h1-font-size * $header-large-coefficient,
-    'h2, .h2': $h2-font-size * $header-large-coefficient,
-    'h3, .h3': $h3-font-size * $header-large-coefficient,
-    'h4, .h4': $h4-font-size * $header-large-coefficient,
-    'h5, .h5': $h5-font-size * $header-large-coefficient,
-    'h6, .h6': $h6-font-size * $header-large-coefficient,
-  ),
+    "h1, .h1": $h1-font-size * $header-large-coefficient,
+    "h2, .h2": $h2-font-size * $header-large-coefficient,
+    "h3, .h3": $h3-font-size * $header-large-coefficient,
+    "h4, .h4": $h4-font-size * $header-large-coefficient,
+    "h5, .h5": $h5-font-size * $header-large-coefficient,
+    "h6, .h6": $h6-font-size * $header-large-coefficient
+  )
 ) !default;
-
-
-
 
 // /// Styles for headings at various screen sizes. Each key is a breakpoint, and each value is a map of heading styles.
 // /// @type Map
@@ -154,9 +166,6 @@ $header-sizes: (
 //   $header-styles: build_from_header-sizes($header-sizes);
 // }
 
-
-
-
 /// Line height of headers.
 /// @type Number
 $header-lineheight: 1.125 !default;
@@ -173,7 +182,6 @@ $header-margin-bottom: .7em !default;
 /// @type String
 $header-text-rendering: optimizeLegibility !default;
 
-
 ////////////////////////////////////////
 // Small font styles
 ////////////////////////////////////////
@@ -185,18 +193,22 @@ $header-text-rendering: optimizeLegibility !default;
 /// @type Color
 $header-small-font-color: $global-header-small-font-color !default;
 
+//--------------------------------------
+// Sizes
+/// Font line-height of `<small>` header elements.
+/// @type Number
+$header-small-line-height: 0 !default;
+
+/// Font size of `<small>` header elements.
+/// @type Number
+$header-small-font-size: .5em !default;
 
 //--------------------------------------
 // Sizes
 //
 /// Font size of `<small>` elements.
 /// @type Number
-$small-font-size: .75em !default;
-
-/// Font line-height of `<small>` header elements.
-/// @type Number
-$header-small-line-height: 0 !default;
-
+$small-font-size: .7em !default;
 
 ////////////////////////////////////////
 // Paragraph font styles
@@ -220,7 +232,6 @@ $paragraph-margin-bottom: 1.1em !default;
 /// Text rendering method for paragraph text.
 /// @type String
 $paragraph-text-rendering: optimizeLegibility !default;
-
 
 ////////////////////////////////////////
 // Anchors font styles
@@ -249,7 +260,6 @@ $anchor-color-visited: $global-anchor-color-visited !default;
 /// @type Color
 $anchor-color-active: $global-anchor-color-active !default;
 
-
 //--------------------------------------
 // Sizes
 //
@@ -260,7 +270,6 @@ $anchor-text-decoration: none !default;
 /// Default text decoration for links on hover.
 /// @type String
 $anchor-text-decoration-hover: none !default;
-
 
 ////////////////////////////////////////
 // Horizontal line style
@@ -273,14 +282,12 @@ $anchor-text-decoration-hover: none !default;
 /// @type Color
 $hr-border-color: $global-hr-border-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 /// Default border width for a divider.
 /// @type Number
 $hr-border-width: $global-hr-border-width !default;
-
 
 //--------------------------------------
 // Sizes
@@ -296,7 +303,6 @@ $hr-border-style: solid !default;
 /// Default margin for a divider.
 /// @type Number | List
 $hr-margin: rem-calc(20) auto !default;
-
 
 ////////////////////////////////////////
 // Lists style
@@ -337,7 +343,6 @@ $list-side-margin: rem-calc(32) !default;
 /// @type Number
 $list-nested-side-margin: rem-calc(32) !default;
 
-
 ////////////////////////////////////////
 // Defifnitions style
 ////////////////////////////////////////
@@ -357,7 +362,6 @@ $defnlist-term-weight: $global-weight-bold !default;
 /// @type Number
 $defnlist-term-margin-bottom: .3rem !default;
 
-
 ////////////////////////////////////////
 // Blockquote style
 ////////////////////////////////////////
@@ -373,13 +377,11 @@ $blockquote-color: $global-blockquote-color !default;
 /// @type Color
 $blockquote-border-color: $global-blockquote-border-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 
 $blockquote-border-width: $global-border-width !default;
-
 
 //--------------------------------------
 // Sizes
@@ -396,7 +398,6 @@ $blockquote-padding: rem-calc(8 32) !default;
 /// @type Number | List
 $blockquote-margin: 0 0 rem-calc(16) !default;
 
-
 ////////////////////////////////////////
 // Cite style
 ////////////////////////////////////////
@@ -412,13 +413,11 @@ $cite-color: $global-cite-color !default;
 /// @type Color
 $cite-link-color: $global-cite-link-color !default;
 
-
 //--------------------------------------
 // Content
 //
 
 $cite-before-content: $global-cite-before-content !default;
-
 
 //--------------------------------------
 // Sizes
@@ -426,7 +425,6 @@ $cite-before-content: $global-cite-before-content !default;
 /// Font size for `<cite>` elements.
 /// @type Number
 $cite-font-size: rem-calc(13) !default;
-
 
 ////////////////////////////////////////
 // Sub & sup
@@ -439,7 +437,6 @@ $cite-font-size: rem-calc(13) !default;
 /// @type Number
 $sub-sup-font-size: .7em !default;
 
-
 ////////////////////////////////////////
 // Abbreviation elements style
 ////////////////////////////////////////
@@ -451,13 +448,11 @@ $sub-sup-font-size: .7em !default;
 /// @type Color
 $abbr-underline-color: $global-abbr-underline-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 
 $abbr-underline-width: $global-text-border-width !default;
-
 
 //--------------------------------------
 // Sizes
@@ -465,7 +460,6 @@ $abbr-underline-width: $global-text-border-width !default;
 /// Bottom border style for `<abbr>` elements.
 /// @type List
 $abbr-underline: $abbr-underline-width dotted $abbr-underline-color !default;
-
 
 ////////////////////////////////////////
 // <code> tags
@@ -486,13 +480,11 @@ $code-background: $global-code-background !default;
 /// @type Color
 $code-border-color: $global-code-border-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 
 $code-border-width: $global-text-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -500,7 +492,6 @@ $code-border-width: $global-text-border-width !default;
 /// Border radius for code elements.
 /// @type Number | List
 $code-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Sizes
@@ -525,7 +516,6 @@ $code-border: $code-border-width solid $code-border-color !default;
 /// @type Number | List
 $code-padding: rem-calc(2 4) !default;
 
-
 ////////////////////////////////////////
 // Keyboard elements style
 ////////////////////////////////////////
@@ -545,13 +535,11 @@ $keystroke-background: $global-keystroke-background !default;
 /// @type Color
 $keystroke-border-color: $global-keystroke-border-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 
 $keystroke-border-width: $global-text-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -559,7 +547,6 @@ $keystroke-border-width: $global-text-border-width !default;
 /// Border radius for `<kbd>` elements.
 /// @type Number | List
 $keystroke-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Sizes
@@ -576,7 +563,6 @@ $keystroke-padding: rem-calc(2 4 0) !default;
 /// @type List
 $keystroke-border: $keystroke-border-width solid $keystroke-border-color !default;
 
-
 ////////////////////////////////////////
 // Quotes
 ////////////////////////////////////////
@@ -587,7 +573,6 @@ $keystroke-border: $keystroke-border-width solid $keystroke-border-color !defaul
 /// Style of quatation marks.
 /// @type List
 $quotes-style: $global-quotes-style !default;
-
 
 ////////////////////////////////////////
 // Preformated block style
@@ -604,14 +589,12 @@ $preformated-font-color: $global-preformated-font-color !default;
 /// @type Color
 $preformated-background: $global-preformated-background !default;
 
-
 //--------------------------------------
 // Radius
 //
 /// Border radius for `<pre>` area.
 /// @type Number | List
 $preformated-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Sizes
@@ -622,7 +605,7 @@ $preformated-font-size: $paragraph-font-size !default;
 
 /// Line height of text inside `<pre>` area.
 /// @type Number
-$preformated-line-height: $global-lineheight !default;
+$preformated-line-height: inherit !default;
 
 /// Padding for `<pre>` area.
 /// @type Number | List
@@ -631,7 +614,6 @@ $preformated-padding: rem-calc(16 18) !default;
 /// Margin for `<pre>` area.
 /// @type Number | List
 $preformated-margin: 0 0 $paragraph-margin-bottom !default;
-
 
 ////////////////////////////////////////
 // Address
@@ -652,7 +634,6 @@ $address-font-style: italic !default;
 /// @type String
 $address-font-weight: normal !default;
 
-
 ////////////////////////////////////////
 // Figcaption
 ////////////////////////////////////////
@@ -668,7 +649,6 @@ $figcaption-font-size: $paragraph-font-size !default;
 /// @type Number
 $figcaption-line-height: inherit !default;
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -676,6 +656,13 @@ $figcaption-line-height: inherit !default;
 ////////////////////////////////////////
 
 @mixin foundation-typography-base {
+  ////////////////////////////////////////
+  // Small text
+
+  small {
+    font-size: $small-font-size;
+    // line-height: inherit;
+  }
 
   ////////////////////////////////////////
   // Headings
@@ -709,12 +696,17 @@ $figcaption-line-height: inherit !default;
       line-height: $header-lineheight;
     }
 
-    small {
-      @if $header-small-font-color != $header-color {
-        color: $header-small-font-color;
-      }
-      @if $header-small-line-height != $header-lineheight {
-        line-height: $header-small-line-height;
+    @if $header-small-status {
+      small {
+        @if $header-small-font-color != $header-color {
+          color: $header-small-font-color;
+        }
+        @if $header-small-font-size != $small-font-size {
+          font-size: $header-small-font-size;
+        }
+        @if $header-small-line-height != $header-lineheight {
+          line-height: $header-small-line-height;
+        }
       }
     }
   }
@@ -730,7 +722,6 @@ $figcaption-line-height: inherit !default;
       }
     }
   }
-
 
   // Heading styles
   // @each $size, $headers in $header-styles {
@@ -775,7 +766,6 @@ $figcaption-line-height: inherit !default;
   //   }
   // }
 
-
   ////////////////////////////////////////
   // Paragraphs
 
@@ -804,14 +794,6 @@ $figcaption-line-height: inherit !default;
   b,
   strong {
     font-weight: bold;
-    // line-height: inherit;
-  }
-
-  ////////////////////////////////////////
-  // Small text
-
-  small {
-    font-size: $small-font-size;
     // line-height: inherit;
   }
 
@@ -883,31 +865,22 @@ $figcaption-line-height: inherit !default;
 
   ol {
     list-style-type: $ordered-list-style-type;
-
-    ol {
-      list-style-type: $ordered-second-list-style-type;
-    }
   }
 
-  ol,
+  ol ,
   ul {
     @if $list-side-margin != 0 {
       margin-#{$global-left}: $list-side-margin;
-    } // Reset in normilize.scss
+    } // Reset in _reset.scss
 
-    li {
-      font-size: inherit;
+    @if $list-nested-side-margin != 0 {
+      & & {
+        margin-#{$global-left}: $list-nested-side-margin;
+      } // Reset in _reset.scss
+    }
 
-      ul,
-      ol {
-        & & {
-          @if $list-nested-side-margin != 0 {
-            margin-#{$global-left}: $list-nested-side-margin;
-          } // Reset in normilize.scss
-          margin-bottom: 0;
-          //font-size: inherit; /* Override nested font-size change */
-        }
-      }
+    ol {
+      list-style-type: $ordered-second-list-style-type;
     }
   }
 
@@ -920,7 +893,9 @@ $figcaption-line-height: inherit !default;
       margin-bottom: $defnlist-term-margin-bottom;
     }
 
-    dd { margin-bottom: $defnlist-margin-bottom; }
+    dd {
+      margin-bottom: $defnlist-margin-bottom;
+    }
   }
 
   ////////////////////////////////////////
@@ -944,8 +919,10 @@ $figcaption-line-height: inherit !default;
   // Citations
 
   cite {
-    color: $cite-color;
     font-size: $cite-font-size;
+    @if $cite-color != inherit {
+      color: $cite-color;
+    }
 
     // display: block;
 
@@ -953,9 +930,11 @@ $figcaption-line-height: inherit !default;
       content: $cite-before-content;
     }
 
-    a,
-    a:visited {
-      color: $cite-link-color;
+    @if $cite-link-color != $anchor-color {
+      a,
+      a:visited {
+        color: $cite-link-color;
+      }
     }
   }
 
@@ -969,17 +948,6 @@ $figcaption-line-height: inherit !default;
 
   ////////////////////////////////////////
   // Abbreviations
-
-  // abbr {
-  //   color: $body-font-color;
-  //   cursor: help;
-  //
-  //   //text-transform: uppercase;
-  //
-  //   &[title] {
-  //     border-bottom: $abbr-underline;
-  //   }
-  // }
 
   abbr,
   abbr[title] {
@@ -1013,7 +981,6 @@ $figcaption-line-height: inherit !default;
   // Code
 
   @if $code-kbd-samp-pre-status {
-
     code,
     samp {
       color: $code-color;
@@ -1040,7 +1007,6 @@ $figcaption-line-height: inherit !default;
   // Keystrokes
 
   @if $code-kbd-samp-pre-status {
-
     kbd {
       color: $keystroke-color;
       font-family: $keystroke-font;
@@ -1070,14 +1036,18 @@ $figcaption-line-height: inherit !default;
   @if $code-kbd-samp-pre-status {
     pre {
       background-color: $preformated-background;
-      color: $preformated-font-color;
       font-size: $preformated-font-size;
-      line-height: $preformated-line-height;
       margin: $preformated-margin;
       padding: $preformated-padding;
 
-      @if $preformated-border-radius-status {
+      @if $preformated-border-radius-status and $preformated-radius != $global-radius {
         border-radius: $preformated-radius;
+      }
+      @if $preformated-font-color != $body-font-color {
+        color: $preformated-font-color;
+      }
+      @if $preformated-line-height != inherit {
+        line-height: $preformated-line-height;
       }
 
       code,

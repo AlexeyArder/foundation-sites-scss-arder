@@ -25,7 +25,6 @@ $offcanvas-shadow: $global-offcanvas-shadow !default;
 /// @type Color
 $offcanvas-inner-shadow-color: $global-offcanvas-inner-shadow-color !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -33,20 +32,19 @@ $offcanvas-inner-shadow-color: $global-offcanvas-inner-shadow-color !default;
 /// @type Bool
 $offcanvas-fixed-reveal: true !default;
 
-
 //--------------------------------------
 // Sizes
 //
 /// Width map of a left/right off-canvas panel.
 /// @type Map
 $offcanvas-sizes: (
-  small: 250px,
+  small: 250px
 ) !default;
 
 /// Height map of a top/bottom off-canvas panel.
 /// @type Map
 $offcanvas-vertical-sizes: (
-  small: 250px,
+  small: 250px
 ) !default;
 
 /// Length of the animation on an off-canvas panel.
@@ -80,7 +78,6 @@ $offcanvas-inner-shadow-size: rem-calc(20) !default;
 /// @type Number
 $offcanvas-overlay-zindex: 11 !default;
 
-
 ////////////////////////////////////////
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -91,9 +88,15 @@ $offcanvas-overlay-zindex: 11 !default;
 @mixin off-canvas-basics {
   // Checks the z-indexes and increase them due to backwards compatibility.
   // This is necessary because the overlay's z-index is new since v6.4 and may be identical to the user custom settings of the push z-index.
-  @if $offcanvas-push-zindex <= $offcanvas-overlay-zindex { $offcanvas-push-zindex: $offcanvas-overlay-zindex + 1 !global; }
-  @if $offcanvas-overlap-zindex <= $offcanvas-push-zindex { $offcanvas-overlap-zindex: $offcanvas-push-zindex + 1 !global; }
-  @if $offcanvas-reveal-zindex <= $offcanvas-overlay-zindex { $offcanvas-reveal-zindex: $offcanvas-overlay-zindex + 1 !global; }
+  @if $offcanvas-push-zindex <= $offcanvas-overlay-zindex {
+    $offcanvas-push-zindex: $offcanvas-overlay-zindex + 1 !global;
+  }
+  @if $offcanvas-overlap-zindex <= $offcanvas-push-zindex {
+    $offcanvas-overlap-zindex: $offcanvas-push-zindex + 1 !global;
+  }
+  @if $offcanvas-reveal-zindex <= $offcanvas-overlay-zindex {
+    $offcanvas-reveal-zindex: $offcanvas-overlay-zindex + 1 !global;
+  }
 
   // Hides overflow on body when an off-canvas panel is open.
   .is-off-canvas-open {
@@ -109,7 +112,9 @@ $offcanvas-overlay-zindex: 11 !default;
     overflow: hidden;
     position: absolute;
     top: 0;
-    transition: opacity $offcanvas-transition-length $offcanvas-transition-timing, visibility $offcanvas-transition-length $offcanvas-transition-timing;
+    transition: opacity $offcanvas-transition-length
+        $offcanvas-transition-timing,
+      visibility $offcanvas-transition-length $offcanvas-transition-timing;
     visibility: hidden;
     width: 100%;
     z-index: $offcanvas-overlay-zindex;
@@ -189,7 +194,8 @@ $offcanvas-overlay-zindex: 11 !default;
 @mixin off-canvas-position(
   $position: left,
   $orientation: horizontal,
-  $sizes: if($orientation == horizontal, $offcanvas-sizes, $offcanvas-vertical-sizes)
+  $sizes:
+    if($orientation == horizontal, $offcanvas-sizes, $offcanvas-vertical-sizes)
 ) {
   @if $position == left {
     height: 100%;
@@ -333,19 +339,34 @@ $offcanvas-overlay-zindex: 11 !default;
     }
   }
 
-
   // If $offcanvas-inner-shadow-size is set, add inner box-shadow.
   // This mimics the off-canvas panel having a lower z-index, without having to have one.
   @if $offcanvas-inner-shadow-size {
     &.is-transition-push {
       @if $position == left {
-        @include inner-side-shadow(right, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
+        @include inner-side-shadow(
+          right,
+          $offcanvas-inner-shadow-size,
+          $offcanvas-inner-shadow-color
+        );
       } @else if $position == right {
-        @include inner-side-shadow(left, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
+        @include inner-side-shadow(
+          left,
+          $offcanvas-inner-shadow-size,
+          $offcanvas-inner-shadow-color
+        );
       } @else if $position == top {
-        @include inner-side-shadow(bottom, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
+        @include inner-side-shadow(
+          bottom,
+          $offcanvas-inner-shadow-size,
+          $offcanvas-inner-shadow-color
+        );
       } @else if $position == bottom {
-        @include inner-side-shadow(top, $offcanvas-inner-shadow-size, $offcanvas-inner-shadow-color);
+        @include inner-side-shadow(
+          top,
+          $offcanvas-inner-shadow-size,
+          $offcanvas-inner-shadow-color
+        );
       }
     }
   }
@@ -355,7 +376,8 @@ $offcanvas-overlay-zindex: 11 !default;
 @mixin off-canvas-content() {
   backface-visibility: hidden;
   transform: none;
-  transition: transform $offcanvas-transition-length $offcanvas-transition-timing;
+  transition: transform $offcanvas-transition-length
+    $offcanvas-transition-timing;
 
   // Transform scope until the element is closed (makes sure transitionend gets triggered)
   &.has-transition-push {
@@ -370,10 +392,10 @@ $offcanvas-overlay-zindex: 11 !default;
 
 /// Adds styles that reveal an off-canvas panel.
 @mixin off-canvas-reveal(
-$position: left,
-$zindex: $offcanvas-reveal-zindex,
-$content: $maincontent-class,
-$breakpoint: small
+  $position: left,
+  $zindex: $offcanvas-reveal-zindex,
+  $content: $maincontent-class,
+  $breakpoint: small
 ) {
   transition: none;
   transform: none;
@@ -437,13 +459,12 @@ $breakpoint: small
 
   // Off-canvas container
   .off-canvas {
-    @include off-canvas-base
-
+    @include off-canvas-base;
     // Force position absolute for nested off-canvas because fixed doesn't work for push transition within the transform scope.
     // @at-root .#{$maincontent-class} & {
     //   // NOTE: since overlap transition is currently forced if nested, there's no need to force position absolute until nested push transition is supported.
     //   // position: absolute;
-    // }
+    // };
   }
 
   // Off-canvas container with absolute position
@@ -477,19 +498,39 @@ $breakpoint: small
     @if $name != $-zf-zero-breakpoint {
       @include breakpoint($name) {
         .position-left.reveal-for-#{$name} {
-          @include off-canvas-reveal(left, $offcanvas-reveal-zindex, $maincontent-class, $name);
+          @include off-canvas-reveal(
+            left,
+            $offcanvas-reveal-zindex,
+            $maincontent-class,
+            $name
+          );
         }
 
         .position-right.reveal-for-#{$name} {
-          @include off-canvas-reveal(right, $offcanvas-reveal-zindex, $maincontent-class, $name);
+          @include off-canvas-reveal(
+            right,
+            $offcanvas-reveal-zindex,
+            $maincontent-class,
+            $name
+          );
         }
 
         .position-top.reveal-for-#{$name} {
-          @include off-canvas-reveal(top, $offcanvas-reveal-zindex, $maincontent-class, $name);
+          @include off-canvas-reveal(
+            top,
+            $offcanvas-reveal-zindex,
+            $maincontent-class,
+            $name
+          );
         }
 
         .position-bottom.reveal-for-#{$name} {
-          @include off-canvas-reveal(bottom, $offcanvas-reveal-zindex, $maincontent-class, $name);
+          @include off-canvas-reveal(
+            bottom,
+            $offcanvas-reveal-zindex,
+            $maincontent-class,
+            $name
+          );
         }
       }
     }

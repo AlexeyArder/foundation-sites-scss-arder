@@ -17,10 +17,8 @@ $closebutton-color: $global-closebutton-color !default;
 /// @type Color
 $closebutton-color-hover: $global-closebutton-color-hover !default;
 
-
 $closebutton-svg-opacity: $global-closebutton-svg-opacity !default;
 $closebutton-svg-hover-opacity: $global-closebutton-svg-hover-opacity !default;
-
 
 //--------------------------------------
 // Status
@@ -29,9 +27,7 @@ $closebutton-svg-hover-opacity: $global-closebutton-svg-hover-opacity !default;
 /// @type List
 $closebutton-position: right top !default;
 
-
 $closebutton-svg-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -61,9 +57,7 @@ $closebutton-size: (
 /// @type Number
 $closebutton-lineheight: 1 !default;
 
-
 $closebutton-svg-stroke-width: 10px !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -82,7 +76,8 @@ $closebutton-svg-stroke-width: 10px !default;
   @if type-of($value) == 'number' {
     // If it is, just return the number
     @return $value;
-  } @else if map-has-key($value, $size) { // Check if the size name exists in the value map
+  } @else if map-has-key($value, $size) {
+    // Check if the size name exists in the value map
     // If it does, return the value
     @return map-get($value, $size);
   }
@@ -143,7 +138,9 @@ $closebutton-svg-stroke-width: 10px !default;
       color: $closebutton-color-hover;
     } @else {
       .svg-close-button {
-        @if ($closebutton-svg-hover-opacity != $closebutton-svg-opacity) or ($closebutton-svg-hover-opacity != 1) {
+        @if ($closebutton-svg-hover-opacity != $closebutton-svg-opacity) or
+          ($closebutton-svg-hover-opacity != 1)
+        {
           opacity: $closebutton-svg-hover-opacity;
         }
         @if $closebutton-color-hover != $closebutton-color {
@@ -158,8 +155,13 @@ $closebutton-svg-stroke-width: 10px !default;
   .close-button {
     @include close-button;
 
-    &.small { @include close-button-size(small) }
+    &.small {
+      @include close-button-size(small);
+    }
+
     &,
-    &.medium { @include close-button-size(medium) }
+    &.medium {
+      @include close-button-size(medium);
+    }
   }
 }

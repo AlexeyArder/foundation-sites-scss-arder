@@ -29,14 +29,12 @@ $dropdown-menu-item-color-active: $global-dropdown-menu-item-color-active !defau
 /// @type Color
 $dropdown-menu-item-background-active: $global-dropdown-menu-item-background-active !default;
 
-
 $dropdownmenu-background-active: $global-dropdownmenu-background-active !default;
 $dropdownmenu-color-active: $global-dropdownmenu-color-active !default;
 $dropdownmenu-hover-background: $global-dropdownmenu-hover-background !default;
 $dropdownmenu-hover-color: $global-dropdownmenu-hover-color !default; // inherit
 $dropdownmenu-border-color: $global-dropdownmenu-border-color !default;
 $dropdownmenu-shadow: $global-dropdownmenu-shadow !default;
-
 
 //--------------------------------------
 // Content
@@ -46,20 +44,17 @@ $dropdownmenu-arrows-down-content: $global-dropdownmenu-arrows-down-content !def
 $dropdownmenu-arrow-right-content: $global-dropdownmenu-arrow-right-content !default;
 $dropdownmenu-arrow-left-content: $global-dropdownmenu-arrow-left-content !default;
 
-
 //--------------------------------------
 // Border width
 //
 
 $dropdownmenu-border-width: $global-border-width !default;
 
-
 //--------------------------------------
 // Radius
 //
 
 $dropdownmenu-border-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -68,12 +63,10 @@ $dropdownmenu-border-radius: $global-radius !default;
 /// @type Boolean
 $dropdownmenu-arrows-status: true !default;
 
-
 $dropdownmenu-border-status: true !default;
 $dropdownmenu-border-radius-status: true !default;
 $dropdownmenu-vertical-status: true !default;
 $dropdownmenu-shadow-status: false !default;
-
 
 //--------------------------------------
 // Sizes
@@ -84,7 +77,8 @@ $dropdownmenu-min-width: rem-calc(200) !default;
 
 /// Border for dropdown sub-menus.
 /// @type List
-$dropdownmenu-border: $dropdownmenu-border-width solid $dropdownmenu-border-color !default;
+$dropdownmenu-border: $dropdownmenu-border-width solid
+  $dropdownmenu-border-color !default;
 
 // Border width for dropdown sub-menus.
 // Used to adjust top margin of a sub-menu if a border is used.
@@ -111,13 +105,11 @@ $dropdownmenu-nested-margin: 0 !default;
 /// @type Number
 $dropdownmenu-submenu-padding: $dropdownmenu-padding !default;
 
-
 $dropdownmenu-arrows-down-margin-right: 0 !default;
 $dropdownmenu-arrows-right: rem-calc(10) !default;
 $dropdownmenu-horizontal-arrows-font-size: rem-calc(8) !default;
 $dropdownmenu-arrows-left-margin-right: rem-calc(10) !default;
 $dropdownmenu-width-when-vertical: rem-calc(200) !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -131,7 +123,9 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
     @if $dropdownmenu-horizontal-arrows-font-size != $menu-font-size {
       font-size: $dropdownmenu-horizontal-arrows-font-size;
-      margin-top: -(($menu-font-size - $dropdownmenu-horizontal-arrows-font-size) / 2);
+      margin-top: -(
+          ($menu-font-size - $dropdownmenu-horizontal-arrows-font-size) / 2
+        );
       top: 50%;
     }
   }
@@ -153,7 +147,8 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
 @mixin dropdown-menu-direction($dir: horizontal) {
   @if $dir == horizontal {
-    > li.opens-left { // sass-lint:disable-line no-qualifying-elements
+    > li.opens-left {
+      // sass-lint:disable-line no-qualifying-elements
       > .is-dropdown-submenu {
         left: auto;
         right: 0;
@@ -161,7 +156,8 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
     }
 
-    > li.opens-right { // sass-lint:disable-line no-qualifying-elements
+    > li.opens-right {
+      // sass-lint:disable-line no-qualifying-elements
       > .is-dropdown-submenu {
         left: 0;
         right: auto;
@@ -170,14 +166,16 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     }
 
     @if $dropdownmenu-arrows-status {
-      > li.is-dropdown-submenu-parent > a { // sass-lint:disable-line no-qualifying-elements
+      > li.is-dropdown-submenu-parent > a {
+        // sass-lint:disable-line no-qualifying-elements
         position: relative;
         @if $dropdownmenu-arrow-padding != 0 {
           padding-#{$global-right}: $dropdownmenu-arrow-padding;
         }
       }
 
-      > li.is-dropdown-submenu-parent > a::after { // sass-lint:disable-line no-qualifying-elements
+      > li.is-dropdown-submenu-parent > a::after {
+        // sass-lint:disable-line no-qualifying-elements
         content: $dropdownmenu-arrows-down-content;
         #{$global-left}: auto; //??
         @if $dropdownmenu-arrows-down-margin-right != 0 {
@@ -282,7 +280,6 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       }
     }
 
-
     &.align-right {
       .is-dropdown-submenu.first-sub {
         left: auto;
@@ -349,7 +346,8 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     @if $dropdownmenu-border-status {
       border: $dropdownmenu-border;
     }
-    @if $dropdownmenu-border-radius-status and ($dropdownmenu-border-radius != 0) {
+    @if $dropdownmenu-border-radius-status and
+      ($dropdownmenu-border-radius != 0) {
       border-radius: $dropdownmenu-border-radius;
     }
     @if $dropdownmenu-shadow-status {

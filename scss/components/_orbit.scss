@@ -26,11 +26,9 @@ $orbit-caption-background: $global-orbit-caption-background !default;
 /// @type Color
 $orbit-control-background-hover: $global-orbit-control-background-hover !default;
 
-
 $orbit-control-color: $global-orbit-control-color !default;
-$orbit-caption-color: $global-orbit-caption-color  !default;
+$orbit-caption-color: $global-orbit-caption-color !default;
 $orbit-bullet-border-color: $global-orbit-bullet-border-color !default;
-
 
 //--------------------------------------
 // Content
@@ -39,13 +37,11 @@ $orbit-bullet-border-color: $global-orbit-bullet-border-color !default;
 $orbit-control-content-previous: $global-orbit-control-content-previous !default;
 $orbit-control-content-next: $global-orbit-control-content-next !default;
 
-
 //--------------------------------------
 // Radius
 //
 
 $orbit-bullet-border-radius: 50% !default;
-
 
 //--------------------------------------
 // Status
@@ -57,7 +53,6 @@ $orbit-bullet-status: true !default;
 $orbit-bullet-border-status: true !default;
 $orbit-control-content-status: true !default;
 $orbit-control-content-rotate-status: true !default; // When use arrow up unicode symbol that switch rotate code
-
 
 //--------------------------------------
 // Sizes
@@ -90,7 +85,6 @@ $orbit-control-padding: 1rem !default;
 /// @type Number
 $orbit-control-zindex: 10 !default;
 
-
 $orbit-control-content-size: rem-calc(18) !default;
 $orbit-control-content-left: 0 !default;
 $orbit-control-content-right: 0 !default;
@@ -107,7 +101,6 @@ $orbit-caption-bottom: 0 !default;
 $orbit-caption-margin-bottom: 0 !default; // Use $orbit-caption-bottom instead
 $orbit-caption-width: 100% !default;
 $orbit-caption-height: auto !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////

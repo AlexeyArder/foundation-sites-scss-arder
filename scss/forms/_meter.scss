@@ -25,7 +25,6 @@ $meter-fill-medium: $global-meter-fill-medium !default;
 /// @type Color
 $meter-fill-bad: $global-meter-fill-bad !default;
 
-
 //--------------------------------------
 // Radius
 //
@@ -33,13 +32,11 @@ $meter-fill-bad: $global-meter-fill-bad !default;
 /// @type Length
 $meter-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $meter-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -51,7 +48,6 @@ $meter-height: 1rem !default;
 /// Bottom margin of a `<meter>` element.
 /// @type Number
 $meter-margin-bottom: $global-margin !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -65,7 +61,7 @@ $meter-margin-bottom: $global-margin !default;
     // We have disabled autoprefixer first and are just only using
     // `-moz-appearance: none` as a prefix and neglecting the webkit.
 
-    /*! autoprefixer: off */
+    //! autoprefixer: off
     -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
     appearance: none;
 

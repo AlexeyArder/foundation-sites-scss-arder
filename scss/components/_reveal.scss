@@ -17,16 +17,13 @@ $reveal-background: $global-reveal-background !default;
 /// @type Color
 $reveal-overlay-background: $global-reveal-overlay-background !default;
 
-
 $reveal-border-color: $global-reveal-border-color !default;
-
 
 //--------------------------------------
 // Border width
 //
 
 $reveal-border-width: $global-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -35,14 +32,12 @@ $reveal-border-width: $global-border-width !default;
 /// @type Number
 $reveal-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $reveal-border-status: true !default;
 $reveal-border-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -71,7 +66,6 @@ $reveal-zindex: 1005 !default;
 /// @type Number
 $reveal-offset: rem-calc(100) !default;
 
-
 $reveal-sizes: (
   tiny: 30%,
   small: 50%,
@@ -79,7 +73,6 @@ $reveal-sizes: (
 ) !default;
 
 //$reveal-margin: $reveal-offset auto 0 !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -100,8 +93,7 @@ $reveal-sizes: (
 
 /// Adds styles for a modal overlay.
 /// @param {Color} $background [$reveal-overlay-background] - Background color of the overlay.
-@mixin reveal-overlay(
-  $background: $reveal-overlay-background ) {
+@mixin reveal-overlay($background: $reveal-overlay-background) {
   background-color: $background;
   bottom: 0;
   display: none;
@@ -150,7 +142,8 @@ $reveal-sizes: (
 /// @param {Number} $max-width [$reveal-max-width] - Maximum width of the modal.
 @mixin reveal-modal-width(
   $width: $reveal-width,
-  $max-width: $reveal-max-width ) {
+  $max-width: $reveal-max-width
+) {
   // Extends must be made outside of breakpoints for compatibility with newer Sass versions (libsass v3.5)
   @extend %reveal-centered;
 
@@ -189,7 +182,8 @@ $reveal-sizes: (
       overflow-y: scroll;
     }
 
-    body { // sass-lint:disable-line no-qualifying-elements
+    body {
+      // sass-lint:disable-line no-qualifying-elements
       overflow-y: hidden;
     }
   }
@@ -209,22 +203,30 @@ $reveal-sizes: (
     position: relative;
     top: $reveal-offset;
 
+    @include breakpoint($-zf-zero-breakpoint only) {
+      @include reveal-modal-fullscreen;
+    }
+
     // Remove padding
     &.collapse {
       padding: 0;
     }
 
     // Sizing classes
-    &.tiny { @include reveal-modal-width(map-get($button-sizes, tiny)); }
-    &.small { @include reveal-modal-width(map-get($button-sizes, small)); }
-    &.large { @include reveal-modal-width(map-get($button-sizes, large)); }
+    &.tiny {
+      @include reveal-modal-width(map-get($button-sizes, tiny));
+    }
+
+    &.small {
+      @include reveal-modal-width(map-get($button-sizes, small));
+    }
+
+    &.large {
+      @include reveal-modal-width(map-get($button-sizes, large));
+    }
 
     // Full-screen mode
     &.full {
-      @include reveal-modal-fullscreen;
-    }
-
-    @include breakpoint($-zf-zero-breakpoint only) {
       @include reveal-modal-fullscreen;
     }
 

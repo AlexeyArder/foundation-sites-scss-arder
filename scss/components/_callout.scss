@@ -29,16 +29,13 @@ $callout-font-color-alt: $global-callout-font-color-alt !default;
 /// @type Number | Boolean
 $callout-link-tint: $global-callout-link-tint !default;
 
-
 $callout-border-color: $global-callout-border-color !default;
-
 
 //--------------------------------------
 // Border width
 //
 
 $callout-border-width: $global-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -47,7 +44,6 @@ $callout-border-width: $global-border-width !default;
 /// @type Color
 $callout-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -55,7 +51,6 @@ $callout-radius: $global-radius !default;
 $callout-border-status: true !default;
 $callout-border-radius-status: true !default;
 $callout-different-sizes-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -72,12 +67,18 @@ $callout-margin: 0 0 1rem 0 !default;
 /// @type Number
 $callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
 
-
 $callout-padding-small-coefficient: .8 !default;
 $callout-padding-large-coefficient: 1.5 !default;
-$callout-padding-small: (get-side($callout-padding, top) * $callout-padding-small-coefficient) (get-side($callout-padding, right) * $callout-padding-small-coefficient) (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
-$callout-padding-large: (get-side($callout-padding, top) * $callout-padding-large-coefficient) (get-side($callout-padding, right) * $callout-padding-large-coefficient) (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
-
+$callout-padding-small: (
+    get-side($callout-padding, top) * $callout-padding-small-coefficient
+  )
+  (get-side($callout-padding, right) * $callout-padding-small-coefficient)
+  (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
+$callout-padding-large: (
+    get-side($callout-padding, top) * $callout-padding-large-coefficient
+  )
+  (get-side($callout-padding, right) * $callout-padding-large-coefficient)
+  (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -118,14 +119,16 @@ $callout-padding-large: (get-side($callout-padding, top) * $callout-padding-larg
   background-color: $background;
   @if $callout-font-color != $body-font-color {
     // color: $callout-font-color;
-    color: color-pick-contrast($background, ($callout-font-color, $callout-font-color-alt));
+    color: color-pick-contrast(
+      $background,
+      ($callout-font-color, $callout-font-color-alt)
+    );
   }
 }
 
 @mixin callout-size($padding) {
   padding: $padding;
 }
-
 
 /// Adds styles for a callout.
 /// @param {Color} $color [$callout-background] - Color to use.

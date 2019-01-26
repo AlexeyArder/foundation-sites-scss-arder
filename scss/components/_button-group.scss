@@ -12,14 +12,12 @@
 
 $buttongroup-expand-spacing-color: $global-buttongroup-expand-spacing-color !default;
 
-
 //--------------------------------------
 // Radius
 //
 /// Determines if $button-radius is applied to each button or the button group as a whole. Use $global-radius in _settings.scss to change radius.
 /// @type Boolean
 $buttongroup-radius-on-each: false !default;
-
 
 //--------------------------------------
 // Sizes
@@ -40,9 +38,7 @@ $buttongroup-margin: 1rem !default;
 /// @type Number
 $buttongroup-spacing: $global-border-width !default;
 
-
 $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -55,8 +51,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 /// @param {Number} $spacing [$buttongroup-spacing] - Spacing between buttons in a button group.
 @mixin button-group(
   $child-selector: $buttongroup-child-selector,
-  $spacing: $buttongroup-spacing ) {
-
+  $spacing: $buttongroup-spacing
+) {
   @include clearfix;
   margin-bottom: $buttongroup-margin;
   @if $button-font-default != 1rem {
@@ -87,7 +83,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     //font-size: inherit;
     @if $button-border-status {
       &:not(:first-child) {
-        margin-#{$global-left}: - $button-border-width;
+        margin-#{$global-left}: -$button-border-width;
       }
     } @else {
       &:last-child {
@@ -117,8 +113,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 @mixin button-group-expand(
   $selector: $buttongroup-child-selector,
   $spacing: $buttongroup-spacing,
-  $count: null ) {
-
+  $count: null
+) {
   @if not $global-flexbox {
     margin-#{$global-right}: -$spacing;
 
@@ -142,7 +138,8 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
       // Two or more childreen
       @for $i from 2 through $buttongroup-expand-max {
         &:first-child:nth-last-child(#{$i}) {
-          &, &:first-child:nth-last-child(#{$i}) ~ #{$selector} {
+          &,
+          &:first-child:nth-last-child(#{$i}) ~ #{$selector} {
             display: inline-block;
             width: calc(#{percentage(1 / $i)} - #{$spacing});
             margin-#{$global-right}: $spacing;
@@ -159,8 +156,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 
 /// Stacks the buttons in a button group.
 /// @param {String} $selector [$buttongroup-child-selector] - Selector for the buttons inside the button group.
-@mixin button-group-stack(
-  $selector: $buttongroup-child-selector ) {
+@mixin button-group-stack($selector: $buttongroup-child-selector) {
   @if $global-flexbox {
     flex-wrap: wrap;
   }
@@ -175,7 +171,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
     @if $button-border-status {
       &:not(:first-child) {
         margin-#{$global-left}: 0;
-        margin-top: - $button-border-width;
+        margin-top: -$button-border-width;
       }
     }
 
@@ -211,8 +207,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 
 /// Un-stacks the buttons in a button group.
 /// @param {String} $selector [$buttongroup-child-selector] - Selector for the buttons inside the button group.
-@mixin button-group-unstack(
-  $selector: $buttongroup-child-selector ) {
+@mixin button-group-unstack($selector: $buttongroup-child-selector) {
   #{$selector} {
     @if $global-flexbox {
       flex: 0 0 auto;
@@ -222,7 +217,7 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 
     @if $button-border-status {
       &:not(:first-child) {
-        margin-#{$global-left}: - $button-border-width;
+        margin-#{$global-left}: -$button-border-width;
         margin-top: 0;
       }
 
@@ -254,7 +249,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
       }
     }
 
-    &.expanded { @include button-group-expand; }
+    &.expanded {
+      @include button-group-expand;
+    }
 
     // Colors
     @each $name, $color in $button-palette {

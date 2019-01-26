@@ -21,7 +21,6 @@ $drilldown-background: $global-drilldown-background !default;
 /// @type Color
 $drilldown-submenu-background: $global-drilldown-submenu-background !default;
 
-
 //--------------------------------------
 // Content
 //
@@ -29,14 +28,12 @@ $drilldown-submenu-background: $global-drilldown-submenu-background !default;
 $drilldown-arrow-right-content: $global-drilldown-arrow-right-content !default;
 $drilldown-arrow-left-content: $global-drilldown-arrow-left-content !default;
 
-
 //--------------------------------------
 // Status
 //
 /// Adds arrows to drilldown items with submenus, as well as the back button.
 /// @type Boolean
 $drilldown-arrows-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -61,10 +58,8 @@ $drilldown-nested-margin: 0 !default;
 /// @type Number
 $drilldown-submenu-padding: $drilldown-padding !default;
 
-
 $drilldown-arrow-next-margin-right: 1rem !default;
 $drilldown-arrow-back-margin-right: rem-calc(8) !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -122,7 +117,6 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
   }
 }
 
-
 @mixin foundation-drilldown-menu {
   // Applied to the Menu container
   .is-drilldown {
@@ -162,7 +156,6 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
   // .drilldown-submenu-cover-previous {
   //   min-height: 100%;
   // }
-
 
   // The top level <ul>
   .drilldown {

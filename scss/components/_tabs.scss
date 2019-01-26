@@ -48,20 +48,17 @@ $tab-content-color: $global-tab-content-color !default;
 /// @type Color
 $tab-content-border-color: $global-tab-content-border-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 
 $tab-container-border-size: $global-border-width !default;
 
-
 //--------------------------------------
 // Radius
 //
 
 $tab-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -85,7 +82,6 @@ $tab-content-horizontal-radius-status: false !default;
 
 $tab-container-background-primary-status: false !default;
 
-
 //--------------------------------------
 // Sizes
 //
@@ -105,7 +101,6 @@ $tab-content-padding: 1rem !default;
 /// @type Number
 $tab-item-font-size: rem-calc(12) !default;
 
-
 $tab-container-border: $tab-container-border-size solid $tab-border !default;
 $tab-content-border: $tab-container-border-size solid $tab-content-border-color !default;
 $tab-content-vertical-border: $tab-content-border !default;
@@ -114,9 +109,9 @@ $tab-title-font-weight: normal !default;
 $tab-content-transition: all .5s ease !default;
 $tab-content-margin-bottom: 1rem !default;
 
-
-$tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-size)) !default; // For fix tab-item-padding
-
+$tab-container-border-size-in-rem: rem-calc(
+  strip-unit($tab-container-border-size)
+) !default; // For fix tab-item-padding
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -125,7 +120,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 ////////////////////////////////////////
 
 /// Adds styles for a tab container. Apply this to a `<ul>`.
-@mixin tabs-container (
+@mixin tabs-container(
   $margin: $tab-margin,
   $background: $tab-background,
   $border-color: $tab-container-border
@@ -136,11 +131,16 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
   @if ($tab-background-status) and ($background != transparent) {
     background: $background;
   }
-  @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+  @if ($tab-container-border-status) and
+    (not $tab-border-status) and
+    (not $tab-bootstrap-like-status) {
     border: $tab-container-border;
   }
 
-  @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+  @if ($tab-container-radius-status) and
+    ($tab-radius != 0) and
+    (not $tab-border-status) and
+    (not $tab-bootstrap-like-status) {
     border-top-left-radius: $tab-radius;
     border-top-right-radius: $tab-radius;
   }
@@ -148,8 +148,10 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 
 /// Augments a tab container to have vertical tabs. Use this in conjunction with `tabs-container()`.
 @mixin tabs-container-vertical {
-
-  @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+  @if ($tab-container-radius-status) and
+    ($tab-radius != 0) and
+    (not $tab-border-status) and
+    (not $tab-bootstrap-like-status) {
     border-bottom-left-radius: $tab-radius;
     border-top-left-radius: $tab-radius;
     border-top-right-radius: 0;
@@ -172,13 +174,25 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 
       @if $tab-bootstrap-like-status {
         &:focus,
-        &[aria-selected='true'] {
+        &[aria-selected="true"] {
           //border-top: $tab-container-border;
           //border-left: $tab-container-border;
           //border-bottom: $tab-container-border;
           border: $tab-container-border;
           border-right: 0;
-          padding: (get-side($tab-item-padding, top) - $tab-container-border-size-in-rem) get-side($tab-item-padding, right) (get-side($tab-item-padding, bottom) - $tab-container-border-size-in-rem) (get-side($tab-item-padding, left) - $tab-container-border-size-in-rem);
+          padding: (
+              get-side($tab-item-padding, top) -
+                $tab-container-border-size-in-rem
+            )
+            get-side($tab-item-padding, right)
+            (
+              get-side($tab-item-padding, bottom) -
+                $tab-container-border-size-in-rem
+            )
+            (
+              get-side($tab-item-padding, left) -
+                $tab-container-border-size-in-rem
+            );
           @if ($tab-border-radius-status) and ($tab-radius != 0) {
             border-bottom-left-radius: $tab-radius;
             border-top-left-radius: $tab-radius;
@@ -188,11 +202,14 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
       }
     }
 
-    @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+    @if ($tab-container-radius-status) and
+      ($tab-radius != 0) and
+      (not $tab-border-status) and
+      (not $tab-bootstrap-like-status) {
       &:first-child > a {
         &:hover,
         &:focus,
-        &[aria-selected='true'] {
+        &[aria-selected="true"] {
           border-top-left-radius: $tab-radius;
           border-top-right-radius: 0;
         }
@@ -201,7 +218,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
       &:last-child > a {
         &:hover,
         &:focus,
-        &[aria-selected='true'] {
+        &[aria-selected="true"] {
           border-bottom-left-radius: $tab-radius;
           border-top-left-radius: 0;
           border-top-right-radius: 0;
@@ -212,7 +229,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Adds styles for the links within a tab container. Apply this to the `<li>` elements inside a tab container.
-@mixin tabs-title (
+@mixin tabs-title(
   $padding: $tab-item-padding,
   $font-size: $tab-item-font-size,
   $color: $tab-color,
@@ -237,7 +254,10 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
         border: $tab-container-border;
       }
     }
-    @if ($tab-border-radius-status) and ($tab-radius != 0) and ($tab-border-status) and (not $tab-bootstrap-like-status) {
+    @if ($tab-border-radius-status) and
+      ($tab-radius != 0) and
+      ($tab-border-status) and
+      (not $tab-bootstrap-like-status) {
       border-radius: $tab-radius;
     }
     @if $font-size != 1rem {
@@ -246,7 +266,6 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
     @if $tab-title-font-weight != normal {
       font-weight: $tab-title-font-weight;
     }
-
 
     &:hover {
       @if $tab-background-status {
@@ -259,7 +278,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
     }
 
     &:focus,
-    &[aria-selected='true'] {
+    &[aria-selected="true"] {
       @if $tab-background-status {
         background: $tab-background-active;
       }
@@ -272,7 +291,18 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
         //border-right: $tab-container-border;
         border: $tab-container-border;
         border-bottom: 0;
-        padding: (get-side($tab-item-padding, top) - $tab-container-border-size-in-rem) (get-side($tab-item-padding, right) - $tab-container-border-size-in-rem) get-side($tab-item-padding, bottom) (get-side($tab-item-padding, left) - $tab-container-border-size-in-rem);
+        padding: (
+            get-side($tab-item-padding, top) - $tab-container-border-size-in-rem
+          )
+          (
+            get-side($tab-item-padding, right) -
+              $tab-container-border-size-in-rem
+          )
+          get-side($tab-item-padding, bottom)
+          (
+            get-side($tab-item-padding, left) -
+              $tab-container-border-size-in-rem
+          );
         @if ($tab-border-radius-status) and ($tab-radius != 0) {
           border-top-left-radius: $tab-radius;
           border-top-right-radius: $tab-radius;
@@ -281,11 +311,14 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
     }
   }
 
-  @if ($tab-container-radius-status) and ($tab-radius != 0) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+  @if ($tab-container-radius-status) and
+    ($tab-radius != 0) and
+    (not $tab-border-status) and
+    (not $tab-bootstrap-like-status) {
     &:first-child > a {
       &:hover,
       &:focus,
-      &[aria-selected='true'] {
+      &[aria-selected="true"] {
         border-top-left-radius: $tab-radius;
         border-top-right-radius: 0;
       }
@@ -294,7 +327,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
     &:last-child > a {
       &:hover,
       &:focus,
-      &[aria-selected='true'] {
+      &[aria-selected="true"] {
         border-radius: 0;
       }
     }
@@ -302,7 +335,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Adds styles for the wrapper that surrounds a tab group's content panes.
-@mixin tabs-content (
+@mixin tabs-content(
   $background: $tab-content-background,
   $color: $tab-content-color,
   $border-color: $tab-content-border
@@ -314,7 +347,9 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
   @if $tab-content-border-status {
     border: $tab-content-border;
   }
-  @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+  @if ($tab-container-border-status) and
+    (not $tab-border-status) and
+    (not $tab-bootstrap-like-status) {
     border-top: 0;
   }
   @if $color != $body-font-color {
@@ -331,13 +366,13 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Augments a tab content container to have a vertical style, by shifting the border around. Use this in conjunction with `tabs-content()`.
-@mixin tabs-content-vertical (
-  $border-color: $tab-content-border
-) {
+@mixin tabs-content-vertical($border-color: $tab-content-border) {
   @if $tab-content-border-status {
     border: $tab-content-vertical-border;
   }
-  @if ($tab-container-border-status) and (not $tab-border-status) and (not $tab-bootstrap-like-status) {
+  @if ($tab-container-border-status) and
+    (not $tab-border-status) and
+    (not $tab-bootstrap-like-status) {
     //border-#{$global-left}: 0; //??
   }
 
@@ -347,9 +382,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 }
 
 /// Adds styles for an individual tab content panel within the tab content container.
-@mixin tabs-panel (
-  $padding: $tab-content-padding
-) {
+@mixin tabs-panel($padding: $tab-content-padding) {
   display: none;
   padding: $padding;
 
@@ -413,7 +446,7 @@ $tab-container-border-size-in-rem: rem-calc(strip-unit($tab-container-border-siz
 
         &:hover,
         &:focus,
-        &[aria-selected='true'] {
+        &[aria-selected="true"] {
           background: smart-scale($primary-color);
         }
       }

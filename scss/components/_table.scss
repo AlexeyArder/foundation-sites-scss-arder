@@ -59,9 +59,7 @@ $table-head-row-hover: $global-table-head-row-hover !default;
 /// @type List
 $table-foot-row-hover: $global-table-foot-row-hover !default;
 
-
 $table-border-color: $global-table-border-color !default;
-
 
 //--------------------------------------
 // Border width
@@ -69,13 +67,11 @@ $table-border-color: $global-table-border-color !default;
 
 $table-border-width: $global-border-width !default;
 
-
 //--------------------------------------
 // Radius
 //
 
 $table-border-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -88,12 +84,10 @@ $show-header-for-stacked: false !default;
 /// @type Boolean
 $table-is-striped: true !default;
 
-
 $table-radius-status: true !default;
 $table-border-status: true !default;
 $table-background-status: true !default;
 $table-background-hover-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -114,7 +108,6 @@ $table-border: $table-border-width solid $table-border-color !default;
 /// @type Number
 $table-padding: rem-calc(8 10 10) !default;
 
-
 $table-caption-font-size: 1rem !default;
 $table-caption-font-weight: $global-weight-bold !default;
 $table-thead-tfoot-font-weight: $global-weight-bold !default;
@@ -122,7 +115,6 @@ $table-thead-tfoot-text-align: #{$global-left} !default;
 
 $table-margin-bottom: $global-margin !default;
 $table-thead-tfoot-padding: $table-padding !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -138,7 +130,8 @@ $table-thead-tfoot-padding: $table-padding !default;
         background-color: $table-striped-background;
         border-bottom: 0;
       }
-    } @else if $stripe == odd { // If stripe is set to odd, darken the odd rows.
+    } @else if $stripe == odd {
+      // If stripe is set to odd, darken the odd rows.
       &:nth-child(odd) {
         background-color: $table-striped-background;
       }
@@ -149,12 +142,15 @@ $table-thead-tfoot-padding: $table-padding !default;
 @mixin -zf-table-unstripe() {
   tr {
     background-color: $table-background;
-    border-bottom: 0;
+    // border-bottom: 0;
     border-bottom: $table-border;
   }
 }
 
-@mixin -zf-table-children-styles($stripe: $table-stripe, $is-striped: $table-is-striped) {
+@mixin -zf-table-children-styles(
+  $stripe: $table-stripe,
+  $is-striped: $table-is-striped
+) {
   thead,
   tbody,
   tfoot {
@@ -179,7 +175,8 @@ $table-thead-tfoot-padding: $table-padding !default;
 
   // Table head
   thead {
-    @if ($table-background-status) and ($table-head-background != $table-background) {
+    @if ($table-background-status) and
+      ($table-head-background != $table-background) {
       background: $table-head-background;
     }
     @if $table-head-font-color != $body-font-color {
@@ -189,7 +186,8 @@ $table-thead-tfoot-padding: $table-padding !default;
 
   // Table foot
   tfoot {
-    @if ($table-background-status) and ($table-foot-background != $table-background) {
+    @if ($table-background-status) and
+      ($table-foot-background != $table-background) {
       background: $table-foot-background;
     }
     @if $table-foot-font-color != $body-font-color {
@@ -265,7 +263,8 @@ $table-thead-tfoot-padding: $table-padding !default;
           background-color: $table-background;
         }
       }
-    } @else { // If tables are not striped
+    } @else {
+      // If tables are not striped
       tbody {
         @include -zf-table-unstripe();
       }
@@ -281,10 +280,7 @@ $table-thead-tfoot-padding: $table-padding !default;
 
 /// Adds the general styles for tables.
 /// @param {Keyword} $stripe [$table-stripe] - Uses keywords even, odd, or none to darken rows of the table. The default value is even.
-@mixin table(
-  $stripe: $table-stripe,
-  $nest: false
-) {
+@mixin table($stripe: $table-stripe, $nest: false) {
   border-collapse: collapse;
   margin-bottom: $table-margin-bottom;
   width: 100%;
@@ -335,35 +331,39 @@ $table-thead-tfoot-padding: $table-padding !default;
     }
   }
 
-    // //Darkens the even striped table rows.
-    // @if($table-stripe == even) {
-    //   &:nth-of-type(even):hover {
-    //     background-color: $table-row-stripe-hover;
-    //   }
-    // } @else if ($table-stripe == odd) { //Darkens the odd striped table rows.
-    //   &:nth-of-type(odd):hover {
-    //     background-color: $table-row-stripe-hover;
-    //   }
-    // }
+  // //Darkens the even striped table rows.
+  // @if($table-stripe == even) {
+  //   &:nth-of-type(even):hover {
+  //     background-color: $table-row-stripe-hover;
+  //   }
+  // } @else if ($table-stripe == odd) { //Darkens the odd striped table rows.
+  //   &:nth-of-type(odd):hover {
+  //     background-color: $table-row-stripe-hover;
+  //   }
+  // }
   // }
 
   @if $table-background-status {
     @if $table-is-striped {
-      @if ($table-stripe == even) { // Darkens the even striped table rows.
+      @if ($table-stripe == even) {
+        // Darkens the even striped table rows.
         &:not(.unstriped) tr:nth-of-type(even):hover {
           background-color: $table-row-stripe-hover;
         }
-      } @else if ($table-stripe == odd) { // Darkens the odd striped table rows.
+      } @else if ($table-stripe == odd) {
+        // Darkens the odd striped table rows.
         &:not(.unstriped) tr:nth-of-type(odd):hover {
           background-color: $table-row-stripe-hover;
         }
       }
     } @else {
-      @if ($table-stripe == even) { // Darkens the even striped table rows.
+      @if ($table-stripe == even) {
+        // Darkens the even striped table rows.
         &.striped tr:nth-of-type(even):hover {
           background-color: $table-row-stripe-hover;
         }
-      } @else if ($table-stripe == odd) { // Darkens the odd striped table rows.
+      } @else if ($table-stripe == odd) {
+        // Darkens the odd striped table rows.
         &.striped tr:nth-of-type(odd):hover {
           background-color: $table-row-stripe-hover;
         }

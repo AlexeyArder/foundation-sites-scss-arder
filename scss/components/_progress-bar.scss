@@ -17,9 +17,7 @@ $progress-background: $global-progress-background !default;
 /// @type Color
 $progress-meter-background: $global-progress-meter-background !default;
 
-
 $progress-text-color: $global-progress-text-color !default;
-
 
 //--------------------------------------
 // Radius
@@ -28,13 +26,11 @@ $progress-text-color: $global-progress-text-color !default;
 /// @type Number
 $progress-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $progress-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -47,10 +43,8 @@ $progress-height: 1rem !default;
 /// @type Number
 $progress-margin-bottom: $global-margin !default;
 
-
 $progress-text-font-size: rem-calc(10) !default;
 $progress-text-font-weight: bold !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////

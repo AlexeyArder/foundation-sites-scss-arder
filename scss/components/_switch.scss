@@ -21,9 +21,7 @@ $switch-background-active: $global-switch-background-active !default;
 /// @type Color
 $switch-paddle-background: $global-switch-paddle-background !default;
 
-
 $switch-container-color: $global-switch-container-color !default;
-
 
 //--------------------------------------
 // Radius
@@ -32,7 +30,6 @@ $switch-container-color: $global-switch-container-color !default;
 /// @type Number
 $switch-paddle-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -40,10 +37,8 @@ $switch-paddle-radius: $global-radius !default;
 /// @type Number
 $switch-radius: $global-radius !default;
 
-
 $switch-radius-status: true !default;
 $switch-different-sizes-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -76,19 +71,20 @@ $switch-paddle-offset: $global-border-width !default;
 /// @type Number
 $switch-paddle-transition: all .25s ease-out !default;
 
-
 $switch-container-font-size: rem-calc(14) !default;
 $switch-container-font-weight: bold !default;
 $switch-width: 4rem !default;
-$switch-paddle-height: $switch-height - (rem-calc(strip-unit($switch-paddle-offset)) * 2) !default;
-$switch-paddle-width: ($switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)) / 2 !default;
+$switch-paddle-height: $switch-height -
+  (rem-calc(strip-unit($switch-paddle-offset)) * 2) !default;
+$switch-paddle-width: (
+    $switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)
+  ) / 2 !default;
 $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 
 // $switch-width: $switch-height * 2;
 // $paddle-height: $switch-height - (rem-calc($switch-paddle-offset) * 2);
 // $paddle-width: $switch-height - (rem-calc($switch-paddle-offset) * 2);
 // $paddle-active-offest: $switch-width - $paddle-width - rem-calc($switch-paddle-offset);
-
 
 ////////////////////////////////////////
 /// Switch
@@ -167,7 +163,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
     background: $switch-background-active;
 
     &::after {
-      #{$global-left}: $switch-width - $switch-paddle-width - (($switch-width - ($switch-paddle-width * 2)) / 4);
+      #{$global-left}: $switch-width - $switch-paddle-width -
+        (($switch-width - ($switch-paddle-width * 2)) / 4);
     }
   }
 
@@ -214,11 +211,12 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   $width: $switch-width,
   $height: $switch-height,
   //$paddle-width: $switch-paddle-width,
-  $paddle-offset: $switch-paddle-offset ) {
-
+    $paddle-offset: $switch-paddle-offset
+) {
   $paddle-height: $height - (rem-calc(strip-unit($paddle-offset)) * 2);
   $paddle-width: ($width - (rem-calc(strip-unit($paddle-offset)) * 4)) / 2;
-  $paddle-left-active: $width - $paddle-width - rem-calc(strip-unit($paddle-offset));
+  $paddle-left-active: $width - $paddle-width -
+    rem-calc(strip-unit($paddle-offset));
 
   height: $height; //??
 
@@ -280,7 +278,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-width * $switch-height-tiny-coefficient,
         $switch-height * $switch-height-tiny-coefficient,
         //$switch-paddle-width,
-        $switch-paddle-offset);
+          $switch-paddle-offset
+      );
     }
 
     .switch.small {
@@ -289,7 +288,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-width * $switch-height-small-coefficient,
         $switch-height * $switch-height-small-coefficient,
         //$switch-paddle-width,
-        $switch-paddle-offset);
+          $switch-paddle-offset
+      );
     }
 
     .switch.large {
@@ -298,7 +298,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-width * $switch-height-large-coefficient,
         $switch-height * $switch-height-large-coefficient,
         //$switch-paddle-width,
-        $switch-paddle-offset);
+          $switch-paddle-offset
+      );
     }
   }
 }

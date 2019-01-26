@@ -25,9 +25,7 @@ $label-color-alt: $global-label-color-alt !default;
 /// @type Map
 $label-palette: $foundation-palette !default;
 
-
 $label-border-color: $global-label-border-color !default;
-
 
 //--------------------------------------
 // Border width
@@ -35,14 +33,12 @@ $label-border-color: $global-label-border-color !default;
 
 $label-border-width: $global-border-width !default;
 
-
 //--------------------------------------
 // Radius
 //
 /// Default radius of labels.
 /// @type Number
 $label-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -53,7 +49,6 @@ $label-fill: solid !default;
 
 $label-radius-status: true !default;
 $label-border-status: false !default;
-
 
 //--------------------------------------
 // Sizes
@@ -66,9 +61,7 @@ $label-font-size: 1rem !default;
 /// @type Number
 $label-padding: rem-calc(6) rem-calc(10) !default;
 
-
 $label-border: $label-border-width solid $label-border-color !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -101,7 +94,8 @@ $label-border: $label-border-width solid $label-border-color !default;
     @if $label-fill == solid {
       background: $label-background;
       color: $label-color;
-    } @elseif $label-fill == hollow {
+    }
+    @else if $label-fill == hollow {
       color: $label-color;
     }
 
@@ -113,7 +107,8 @@ $label-border: $label-border-width solid $label-border-color !default;
           @if $label-border-status {
             border-color: $color / 2;
           }
-        } @elseif $label-fill == hollow {
+        }
+        @else if $label-fill == hollow {
           border-color: $color;
           color: color-pick-contrast($color, ($label-color, $label-color-alt));
         }

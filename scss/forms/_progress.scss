@@ -17,7 +17,6 @@ $progress-background: $global-progress-background !default;
 /// @type Color
 $progress-meter-background: $global-progress-meter-background !default;
 
-
 //--------------------------------------
 // Radius
 //
@@ -25,13 +24,11 @@ $progress-meter-background: $global-progress-meter-background !default;
 /// @type Number
 $progress-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
 
 $progress-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -43,7 +40,6 @@ $progress-height: 1rem !default;
 /// Bottom margin of a progress bar.
 /// @type Number
 $progress-margin-bottom: $global-margin !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -109,7 +105,8 @@ $progress-margin-bottom: $global-margin !default;
 
     // For IE and Edge
     &::-ms-fill {
-      @if has-value($progress-radius) { // sass-lint:disable-line no-vendor-prefixes
+      @if has-value($progress-radius) {
+        // sass-lint:disable-line no-vendor-prefixes
         border-radius: $progress-radius;
       }
 

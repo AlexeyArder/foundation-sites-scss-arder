@@ -12,7 +12,7 @@
 /// @param {Keyword} $size - Breakpoint to use. **Must be a breakpoint defined in `$breakpoints`.**
 @mixin show-for($size) {
   $size: map-get($breakpoints, $size);
-  // Max value is 0.2px under the next breakpoint (0.02 / 16 = 0.00125).
+  // Max value is .2px under the next breakpoint (.02 / 16 = .00125).
   // Use a precision under 1px to support browser zoom, but not to low to avoid rounding.
   // See https://github.com/zurb/foundation-sites/issues/11313
   $size: -zf-bp-to-em($size) - .00125;
@@ -42,12 +42,12 @@
   } @else {
     $upper-bound: -zf-bp-to-em($upper-bound-size);
 
-    @media screen and (max-width: $lower-bound), screen and (min-width: $upper-bound) {
+    @media screen and (max-width: $lower-bound),
+      screen and (min-width: $upper-bound) {
       display: none !important;
     }
   }
 }
-
 
 /// Show an element by default, and hide it above a certain screen size.
 /// @param {Keyword} $size - Breakpoint to use. **Must be a breakpoint defined in `$breakpoints`.**

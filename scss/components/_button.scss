@@ -41,16 +41,13 @@ $button-hollow-hover-lightness: $global-button-hollow-hover-lightness !default;
 /// @type Map
 $button-palette: $foundation-palette !default;
 
-
 $button-border-color: $global-button-border-color !default;
-
 
 //--------------------------------------
 // Content
 //
 
 $button-dropdown-arrow-content: $global-button-dropdown-arrow-content !default;
-
 
 //--------------------------------------
 // Radius
@@ -59,7 +56,6 @@ $button-dropdown-arrow-content: $global-button-dropdown-arrow-content !default;
 /// @type Number
 $button-radius: $global-radius !default;
 
-
 //--------------------------------------
 // Status
 //
@@ -67,14 +63,12 @@ $button-radius: $global-radius !default;
 /// @type Keyword
 $button-fill: solid !default;
 
-
 $button-hollow-hover-solid: true !default;
 $button-border-status: true !default;
 $button-border-radius-status: true !default;
 $button-dropdown-status: true !default;
 $button-disabled-status: true !default;
 $button-clear-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -104,23 +98,29 @@ $button-responsive-expanded: false !default;
 /// @type List
 $button-padding: .5em 1em !default;
 
-
 $button-font-default: 1rem !default; // $base-font-size
-
 
 /// Sizes for buttons.
 /// @type Map
 $button-sizes: (
   default: $button-font-default,
-  tiny: $button-font-default - ($button-font-default / 6),
-  small: $button-font-default - ($button-font-default / 9),
-  large: $button-font-default + ($button-font-default / 6),
+  tiny: $button-font-default -
+    (
+      $button-font-default / 6
+    ),
+  small: $button-font-default -
+    (
+      $button-font-default / 9
+    ),
+  large: $button-font-default +
+    (
+      $button-font-default / 6
+    )
 ) !default;
 
 /// Border width for hollow outline buttons
 /// @type Number
 $button-hollow-border-width: $global-border-width !default;
-
 
 $button-line-height: 1 !default;
 $button-font-weight: normal !default;
@@ -133,7 +133,6 @@ $button-dropdown-arrow-font-size: rem-calc(10) !default;
 $button-dropdown-arrow-padding-top: .1em !default;
 $button-dropdown-arrow-margin-left-coefficient: .8 !default;
 $button-arrow-only-side-margin: .2em !default;
-
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -202,13 +201,20 @@ $button-arrow-only-side-margin: .2em !default;
   $background: $button-background,
   $background-hover: $button-background-hover,
   $color: $button-color,
-  $background-hover-lightness: $button-background-hover-lightness ) {
+  $background-hover-lightness: $button-background-hover-lightness
+) {
   @if $color == auto {
-    $color: color-pick-contrast($background, ($button-color, $button-color-alt));
+    $color: color-pick-contrast(
+      $background,
+      ($button-color, $button-color-alt)
+    );
   }
 
   @if $background-hover == auto {
-    $background-hover: scale-color($background, $lightness: $background-hover-lightness);
+    $background-hover: scale-color(
+      $background,
+      $lightness: $background-hover-lightness
+    );
   }
 
   //@if lightness($background) >= 70% {
@@ -274,8 +280,8 @@ $button-arrow-only-side-margin: .2em !default;
 @mixin button-hollow-style(
   $color: $button-background,
   $hover-lightness: $button-hollow-hover-lightness,
-  $border-width: $button-hollow-border-width ) {
-
+  $border-width: $button-hollow-border-width
+) {
   $color-hover: scale-color($color, $lightness: $hover-lightness);
 
   border: $border-width $button-border-hollow-style $color;
@@ -299,16 +305,38 @@ $button-arrow-only-side-margin: .2em !default;
   }
 }
 
+/// Sets the visual style of a clear button.
+/// @param {Color} $color [$button-background] - Text color of the button.
+/// @param {Color} $hover-lightness [$button-hollow-hover-lightness] - Color lightness on hover.
+@mixin button-clear-style(
+  $color: $button-background,
+  $hover-lightness: $button-hollow-hover-lightness
+) {
+  $color-hover: scale-color($color, $lightness: $hover-lightness);
+
+  // Default and disabled states
+  &,
+  &.disabled, &[disabled],
+  &.disabled:hover, &[disabled]:hover,
+  &.disabled:focus, &[disabled]:focus {
+    color: $color;
+  }
+
+  &:hover, &:focus {
+    color: $color-hover;
+  }
+}
+
 /// Adds disabled styles to a button by fading the element, reseting the cursor, and disabling pointer events.
 /// @param {Color} $background [$button-background] - Background color of the disabled button.
 /// @param {Color} $color [$button-color] - Text color of the disabled button. Set to `auto` to have the mixin automatically generate a color based on the background color.
-@mixin button-disabled(
-  $background: $button-background,
-  $color: $button-color ) {
-
+@mixin button-disabled($background: $button-background, $color: $button-color) {
   cursor: not-allowed;
   @if $color == auto {
-    $color: color-pick-contrast($background, ($button-color, $button-color-alt));
+    $color: color-pick-contrast(
+      $background,
+      ($button-color, $button-color-alt)
+    );
   }
   @if $button-opacity-disabled != 0 {
     opacity: $button-opacity-disabled;
@@ -327,25 +355,35 @@ $button-arrow-only-side-margin: .2em !default;
 /// @param {Color} $color [white] - Color of the arrow.
 /// @param {Number} $offset [$button-padding] - Distance between the arrow and the text of the button. Defaults to whatever the right padding of a button is.
 @mixin button-dropdown(
+  $offset: get-side($button-padding, right) *
+    $button-dropdown-arrow-margin-left-coefficient,
   // $size: .4em,
-  // $color: $white,
-  $offset: get-side($button-padding, right) * $button-dropdown-arrow-margin-left-coefficient) {
-
+  // $color: $white
+) {
   &::after {
     content: $button-dropdown-arrow-content;
     display: inline-block;
     float: #{$global-right};
     position: relative;
-    @if ($button-dropdown-arrow-font-size != inherit) and ($button-dropdown-arrow-font-size != 1em) {
+    @if ($button-dropdown-arrow-font-size != inherit) and
+      ($button-dropdown-arrow-font-size != 1em) {
       font-size: $button-dropdown-arrow-font-size;
       @if $button-dropdown-arrow-font-size != $button-font-default {
-        margin-top: (strip-unit($button-font-default - $button-dropdown-arrow-font-size) * 1em) / 2 + $button-dropdown-arrow-padding-top;
+        margin-top: (
+            strip-unit(
+                $button-font-default - $button-dropdown-arrow-font-size
+              ) *
+              1em
+          ) /
+          2 +
+          $button-dropdown-arrow-padding-top;
       }
     }
     @if type-of($offset) == 'map' {
       @each $breakpoint, $value in $offset {
         @include breakpoint($breakpoint) {
-          margin-#{$global-left}: get-side($value, right) * $button-dropdown-arrow-margin-left-coefficient;
+          margin-#{$global-left}: get-side($value, right) *
+            $button-dropdown-arrow-margin-left-coefficient;
         }
       }
     } @else {
@@ -368,7 +406,8 @@ $button-arrow-only-side-margin: .2em !default;
   $background: $button-background,
   $background-hover: $button-background-hover,
   $color: $button-color,
-  $style: $button-fill ) {
+  $style: $button-fill
+) {
   @include button-base;
 
   @if $style == solid {
@@ -473,13 +512,14 @@ $button-arrow-only-side-margin: .2em !default;
         // @include button-hollow;
         // @include button-hollow-style;
 
+        @include button-clear-style;
+
         background-color: transparent;
         border-color: transparent;
 
         &,
         &:hover,
         &:focus {
-          &,
           &.disabled,
           &[disabled] {
             // border-color: transparent;
@@ -539,40 +579,56 @@ $button-arrow-only-side-margin: .2em !default;
         @if type-of($button-padding) == 'map' {
           @each $breakpoint, $value in $button-padding {
             @include breakpoint($breakpoint) {
-              margin-#{$global-left}: $button-arrow-only-side-margin - (get-side($value, right));
+              margin-#{$global-left}: $button-arrow-only-side-margin -
+                (get-side($value, right));
             }
           }
         } @else {
-          margin-#{$global-left}: $button-arrow-only-side-margin - (get-side($button-padding, right));
+          margin-#{$global-left}: $button-arrow-only-side-margin -
+            (get-side($button-padding, right));
         }
         @if type-of($button-padding) == 'map' {
           @each $breakpoint, $value in $button-padding {
             @include breakpoint($breakpoint) {
-              margin-#{$global-right}: $button-arrow-only-side-margin - (get-side($value, right));
+              margin-#{$global-right}: $button-arrow-only-side-margin -
+                (get-side($value, right));
             }
           }
         } @else {
-          margin-#{$global-right}: $button-arrow-only-side-margin - (get-side($button-padding, right));
+          margin-#{$global-right}: $button-arrow-only-side-margin -
+            (get-side($button-padding, right));
         }
         @if $button-dropdown-arrow-font-size != $button-font-default {
           line-height: 0;
           margin-top: 0;
-          top: - ((strip-unit($button-font-default - $button-dropdown-arrow-font-size) * 1em) / 2) + ($button-dropdown-arrow-padding-top / 2);
+          top: -(
+              (
+                  strip-unit(
+                      $button-font-default - $button-dropdown-arrow-font-size
+                    ) *
+                    1em
+                ) /
+                2
+            ) +
+            ($button-dropdown-arrow-padding-top / 2);
         }
 
         //top: .2em;
       }
     }
-  }
 
-  button {
-    font-family: inherit;
-  }
-
-  a.button { // sass-lint:disable-line no-qualifying-elements
+    // sass-lint:disable-line no-qualifying-elements
     &:hover,
     &:focus {
       text-decoration: none; //??
     }
   }
+
+  // .button {
+  //   // sass-lint:disable-line no-qualifying-elements
+  //   &:hover,
+  //   &:focus {
+  //     text-decoration: none; //??
+  //   }
+  // }
 }

@@ -53,14 +53,12 @@ $input-shadow-focus: $global-input-shadow-focus !default;
 /// @type Color
 $input-placeholder-color: $global-input-placeholder-color !default;
 
-
 //--------------------------------------
 // Border width
 //
 /// Border width around text inputs.
 /// @type Number
 $input-border-width: $global-form-border-width !default;
-
 
 //--------------------------------------
 // Radius
@@ -72,7 +70,6 @@ $input-radius: $global-radius !default;
 /// Border radius for form buttons, defaulted to global-radius.
 /// @type Number
 $form-button-radius: $global-radius !default;
-
 
 //--------------------------------------
 // Status
@@ -86,7 +83,6 @@ $input-border-status: true !default;
 $input-box-shadow-status: true !default;
 $input-radius-status: false !default;
 $submit-button-border-radius-status: true !default;
-
 
 //--------------------------------------
 // Sizes
@@ -133,7 +129,8 @@ $input-padding: $form-spacing / 2 !default;
 
 /// Default value used for inputs height.
 /// @type Number
-$input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')); // - rem-calc(1)
+$input-height: ($input-font-size * unitless-calc($input-line-height)) +
+  (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')); // - rem-calc(1)
 
 /// Border radius for buttons, defaulted to global-radius.
 /// @type Number
@@ -165,7 +162,8 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-sid
   @if $input-color != $body-font-color {
     color: $input-color;
   }
-  @if ($input-font-family != inherit) and ($input-font-family != $body-font-family) {
+  @if ($input-font-family != inherit) and
+    ($input-font-family != $body-font-family) {
     font-family: $input-font-family;
   }
   @if $input-font-size != 1rem {
@@ -234,7 +232,7 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-sid
   }
 
   // Reset border-radius on iOS
-  input:not([type=checkbox]):not([type=radio]) {
+  input:not([type="checkbox"]):not([type="radio"]) {
     @if ($input-radius != 0) {
       border-radius: $input-radius;
     } @else {
@@ -243,8 +241,8 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-sid
   }
 
   // Reset styles on button-like inputs
-  [type='submit'],
-  [type='button'] {
+  [type="submit"],
+  [type="button"] {
     appearance: none;
     @if ($submit-button-border-radius-status) and ($input-radius != 0) {
       border-radius: $form-button-radius;
@@ -252,14 +250,15 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-sid
   }
 
   // Reset Normalize setting content-box to search elements
-  input[type='search'] { // sass-lint:disable-line no-qualifying-elements
+  input[type="search"] {
+    // sass-lint:disable-line no-qualifying-elements
     -moz-appearance: none;
     -webkit-appearance: none;
     box-sizing: border-box;
   }
 
   // Number input styles
-  [type='number'] {
+  [type="number"] {
     @if not $input-number-spinners {
       -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefixes
 

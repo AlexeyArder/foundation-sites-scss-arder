@@ -13,7 +13,6 @@
 /// @type Color
 $helptext-color: $global-helptext-color !default;
 
-
 //--------------------------------------
 // Sizes
 //
@@ -27,8 +26,7 @@ $helptext-font-style: italic !default;
 
 /// Default value used for margin for help text.
 /// @type Number
-$helptext-margin-top: - ($form-spacing / 2);
-
+$helptext-margin-top: -($form-spacing / 2);
 
 ////////////////////////////////////////
 ////////////////////////////////////////
