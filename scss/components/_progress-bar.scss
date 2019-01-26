@@ -90,8 +90,6 @@ $progress-text-font-weight: bold !default;
   @if $progress-text-font-weight != normal {
     font-weight: $progress-text-font-weight;
   }
-
-  //position: absolute;
 }
 
 @mixin foundation-progress-bar {
