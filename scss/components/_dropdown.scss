@@ -59,13 +59,13 @@ $dropdown-width: rem-calc(300) !default;
 $dropdown-sizes: (
   tiny: $dropdown-width / 3,
   small: $dropdown-width -
-    (
-      $dropdown-width / 2
-    ),
+  (
+    $dropdown-width / 2
+  ),
   large: $dropdown-width +
-    (
-      $dropdown-width / 2
-    )
+  (
+    $dropdown-width / 2
+  )
 ) !default;
 
 ////////////////////////////////////////
@@ -76,19 +76,22 @@ $dropdown-sizes: (
 
 /// Applies styles for a basic dropdown.
 @mixin dropdown-container {
-  background-color: $body-background;
-  display: none;
-  padding: $dropdown-padding;
   position: absolute;
-  visibility: hidden;
-  width: $dropdown-width;
   z-index: 10;
+  display: none;
+  width: $dropdown-width;
+  padding: $dropdown-padding;
+  background-color: $body-background;
+  visibility: hidden;
+
   @if $dropdown-border-status {
     border: $dropdown-border;
   }
+
   @if ($dropdown-border-radius-status) and ($dropdown-radius != 0) {
     border-radius: $dropdown-radius;
   }
+
   @if $dropdown-font-size != 1rem {
     font-size: $dropdown-font-size;
   }

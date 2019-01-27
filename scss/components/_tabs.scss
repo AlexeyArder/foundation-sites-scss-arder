@@ -106,7 +106,7 @@ $tab-content-border: $tab-container-border-size solid $tab-content-border-color 
 $tab-content-vertical-border: $tab-content-border !default;
 
 $tab-title-font-weight: normal !default;
-$tab-content-transition: all .5s ease !default;
+$tab-content-transition: all 0.5s ease !default;
 $tab-content-margin-bottom: 1rem !default;
 
 $tab-container-border-size-in-rem: rem-calc(
@@ -126,21 +126,26 @@ $tab-container-border-size-in-rem: rem-calc(
   $border-color: $tab-container-border
 ) {
   @include clearfix;
-  list-style-type: none;
+
   margin: $margin;
+  list-style-type: none;
+
   @if ($tab-background-status) and ($background != transparent) {
     background: $background;
   }
+
   @if ($tab-container-border-status) and
     (not $tab-border-status) and
-    (not $tab-bootstrap-like-status) {
+    (not $tab-bootstrap-like-status)
+  {
     border: $tab-container-border;
   }
 
   @if ($tab-container-radius-status) and
     ($tab-radius != 0) and
     (not $tab-border-status) and
-    (not $tab-bootstrap-like-status) {
+    (not $tab-bootstrap-like-status)
+  {
     border-top-left-radius: $tab-radius;
     border-top-right-radius: $tab-radius;
   }
@@ -151,10 +156,11 @@ $tab-container-border-size-in-rem: rem-calc(
   @if ($tab-container-radius-status) and
     ($tab-radius != 0) and
     (not $tab-border-status) and
-    (not $tab-bootstrap-like-status) {
-    border-bottom-left-radius: $tab-radius;
+    (not $tab-bootstrap-like-status)
+  {
     border-top-left-radius: $tab-radius;
     border-top-right-radius: 0;
+    border-bottom-left-radius: $tab-radius;
   }
 
   > li {
@@ -165,9 +171,11 @@ $tab-container-border-size-in-rem: rem-calc(
     > a {
       @if ($tab-container-border-status) and ($tab-border-status) {
         @if $tab-bootstrap-like-status {
-          border-bottom: 0;
           border-right: $tab-container-border;
-        } @else {
+          border-bottom: 0;
+        }
+
+        @else {
           border: $tab-container-border;
         }
       }
@@ -175,28 +183,29 @@ $tab-container-border-size-in-rem: rem-calc(
       @if $tab-bootstrap-like-status {
         &:focus,
         &[aria-selected="true"] {
+          padding: (
+            get-side($tab-item-padding, top) -
+            $tab-container-border-size-in-rem
+          )
+            get-side($tab-item-padding, right)
+            (
+            get-side($tab-item-padding, bottom) -
+            $tab-container-border-size-in-rem
+          )
+            (
+            get-side($tab-item-padding, left) -
+            $tab-container-border-size-in-rem
+          );
           //border-top: $tab-container-border;
           //border-left: $tab-container-border;
           //border-bottom: $tab-container-border;
           border: $tab-container-border;
           border-right: 0;
-          padding: (
-              get-side($tab-item-padding, top) -
-                $tab-container-border-size-in-rem
-            )
-            get-side($tab-item-padding, right)
-            (
-              get-side($tab-item-padding, bottom) -
-                $tab-container-border-size-in-rem
-            )
-            (
-              get-side($tab-item-padding, left) -
-                $tab-container-border-size-in-rem
-            );
+
           @if ($tab-border-radius-status) and ($tab-radius != 0) {
-            border-bottom-left-radius: $tab-radius;
             border-top-left-radius: $tab-radius;
             border-top-right-radius: 0;
+            border-bottom-left-radius: $tab-radius;
           }
         }
       }
@@ -205,7 +214,8 @@ $tab-container-border-size-in-rem: rem-calc(
     @if ($tab-container-radius-status) and
       ($tab-radius != 0) and
       (not $tab-border-status) and
-      (not $tab-bootstrap-like-status) {
+      (not $tab-bootstrap-like-status)
+    {
       &:first-child > a {
         &:hover,
         &:focus,
@@ -215,14 +225,13 @@ $tab-container-border-size-in-rem: rem-calc(
         }
       }
 
-      &:last-child > a {
-        &:hover,
-        &:focus,
-        &[aria-selected="true"] {
-          border-bottom-left-radius: $tab-radius;
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-        }
+      // Fix Stylelint
+      &:last-child > a:hover,
+      &:last-child > a:focus,
+      &:last-child > a[aria-selected="true"] {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: $tab-radius;
       }
     }
   }
@@ -241,28 +250,37 @@ $tab-container-border-size-in-rem: rem-calc(
 
   > a {
     @include disable-mouse-outline;
+
     display: block;
-    line-height: 1;
     padding: $padding;
+    line-height: 1;
+
     @if $color != $anchor-color {
       color: $color;
     }
+
     @if ($tab-container-border-status) and ($tab-border-status) {
       @if $tab-bootstrap-like-status {
         border-bottom: $tab-container-border;
-      } @else {
+      }
+
+      @else {
         border: $tab-container-border;
       }
     }
+
     @if ($tab-border-radius-status) and
       ($tab-radius != 0) and
       ($tab-border-status) and
-      (not $tab-bootstrap-like-status) {
+      (not $tab-bootstrap-like-status)
+    {
       border-radius: $tab-radius;
     }
+
     @if $font-size != 1rem {
       font-size: $font-size;
     }
+
     @if $tab-title-font-weight != normal {
       font-weight: $tab-title-font-weight;
     }
@@ -282,27 +300,30 @@ $tab-container-border-size-in-rem: rem-calc(
       @if $tab-background-status {
         background: $tab-background-active;
       }
+
       @if $color-active != $anchor-color-hover {
         color: $color-active;
       }
+
       @if $tab-bootstrap-like-status {
+        padding: (
+          get-side($tab-item-padding, top) - $tab-container-border-size-in-rem
+        )
+          (
+          get-side($tab-item-padding, right) -
+          $tab-container-border-size-in-rem
+        )
+          get-side($tab-item-padding, bottom)
+          (
+          get-side($tab-item-padding, left) -
+          $tab-container-border-size-in-rem
+        );
         //border-top: $tab-container-border;
         //border-left: $tab-container-border;
         //border-right: $tab-container-border;
         border: $tab-container-border;
         border-bottom: 0;
-        padding: (
-            get-side($tab-item-padding, top) - $tab-container-border-size-in-rem
-          )
-          (
-            get-side($tab-item-padding, right) -
-              $tab-container-border-size-in-rem
-          )
-          get-side($tab-item-padding, bottom)
-          (
-            get-side($tab-item-padding, left) -
-              $tab-container-border-size-in-rem
-          );
+
         @if ($tab-border-radius-status) and ($tab-radius != 0) {
           border-top-left-radius: $tab-radius;
           border-top-right-radius: $tab-radius;
@@ -314,7 +335,8 @@ $tab-container-border-size-in-rem: rem-calc(
   @if ($tab-container-radius-status) and
     ($tab-radius != 0) and
     (not $tab-border-status) and
-    (not $tab-bootstrap-like-status) {
+    (not $tab-bootstrap-like-status)
+  {
     &:first-child > a {
       &:hover,
       &:focus,
@@ -324,12 +346,11 @@ $tab-container-border-size-in-rem: rem-calc(
       }
     }
 
-    &:last-child > a {
-      &:hover,
-      &:focus,
-      &[aria-selected="true"] {
-        border-radius: 0;
-      }
+    // Fix Stylelint
+    &:last-child > a:hover,
+    &:last-child > a:focus,
+    &:last-child > a[aria-selected="true"] {
+      border-radius: 0;
     }
   }
 }
@@ -341,27 +362,33 @@ $tab-container-border-size-in-rem: rem-calc(
   $border-color: $tab-content-border
 ) {
   transition: $tab-content-transition;
+
   @if ($tab-content-background-status) and ($background != transparent) {
     background: $background;
   }
+
   @if $tab-content-border-status {
     border: $tab-content-border;
   }
+
   @if ($tab-container-border-status) and
     (not $tab-border-status) and
-    (not $tab-bootstrap-like-status) {
+    (not $tab-bootstrap-like-status)
+  {
     border-top: 0;
   }
+
   @if $color != $body-font-color {
     color: $color;
   }
+
   @if $tab-content-margin-bottom != 0 {
     margin-bottom: $tab-content-margin-bottom;
   }
 
   @if ($tab-content-horizontal-radius-status) and ($tab-radius != 0) {
-    border-bottom-left-radius: $tab-radius;
     border-bottom-right-radius: $tab-radius;
+    border-bottom-left-radius: $tab-radius;
   }
 }
 
@@ -370,9 +397,11 @@ $tab-container-border-size-in-rem: rem-calc(
   @if $tab-content-border-status {
     border: $tab-content-vertical-border;
   }
+
   @if ($tab-container-border-status) and
     (not $tab-border-status) and
-    (not $tab-bootstrap-like-status) {
+    (not $tab-bootstrap-like-status)
+  {
     //border-#{$global-left}: 0; //??
   }
 

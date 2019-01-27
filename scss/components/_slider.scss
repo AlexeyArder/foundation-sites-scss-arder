@@ -69,7 +69,7 @@ $slider-handle-width: $slider-handle-height !default;
 
 /// Transition properties to apply to the slider handle and fill.
 /// @type Transition
-$slider-transition: all .2s ease-in-out !default;
+$slider-transition: all 0.2s ease-in-out !default;
 
 $slider-container-margin-top: rem-calc(16) !default;
 $slider-container-margin-bottom: rem-calc(32) !default;
@@ -86,25 +86,26 @@ $slider-handle-border: $slider-handle-border-width solid
 
 /// Adds the general styles for sliders.
 @mixin slider-container {
+  position: relative;
+  height: $slider-height;
+  margin-top: $slider-container-margin-top;
+  margin-bottom: $slider-container-margin-bottom;
   background-color: $slider-background;
   cursor: pointer;
-  height: $slider-height;
-  margin-bottom: $slider-container-margin-bottom;
-  margin-top: $slider-container-margin-top;
-  position: relative;
-  touch-action: none;
   user-select: none;
+  touch-action: none;
 }
 
 /// Adds the general styles for active fill for sliders.
 @mixin slider-fill {
-  display: inline-block;
-  height: $slider-height;
-  left: 0;
-  max-width: 100%;
   position: absolute;
   top: 0;
+  left: 0;
+  display: inline-block;
+  max-width: 100%;
+  height: $slider-height;
   transition: $slider-transition;
+
   @if $slider-fill-background != $slider-background {
     background-color: $slider-fill-background;
   }
@@ -118,17 +119,20 @@ $slider-handle-border: $slider-handle-border-width solid
 @mixin slider-handle {
   @include disable-mouse-outline;
   @include vertical-center;
-  background-color: $slider-handle-background;
-  display: inline-block;
-  height: $slider-handle-height;
+
   left: 0;
-  touch-action: manipulation;
-  transition: $slider-transition;
-  width: $slider-handle-width;
   z-index: 1;
+  display: inline-block;
+  width: $slider-handle-width;
+  height: $slider-handle-height;
+  background-color: $slider-handle-background;
+  transition: $slider-transition;
+  touch-action: manipulation;
+
   @if $slider-handle-border-status {
     border: $slider-handle-border;
   }
+
   @if ($slider-radius-status) and ($slider-radius != 0) {
     border-radius: $slider-radius;
   }
@@ -153,25 +157,25 @@ $slider-handle-border: $slider-handle-border-width solid
 
 @mixin slider-vertical {
   display: inline-block;
+  width: $slider-vertical-width;
   height: $slider-vertical-height;
   margin: $slider-vertical-margin;
   transform: scale(1, -1);
-  width: $slider-vertical-width;
 
   .slider-fill {
-    max-height: 100%;
     top: 0;
     width: $slider-vertical-width;
+    max-height: 100%;
   }
 
   .slider-handle {
-    height: $slider-handle-width;
-    left: 50%;
     position: absolute;
     top: 0;
-    touch-action: manipulation;
-    transform: translateX(-50%);
+    left: 50%;
     width: $slider-handle-height;
+    height: $slider-handle-width;
+    transform: translateX(-50%);
+    touch-action: manipulation;
   }
 }
 

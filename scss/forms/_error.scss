@@ -77,6 +77,7 @@ $input-error-message-margin-bottom: $form-spacing !default;
 ) {
   &:not(:focus) {
     background-color: mix($background, $white, $background-lighten);
+
     @if $form-error-border-status {
       border-color: $background;
     }
@@ -89,16 +90,19 @@ $input-error-message-margin-bottom: $form-spacing !default;
 
 /// Adds error styles to a form element, using the values in the settings file.
 @mixin form-error {
-  color: $input-error-color;
   display: none;
   margin-top: $input-error-message-margin-top;
   margin-bottom: $input-error-message-margin-bottom;
+  color: $input-error-color;
+
   @if $input-error-font-size != $small-font-size {
     font-size: $input-error-font-size;
   }
+
   @if $input-error-font-style != normal {
     font-style: $input-error-font-style;
   }
+
   @if $input-error-font-weight != normal {
     font-weight: $input-error-font-weight;
   }

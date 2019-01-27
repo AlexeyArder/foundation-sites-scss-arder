@@ -102,6 +102,7 @@ $accordion-plusminus-right: 1rem !default;
 @mixin accordion-container($background: $accordion-background) {
   list-style-type: none;
   margin-#{$global-left}: 0;
+
   @if $accordion-background != transparent {
     background: $background;
   }
@@ -128,7 +129,8 @@ $accordion-plusminus-right: 1rem !default;
 /// Adds styles for the accordion item. Apply this to the list item within an accordion ul.
 @mixin accordion-item {
   @if ($accordion-container-border-radius-status) and
-    ($accordion-container-border-radius != 0) {
+    ($accordion-container-border-radius != 0)
+  {
     &:first-child > :first-child {
       border-radius: $accordion-container-border-radius
         $accordion-container-border-radius
@@ -153,22 +155,28 @@ $accordion-plusminus-right: 1rem !default;
   $border: $accordion-content-border,
   $background-hover: $accordion-item-background-hover
 ) {
+  position: relative;
   display: block;
   padding: $padding;
-  position: relative;
+
   @if ($accordion-content-border-status) and
-    ($accordion-title-border-bottom-status != false) {
+    ($accordion-title-border-bottom-status != false)
+  {
     border-bottom: $border;
   }
+
   @if $color != $global-anchor-color {
     color: $color;
   }
+
   @if $font-size != 1rem {
     font-size: $font-size;
   }
+
   @if $accordion-title-font-weight != normal {
     font-weight: $accordion-title-font-weight;
   }
+
   @if $accordion-title-line-height != $global-lineheight {
     line-height: $accordion-title-line-height;
   }
@@ -183,6 +191,7 @@ $accordion-plusminus-right: 1rem !default;
   @if $accordion-container-border-status {
     border: $border;
     border-bottom: 0;
+
     @if not $accordion-content-border-status {
       .is-active > & {
         border-bottom: $border;
@@ -196,8 +205,10 @@ $accordion-plusminus-right: 1rem !default;
     // }
     :last-child:not(.is-active) > & {
       border-bottom: $border;
+
       @if ($accordion-container-border-radius-status) and
-        ($accordion-container-border-radius != 0) {
+        ($accordion-container-border-radius != 0)
+      {
         border-radius: 0
           0
           $accordion-container-border-radius
@@ -209,12 +220,14 @@ $accordion-plusminus-right: 1rem !default;
   @if $accordion-plusminus-status {
     &::before {
       #{$global-right}: $accordion-plusminus-right;
-      content: $accordion-plusminus-plus-content;
       position: absolute;
+      content: $accordion-plusminus-plus-content;
+
       @if $accordion-plusminus-font-size != $font-size {
-        font-size: $accordion-plusminus-font-size;
         margin-top: ($font-size - $accordion-plusminus-font-size) / 2;
+        font-size: $accordion-plusminus-font-size;
       }
+
       @if $accordion-plusminus-font-weight != normal {
         font-weight: $accordion-plusminus-font-weight;
       }
@@ -235,9 +248,11 @@ $accordion-plusminus-right: 1rem !default;
 ) {
   display: none;
   padding: $padding;
+
   @if ($background != $accordion-background) and ($background != transparent) {
     background-color: $background;
   }
+
   @if $accordion-container-border-status and $accordion-content-border-status {
     border: $border;
     border-bottom: 0;
@@ -250,6 +265,7 @@ $accordion-plusminus-right: 1rem !default;
       border-bottom: $border;
     }
   }
+
   @if $color != $global-body-font-color {
     color: $color;
   }

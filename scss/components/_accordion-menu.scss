@@ -87,9 +87,10 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
       content: $accordionmenu-arrows-down-content;
       position: absolute;
       right: $accordionmenu-arrows-right;
+
       @if $menu-font-size != $accordionmenu-arrow-size {
-        font-size: $accordionmenu-arrow-size;
         margin-top: ($menu-font-size - $accordionmenu-arrow-size) / 2;
+        font-size: $accordionmenu-arrow-size;
       }
 
       // @include css-triangle($accordionmenu-arrow-size, $accordionmenu-arrow-color, down);
@@ -108,13 +109,13 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
   }
 
   &.align-left .is-accordion-submenu-parent > a::after {
-    left: auto;
     right: $accordionmenu-arrows-right;
+    left: auto;
   }
 
   &.align-right .is-accordion-submenu-parent > a::after {
-    left: $accordionmenu-arrows-right;
     right: auto;
+    left: $accordionmenu-arrows-right;
   }
 }
 
@@ -133,9 +134,9 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
       width: 100%;
 
       @if $accordionmenu-border {
-        border-left: $accordionmenu-border;
-        border-right: $accordionmenu-border;
         border-top: $accordionmenu-border;
+        border-right: $accordionmenu-border;
+        border-left: $accordionmenu-border;
       }
     }
 
@@ -151,7 +152,9 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
       &.menu > li > a {
         padding: $accordionmenu-padding;
       }
-    } @else {
+    }
+
+    @else {
       a,
       .is-accordion-submenu a,
       &.menu > li > a {
@@ -181,7 +184,8 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
 
     // Fix margin under submenu ul elements
     @if (get-side($menu-margin, bottom)) !=
-      $accordionmenu-submenu-ul-margin-bottom {
+      $accordionmenu-submenu-ul-margin-bottom
+    {
       ul {
         margin-bottom: $accordionmenu-submenu-ul-margin-bottom;
       }
@@ -190,8 +194,8 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
 
   @if $accordionmenu-border {
     .is-accordion-submenu li {
-      border-left: 0;
       border-right: 0;
+      border-left: 0;
     }
   }
 
@@ -205,33 +209,35 @@ $accordionmenu-submenu-ul-margin-bottom: 0 !default; // See .munu margin-bottom
 
   // Submenu toggle
   .submenu-toggle {
-    cursor: pointer;
-    padding: (get-side($accordionmenu-padding, top)) 0;
     position: absolute;
     top: 0;
     width: $accordionmenu-submenu-toggle-width;
+    padding: (get-side($accordionmenu-padding, top)) 0;
+    cursor: pointer;
     #{$global-right}: 0;
 
     @if $accordionmenu-submenu-toggle-background {
       background: $accordionmenu-submenu-toggle-background;
     }
+
     @if $accordion-submenu-toggle-border {
       border-#{$global-left}: $accordion-submenu-toggle-border;
     }
+
     @if $accordionmenu-submenu-toggle-height {
       height: $accordionmenu-submenu-toggle-height;
     }
 
     // Add the arrow to the toggle
     &::after {
-      content: $accordionmenu-arrows-down-content;
       display: block;
       text-align: center;
+      content: $accordionmenu-arrows-down-content;
 
       @if $menu-font-size != $accordionmenu-arrow-size {
+        margin: (($menu-font-size - $accordionmenu-arrow-size) / 2) 0;
         color: $accordionmenu-arrow-color;
         font-size: $accordionmenu-arrow-size;
-        margin: (($menu-font-size - $accordionmenu-arrow-size) / 2) 0;
       }
 
       // @include css-triangle(6px, $accordionmenu-arrow-color, down);

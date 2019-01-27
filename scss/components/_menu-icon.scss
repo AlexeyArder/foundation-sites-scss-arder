@@ -26,17 +26,18 @@ $menu-icon-path-width: 14 !default;
 
 @mixin foundation-menu-icon {
   .menu-icon {
-    cursor: pointer;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
+
     @if $menu-icon-padding != 0 {
       padding: $menu-icon-padding;
     }
 
     svg {
       display: block;
-      height: $menu-icon-height;
       width: $menu-icon-width;
+      height: $menu-icon-height;
 
       path {
         stroke: $menu-icon-path-color;

@@ -89,7 +89,7 @@ $global-position: 1rem !default;
 $global-form-spacing: 1rem !default;
 $global-weight-normal: normal !default;
 $global-weight-bold: bold !default;
-$global-menu-padding: .7rem 1rem !default;
+$global-menu-padding: 0.7rem 1rem !default;
 $global-menu-nested-margin: 1rem !default;
 // $global-text-direction: ltr !default;
 // $global-left: if($global-text-direction == rtl, right, left);
@@ -97,8 +97,8 @@ $global-menu-nested-margin: 1rem !default;
 
 @include add-foundation-colors;
 
-// 2. Breakpoints
-// --------------
+// // 2. Breakpoints
+// // --------------
 
 // $breakpoints: (
 //   small: 0,
@@ -111,8 +111,8 @@ $global-menu-nested-margin: 1rem !default;
 // $print-breakpoint: large;
 // $breakpoint-classes: (small medium large);
 
-// 3. The Grid
-// -----------
+// // 3.the Grid
+// // -----------
 
 // $grid-row-width: $global-width;
 // $grid-column-count: 12;
@@ -124,8 +124,8 @@ $global-menu-nested-margin: 1rem !default;
 // $grid-column-alias: "columns" !default;
 // $block-grid-max: 8;
 
-// 3.1. Xy Grid
-// -----------
+// // 3.1.xy Grid
+// // -----------
 
 // $xy-grid: true;
 // $grid-container: $global-width;
@@ -139,10 +139,10 @@ $global-menu-nested-margin: 1rem !default;
 // $grid-container-max: $global-width;
 // $xy-block-grid-max: 8;
 
-// 4. Typography
-// -------------
-// 4.1 Base
-// --------
+// // 4.typography
+// // -------------
+// // 4.1 Base
+// // --------
 
 // // Status
 // $code-kbd-samp-pre-status: true !default;
@@ -170,8 +170,8 @@ $global-menu-nested-margin: 1rem !default;
 // $h5-font-size: rem-calc(19) !default;
 // $h6-font-size: rem-calc(16) !default;
 // $header-lineheight: 1.125 !default;
-// $header-top-margin: .5em !default;
-// $header-margin-bottom: .7em !default;
+// $header-top-margin: 0.5em !default;
+// $header-margin-bottom: 0.7em !default;
 // $header-text-rendering: optimizeLegibility !default;
 
 // // Header small font styles
@@ -179,11 +179,11 @@ $global-menu-nested-margin: 1rem !default;
 // $header-small-status: true !default;
 // // Sizes
 // $header-small-line-height: 0 !default;
-// $header-small-font-size: .5em !default;
+// $header-small-font-size: 0.5em !default;
 
 // // Small font styles
 // // Sizes
-// $small-font-size: .75em !default;
+// $small-font-size: 0.75em !default;
 
 // // Paragraph font styles
 // $paragraph-font-size: inherit !default;
@@ -218,7 +218,7 @@ $global-menu-nested-margin: 1rem !default;
 // // Sizes
 // $defnlist-margin-bottom: 1.2rem !default;
 // $defnlist-term-weight: $global-weight-bold !default;
-// $defnlist-term-margin-bottom: .3rem !default;
+// $defnlist-term-margin-bottom: 0.3rem !default;
 
 // // Blockquote style
 // // Border width
@@ -233,7 +233,7 @@ $global-menu-nested-margin: 1rem !default;
 
 // // Sub & sup
 // // Sizes
-// $sub-sup-font-size: .7em !default;
+// $sub-sup-font-size: 0.7em !default;
 
 // // Abbreviation elements style
 // // Border width
@@ -290,8 +290,8 @@ $global-menu-nested-margin: 1rem !default;
 // // Sizes
 // $subheader-lineheight: $header-lineheight !default;
 // $subheader-font-weight: $global-weight-normal !default;
-// $subheader-margin-top: .3rem !default;
-// $subheader-margin-bottom: .5rem !default;
+// $subheader-margin-top: 0.3rem !default;
+// $subheader-margin-bottom: 0.5rem !default;
 
 // // Lead class
 // // Sizes
@@ -337,10 +337,11 @@ $global-menu-nested-margin: 1rem !default;
 // $input-border: $input-border-width solid $global-input-border-color !default;
 // $input-border-focus: $input-border-width solid $global-input-border-focus-color !default;
 // $input-cursor-disabled: not-allowed !default;
-// $input-transition: box-shadow .5s, border-color .25s ease-in-out !default;
+// $input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out !default;
 // $input-margin: 0 0 $form-spacing !default;
 // $input-padding: $form-spacing / 2 !default;
-// $input-height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, "top") + get-side($input-padding, "bottom")); // - rem-calc(1)
+// $input-height: ($input-font-size * unitless-calc($input-line-height)) +
+//   (get-side($input-padding, "top") + get-side($input-padding, "bottom")); // - rem-calc(1)
 
 // // 5.2 Checkbox
 // // ------------
@@ -472,7 +473,8 @@ $global-menu-nested-margin: 1rem !default;
 // // Sizes
 // $accordion-item-padding: rem-calc(20) 1rem !default;
 // $accordion-content-padding: 1rem !default;
-// $accordion-content-border: $accordion-content-border-width solid $accordion-content-border-color !default;
+// $accordion-content-border: $accordion-content-border-width solid
+//   $accordion-content-border-color !default;
 // $accordion-title-font-size: rem-calc(12) !default;
 // $accordion-title-font-weight: normal !default;
 // $accordion-title-line-height: 1 !default;
@@ -509,7 +511,8 @@ $global-menu-nested-margin: 1rem !default;
 // $badge-font-size: 1rem !default;
 // $badge-padding: rem-calc(2) !default;
 // $badge-line-height: 1 !default;
-// $badge-minwidth: strip-unit($badge-font-size * $badge-line-height) + ($badge-padding * 2) !default;
+// $badge-minwidth: strip-unit($badge-font-size * $badge-line-height) +
+//   ($badge-padding * 2) !default;
 // $badge-margin-left: 0 !default;
 // $badge-margin-right: 0 !default;
 
@@ -532,7 +535,7 @@ $global-menu-nested-margin: 1rem !default;
 // // Radius
 // $button-radius: $global-radius !default;
 // // Status
-// /Default fill for buttons. Can either be `solid` or `hollow`.
+// /defaultfill for buttons. Can either be `solid` or `hollow`.
 // $button-fill: solid !default;
 // $button-hollow-hover-solid: true !default;
 // $button-border-status: true !default;
@@ -543,27 +546,28 @@ $global-menu-nested-margin: 1rem !default;
 // // Sizes
 // $button-font-family: inherit !default;
 // $button-margin: 0 0 $global-margin 0 !default;
+
 // @if $global-text-direction == "rtl" {
 //   $button-margin: 0 0 $global-margin $global-margin !default;
 // }
-// $button-transition: background-color .25s ease-out, color .25s ease-out !default;
+// $button-transition: background-color 0.25s ease-out, color 0.25s ease-out !default;
 // $button-responsive-expanded: false !default;
-// $button-padding: .5em 1em !default; // Use only em. You can use map
+// $button-padding: 0.5em 1em !default; // Use only em. You can use map
 // $button-font-default: 1rem !default;
 // $button-sizes: (
 //   default: $button-font-default,
 //   tiny: $button-font-default -
-//     (
-//       $button-font-default / 6
-//     ),
+//   (
+//     $button-font-default / 6
+//   ),
 //   small: $button-font-default -
-//     (
-//       $button-font-default / 9
-//     ),
+//   (
+//     $button-font-default / 9
+//   ),
 //   large: $button-font-default +
-//     (
-//       $button-font-default / 6
-//     )
+//   (
+//     $button-font-default / 6
+//   )
 // ) !default;
 // $button-hollow-border-width: $global-border-width !default;
 // $button-line-height: 1 !default;
@@ -572,9 +576,9 @@ $global-menu-nested-margin: 1rem !default;
 // $button-border-style: solid !default;
 // $button-border-hollow-style: solid !default;
 // $button-dropdown-arrow-font-size: rem-calc(10) !default;
-// $button-dropdown-arrow-padding-top: .15em !default;
-// $button-dropdown-arrow-margin-left-coefficient: .8 !default;
-// $button-arrow-only-side-margin: .2em !default;
+// $button-dropdown-arrow-padding-top: 0.15em !default;
+// $button-dropdown-arrow-margin-left-coefficient: 0.8 !default;
+// $button-arrow-only-side-margin: 0.2em !default;
 
 // // 11. Button Group
 // // ----------------
@@ -603,12 +607,16 @@ $global-menu-nested-margin: 1rem !default;
 // $callout-border: $callout-border-width solid $callout-border-color !default;
 // $callout-margin: 0 0 1rem 0 !default;
 // $callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
-// $callout-padding-small-coefficient: .8 !default;
+// $callout-padding-small-coefficient: 0.8 !default;
 // $callout-padding-large-coefficient: 1.5 !default;
-// $callout-padding-small: (get-side($callout-padding, top) * $callout-padding-small-coefficient)
+// $callout-padding-small: (
+//   get-side($callout-padding, top) * $callout-padding-small-coefficient
+// )
 //   (get-side($callout-padding, right) * $callout-padding-small-coefficient)
 //   (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
-// $callout-padding-large: (get-side($callout-padding, top) * $callout-padding-large-coefficient)
+// $callout-padding-large: (
+//   get-side($callout-padding, top) * $callout-padding-large-coefficient
+// )
 //   (get-side($callout-padding, right) * $callout-padding-large-coefficient)
 //   (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
 
@@ -621,6 +629,7 @@ $global-menu-nested-margin: 1rem !default;
 // $card-border-status: true !default;
 // $card-border-radius-status: true !default;
 // $card-shadow-status: true !default;
+// $card-image-ie-hack-status: false !default;
 // // Sizes
 // $card-shadow: none !default;
 // $card-padding: $global-padding !default;
@@ -655,7 +664,7 @@ $global-menu-nested-margin: 1rem !default;
 // // Status
 // $drilldown-arrows-status: true !default;
 // // Sizes
-// $drilldown-transition: transform .15s linear !default;
+// $drilldown-transition: transform 0.15s linear !default;
 // $drilldown-arrow-size: rem-calc(8) !default;
 // $drilldown-arrow-next-margin-right: 1rem !default;
 // $drilldown-arrow-back-margin-right: rem-calc(8) !default;
@@ -681,13 +690,13 @@ $global-menu-nested-margin: 1rem !default;
 // $dropdown-sizes: (
 //   tiny: $dropdown-width / 3,
 //   small: $dropdown-width -
-//     (
-//       $dropdown-width / 2
-//     ),
+//   (
+//     $dropdown-width / 2
+//   ),
 //   large: $dropdown-width +
-//     (
-//       $dropdown-width / 2
-//     )
+//   (
+//     $dropdown-width / 2
+//   )
 // ) !default;
 
 // // 17. Dropdown Menu
@@ -705,7 +714,8 @@ $global-menu-nested-margin: 1rem !default;
 // $dropdownmenu-shadow-status: false !default;
 // // Sizes
 // $dropdownmenu-min-width: rem-calc(200) !default;
-// $dropdownmenu-border: $dropdownmenu-border-width solid $dropdownmenu-border-color !default;
+// $dropdownmenu-border: $dropdownmenu-border-width solid
+//   $dropdownmenu-border-color !default;
 // $dropdownmenu-border-width: nth($dropdownmenu-border, 1);
 // $dropdownmenu-arrow-size: rem-calc(10) !default;
 // $dropdownmenu-arrow-padding: 1.5rem !default;
@@ -736,6 +746,7 @@ $flexbox-responsive-breakpoints: true;
 // @function flex-video($ratio) {
 //   $w: nth($ratio, 1);
 //   $h: nth($ratio, 3);
+
 //   @return $h / $w * 100%;
 // }
 
@@ -769,11 +780,17 @@ $flexbox-responsive-breakpoints: true;
 
 // // Status
 // $menu-first-line-zero-padiing-left-status: true !default;
+// $menu-icon-status: true !default;
+// $menu-simple-status: true !default;
+// $menu-text-status: true !default;
+// $menu-bordered-status: true !default;
+// $menu-hover-status: true !default;
+// $menu-nested-status: true !default;
 // // Sizes
 // $menu-margin: 0 !default;
 // $menu-margin-nested: 1rem !default;
 // $menu-item-padding: rem-calc(6) rem-calc(16) !default; // You can use map
-// $menu-icon-spacing: .25rem !default;
+// $menu-icon-spacing: 0.25rem !default;
 // $menu-expand-max: 6 !default;
 // $menu-simple-margin: 1rem !default;
 // $menu-font-size: rem-calc(16) !default;
@@ -803,7 +820,7 @@ $flexbox-responsive-breakpoints: true;
 // $offcanvas-vertical-sizes: (
 //   small: 250px
 // ) !default;
-// $offcanvas-transition-length: .8s !default;
+// $offcanvas-transition-length: 0.8s !default;
 // $offcanvas-transition-timing: ease !default;
 // $maincontent-class: "off-canvas-content" !default;
 // $offcanvas-push-zindex: 12 !default;
@@ -826,9 +843,9 @@ $flexbox-responsive-breakpoints: true;
 // $orbit-control-content-rotate-status: true !default; // When use arrow up unicode symbol that switch rotate code
 // // Sizes
 // $orbit-bullet-diameter: 1.2rem !default;
-// $orbit-bullet-margin: .1rem !default;
-// $orbit-bullet-margin-top: .8rem !default;
-// $orbit-bullet-margin-bottom: .8rem !default;
+// $orbit-bullet-margin: 0.1rem !default;
+// $orbit-bullet-margin-top: 0.8rem !default;
+// $orbit-bullet-margin-bottom: 0.8rem !default;
 // $orbit-caption-padding: 1rem !default;
 // $orbit-control-padding: 1rem !default;
 // $orbit-control-zindex: 10 !default;
@@ -925,12 +942,13 @@ $flexbox-responsive-breakpoints: true;
 // $slider-vertical-width: $slider-height !default;
 // $slider-handle-height: rem-calc(16) !default;
 // $slider-handle-width: $slider-handle-height !default;
-// $slider-transition: all .2s ease-in-out !default;
+// $slider-transition: all 0.2s ease-in-out !default;
 // $slider-container-margin-top: rem-calc(16) !default;
 // $slider-container-margin-bottom: rem-calc(32) !default;
 // $slider-vertical-height: rem-calc(160) !default;
 // $slider-vertical-margin: 0 rem-calc(16) !default;
-// $slider-handle-border: $slider-handle-border-width solid $slider-handle-border-color !default;
+// $slider-handle-border: $slider-handle-border-width solid
+//   $slider-handle-border-color !default;
 
 // // 30. Switch
 // // ----------
@@ -943,19 +961,20 @@ $flexbox-responsive-breakpoints: true;
 // $switch-different-sizes-status: true !default;
 // // Sizes
 // $switch-height: 2rem !default;
-// $switch-height-tiny-coefficient: .8 !default;
-// $switch-height-small-coefficient: .9 !default;
+// $switch-height-tiny-coefficient: 0.8 !default;
+// $switch-height-small-coefficient: 0.9 !default;
 // $switch-height-large-coefficient: 1.1 !default;
 // $switch-margin: $global-margin !default;
 // $switch-paddle-offset: $global-border-width !default;
-// $switch-paddle-transition: all .25s ease-out !default;
+// $switch-paddle-transition: all 0.25s ease-out !default;
 // $switch-container-font-size: rem-calc(14) !default;
 // $switch-container-font-weight: bold !default;
 // $switch-width: 4rem !default;
-// $switch-paddle-height: $switch-height - (rem-calc(strip-unit($switch-paddle-offset)) * 2) !default;
+// $switch-paddle-height: $switch-height -
+//   (rem-calc(strip-unit($switch-paddle-offset)) * 2) !default;
 // $switch-paddle-width: (
-//     $switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)
-//   ) / 2 !default;
+//   $switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)
+// ) / 2 !default;
 // $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 
 // // 31. Table
@@ -1015,7 +1034,7 @@ $flexbox-responsive-breakpoints: true;
 // $tab-content-border: $tab-container-border-size solid $tab-content-border-color !default;
 // $tab-content-vertical-border: $tab-content-border !default;
 // $tab-title-font-weight: normal !default;
-// $tab-content-transition: all .5s ease !default;
+// $tab-content-transition: all 0.5s ease !default;
 // $tab-content-margin-bottom: 1rem !default;
 
 // // 33. Thumbnail
@@ -1061,7 +1080,8 @@ $flexbox-responsive-breakpoints: true;
 // $tooltip-max-width: rem-calc(160) !default;
 // $tooltip-font-weight: bold !default;
 // $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
-// $has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted $tooltip-has-tip-border-bottom-color !default;
+// $has-tip-border-bottom: $tooltip-has-tip-border-bottom-width dotted
+//   $tooltip-has-tip-border-bottom-color !default;
 
 // // 36. Top Bar
 // // -----------

@@ -122,11 +122,11 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     #{$global-right}: $dropdownmenu-arrows-right;
 
     @if $dropdownmenu-horizontal-arrows-font-size != $menu-font-size {
-      font-size: $dropdownmenu-horizontal-arrows-font-size;
-      margin-top: -(
-          ($menu-font-size - $dropdownmenu-horizontal-arrows-font-size) / 2
-        );
       top: 50%;
+      margin-top: -(
+        ($menu-font-size - $dropdownmenu-horizontal-arrows-font-size) / 2
+      );
+      font-size: $dropdownmenu-horizontal-arrows-font-size;
     }
   }
 
@@ -150,18 +150,18 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
     > li.opens-left {
       // sass-lint:disable-line no-qualifying-elements
       > .is-dropdown-submenu {
-        left: auto;
-        right: 0;
         top: 100%;
+        right: 0;
+        left: auto;
       }
     }
 
     > li.opens-right {
       // sass-lint:disable-line no-qualifying-elements
       > .is-dropdown-submenu {
-        left: 0;
-        right: auto;
         top: 100%;
+        right: auto;
+        left: 0;
       }
     }
 
@@ -169,6 +169,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       > li.is-dropdown-submenu-parent > a {
         // sass-lint:disable-line no-qualifying-elements
         position: relative;
+
         @if $dropdownmenu-arrow-padding != 0 {
           padding-#{$global-right}: $dropdownmenu-arrow-padding;
         }
@@ -178,17 +179,21 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
         // sass-lint:disable-line no-qualifying-elements
         content: $dropdownmenu-arrows-down-content;
         #{$global-left}: auto; //??
+
         @if $dropdownmenu-arrows-down-margin-right != 0 {
           margin-#{$global-right}: $dropdownmenu-arrows-down-margin-right;
         }
+
         @if $dropdownmenu-arrow-size != $menu-font-size {
-          font-size: $dropdownmenu-arrow-size;
-          margin-top: -(($menu-font-size - $dropdownmenu-arrow-size) / 2);
           top: 50%;
+          margin-top: -(($menu-font-size - $dropdownmenu-arrow-size) / 2);
+          font-size: $dropdownmenu-arrow-size;
         }
       }
     }
-  } @else if $dir == vertical {
+  }
+
+  @else if $dir == vertical {
     > li {
       .is-dropdown-submenu {
         top: 0;
@@ -196,16 +201,16 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
       &.opens-left {
         > .is-dropdown-submenu {
-          left: auto;
-          right: 100%;
           top: 0; //??
+          right: 100%;
+          left: auto;
         }
       }
 
       &.opens-right {
         > .is-dropdown-submenu {
-          left: 100%;
           right: auto;
+          left: 100%;
         }
       }
 
@@ -213,22 +218,45 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
         @include zf-dropdown-left-right-arrows;
       }
     }
-  } @else {
+  }
+
+  @else {
     @warn 'The direction used for dropdown-menu-direction() must be horizontal or vertical.';
   }
 }
 
 @mixin foundation-dropdown-menu {
+  .menu.dropdown a {
+    @include disable-mouse-outline;
+  }
+
+  .is-dropdown-submenu .dropdown a {
+    padding: $dropdownmenu-submenu-padding;
+  }
+
+  .is-dropdown-submenu > li a:active,
+  .is-dropdown-submenu > li a:focus,
+  .is-dropdown-submenu > li a:hover {
+    @if $dropdownmenu-hover-background != $dropdownmenu-background {
+      background: $dropdownmenu-hover-background;
+    }
+
+    @if $dropdownmenu-hover-color != inherit {
+      color: $dropdownmenu-hover-color;
+    }
+  }
+
   .menu.dropdown {
     @include dropdown-menu-direction(horizontal);
 
-    a {
-      @include disable-mouse-outline;
-    }
+    // a {
+    //   @include disable-mouse-outline;
+    // }
 
     // Top-level item
     > li > a {
       padding: $dropdownmenu-padding;
+
       @if $dropdownmenu-background != transparent {
         background: $dropdownmenu-background;
       }
@@ -239,6 +267,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       @if $dropdownmenu-background-active != transparent {
         background: $dropdownmenu-background-active;
       }
+
       @if $dropdownmenu-color-active != transparent {
         color: $dropdownmenu-color-active;
       }
@@ -249,6 +278,7 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       @if $dropdown-menu-item-background-active != transparent {
         background: $dropdown-menu-item-background-active;
       }
+
       @if $dropdown-menu-item-color-active != transparent {
         color: $dropdown-menu-item-color-active;
       }
@@ -282,9 +312,9 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
     &.align-right {
       .is-dropdown-submenu.first-sub {
-        left: auto;
-        right: 0;
         top: 100%;
+        right: 0;
+        left: auto;
       }
     }
   }
@@ -296,6 +326,73 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
       &.align-right {
         float: right;
       }
+    }
+  }
+
+  .is-dropdown-submenu {
+    #{$global-left}: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: none;
+    min-width: $dropdownmenu-min-width;
+    list-style: none;
+    // left: 100%;
+    margin-#{$global-left}: 0;
+
+    @if $dropdownmenu-submenu-background != transparent {
+      background: $dropdownmenu-submenu-background;
+    }
+
+    @if $dropdownmenu-border-status {
+      border: $dropdownmenu-border;
+    }
+
+    @if $dropdownmenu-border-radius-status and
+      ($dropdownmenu-border-radius != 0)
+    {
+      border-radius: $dropdownmenu-border-radius;
+    }
+
+    @if $dropdownmenu-shadow-status {
+      box-shadow: $dropdownmenu-shadow;
+    }
+
+    // .dropdown & a {
+    //   padding: $dropdownmenu-submenu-padding;
+    // }
+
+    // @if $dropdownmenu-arrows-status {
+    //   .is-dropdown-submenu-parent {
+    //     @include zf-dropdown-left-right-arrows;
+    //   }
+    // }
+
+    @if (type-of($dropdownmenu-border-width) == "number") {
+      margin-top: (-$dropdownmenu-border-width);
+    }
+
+    > li {
+      width: 100%;
+
+      // a {
+      //   &:active,
+      //   &:focus,
+      //   &:hover {
+      //     @if $dropdownmenu-hover-background != $dropdownmenu-background {
+      //       background: $dropdownmenu-hover-background;
+      //     }
+
+      //     @if $dropdownmenu-hover-color != inherit {
+      //       color: $dropdownmenu-hover-color;
+      //     }
+      //   }
+      // }
+    }
+
+    // &:not(.js-dropdown-nohover) > .is-dropdown-submenu-parent:hover > &, // why is this line needed? Opening is handled by JS and this causes some ugly flickering when the sub is re-positioned automatically...
+    &.js-dropdown-active {
+      display: block;
     }
   }
 
@@ -312,82 +409,30 @@ $dropdownmenu-width-when-vertical: rem-calc(200) !default;
 
     &.opens-inner > .is-dropdown-submenu {
       top: 100%;
-      @if $global-text-direction == 'rtl' {
+
+      @if $global-text-direction == "rtl" {
         right: auto;
-      } @else {
+      }
+
+      @else {
         left: auto;
       }
     }
 
     &.opens-left > .is-dropdown-submenu {
-      left: auto;
       right: 100%;
+      left: auto;
     }
 
     &.opens-right > .is-dropdown-submenu {
-      left: 100%;
       right: auto;
+      left: 100%;
     }
   }
 
-  .is-dropdown-submenu {
-    #{$global-left}: 100%;
-    display: none;
-    list-style: none;
-    // left: 100%;
-    margin-#{$global-left}: 0;
-    min-width: $dropdownmenu-min-width;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    @if $dropdownmenu-submenu-background != transparent {
-      background: $dropdownmenu-submenu-background;
-    }
-    @if $dropdownmenu-border-status {
-      border: $dropdownmenu-border;
-    }
-    @if $dropdownmenu-border-radius-status and
-      ($dropdownmenu-border-radius != 0) {
-      border-radius: $dropdownmenu-border-radius;
-    }
-    @if $dropdownmenu-shadow-status {
-      box-shadow: $dropdownmenu-shadow;
-    }
-
-    .dropdown & a {
-      padding: $dropdownmenu-submenu-padding;
-    }
-
-    .is-dropdown-submenu-parent {
-      @if $dropdownmenu-arrows-status {
-        @include zf-dropdown-left-right-arrows;
-      }
-    }
-
-    @if (type-of($dropdownmenu-border-width) == 'number') {
-      margin-top: (-$dropdownmenu-border-width);
-    }
-
-    > li {
-      width: 100%;
-
-      a {
-        &:active,
-        &:focus,
-        &:hover {
-          @if $dropdownmenu-hover-background != $dropdownmenu-background {
-            background: $dropdownmenu-hover-background;
-          }
-          @if $dropdownmenu-hover-color != inherit {
-            color: $dropdownmenu-hover-color;
-          }
-        }
-      }
-    }
-
-    // &:not(.js-dropdown-nohover) > .is-dropdown-submenu-parent:hover > &, // why is this line needed? Opening is handled by JS and this causes some ugly flickering when the sub is re-positioned automatically...
-    &.js-dropdown-active {
-      display: block;
+  @if $dropdownmenu-arrows-status {
+    .is-dropdown-submenu .is-dropdown-submenu-parent {
+      @include zf-dropdown-left-right-arrows;
     }
   }
 }

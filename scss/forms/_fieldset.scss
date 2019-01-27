@@ -62,9 +62,10 @@ $legend-margin-bottom: $form-spacing / 2 !default;
 ////////////////////////////////////////
 
 @mixin fieldset {
-  border: $fieldset-border;
-  padding: $fieldset-padding;
   margin: $fieldset-margin;
+  padding: $fieldset-padding;
+  border: $fieldset-border;
+
   @if $fieldset-border-radius-status {
     border-radius: $fieldset-border-radius;
   }
@@ -73,8 +74,8 @@ $legend-margin-bottom: $form-spacing / 2 !default;
     legend {
       // Covers up the fieldset's border to create artificial padding
       margin-#{$global-left}: -$legend-padding-side;
-      padding-left: $legend-padding-side;
       padding-right: $legend-padding-side;
+      padding-left: $legend-padding-side;
 
       //background: $body-background;
       //margin: 0;
@@ -85,8 +86,8 @@ $legend-margin-bottom: $form-spacing / 2 !default;
 @mixin foundation-form-fieldset {
   @if $legend-margin-bottom != 0 {
     legend {
-      margin-bottom: $legend-margin-bottom;
       max-width: 100%; //??
+      margin-bottom: $legend-margin-bottom;
     }
   }
 

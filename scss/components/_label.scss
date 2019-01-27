@@ -76,12 +76,15 @@ $label-border: $label-border-width solid $label-border-color !default;
   line-height: 1;
   white-space: nowrap;
   cursor: default;
+
   @if ($label-border-status) or ($label-fill == hollow) {
     border: $label-border;
   }
+
   @if ($label-radius-status) and ($label-radius != 0) {
     border-radius: $label-radius;
   }
+
   @if $label-font-size != 1rem {
     font-size: $label-font-size;
   }
@@ -92,9 +95,10 @@ $label-border: $label-border-width solid $label-border-color !default;
     @include label;
 
     @if $label-fill == solid {
-      background: $label-background;
       color: $label-color;
+      background: $label-background;
     }
+
     @else if $label-fill == hollow {
       color: $label-color;
     }
@@ -102,15 +106,17 @@ $label-border: $label-border-width solid $label-border-color !default;
     @each $name, $color in $label-palette {
       &.#{$name} {
         @if $label-fill == solid {
-          background: $color;
           color: color-pick-contrast($color, ($label-color, $label-color-alt));
+          background: $color;
+
           @if $label-border-status {
             border-color: $color / 2;
           }
         }
+
         @else if $label-fill == hollow {
-          border-color: $color;
           color: color-pick-contrast($color, ($label-color, $label-color-alt));
+          border-color: $color;
         }
       }
     }

@@ -89,7 +89,9 @@ $global-lineheight: 1.35 !default;
 
 /// Font stack of the body.
 /// @type List
-$body-font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif !default;
+$body-font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”,
+  “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
+  sans-serif !default;
 
 /// Font stack used for elements that use monospaced type, such as code samples
 /// @type String | List
@@ -121,7 +123,7 @@ $global-weight-bold: bold !default;
 
 /// Global value used for all menu styles. Can be overwritten at individual menu component level.
 /// @type Number
-$global-menu-padding: .7rem 1rem !default;
+$global-menu-padding: 0.7rem 1rem !default;
 
 /// Global value used for all menu styles. Nested margin for submenu.
 $global-menu-nested-margin: 1rem !default;
@@ -168,9 +170,10 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
   // Default body styles
   body {
     color: $body-font-color;
-    font-family: $body-font-family;
     font-weight: $global-weight-normal;
+    font-family: $body-font-family;
     line-height: $global-lineheight;
+
     @if $body-background != $absolute-white {
       background: $body-background;
     }
@@ -187,8 +190,8 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
     // Grid defaults to get images and embeds to work properly
     // Get rid of gap under images by making them display: inline-block; by default
     display: inline-block;
-    height: auto;
     max-width: 100%;
+    height: auto;
     vertical-align: middle;
     //-ms-interpolation-mode: bicubic; // Not work in IE 10+
   }
@@ -210,10 +213,10 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
   }
 
   .hide-text-inside-link span {
-    height: 1px;
-    overflow: hidden;
     position: absolute;
     top: -10px;
     width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 }

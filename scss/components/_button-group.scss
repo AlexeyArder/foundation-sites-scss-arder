@@ -24,7 +24,7 @@ $buttongroup-radius-on-each: false !default;
 //
 /// Selector for the buttons inside a button group.
 /// @type String
-$buttongroup-child-selector: '.button' !default;
+$buttongroup-child-selector: ".button" !default;
 
 /// Maximum number of buttons that can be in an even-width button group. (Only needed when $global-flexbox: false;)
 /// @type Number
@@ -54,15 +54,17 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
   $spacing: $buttongroup-spacing
 ) {
   @include clearfix;
+
   margin-bottom: $buttongroup-margin;
+
   @if $button-font-default != 1rem {
     font-size: map-get($button-sizes, default);
   }
 
   @if $global-flexbox {
-    align-items: stretch;
     display: flex;
     flex-wrap: nowrap;
+    align-items: stretch;
   }
   // @else {
   //   font-size: 0;
@@ -85,7 +87,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
       &:not(:first-child) {
         margin-#{$global-left}: -$button-border-width;
       }
-    } @else {
+    }
+
+    @else {
       &:last-child {
         margin-#{$global-right}: 0;
       }
@@ -126,8 +130,10 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
 
   #{$selector} {
     @if $global-flexbox {
-      flex: 1 1 0px; // scss-lint:disable ZeroUnit
-    } @else {
+      flex: 1 1 0; // scss-lint:disable ZeroUnit
+    }
+
+    @else {
       // One child
       &:first-child {
         &:last-child {
@@ -164,7 +170,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
   #{$selector} {
     @if $global-flexbox {
       flex: 0 0 100%;
-    } @else {
+    }
+
+    @else {
       width: 100%;
     }
 
@@ -211,7 +219,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
   #{$selector} {
     @if $global-flexbox {
       flex: 0 0 auto;
-    } @else {
+    }
+
+    @else {
       width: auto;
     }
 
@@ -259,7 +269,9 @@ $buttongroup-stack-spacing-bottom: $buttongroup-spacing * 2 !default;
         &.#{$name} #{$buttongroup-child-selector} {
           @include button-style($color, auto, auto);
         }
-      } @else {
+      }
+
+      @else {
         &.#{$name} #{$buttongroup-child-selector} {
           @include button-hollow;
           @include button-hollow-style($color);

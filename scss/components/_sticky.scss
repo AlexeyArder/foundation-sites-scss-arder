@@ -15,14 +15,14 @@
 
   .sticky {
     position: relative;
-    transform: translate3d(0, 0, 0);
     z-index: 0;
+    transform: translate3d(0, 0, 0);
   }
 
   .sticky.is-stuck {
     position: fixed;
-    width: 100%;
     z-index: 5;
+    width: 100%;
 
     &.is-at-top {
       top: 0;
@@ -34,9 +34,9 @@
   }
 
   .sticky.is-anchored {
-    left: auto;
     position: relative;
     right: auto;
+    left: auto;
 
     &.is-at-bottom {
       bottom: 0;

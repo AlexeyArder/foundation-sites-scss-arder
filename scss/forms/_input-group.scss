@@ -74,16 +74,17 @@ $input-group-button-width: 1% !default;
 
 @mixin foundation-form-prepostfix {
   $height: ($input-font-size * $input-line-height) +
-    (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) +
+    (get-side($input-padding, "top") + get-side($input-padding, "bottom")) +
     rem-calc(1); //??
 
   .input-group {
     display: if($global-flexbox, flex, table);
-    margin-bottom: $input-group-margin-bottom;
     width: 100%;
+    margin-bottom: $input-group-margin-bottom;
 
     @if ($input-group-border-radius-status) and
-      ($input-group-border-radius != 0) {
+      ($input-group-border-radius != 0)
+    {
       @if $global-flexbox {
         align-items: stretch;
       }
@@ -105,13 +106,13 @@ $input-group-button-width: 1% !default;
           border-radius: if(
             $global-text-direction == rtl,
             0
-              $input-group-border-radius-minus-border
-              $input-group-border-radius-minus-border
-              0,
             $input-group-border-radius-minus-border
-              0
-              0
-              $input-group-border-radius-minus-border
+            $input-group-border-radius-minus-border
+            0,
+            $input-group-border-radius-minus-border
+            0
+            0
+            $input-group-border-radius-minus-border
           );
         }
       }
@@ -128,14 +129,14 @@ $input-group-button-width: 1% !default;
           border-radius: if(
             $global-text-direction == rtl,
             0
-              $input-group-border-radius-minus-border
-              0
-              0
-              $input-group-border-radius-minus-border,
+            $input-group-border-radius-minus-border
             0
-              $input-group-border-radius-minus-border
-              $input-group-border-radius-minus-border
-              0
+            0
+            $input-group-border-radius-minus-border,
+            0
+            $input-group-border-radius-minus-border
+            $input-group-border-radius-minus-border
+            0
           );
 
           // border-radius: 0 $input-group-border-radius $input-group-border-radius 0;
@@ -160,50 +161,63 @@ $input-group-button-width: 1% !default;
 
   .input-group-label {
     @extend %input-group-child;
+
     padding: $input-prefix-padding;
-    text-align: $input-group-label-text-align;
     white-space: nowrap;
+    text-align: $input-group-label-text-align;
+
     @if $input-prefix-background != $input-background {
       background: $input-prefix-background;
     }
+
     @if $input-prefix-color != $input-color {
       color: $input-prefix-color;
     }
+
     @if $global-flexbox {
-      align-items: center;
       display: flex;
       flex: 0 0 auto;
-    } @else {
-      height: 100%;
+      align-items: center;
+    }
+
+    @else {
       width: $input-group-label-width;
+      height: 100%;
     }
   }
 
   .input-group-field {
     @extend %input-group-child;
+
     @if $global-flexbox {
-      flex: 1 1 0px; // sass-lint:disable-line zero-unit
+      flex: 1 1 0; // sass-lint:disable-line zero-unit
       min-width: 0;
     }
+
     @if $input-prefix-border-status {
       border: $input-prefix-border;
     }
+
     @if ($input-group-border-radius-status) and
-      ($input-group-border-radius != 0) {
+      ($input-group-border-radius != 0)
+    {
       border-radius: 0;
     }
   }
 
   .input-group-button {
     @extend %input-group-child;
+
     text-align: center;
 
     @if $global-flexbox {
       display: flex;
       flex: 0 0 auto;
-    } @else {
-      height: 100%;
+    }
+
+    @else {
       width: $input-group-button-width;
+      height: 100%;
     }
 
     a,
@@ -212,17 +226,23 @@ $input-group-button-width: 1% !default;
     .button,
     label {
       @extend %input-group-child;
+
       @if $global-flexbox {
         align-self: stretch;
         height: auto;
-      } @else {
+      }
+
+      @else {
         height: $height;
       }
-      padding-bottom: 0;
+
       padding-top: 0;
+      padding-bottom: 0;
+
       @if $input-font-size != $global-font-size {
         font-size: $input-font-size;
       }
+
       @if not $input-prefix-global-button-border-status {
         border: 0;
       }

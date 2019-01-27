@@ -189,7 +189,7 @@ $global-input-background-focus: $white !default;
 $global-input-background-disabled: $light-gray !default;
 $global-input-border-color: $medium-gray !default;
 $global-input-border-focus-color: $dark-gray !default;
-$global-input-shadow-color: rgba($black, .1) !default;
+$global-input-shadow-color: rgba($black, 0.1) !default;
 $global-input-shadow-focus-color: $medium-gray !default;
 $global-input-shadow: inset 0 1px 2px $global-input-shadow-color !default;
 $global-input-shadow-focus: 0 0 5px $global-input-shadow-focus-color !default;
@@ -285,7 +285,7 @@ $global-button-color-alt: $black !default;
 $global-button-border-color: $black !default;
 $global-button-background-hover-lightness: -20% !default;
 $global-button-hollow-hover-lightness: -50% !default;
-$global-button-opacity-disabled: .25 !default;
+$global-button-opacity-disabled: 0.25 !default;
 
 // 11. Button Group
 // ----------------
@@ -297,7 +297,7 @@ $global-buttongroup-expand-spacing-color: $global-body-background !default;
 
 $global-callout-background: $white !default;
 $global-callout-background-fade: 85% !default;
-$global-callout-border-color: rgba($black, .25) !default;
+$global-callout-border-color: rgba($black, 0.25) !default;
 $global-callout-font-color: $black !default;
 $global-callout-font-color-alt: $white !default;
 $global-callout-link-tint: 30% !default; //?? Not work
@@ -341,7 +341,7 @@ $global-dropdownmenu-background-active: $white !default;
 $global-dropdownmenu-color-active: get-color(primary) !default;
 $global-dropdownmenu-hover-background: $alert-color !default;
 $global-dropdownmenu-hover-color: $white !default; // inherit
-$global-dropdownmenu-shadow: 0 0 6px 1px rgba($black, .1) !default;
+$global-dropdownmenu-shadow: 0 0 6px 1px rgba($black, 0.1) !default;
 $global-dropdownmenu-submenu-background: $white !default;
 $global-dropdown-menu-item-color-active: $white !default;
 $global-dropdown-menu-item-background-active: get-color(primary) !default;
@@ -371,18 +371,18 @@ $global-menu-icon-path-hover-color: $white !default;
 // --------------
 
 $global-offcanvas-background: $light-gray !default;
-$global-offcanvas-exit-background: rgba($white, .25) !default;
+$global-offcanvas-exit-background: rgba($white, 0.25) !default;
 $global-offcanvas-background: $black !default;
-$global-offcanvas-shadow: 0 0 10px rgba($black, .7) !default;
-$global-offcanvas-inner-shadow-color: rgba($black, .25) !default;
+$global-offcanvas-shadow: 0 0 10px rgba($black, 0.7) !default;
+$global-offcanvas-inner-shadow-color: rgba($black, 0.25) !default;
 
 // 24. Orbit
 // ---------
 
 $global-orbit-bullet-background: $medium-gray !default;
 $global-orbit-bullet-background-active: $dark-gray !default;
-$global-orbit-caption-background: rgba($black, .5) !default;
-$global-orbit-control-background-hover: rgba($black, .5) !default;
+$global-orbit-caption-background: rgba($black, 0.5) !default;
+$global-orbit-control-background-hover: rgba($black, 0.5) !default;
 $global-orbit-control-color: $white !default;
 $global-orbit-caption-color: foreground(
   $global-orbit-caption-background
@@ -412,7 +412,7 @@ $global-progress-text-color: $white !default;
 
 $global-reveal-background: $white !default;
 $global-reveal-border-color: $medium-gray !default;
-$global-reveal-overlay-background: rgba($black, .45) !default;
+$global-reveal-overlay-background: rgba($black, 0.45) !default;
 
 // 29. Slider
 // ----------
@@ -420,7 +420,7 @@ $global-reveal-overlay-background: rgba($black, .45) !default;
 $global-slider-background: $light-gray !default;
 $global-slider-fill-background: $medium-gray !default;
 $global-slider-handle-background: $primary-color !default;
-$global-slider-opacity-disabled: .25 !default;
+$global-slider-opacity-disabled: 0.25 !default;
 $global-slider-handle-hover-background-color: scale-color(
   $global-slider-handle-background,
   $lightness: -15%
@@ -497,8 +497,8 @@ $global-tab-content-border-color: $global-tab-border !default;
 // -------------
 
 $global-thumbnail-border-color: $white !default;
-$global-thumbnail-shadow: 0 0 0 1px rgba($black, .2) !default;
-$global-thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, .5) !default;
+$global-thumbnail-shadow: 0 0 0 1px rgba($black, 0.2) !default;
+$global-thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5) !default;
 
 // 34. Title Bar
 // -------------

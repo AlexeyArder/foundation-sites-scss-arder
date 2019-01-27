@@ -57,6 +57,14 @@ $meter-margin-bottom: $global-margin !default;
 
 @mixin foundation-meter-element {
   meter {
+    display: block;
+    width: 100%;
+    height: $meter-height;
+    margin-bottom: $meter-margin-bottom;
+
+    // For Firefox
+    background: $meter-background;
+    border: 0;
     // Disable `-webkit-appearance: none` from getting prefixed,
     // We have disabled autoprefixer first and are just only using
     // `-moz-appearance: none` as a prefix and neglecting the webkit.
@@ -65,15 +73,6 @@ $meter-margin-bottom: $global-margin !default;
     -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
     appearance: none;
 
-    // For Firefox
-    background: $meter-background;
-    border: 0;
-
-    display: block;
-    height: $meter-height;
-    margin-bottom: $meter-margin-bottom;
-    width: 100%;
-
     @if $meter-radius-status and has-value($meter-radius) {
       border-radius: $meter-radius;
     }
@@ -81,12 +80,11 @@ $meter-margin-bottom: $global-margin !default;
     // Chrome/Safari/Edge
     &::-webkit-meter-bar {
       background: $meter-background;
+      border: 0; //??
 
       @if $meter-radius-status and has-value($meter-radius) {
         border-radius: $meter-radius;
       }
-
-      border: 0; //??
     }
 
     &::-webkit-meter-inner-element {

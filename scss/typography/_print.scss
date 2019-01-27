@@ -31,14 +31,15 @@ $print-hrefs: true !default;
         background: transparent !important;
       }
 
-      box-shadow: none !important;
       color: black !important; // Black prints faster: h5bp.com/s
       text-shadow: none !important;
+      box-shadow: none !important;
     }
 
     .show-for-print {
       display: block !important;
     }
+
     .hide-for-print {
       display: none !important;
     }
@@ -46,18 +47,23 @@ $print-hrefs: true !default;
     table.show-for-print {
       display: table !important;
     }
+
     thead.show-for-print {
       display: table-header-group !important;
     }
+
     tbody.show-for-print {
       display: table-row-group !important;
     }
+
     tr.show-for-print {
       display: table-row !important;
     }
+
     td.show-for-print {
       display: table-cell !important;
     }
+
     th.show-for-print {
       display: table-cell !important;
     }
@@ -67,6 +73,7 @@ $print-hrefs: true !default;
     a:visited {
       text-decoration: underline;
     }
+
     @if $print-hrefs {
       a[href]::after {
         content: " (" attr(href) ")";
@@ -88,8 +95,8 @@ $print-hrefs: true !default;
     // Prevent page breaks in the middle of a blockquote or preformatted text block
     pre,
     blockquote {
-      border: 1px solid $dark-gray;
       page-break-inside: avoid;
+      border: 1px solid $dark-gray;
     }
 
     // h5bp.com/t
@@ -107,7 +114,7 @@ $print-hrefs: true !default;
     }
 
     @page {
-      margin: .5cm;
+      margin: 0.5cm;
     }
 
     p,

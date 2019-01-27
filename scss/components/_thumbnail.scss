@@ -58,12 +58,15 @@ $thumbnail-transition: box-shadow 200ms ease-out !default;
 /// Adds thumbnail styles to an element.
 @mixin thumbnail {
   display: inline-block;
+
   @if $thumbnail-border-status {
     border: $thumbnail-border;
   }
+
   @if ($thumbnail-radius-status) and ($thumbnail-radius != 0) {
     border-radius: $thumbnail-radius;
   }
+
   @if $thumbnail-margin-bottom != 0 {
     margin-bottom: $thumbnail-margin-bottom;
   }

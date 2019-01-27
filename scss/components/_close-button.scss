@@ -73,10 +73,12 @@ $closebutton-svg-stroke-width: 10px !default;
 /// @return {Number} The given number or the value found in the map.
 @function -zf-get-size-val($value, $size) {
   // Check if the value is a number
-  @if type-of($value) == 'number' {
+  @if type-of($value) == "number" {
     // If it is, just return the number
     @return $value;
-  } @else if map-has-key($value, $size) {
+  }
+
+  @else if map-has-key($value, $size) {
     // Check if the size name exists in the value map
     // If it does, return the value
     @return map-get($value, $size);
@@ -91,40 +93,50 @@ $closebutton-svg-stroke-width: 10px !default;
 
   #{$x}: -zf-get-size-val($closebutton-offset-horizontal, $size);
   #{$y}: -zf-get-size-val($closebutton-offset-vertical, $size);
+
   @if not $closebutton-svg-status {
     font-size: -zf-get-size-val($closebutton-size, $size);
-  } @else {
+  }
+
+  @else {
     svg {
-      height: -zf-get-size-val($closebutton-size, $size);
       width: -zf-get-size-val($closebutton-size, $size);
+      height: -zf-get-size-val($closebutton-size, $size);
     }
   }
 }
 
 /// Adds styles for a close button, using the styles in the settings variables.
 @mixin close-button {
+  @include disable-mouse-outline;
+
+  position: absolute;
+  padding: 0;
+
   // $x: nth($closebutton-position, 1);
   // $y: nth($closebutton-position, 2);
-
-  @include disable-mouse-outline;
   // #{$x}: $closebutton-offset-horizontal;
   // #{$y}: $closebutton-offset-vertical;
-  padding: 0;
-  position: absolute;
+
   @if $closebutton-lineheight != $global-lineheight {
     line-height: $closebutton-lineheight;
   }
+
   @if not $closebutton-svg-status {
     @if $closebutton-color != $body-font-color {
       color: $closebutton-color;
     }
+
     // @if $closebutton-size != 1rem {
     //   font-size: $closebutton-size;
     // }
-  } @else {
+  }
+
+  @else {
     .svg-close-button {
       stroke: $closebutton-color;
       stroke-width: $closebutton-svg-stroke-width;
+
       @if $closebutton-svg-opacity != 1 {
         opacity: $closebutton-svg-opacity;
       }
@@ -136,13 +148,16 @@ $closebutton-svg-stroke-width: 10px !default;
   &:focus {
     @if not $closebutton-svg-status {
       color: $closebutton-color-hover;
-    } @else {
+    }
+
+    @else {
       .svg-close-button {
         @if ($closebutton-svg-hover-opacity != $closebutton-svg-opacity) or
           ($closebutton-svg-hover-opacity != 1)
         {
           opacity: $closebutton-svg-hover-opacity;
         }
+
         @if $closebutton-color-hover != $closebutton-color {
           stroke: $closebutton-color-hover;
         }

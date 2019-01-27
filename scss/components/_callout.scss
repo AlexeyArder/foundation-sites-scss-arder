@@ -67,16 +67,16 @@ $callout-margin: 0 0 1rem 0 !default;
 /// @type Number
 $callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
 
-$callout-padding-small-coefficient: .8 !default;
+$callout-padding-small-coefficient: 0.8 !default;
 $callout-padding-large-coefficient: 1.5 !default;
 $callout-padding-small: (
-    get-side($callout-padding, top) * $callout-padding-small-coefficient
-  )
+  get-side($callout-padding, top) * $callout-padding-small-coefficient
+)
   (get-side($callout-padding, right) * $callout-padding-small-coefficient)
   (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
 $callout-padding-large: (
-    get-side($callout-padding, top) * $callout-padding-large-coefficient
-  )
+  get-side($callout-padding, top) * $callout-padding-large-coefficient
+)
   (get-side($callout-padding, right) * $callout-padding-large-coefficient)
   (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
 
@@ -88,12 +88,14 @@ $callout-padding-large: (
 
 /// Adds basic styles for a callout, including padding and margin.
 @mixin callout-base() {
+  position: relative;
   margin: $callout-margin;
   padding: $callout-padding;
-  position: relative;
+
   @if $callout-border-status {
     border: $callout-border;
   }
+
   @if ($callout-border-radius-status) and ($callout-radius != 0) {
     border-radius: $callout-radius;
   }
@@ -117,6 +119,7 @@ $callout-padding-large: (
   $background: scale-color($color, $lightness: $callout-background-fade);
 
   background-color: $background;
+
   @if $callout-font-color != $body-font-color {
     // color: $callout-font-color;
     color: color-pick-contrast(

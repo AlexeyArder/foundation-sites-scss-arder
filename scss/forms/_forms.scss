@@ -16,17 +16,17 @@ $form-spacing: $global-form-spacing !default;
 /// Forms
 ////////////////////////////////////////
 
-@import 'text';
-@import 'checkbox';
-@import 'label';
-@import 'help-text';
-@import 'input-group';
-@import 'fieldset';
-@import 'select';
-@import 'range';
-@import 'progress';
-@import 'meter';
-@import 'error';
+@import "text";
+@import "checkbox";
+@import "label";
+@import "help-text";
+@import "input-group";
+@import "fieldset";
+@import "select";
+@import "range";
+@import "progress";
+@import "meter";
+@import "error";
 
 @mixin foundation-forms {
   @include foundation-form-text;

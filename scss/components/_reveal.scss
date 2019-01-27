@@ -85,39 +85,42 @@ $reveal-sizes: (
 // This should be in the same breakpoint then `@mixin reveal-modal-width`
 @include breakpoint(medium) {
   %reveal-centered {
+    right: auto;
     left: auto;
     margin: 0 auto;
-    right: auto;
   }
 }
 
 /// Adds styles for a modal overlay.
 /// @param {Color} $background [$reveal-overlay-background] - Background color of the overlay.
 @mixin reveal-overlay($background: $reveal-overlay-background) {
-  background-color: $background;
-  bottom: 0;
-  display: none;
-  left: 0;
-  overflow-y: auto;
   position: fixed;
-  right: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: $reveal-zindex;
+  display: none;
+  overflow-y: auto;
+  background-color: $background;
 }
 
 /// Adds base styles for a modal.
 @mixin reveal-modal-base {
   @include disable-mouse-outline;
-  background-color: $reveal-background;
-  // Workaround android browser z-index bug
-  backface-visibility: hidden;
+
+  z-index: $reveal-zindex + 1;
   display: none;
   //margin: $reveal-margin;
   padding: $reveal-padding;
-  z-index: $reveal-zindex + 1;
+  background-color: $reveal-background;
+  // Workaround android browser z-index bug
+  backface-visibility: hidden;
+
   @if $reveal-border-status {
     border: $reveal-border;
   }
+
   @if $reveal-border-radius-status {
     border-radius: $reveal-radius;
   }
@@ -148,23 +151,24 @@ $reveal-sizes: (
   @extend %reveal-centered;
 
   @include breakpoint(medium) {
-    max-width: $max-width;
     width: $width;
+    max-width: $max-width;
   }
 }
 
 /// Creates a full-screen modal, which stretches the full width and height of the window.
 @mixin reveal-modal-fullscreen {
+  top: 0;
+  right: 0;
   bottom: 0;
-  height: 100%;
   left: 0;
-  margin-left: 0;
+  width: 100%;
   max-width: none;
+  height: 100%;
   // height: 100vh; // sass-lint:disable-line no-duplicate-properties
   min-height: 100%;
-  right: 0;
-  top: 0;
-  width: 100%;
+  margin-left: 0;
+
   @if $reveal-border-status {
     border: 0;
     // border-radius: 0;
@@ -174,9 +178,9 @@ $reveal-sizes: (
 @mixin foundation-reveal {
   /// Disables the scroll when Reveal is shown to prevent the background from shifting
   html.is-reveal-open {
-    overflow-y: hidden;
     position: fixed;
     width: 100%;
+    overflow-y: hidden;
 
     &.zf-has-scroll {
       overflow-y: scroll;
@@ -197,11 +201,12 @@ $reveal-sizes: (
   .reveal {
     @include reveal-modal-base;
     @include reveal-modal-width($reveal-width);
-    margin-left: auto;
-    margin-right: auto;
-    overflow-y: auto;
+
     position: relative;
     top: $reveal-offset;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-y: auto;
 
     @include breakpoint($-zf-zero-breakpoint only) {
       @include reveal-modal-fullscreen;

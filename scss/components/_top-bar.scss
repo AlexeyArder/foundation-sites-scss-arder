@@ -65,11 +65,13 @@ $topbar-input-margin-right: 1rem !default;
   padding: $topbar-padding;
 
   @if $global-flexbox {
-    align-items: center;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-  } @else {
+    align-items: center;
+  }
+
+  @else {
     @include clearfix;
   }
 
@@ -97,6 +99,7 @@ $topbar-input-margin-right: 1rem !default;
   input {
     max-width: $topbar-input-width;
     margin-#{$global-right}: $topbar-input-margin-right;
+
     @if ($topbar-input-radius-status) and ($topbar-input-radius != 0) {
       border-radius: $topbar-input-radius;
     }
@@ -112,6 +115,7 @@ $topbar-input-margin-right: 1rem !default;
   button {
     // sass-lint:disable-line no-qualifying-elements
     width: auto;
+
     @if ($topbar-input-radius-status) and ($topbar-input-radius != 0) {
       border-radius: $topbar-input-radius;
     }
@@ -135,7 +139,9 @@ $topbar-input-margin-right: 1rem !default;
       flex: 0 0 100%;
       max-width: 100%;
     }
-  } @else {
+  }
+
+  @else {
     // Sub-sections
     .top-bar-left,
     .top-bar-right {
@@ -158,7 +164,9 @@ $topbar-input-margin-right: 1rem !default;
       flex: 0 1 auto;
       margin-left: auto;
     }
-  } @else {
+  }
+
+  @else {
     .top-bar-left,
     .top-bar-right {
       width: auto;
@@ -201,7 +209,9 @@ $topbar-input-margin-right: 1rem !default;
     .top-bar-right {
       flex: 0 0 auto;
     }
-  } @else {
+  }
+
+  @else {
     .top-bar-title {
       display: inline-block;
       float: left;

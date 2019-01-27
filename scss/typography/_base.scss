@@ -86,25 +86,25 @@ $h6-font-size: rem-calc(16) !default;
 $header-sizes: (
   small: (
     "h1, .h1": $h1-font-size -
-      (
-        $h1-font-size / (6 / $header-small-coefficient)
-      ),
+    (
+      $h1-font-size / (6 / $header-small-coefficient)
+    ),
     "h2, .h2": $h2-font-size -
-      (
-        $h1-font-size / (8 / $header-small-coefficient)
-      ),
+    (
+      $h1-font-size / (8 / $header-small-coefficient)
+    ),
     "h3, .h3": $h3-font-size -
-      (
-        $h1-font-size / (11 / $header-small-coefficient)
-      ),
+    (
+      $h1-font-size / (11 / $header-small-coefficient)
+    ),
     "h4, .h4": $h4-font-size -
-      (
-        $h1-font-size / (18 / $header-small-coefficient)
-      ),
+    (
+      $h1-font-size / (18 / $header-small-coefficient)
+    ),
     "h5, .h5": $h5-font-size -
-      (
-        $h1-font-size / (25 / $header-small-coefficient)
-      ),
+    (
+      $h1-font-size / (25 / $header-small-coefficient)
+    ),
     "h6, .h6": $h6-font-size
   ),
   medium: (
@@ -172,11 +172,11 @@ $header-lineheight: 1.125 !default;
 
 /// Top margin of headers.
 /// @type Number
-$header-top-margin: .5em !default;
+$header-top-margin: 0.5em !default;
 
 /// Bottom margin of headers.
 /// @type Number
-$header-margin-bottom: .7em !default;
+$header-margin-bottom: 0.7em !default;
 
 /// Text rendering method of headers.
 /// @type String
@@ -201,14 +201,14 @@ $header-small-line-height: 0 !default;
 
 /// Font size of `<small>` header elements.
 /// @type Number
-$header-small-font-size: .5em !default;
+$header-small-font-size: 0.5em !default;
 
 //--------------------------------------
 // Sizes
 //
 /// Font size of `<small>` elements.
 /// @type Number
-$small-font-size: .7em !default;
+$small-font-size: 0.7em !default;
 
 ////////////////////////////////////////
 // Paragraph font styles
@@ -360,7 +360,7 @@ $defnlist-term-weight: $global-weight-bold !default;
 
 /// Spacing between `<dt>` and `<dd>` elements.
 /// @type Number
-$defnlist-term-margin-bottom: .3rem !default;
+$defnlist-term-margin-bottom: 0.3rem !default;
 
 ////////////////////////////////////////
 // Blockquote style
@@ -435,7 +435,7 @@ $cite-font-size: rem-calc(13) !default;
 //
 /// Font size for '<sub>' and '<sup>' elements.
 /// @type Number
-$sub-sup-font-size: .7em !default;
+$sub-sup-font-size: 0.7em !default;
 
 ////////////////////////////////////////
 // Abbreviation elements style
@@ -679,19 +679,23 @@ $figcaption-line-height: inherit !default;
   .h4,
   .h5,
   .h6 {
-    font-style: $header-font-style;
-    margin-bottom: $header-margin-bottom;
     margin-top: $header-top-margin;
+    margin-bottom: $header-margin-bottom;
+    font-style: $header-font-style;
     text-rendering: $header-text-rendering;
+
     @if $header-color != $body-font-color {
       color: $header-color;
     }
+
     @if $header-font-family != $body-font-family {
       font-family: $header-font-family;
     }
+
     @if $header-font-weight != $global-weight-normal {
       font-weight: $header-font-weight;
     }
+
     @if $header-lineheight != $global-lineheight {
       line-height: $header-lineheight;
     }
@@ -701,9 +705,11 @@ $figcaption-line-height: inherit !default;
         @if $header-small-font-color != $header-color {
           color: $header-small-font-color;
         }
+
         @if $header-small-font-size != $small-font-size {
           font-size: $header-small-font-size;
         }
+
         @if $header-small-line-height != $header-lineheight {
           line-height: $header-small-line-height;
         }
@@ -770,9 +776,9 @@ $figcaption-line-height: inherit !default;
   // Paragraphs
 
   p {
+    margin-bottom: $paragraph-margin-bottom;
     font-size: $paragraph-font-size;
     line-height: $paragraph-lineheight;
-    margin-bottom: $paragraph-margin-bottom;
     text-rendering: $paragraph-text-rendering;
   }
 
@@ -813,6 +819,7 @@ $figcaption-line-height: inherit !default;
 
     &:hover {
       color: $anchor-color-hover;
+
       @if $anchor-text-decoration-hover != $anchor-text-decoration {
         text-decoration: $anchor-text-decoration-hover;
       }
@@ -820,6 +827,7 @@ $figcaption-line-height: inherit !default;
 
     &:focus {
       color: $anchor-color-focus;
+
       @if $anchor-text-decoration-hover != $anchor-text-decoration {
         text-decoration: $anchor-text-decoration-hover;
       }
@@ -834,14 +842,14 @@ $figcaption-line-height: inherit !default;
   // Horizontal rule
 
   hr {
-    border-bottom: $hr-border-width $hr-border-style $hr-border-color;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
     clear: both;
+    max-width: $hr-width;
     height: 0;
     margin: $hr-margin; //?? ($hr-margin - rem-calc($hr-border-width));
-    max-width: $hr-width;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: $hr-border-width $hr-border-style $hr-border-color;
+    border-left: 0;
 
     //border-width: $hr-border-width 0 0;
     //border: $hr-border-style $hr-border-color;
@@ -854,6 +862,7 @@ $figcaption-line-height: inherit !default;
   ol,
   ul {
     margin-bottom: $list-margin-bottom;
+
     @if $list-style-position != outside {
       list-style-position: $list-style-position; //?? !important;
     }
@@ -867,7 +876,7 @@ $figcaption-line-height: inherit !default;
     list-style-type: $ordered-list-style-type;
   }
 
-  ol ,
+  ol,
   ul {
     @if $list-side-margin != 0 {
       margin-#{$global-left}: $list-side-margin;
@@ -889,8 +898,8 @@ $figcaption-line-height: inherit !default;
 
   dl {
     dt {
-      font-weight: $defnlist-term-weight;
       margin-bottom: $defnlist-term-margin-bottom;
+      font-weight: $defnlist-term-weight;
     }
 
     dd {
@@ -904,6 +913,7 @@ $figcaption-line-height: inherit !default;
   blockquote {
     margin: $blockquote-margin;
     padding: $blockquote-padding;
+
     @if $blockquote-border-status {
       border-#{$global-left}: $blockquote-border;
     }
@@ -920,6 +930,7 @@ $figcaption-line-height: inherit !default;
 
   cite {
     font-size: $cite-font-size;
+
     @if $cite-color != inherit {
       color: $cite-color;
     }
@@ -951,9 +962,9 @@ $figcaption-line-height: inherit !default;
 
   abbr,
   abbr[title] {
+    text-decoration: none;
     border-bottom: $abbr-underline;
     cursor: help;
-    text-decoration: none;
   }
 
   ////////////////////////////////////////
@@ -984,13 +995,13 @@ $figcaption-line-height: inherit !default;
     code,
     samp {
       color: $code-color;
-      font-family: $code-font-family;
-      font-size: $code-font-size;
       font-weight: $code-font-weight;
+      font-size: $code-font-size;
+      font-family: $code-font-family;
 
       @if $code-decoration-status {
-        background-color: $code-background;
         padding: $code-padding;
+        background-color: $code-background;
 
         @if $code-border-status {
           border: $code-border;
@@ -1012,8 +1023,8 @@ $figcaption-line-height: inherit !default;
       font-family: $keystroke-font;
 
       @if $kbd-decoration-status {
-        background-color: $keystroke-background;
         padding: $keystroke-padding;
+        background-color: $keystroke-background;
 
         @if $kbd-border-status {
           border: $keystroke-border;
@@ -1035,17 +1046,22 @@ $figcaption-line-height: inherit !default;
 
   @if $code-kbd-samp-pre-status {
     pre {
-      background-color: $preformated-background;
-      font-size: $preformated-font-size;
       margin: $preformated-margin;
       padding: $preformated-padding;
+      font-size: $preformated-font-size;
+      background-color: $preformated-background;
 
-      @if $preformated-border-radius-status and $preformated-radius != $global-radius {
+      @if $preformated-border-radius-status and
+        $preformated-radius !=
+        $global-radius
+      {
         border-radius: $preformated-radius;
       }
+
       @if $preformated-font-color != $body-font-color {
         color: $preformated-font-color;
       }
+
       @if $preformated-line-height != inherit {
         line-height: $preformated-line-height;
       }
@@ -1054,8 +1070,8 @@ $figcaption-line-height: inherit !default;
       kbd,
       samp {
         @if $code-decoration-status {
-          background-color: none;
           padding: 0;
+          background-color: none;
 
           @if $code-border-status {
             border: 0;
@@ -1070,9 +1086,11 @@ $figcaption-line-height: inherit !default;
 
   address {
     font-style: $address-font-style;
+
     @if $address-font-size != inherit {
       font-size: $address-font-size;
     }
+
     @if $address-font-weight != normal {
       font-weight: $address-font-weight;
     }
@@ -1087,6 +1105,7 @@ $figcaption-line-height: inherit !default;
     @if $figcaption-font-size != inherit {
       font-size: $figcaption-font-size;
     }
+
     @if $figcaption-line-height != inherit {
       line-height: $figcaption-line-height;
     }

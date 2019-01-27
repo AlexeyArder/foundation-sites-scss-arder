@@ -30,11 +30,11 @@ $subheader-font-weight: $global-weight-normal !default;
 
 /// Default top margin for subheaders.
 /// @type Number
-$subheader-margin-top: .3rem !default;
+$subheader-margin-top: 0.3rem !default;
 
 /// Default bottom margin for subheaders.
 /// @type Number
-$subheader-margin-bottom: .5rem !default;
+$subheader-margin-bottom: 0.5rem !default;
 
 ////////////////////////////////////////
 /// Lead class
@@ -101,12 +101,14 @@ $no-bullet-margin-second-level: 0 !default;
   // </header>
 
   .subheader {
-    line-height: $subheader-lineheight;
-    margin-bottom: $subheader-margin-bottom;
     margin-top: $subheader-margin-top;
+    margin-bottom: $subheader-margin-bottom;
+    line-height: $subheader-lineheight;
+
     @if $subheader-color != $header-color {
       color: $subheader-color;
     }
+
     @if $subheader-font-weight != normal {
       font-weight: $subheader-font-weight;
     }

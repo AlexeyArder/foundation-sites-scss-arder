@@ -16,7 +16,9 @@
           .#{$size}-text-#{$align} {
             text-align: $align;
           }
-        } @else {
+        }
+
+        @else {
           .text-#{$align} {
             text-align: $align;
           }

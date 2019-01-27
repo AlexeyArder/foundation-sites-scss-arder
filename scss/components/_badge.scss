@@ -70,18 +70,23 @@ $badge-margin-right: 0 !default;
   min-width: $badge-minwidth;
   padding: $badge-padding;
   text-align: center;
+
   @if $badge-border-radius-status {
     border-radius: $badge-border-radius;
   }
+
   @if $badge-font-size != inherit {
     font-size: $badge-font-size;
   }
+
   @if $badge-line-height != $global-lineheight {
     line-height: $badge-line-height;
   }
+
   @if $badge-margin-left != 0 {
     margin-left: $badge-margin-left;
   }
+
   @if $badge-margin-right != 0 {
     margin-right: $badge-margin-right;
   }
@@ -93,13 +98,13 @@ $badge-margin-right: 0 !default;
   .badge {
     @include badge;
 
-    background: $badge-background;
     color: $badge-color;
+    background: $badge-background;
 
     @each $name, $color in $badge-palette {
       &.#{$name} {
-        background: $color;
         color: color-pick-contrast($color, ($badge-color, $badge-color-alt));
+        background: $color;
       }
     }
   }

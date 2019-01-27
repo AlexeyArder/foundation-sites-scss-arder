@@ -40,7 +40,7 @@ $drilldown-arrows-status: true !default;
 //
 /// Transition property to use for animating menus.
 /// @type Transition
-$drilldown-transition: transform .15s linear !default;
+$drilldown-transition: transform 0.15s linear !default;
 
 /// Sets drilldown arrow size if arrow is used.
 /// @type Length
@@ -77,8 +77,8 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
       position: absolute;
 
       @if $drilldown-arrow-size != $menu-font-size {
-        font-size: $drilldown-arrow-size;
         padding-top: ($menu-font-size - $drilldown-arrow-size) / 2;
+        font-size: $drilldown-arrow-size;
       }
     }
   }
@@ -89,30 +89,30 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
     margin-#{$global-right}: $drilldown-arrow-back-margin-right; // Creates space between the arrow and the text
 
     @if $drilldown-arrow-size != $menu-font-size {
-      font-size: $drilldown-arrow-size;
       padding-top: ($menu-font-size - $drilldown-arrow-size) / 2;
+      font-size: $drilldown-arrow-size;
     }
   }
 
   &.align-left .is-drilldown-submenu-parent > a::after {
-    content: $drilldown-arrow-right-content;
-    left: auto;
     right: 1rem;
+    left: auto;
+    content: $drilldown-arrow-right-content;
 
     @if $drilldown-arrow-size != $menu-font-size {
-      font-size: $drilldown-arrow-size;
       padding-top: ($menu-font-size - $drilldown-arrow-size) / 2;
+      font-size: $drilldown-arrow-size;
     }
   }
 
   &.align-right .is-drilldown-submenu-parent > a::after {
-    content: $drilldown-arrow-left-content;
-    left: 1rem;
     right: auto;
+    left: 1rem;
+    content: $drilldown-arrow-left-content;
 
     @if $drilldown-arrow-size != $menu-font-size {
-      font-size: $drilldown-arrow-size;
       padding-top: ($menu-font-size - $drilldown-arrow-size) / 2;
+      font-size: $drilldown-arrow-size;
     }
   }
 }
@@ -120,15 +120,15 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
 @mixin foundation-drilldown-menu {
   // Applied to the Menu container
   .is-drilldown {
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 
     li {
       display: block;
     }
 
     &.animate-height {
-      transition: height .5s;
+      transition: height 0.5s;
     }
   }
 
@@ -160,24 +160,24 @@ $drilldown-arrow-back-margin-right: rem-calc(8) !default;
   // The top level <ul>
   .drilldown {
     a {
-      background: $drilldown-background;
       padding: $drilldown-padding;
+      background: $drilldown-background;
     }
 
     // Applied to submenu <ul>s
     .is-drilldown-submenu {
-      background: $drilldown-submenu-background;
       position: absolute;
       top: 0;
-      transition: $drilldown-transition;
-      width: 100%;
       z-index: -1;
+      width: 100%;
+      background: $drilldown-submenu-background;
+      transition: $drilldown-transition;
       #{$global-left}: 100%;
 
       &.is-active {
+        z-index: 1;
         display: block;
         transform: translateX(if($global-text-direction == ltr, -100%, 100%));
-        z-index: 1;
       }
 
       &.is-closing {

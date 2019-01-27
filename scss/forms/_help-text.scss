@@ -37,12 +37,15 @@ $helptext-margin-top: -($form-spacing / 2);
 @mixin foundation-form-helptext {
   .help-text {
     margin-top: $helptext-margin-top;
+
     @if $helptext-color != $body-font-color {
       color: $helptext-color;
     }
+
     @if $helptext-font-size != inherit {
       font-size: $helptext-font-size;
     }
+
     @if $helptext-font-style != normal {
       font-style: $helptext-font-style;
     }

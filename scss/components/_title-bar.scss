@@ -49,19 +49,24 @@ $titlebar-icon-spacing-right: rem-calc(4) !default;
 
 @mixin foundation-title-bar {
   .title-bar {
-    line-height: 1;
     padding: $titlebar-padding;
+    line-height: 1;
+
     @if $titlebar-background != transparent {
       background: $titlebar-background;
     }
+
     @if $titlebar-color != $body-font-color {
       color: $titlebar-color;
     }
+
     @if $global-flexbox {
-      align-items: center;
       display: flex;
       justify-content: flex-start;
-    } @else {
+      align-items: center;
+    }
+
+    @else {
       @include clearfix;
     }
 
@@ -69,6 +74,7 @@ $titlebar-icon-spacing-right: rem-calc(4) !default;
       @if $titlebar-icon-spacing-left != 0 {
         margin-#{$global-left}: $titlebar-icon-spacing-left;
       }
+
       @if $titlebar-icon-spacing-right != 0 {
         margin-#{$global-right}: $titlebar-icon-spacing-right;
       }
@@ -78,13 +84,15 @@ $titlebar-icon-spacing-right: rem-calc(4) !default;
   @if $global-flexbox {
     .title-bar-left,
     .title-bar-right {
-      flex: 1 1 0px; // sass-lint:disable-line zero-unit
+      flex: 1 1 0; // sass-lint:disable-line zero-unit
     }
 
     .title-bar-right {
       text-align: right;
     }
-  } @else {
+  }
+
+  @else {
     .title-bar-left {
       float: left;
     }
@@ -98,6 +106,7 @@ $titlebar-icon-spacing-right: rem-calc(4) !default;
   .title-bar-title {
     display: inline-block;
     vertical-align: middle;
+
     @if $titlebar-text-font-weight != normal {
       font-weight: $titlebar-text-font-weight;
     }

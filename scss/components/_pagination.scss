@@ -110,6 +110,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   $background-hover: $pagination-item-background-hover
 ) {
   @include clearfix;
+
   margin-#{$global-left}: 0;
   margin-bottom: $margin-bottom;
 
@@ -117,16 +118,20 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   li {
     //display: none;
     margin-#{$global-right}: $spacing;
+
     @if ($pagination-radius-status) and ($radius != 0) {
       border-radius: $radius;
     }
+
     @if $font-size != 1rem {
       font-size: $font-size;
     }
 
     @if $pagination-mobile-items-status {
       display: inline-block;
-    } @else {
+    }
+
+    @else {
       display: none;
 
       &:last-child,
@@ -151,9 +156,11 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   button {
     display: block;
     padding: $padding;
+
     @if ($pagination-radius-status) and ($pagination-button-radius != 0) {
       border-radius: $pagination-button-radius;
     }
+
     @if $color != $anchor-color {
       color: $color;
     }
@@ -162,6 +169,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
       @if $background-hover != transparent {
         background: $background-hover;
       }
+
       @if $pagination-item-hover-color != $pagination-item-color {
         color: $pagination-item-hover-color;
       }
@@ -176,6 +184,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   $color-current: $pagination-item-color-current
 ) {
   cursor: default;
+
   @if $background-current != transparent {
     background: $background-current;
 
@@ -183,6 +192,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
       background: $background-current;
     }
   }
+
   @if $color-current != $pagination-item-color {
     color: $color-current;
   }
@@ -193,9 +203,9 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   $padding: $pagination-item-padding,
   $color: $pagination-item-color-disabled
 ) {
+  padding: $padding;
   color: $color;
   cursor: not-allowed;
-  padding: $padding;
 
   @if $pagination-item-background-hover != transparent {
     &:hover {
@@ -211,6 +221,7 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
 ) {
   content: $pagination-ellipsis-content;
   padding: $padding;
+
   @if $color != $pagination-item-color {
     color: $color;
   }

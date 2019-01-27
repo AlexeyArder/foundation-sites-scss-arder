@@ -32,6 +32,12 @@ $menu-text-color: $global-menu-text-color !default;
 //
 
 $menu-first-line-zero-padiing-left-status: true !default;
+$menu-icon-status: true !default;
+$menu-simple-status: true !default;
+$menu-text-status: true !default;
+$menu-bordered-status: true !default;
+$menu-hover-status: true !default;
+$menu-nested-status: true !default;
 
 //--------------------------------------
 // Sizes
@@ -50,7 +56,7 @@ $menu-item-padding: rem-calc(6) rem-calc(16) !default;
 
 /// Spacing between an icon and text in a menu item.
 /// @type Number
-$menu-icon-spacing: .25rem !default;
+$menu-icon-spacing: 0.25rem !default;
 
 /// Maximum number of `expand-n` classes to include in the CSS.
 /// @type Number
@@ -74,12 +80,12 @@ $menu-border-style: solid !default;
 
 /// Creates the base styles for a Menu.
 @mixin menu-base {
+  position: relative;
+  margin: 0;
   // margin: $menu-margin;
   // list-style-type: none;
   padding: 0;
-  margin: 0;
   list-style: none;
-  position: relative;
 
   @if $menu-font-weight != normal {
     font-weight: $menu-font-weight;
@@ -97,8 +103,8 @@ $menu-border-style: solid !default;
   a,
   .button {
     display: block;
-    line-height: 1;
     padding: $menu-item-padding;
+    line-height: 1;
     text-decoration: none;
 
     // white-space: nowrap;
@@ -121,9 +127,11 @@ $menu-border-style: solid !default;
 @mixin menu-expand {
   @if $global-flexbox {
     li {
-      flex: 1 1 0px; // scss-lint:disable ZeroUnit
+      flex: 1 1 0; // scss-lint:disable ZeroUnit
     }
-  } @else {
+  }
+
+  @else {
     display: table;
     table-layout: fixed;
 
@@ -139,10 +147,14 @@ $menu-border-style: solid !default;
   @if $alignment == left {
     @if $global-flexbox {
       justify-content: flex-start;
-    } @else {
+    }
+
+    @else {
       text-align: $global-left;
     }
-  } @else if $alignment == right {
+  }
+
+  @else if $alignment == right {
     @if $global-flexbox {
       li {
         display: flex;
@@ -161,7 +173,9 @@ $menu-border-style: solid !default;
           text-align: $global-right;
         }
       }
-    } @else {
+    }
+
+    @else {
       text-align: $global-right;
 
       .submenu li {
@@ -174,7 +188,9 @@ $menu-border-style: solid !default;
         }
       }
     }
-  } @else if $alignment == center {
+  }
+
+  @else if $alignment == center {
     @if $global-flexbox {
       li {
         display: flex;
@@ -184,7 +200,9 @@ $menu-border-style: solid !default;
           justify-content: flex-start;
         }
       }
-    } @else {
+    }
+
+    @else {
       text-align: center;
 
       .submenu li {
@@ -201,21 +219,29 @@ $menu-border-style: solid !default;
     @if $global-flexbox {
       flex-direction: row;
       flex-wrap: wrap;
-    } @else {
+    }
+
+    @else {
       li {
         display: inline-block;
       }
     }
-  } @else if $dir == vertical {
+  }
+
+  @else if $dir == vertical {
     @if $global-flexbox {
       flex-direction: column;
       flex-wrap: nowrap;
-    } @else {
+    }
+
+    @else {
       li {
         display: block;
       }
     }
-  } @else {
+  }
+
+  @else {
     @warn 'The direction used for menu-direction() must be horizontal or vertical.';
   }
 }
@@ -244,13 +270,16 @@ $menu-border-style: solid !default;
   $margin-dir: direction-opposite($dir);
 
   margin-#{$no-margin-dir}: 0;
-  @if type-of($menu-item-padding) == 'map' {
+
+  @if type-of($menu-item-padding) == "map" {
     @each $breakpoint, $value in $menu-item-padding {
       @include breakpoint($breakpoint) {
         margin-#{$margin-dir}: get-side($value, $margin-dir);
       }
     }
-  } @else {
+  }
+
+  @else {
     margin-#{$margin-dir}: get-side($menu-item-padding, $margin-dir);
   }
 }
@@ -265,16 +294,22 @@ $menu-border-style: solid !default;
       li > .nested {
         margin-#{$global-right}: $margin;
       }
-    } @else {
+    }
+
+    @else {
       margin-#{$global-right}: $margin;
     }
-  } @else {
+  }
+
+  @else {
     // margin-#{$global-right}: 0;
     @if $menu-first-line-zero-padiing-left-status {
       li > .nested {
         margin-#{$global-left}: $margin;
       }
-    } @else {
+    }
+
+    @else {
       margin-#{$global-left}: $margin;
     }
   }
@@ -286,7 +321,9 @@ $menu-border-style: solid !default;
     a {
       display: flex;
     }
-  } @else {
+  }
+
+  @else {
     img,
     i,
     svg {
@@ -317,7 +354,9 @@ $menu-border-style: solid !default;
         }
       }
     }
-  } @else if $position == right {
+  }
+
+  @else if $position == right {
     li a {
       @if $global-flexbox {
         flex-flow: row nowrap;
@@ -333,11 +372,15 @@ $menu-border-style: solid !default;
         }
       }
     }
-  } @else if $position == top {
+  }
+
+  @else if $position == top {
     li a {
       @if $global-flexbox {
         flex-flow: column nowrap;
-      } @else {
+      }
+
+      @else {
         text-align: center;
       }
 
@@ -347,18 +390,24 @@ $menu-border-style: solid !default;
         @if not $global-flexbox {
           display: block;
           margin: 0 auto $spacing;
-        } @else {
+        }
+
+        @else {
           align-self: stretch;
           margin-bottom: $spacing;
           text-align: center;
         }
       }
     }
-  } @else if $position == bottom {
+  }
+
+  @else if $position == bottom {
     li a {
       @if $global-flexbox {
         flex-flow: column nowrap;
-      } @else {
+      }
+
+      @else {
         text-align: center;
       }
 
@@ -368,7 +417,9 @@ $menu-border-style: solid !default;
         @if not $global-flexbox {
           display: block;
           margin: $spacing auto 0;
-        } @else {
+        }
+
+        @else {
           align-self: stretch;
           margin-bottom: $spacing;
           text-align: center;
@@ -380,16 +431,16 @@ $menu-border-style: solid !default;
 
 @mixin menu-text {
   padding: $global-menu-padding;
-
+  color: inherit;
   font-weight: bold;
   line-height: 1;
-  color: inherit;
 }
 
 @mixin menu-state-active {
   @if $menu-item-background-active != transparent {
     background: $menu-item-background-active;
   }
+
   @if $menu-item-color-active != $global-body-font-color {
     color: $menu-item-color-active;
   }
@@ -435,38 +486,44 @@ $menu-border-style: solid !default;
     }
 
     // Simple
-    &.simple {
-      @include menu-simple;
+    @if $menu-simple-status {
+      &.simple {
+        @include menu-simple;
+      }
     }
 
     // Nesting
-    &.nested {
-      @include menu-nested;
+    @if $menu-nested-status {
+      &.nested {
+        @include menu-nested;
+      }
     }
 
-    // Icon Base Styles
-    &.icons {
-      @include menu-icons;
-    }
+    @if $menu-icon-status {
+      // Icon Base Styles
+      &.icons {
+        @include menu-icons;
+      }
 
-    // Icon Left
-    &.icon-left {
-      @include menu-icon-position(left);
-    }
+      // Icon Left
+      &.icon-left {
+        @include menu-icon-position(left);
+      }
 
-    // Icon Right
-    &.icon-right {
-      @include menu-icon-position(right);
-    }
+      // Icon Right
+      &.icon-right {
+        @include menu-icon-position(right);
+      }
 
-    // Icon Top
-    &.icon-top {
-      @include menu-icon-position(top);
-    }
+      // Icon Top
+      &.icon-top {
+        @include menu-icon-position(top);
+      }
 
-    // Icon Bottom
-    &.icon-bottom {
-      @include menu-icon-position(bottom);
+      // Icon Bottom
+      &.icon-bottom {
+        @include menu-icon-position(bottom);
+      }
     }
 
     // Active state
@@ -483,8 +540,10 @@ $menu-border-style: solid !default;
     &.align-#{$global-right} {
       @include menu-align(right);
 
-      .nested {
-        @include menu-nested($nested-alignment: right);
+      @if $menu-nested-status {
+        .nested {
+          @include menu-nested($nested-alignment: right);
+        }
       }
     }
 
@@ -493,34 +552,22 @@ $menu-border-style: solid !default;
       @include menu-align(center);
     }
 
-    .menu-text {
-      @include menu-text;
+    @if $menu-text-status {
+      .menu-text {
+        @include menu-text;
+      }
     }
 
     @if $menu-first-line-zero-padiing-left-status {
+      &:not(.nested) > li:last-child:not(.is-submenu-item) > a {
+        padding-#{$global-right}: 0;
+      }
+
       &:not(.nested) > li:first-child:not(.is-submenu-item) > a {
         padding-#{$global-left}: 0;
       }
 
       &.vertical {
-        &:not(
-          .nested
-        ):not(
-          .small-horizontal
-        ):not(
-          .medium-horizontal
-        ):not(
-          .large-horizontal
-        ):not(
-          .xlarge-horizontal
-        ):not(
-          .xxlarge-horizontal
-        )
-          > li:not(.is-submenu-item)
-          > a {
-          padding-#{$global-left}: 0;
-        }
-
         &:not(.nested) {
           &.medium-horizontal > li:not(.is-submenu-item) > a {
             @include breakpoint(small down) {
@@ -552,38 +599,24 @@ $menu-border-style: solid !default;
             }
           }
         }
-      }
 
-      &:not(.nested) > li:last-child:not(.is-submenu-item) > a {
-        padding-#{$global-right}: 0;
+        &:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
+          padding-#{$global-left}: 0;
+        }
       }
     }
 
     @if not $menu-first-line-zero-padiing-left-status {
       &.menu-first-line-zero-padiing {
+        &:not(.nested) > li:last-child:not(.is-submenu-item) > a {
+          padding-#{$global-right}: 0;
+        }
+
         &:not(.nested) > li:first-child:not(.is-submenu-item) > a {
           padding-#{$global-left}: 0;
         }
 
         &.vertical {
-          &:not(
-            .nested
-          ):not(
-            .small-horizontal
-          ):not(
-            .medium-horizontal
-          ):not(
-            .large-horizontal
-          ):not(
-            .xlarge-horizontal
-          ):not(
-            .xxlarge-horizontal
-          )
-            > li:not(.is-submenu-item)
-            > a {
-            padding-#{$global-left}: 0;
-          }
-
           &:not(.nested) {
             &.medium-horizontal > li:not(.is-submenu-item) > a {
               @include breakpoint(small down) {
@@ -615,30 +648,34 @@ $menu-border-style: solid !default;
               }
             }
           }
-        }
 
-        &:not(.nested) > li:last-child:not(.is-submenu-item) > a {
-          padding-#{$global-right}: 0;
+          &:not(.nested):not(.small-horizontal):not(.medium-horizontal):not(.large-horizontal):not(.xlarge-horizontal):not(.xxlarge-horizontal) > li:not(.is-submenu-item) > a {
+            padding-#{$global-left}: 0;
+          }
         }
       }
     }
 
     // Menu with border
-    &.menu-bordered {
-      li {
-        border: $menu-border-width $menu-border-style $menu-border;
+    @if $menu-bordered-status {
+      &.menu-bordered {
+        li {
+          border: $menu-border-width $menu-border-style $menu-border;
 
-        &:not(:first-child) {
-          border-top: 0;
+          &:not(:first-child) {
+            border-top: 0;
+          }
         }
       }
     }
 
     // Menu with background hover
-    &.menu-hover {
-      li:hover {
-        @if $menu-item-background-hover != transparent {
-          background-color: $menu-item-background-hover;
+    @if $menu-hover-status {
+      &.menu-hover {
+        li:hover {
+          @if $menu-item-background-hover != transparent {
+            background-color: $menu-item-background-hover;
+          }
         }
       }
     }

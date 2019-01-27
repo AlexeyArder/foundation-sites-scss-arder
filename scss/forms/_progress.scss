@@ -49,16 +49,15 @@ $progress-margin-bottom: $global-margin !default;
 
 @mixin foundation-progress-element {
   progress {
-    appearance: none;
+    display: block;
+    width: 100%;
+    height: $progress-height;
+    margin-bottom: $progress-margin-bottom;
 
     // For Firefox
     background: $progress-background;
     border: 0;
-
-    display: block;
-    height: $progress-height;
-    margin-bottom: $progress-margin-bottom;
-    width: 100%;
+    appearance: none;
 
     @if $progress-radius-status and has-value($progress-radius) {
       border-radius: $progress-radius;

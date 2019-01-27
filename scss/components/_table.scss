@@ -130,7 +130,9 @@ $table-thead-tfoot-padding: $table-padding !default;
         background-color: $table-striped-background;
         border-bottom: 0;
       }
-    } @else if $stripe == odd {
+    }
+
+    @else if $stripe == odd {
       // If stripe is set to odd, darken the odd rows.
       &:nth-child(odd) {
         background-color: $table-striped-background;
@@ -157,6 +159,7 @@ $table-thead-tfoot-padding: $table-padding !default;
     @if ($table-background-status) and ($table-background != transparent) {
       background-color: $table-background;
     }
+
     @if $table-border-status {
       border: $table-border;
     }
@@ -165,9 +168,11 @@ $table-thead-tfoot-padding: $table-padding !default;
   // Caption
   caption {
     padding: $table-padding;
+
     @if $table-caption-font-size != 1rem {
       font-size: $table-caption-font-size;
     }
+
     @if $table-caption-font-weight != normal {
       font-weight: $table-caption-font-weight;
     }
@@ -176,9 +181,11 @@ $table-thead-tfoot-padding: $table-padding !default;
   // Table head
   thead {
     @if ($table-background-status) and
-      ($table-head-background != $table-background) {
+      ($table-head-background != $table-background)
+    {
       background: $table-head-background;
     }
+
     @if $table-head-font-color != $body-font-color {
       color: $table-head-font-color;
     }
@@ -187,9 +194,11 @@ $table-thead-tfoot-padding: $table-padding !default;
   // Table foot
   tfoot {
     @if ($table-background-status) and
-      ($table-foot-background != $table-background) {
+      ($table-foot-background != $table-background)
+    {
       background: $table-foot-background;
     }
+
     @if $table-foot-font-color != $body-font-color {
       color: $table-foot-font-color;
     }
@@ -209,9 +218,11 @@ $table-thead-tfoot-padding: $table-padding !default;
     th,
     td {
       padding: $table-thead-tfoot-padding;
+
       @if $table-thead-tfoot-font-weight != normal {
         font-weight: $table-thead-tfoot-font-weight;
       }
+
       @if $table-thead-tfoot-text-align != left {
         text-align: $table-thead-tfoot-text-align;
       }
@@ -260,10 +271,13 @@ $table-thead-tfoot-padding: $table-padding !default;
       &.unstriped {
         tbody {
           @include -zf-table-unstripe();
+
           background-color: $table-background;
         }
       }
-    } @else {
+    }
+
+    @else {
       // If tables are not striped
       tbody {
         @include -zf-table-unstripe();
@@ -281,16 +295,19 @@ $table-thead-tfoot-padding: $table-padding !default;
 /// Adds the general styles for tables.
 /// @param {Keyword} $stripe [$table-stripe] - Uses keywords even, odd, or none to darken rows of the table. The default value is even.
 @mixin table($stripe: $table-stripe, $nest: false) {
-  border-collapse: collapse;
-  margin-bottom: $table-margin-bottom;
   width: 100%;
+  margin-bottom: $table-margin-bottom;
+  border-collapse: collapse;
+
   @if ($table-radius-status) and ($table-border-radius != 0) {
     border-radius: $table-border-radius;
   }
 
   @if $nest {
     @include -zf-table-children-styles($stripe);
-  } @else {
+  }
+
+  @else {
     @at-root {
       @include -zf-table-children-styles($stripe);
     }
@@ -350,19 +367,25 @@ $table-thead-tfoot-padding: $table-padding !default;
         &:not(.unstriped) tr:nth-of-type(even):hover {
           background-color: $table-row-stripe-hover;
         }
-      } @else if ($table-stripe == odd) {
+      }
+
+      @else if ($table-stripe == odd) {
         // Darkens the odd striped table rows.
         &:not(.unstriped) tr:nth-of-type(odd):hover {
           background-color: $table-row-stripe-hover;
         }
       }
-    } @else {
+    }
+
+    @else {
       @if ($table-stripe == even) {
         // Darkens the even striped table rows.
         &.striped tr:nth-of-type(even):hover {
           background-color: $table-row-stripe-hover;
         }
-      } @else if ($table-stripe == odd) {
+      }
+
+      @else if ($table-stripe == odd) {
         // Darkens the odd striped table rows.
         &.striped tr:nth-of-type(odd):hover {
           background-color: $table-row-stripe-hover;
@@ -381,7 +404,9 @@ $table-thead-tfoot-padding: $table-padding !default;
         display: block;
       }
     }
-  } @else {
+  }
+
+  @else {
     thead {
       display: none;
     }

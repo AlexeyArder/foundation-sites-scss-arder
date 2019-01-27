@@ -38,6 +38,7 @@ $card-background-status: true !default;
 $card-border-status: true !default;
 $card-border-radius-status: true !default;
 $card-shadow-status: true !default;
+$card-image-ie-hack-status: false !default;
 
 //--------------------------------------
 // Sizes
@@ -81,26 +82,32 @@ $card-border: $global-border-width solid $card-border-color !default;
 ) {
   @if $global-flexbox {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
+    flex-direction: column;
   }
 
   margin: $margin;
   overflow: hidden;
+
   @if $card-background-status and
     ($background != transparent) and
-    ($background != $body-background) {
+    ($background != $body-background)
+  {
     background: $background;
   }
+
   @if $card-border-status {
     border: $border;
   }
+
   @if $card-border-radius-status {
     border-radius: $radius;
   }
+
   @if $card-shadow-status and ($shadow != none) {
     box-shadow: $shadow;
   }
+
   @if $card-font-color != $body-font-color {
     color: $color;
   }
@@ -121,9 +128,11 @@ $card-border: $global-border-width solid $card-border-color !default;
   }
 
   padding: $padding;
+
   @if $card-background-status and
     ($background != transparent) and
-    ($background != $body-background) {
+    ($background != $body-background)
+  {
     background: $background;
   }
 
@@ -160,7 +169,12 @@ $card-border: $global-border-width solid $card-border-color !default;
 
   // For IE 11 - Flexbug
   // https://github.com/philipwalton/flexbugs/issues/75
-  .card-image {
-    min-height: 1px;
+  //IE10/11 only
+  @if $card-image-ie-hack-status {
+    @media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
+      .card-image {
+        min-height: 1px;
+      }
+    }
   }
 }

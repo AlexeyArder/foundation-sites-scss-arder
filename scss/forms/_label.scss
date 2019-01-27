@@ -47,15 +47,19 @@ $form-label-margin-bottom: rem-calc(4) !default;
 @mixin form-label {
   display: block;
   margin-bottom: $form-label-margin-bottom;
+
   @if $form-label-color != $body-font-color {
     color: $form-label-color;
   }
+
   @if $form-label-font-size != inherit {
     font-size: $form-label-font-size;
   }
+
   @if $form-label-font-weight != normal {
     font-weight: $form-label-font-weight;
   }
+
   @if $form-label-line-height != inherit {
     line-height: $form-label-line-height;
   }
@@ -63,12 +67,14 @@ $form-label-margin-bottom: rem-calc(4) !default;
 
 @mixin form-label-middle {
   $input-border-width: get-border-value($input-border, width);
+
   padding: (
-      (
-        (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) / 2
-      ) + rem-calc($input-border-width) +
-      ($input-font-size - $form-label-font-size) / 2
-    )
+    (
+      (get-side($input-padding, "top") + get-side($input-padding, "bottom")) /
+      2
+    ) + rem-calc($input-border-width) +
+    ($input-font-size - $form-label-font-size) / 2
+  )
     0;
 
   //margin: 0 0 $form-spacing;

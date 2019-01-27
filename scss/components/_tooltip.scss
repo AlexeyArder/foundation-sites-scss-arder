@@ -86,33 +86,39 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
 ////////////////////////////////////////
 
 @mixin has-tip {
-  cursor: $has-tip-cursor;
-  display: inline-block;
   position: relative;
+  display: inline-block;
+  cursor: $has-tip-cursor;
+
   @if $tooltip-has-tip-border-bottom-status {
     border-bottom: $has-tip-border-bottom;
   }
+
   @if $has-tip-font-weight != normal {
     font-weight: $has-tip-font-weight;
   }
 }
 
 @mixin tooltip {
-  background-color: $tooltip-background-color;
-  max-width: $tooltip-max-width;
-  padding: $tooltip-padding;
   position: absolute;
   top: $tooltip-distance;
   z-index: 1200;
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding;
+  background-color: $tooltip-background-color;
+
   @if ($tooltip-radius-status) and ($tooltip-radius != 0) {
     border-radius: $tooltip-radius;
   }
+
   @if $tooltip-color != $body-font-color {
     color: $tooltip-color;
   }
+
   @if $tooltip-font-size != 1rem {
     font-size: $tooltip-font-size;
   }
+
   @if $tooltip-font-weight != normal {
     font-weight: $tooltip-font-weight;
   }
@@ -124,6 +130,7 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
   &.bottom {
     &::before {
       @include css-triangle($tooltip-pip-width, $tooltip-background-color, up);
+
       bottom: 100%;
     }
 
@@ -140,8 +147,9 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
         $tooltip-background-color,
         down
       );
-      bottom: auto;
+
       top: 100%;
+      bottom: auto;
     }
 
     &.align-center::before {
@@ -157,12 +165,13 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
         $tooltip-background-color,
         right
       );
+
       left: 100%;
     }
 
     &.align-center::before {
-      bottom: auto;
       top: 50%;
+      bottom: auto;
       transform: translateY(-50%);
     }
   }
@@ -174,35 +183,36 @@ $tooltip-distance: calc(100% + #{$tooltip-pip-height}) !default;
         $tooltip-background-color,
         left
       );
-      left: auto;
+
       right: 100%;
+      left: auto;
     }
 
     &.align-center::before {
-      bottom: auto;
       top: 50%;
+      bottom: auto;
       transform: translateY(-50%);
     }
   }
 
   &.align-top::before {
-    bottom: auto;
     top: 10%;
+    bottom: auto;
   }
 
   &.align-bottom::before {
-    bottom: 10%;
     top: auto;
+    bottom: 10%;
   }
 
   &.align-left::before {
-    left: 10%;
     right: auto;
+    left: 10%;
   }
 
   &.align-right::before {
-    left: auto;
     right: 10%;
+    left: auto;
   }
 }
 

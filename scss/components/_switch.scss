@@ -49,11 +49,11 @@ $switch-height: 2rem !default;
 
 /// Height of a switch with .tiny class.
 /// @type Number
-$switch-height-tiny-coefficient: .8 !default;
+$switch-height-tiny-coefficient: 0.8 !default;
 
 /// Height of a switch with .small class.
 /// @type Number
-$switch-height-small-coefficient: .9 !default;
+$switch-height-small-coefficient: 0.9 !default;
 
 /// Height of a switch with .large class.
 /// @type Number
@@ -69,7 +69,7 @@ $switch-paddle-offset: $global-border-width !default;
 
 /// switch transition.
 /// @type Number
-$switch-paddle-transition: all .25s ease-out !default;
+$switch-paddle-transition: all 0.25s ease-out !default;
 
 $switch-container-font-size: rem-calc(14) !default;
 $switch-container-font-weight: bold !default;
@@ -77,8 +77,8 @@ $switch-width: 4rem !default;
 $switch-paddle-height: $switch-height -
   (rem-calc(strip-unit($switch-paddle-offset)) * 2) !default;
 $switch-paddle-width: (
-    $switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)
-  ) / 2 !default;
+  $switch-width - (rem-calc(strip-unit($switch-paddle-offset)) * 4)
+) / 2 !default;
 $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 
 // $switch-width: $switch-height * 2;
@@ -96,17 +96,19 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 
 /// Adds styles for a switch container. Apply this to a container class.
 @mixin switch-container {
+  position: relative;
   margin-bottom: $switch-margin;
   outline: 0;
-  position: relative;
   user-select: none;
   // These properties cascade down to the switch text
   @if $switch-container-color != $body-font-color {
     color: $switch-container-color;
   }
+
   @if $switch-container-font-size != 1rem {
     font-size: $switch-container-font-size;
   }
+
   @if $switch-container-font-weight != normal {
     font-weight: $switch-container-font-weight;
   }
@@ -114,27 +116,28 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 
 /// Adds styles for a switch input. Apply this to an `<input>` within a switch.
 @mixin switch-input {
+  position: absolute;
   margin-bottom: 0; //??
   opacity: 0;
-  position: absolute;
 }
 
 /// Adds styles for the background and paddle of a switch. Apply this to a `<label>` within a switch.
 @mixin switch-paddle {
-  background: $switch-background;
-  cursor: pointer;
-  display: block;
-  height: $switch-height;
   position: relative;
-  transition: $switch-paddle-transition;
+  display: block;
   width: $switch-width;
-  @if ($switch-radius-status) and ($switch-radius != 0) {
-    border-radius: $switch-radius;
-  }
+  height: $switch-height;
 
   // Resetting these <label> presets so type styles cascade down
   color: inherit;
   font-weight: inherit;
+  background: $switch-background;
+  cursor: pointer;
+  transition: $switch-paddle-transition;
+
+  @if ($switch-radius-status) and ($switch-radius != 0) {
+    border-radius: $switch-radius;
+  }
 
   // Needed to override specificity
   input + & {
@@ -144,15 +147,16 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   // The paddle itself
   &::after {
     #{$global-left}: $switch-paddle-offset;
-    background: $switch-paddle-background;
-    content: '';
-    display: block;
-    height: $switch-paddle-height;
     position: absolute;
     top: $switch-paddle-offset;
+    display: block;
+    width: $switch-paddle-width;
+    height: $switch-paddle-height;
+    background: $switch-paddle-background;
     transform: translate3d(0, 0, 0);
     transition: $switch-paddle-transition;
-    width: $switch-paddle-width;
+    content: "";
+
     @if ($switch-radius-status) and ($switch-paddle-radius != 0) {
       border-radius: $switch-paddle-radius;
     }
@@ -176,10 +180,10 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
 /// Adds base styles for active/inactive text inside a switch. Apply this to text elements inside the switch `<label>`.
 @mixin switch-text {
   position: absolute;
-  text-align: center;
   top: 50%;
-  transform: translateY(-50%);
   width: 50% - $switch-paddle-text-outer-side-margin;
+  text-align: center;
+  transform: translateY(-50%);
 }
 
 /// Adds styles for the active state text within a switch.
@@ -210,8 +214,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   $font-size: $switch-container-font-size,
   $width: $switch-width,
   $height: $switch-height,
-  //$paddle-width: $switch-paddle-width,
-    $paddle-offset: $switch-paddle-offset
+  
+  $paddle-offset: $switch-paddle-offset
 ) {
   $paddle-height: $height - (rem-calc(strip-unit($paddle-offset)) * 2);
   $paddle-width: ($width - (rem-calc(strip-unit($paddle-offset)) * 4)) / 2;
@@ -221,14 +225,14 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   height: $height; //??
 
   .switch-paddle {
-    font-size: $font-size;
-    height: $height;
     width: $width;
+    height: $height;
+    font-size: $font-size;
   }
 
   .switch-paddle::after {
-    height: $paddle-height;
     width: $paddle-width;
+    height: $paddle-height;
   }
 
   input:checked ~ .switch-paddle::after {
@@ -240,6 +244,7 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   // Container class
   .switch {
     @include switch-container;
+
     height: $switch-height; //??
   }
 
@@ -261,12 +266,14 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   // Active label text styles
   .switch-active {
     @extend %switch-text;
+
     @include switch-text-active;
   }
 
   // Inactive label text styles
   .switch-inactive {
     @extend %switch-text;
+
     @include switch-text-inactive;
   }
 
@@ -277,8 +284,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-container-font-size * $switch-height-tiny-coefficient,
         $switch-width * $switch-height-tiny-coefficient,
         $switch-height * $switch-height-tiny-coefficient,
-        //$switch-paddle-width,
-          $switch-paddle-offset
+        
+        $switch-paddle-offset
       );
     }
 
@@ -287,8 +294,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-container-font-size * $switch-height-small-coefficient,
         $switch-width * $switch-height-small-coefficient,
         $switch-height * $switch-height-small-coefficient,
-        //$switch-paddle-width,
-          $switch-paddle-offset
+        
+        $switch-paddle-offset
       );
     }
 
@@ -297,8 +304,8 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-container-font-size * $switch-height-large-coefficient,
         $switch-width * $switch-height-large-coefficient,
         $switch-height * $switch-height-large-coefficient,
-        //$switch-paddle-width,
-          $switch-paddle-offset
+        
+        $switch-paddle-offset
       );
     }
   }

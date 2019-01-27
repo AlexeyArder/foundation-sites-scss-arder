@@ -39,7 +39,7 @@ $slider-radius-status: true !default;
 //
 /// Default height of the slider.
 /// @type Number
-$slider-height: .5rem !default;
+$slider-height: 0.5rem !default;
 
 /// Default height of the handle of the slider.
 /// @type Number
@@ -51,7 +51,7 @@ $slider-handle-width: 1.4rem !default;
 
 /// Default fade amount of a disabled slider.
 /// @type Number
-$slider-opacity-disabled: .25 !default;
+$slider-opacity-disabled: 0.25 !default;
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -64,15 +64,15 @@ $slider-opacity-disabled: .25 !default;
     // sass-lint:disable-line no-qualifying-elements
     $margin: ($slider-handle-height - $slider-height) / 2;
 
-    appearance: none;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: $margin;
+    margin-bottom: $margin;
+    line-height: 1;
     border: 0;
     cursor: pointer;
-    display: block;
-    height: auto;
-    line-height: 1;
-    margin-bottom: $margin;
-    margin-top: $margin;
-    width: 100%;
+    appearance: none;
 
     @if has-value($slider-radius) {
       border-radius: $slider-radius;
@@ -85,16 +85,16 @@ $slider-opacity-disabled: .25 !default;
     // sass-lint:disable no-vendor-prefix
     // Chrome/Safari
     &::-webkit-slider-runnable-track {
-      background: $slider-background;
       height: $slider-height;
+      background: $slider-background;
     }
 
     &::-webkit-slider-thumb {
-      -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
-      background: $slider-handle-background;
+      width: $slider-handle-width;
       height: $slider-handle-height;
       margin-top: -$margin;
-      width: $slider-handle-width;
+      background: $slider-handle-background;
+      -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefixes
 
       @if has-value($slider-radius) {
         border-radius: $slider-radius;
@@ -103,17 +103,17 @@ $slider-opacity-disabled: .25 !default;
 
     // Firefox
     &::-moz-range-track {
-      -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
-      background: $slider-background;
       height: $slider-height;
+      background: $slider-background;
+      -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
     }
 
     &::-moz-range-thumb {
-      -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
-      background: $slider-handle-background;
+      width: $slider-handle-width;
       height: $slider-handle-height;
       margin-top: -$margin;
-      width: $slider-handle-width;
+      background: $slider-handle-background;
+      -moz-appearance: none; // sass-lint:disable-line no-vendor-prefixes
 
       @if has-value($slider-radius) {
         border-radius: $slider-radius;
@@ -122,20 +122,20 @@ $slider-opacity-disabled: .25 !default;
 
     // Internet Explorer
     &::-ms-track {
-      background: $slider-background;
-      border: 0;
-      border-bottom: $margin solid $body-background;
-      border-top: $margin solid $body-background;
-      color: transparent;
       height: $slider-height;
       overflow: visible;
+      color: transparent;
+      background: $slider-background;
+      border: 0;
+      border-top: $margin solid $body-background;
+      border-bottom: $margin solid $body-background;
     }
 
     &::-ms-thumb {
+      width: $slider-handle-width;
+      height: $slider-handle-height;
       background: $slider-handle-background;
       border: 0;
-      height: $slider-handle-height;
-      width: $slider-handle-width;
 
       @if has-value($slider-radius) {
         border-radius: $slider-radius;
@@ -156,8 +156,8 @@ $slider-opacity-disabled: .25 !default;
 
     @at-root {
       output {
+        margin-left: 0.5em;
         line-height: $slider-handle-height;
-        margin-left: .5em;
         vertical-align: middle;
       }
     }

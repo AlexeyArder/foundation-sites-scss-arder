@@ -76,17 +76,23 @@ $breadcrumbs-item-margin: rem-calc(10) !default;
 /// Adds styles for a breadcrumbs container, along with the styles for the `<li>` and `<a>` elements inside of it.
 @mixin breadcrumbs-container {
   @include clearfix;
-  list-style: none;
+
   margin: $breadcrumbs-margin;
+  list-style: none;
 
   // Item wrapper
   li {
     float: #{$global-left};
+
+    //cursor: default;
+
     @if $breadcrumbs-item-color-current != $body-font-color {
       color: $breadcrumbs-item-color-current;
     }
+
     @if ($breadcrumbs-item-font-size != inherit) and
-      ($breadcrumbs-item-font-size != 1rem) {
+      ($breadcrumbs-item-font-size != 1rem)
+    {
       font-size: $breadcrumbs-item-font-size;
     }
 
@@ -104,26 +110,27 @@ $breadcrumbs-item-margin: rem-calc(10) !default;
 
       &:not(:last-child) {
         &::after {
+          position: relative;
           content: $separator;
           margin-#{$global-right}: $breadcrumbs-item-margin;
           margin-#{$global-left}: $breadcrumbs-item-margin;
-          position: relative;
+
           @if ($breadcrumbs-item-separator-color != $body-font-color) or
-            ($breadcrumbs-item-disabled-status != false) {
+            ($breadcrumbs-item-disabled-status != false)
+          {
             color: $breadcrumbs-item-separator-color;
           }
+
           @if $breadcrumbs-item-separator-opacity != 1 {
             opacity: $breadcrumbs-item-separator-opacity;
           }
-
-          //top: 1px;
         }
       }
-    } @else {
-      margin-#{$global-right}: $breadcrumbs-item-margin;
     }
 
-    //cursor: default;
+    @else {
+      margin-#{$global-right}: $breadcrumbs-item-margin;
+    }
   }
 
   // Page links
