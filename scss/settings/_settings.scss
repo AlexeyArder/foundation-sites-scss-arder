@@ -537,12 +537,14 @@ $global-menu-nested-margin: 1rem !default;
 // // Status
 // /defaultfill for buttons. Can either be `solid` or `hollow`.
 // $button-fill: solid !default;
+// $button-solid-plus-hover-status: true !default;
 // $button-hollow-hover-solid: true !default;
 // $button-border-status: true !default;
 // $button-border-radius-status: true !default;
 // $button-dropdown-status: true !default;
 // $button-disabled-status: true !default;
 // $button-clear-status: true !default;
+// $button-color-strict-status: false !default;
 // // Sizes
 // $button-font-family: inherit !default;
 // $button-margin: 0 0 $global-margin 0 !default;
