@@ -1,6 +1,6 @@
 {
   "name": "foundation-sites-scss-arder",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A SCSS theme based on Foundation for sites",
   "main": "all.css.scss",
   "scripts": {
