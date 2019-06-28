@@ -230,6 +230,7 @@ $input-height: ($input-font-size * unitless-calc($input-line-height)) +
   // Text areas
   textarea {
     max-width: 100%;
+    font-size: $input-font-size;
 
     &[rows] {
       height: auto;

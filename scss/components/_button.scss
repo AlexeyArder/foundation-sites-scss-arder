@@ -42,6 +42,7 @@ $button-hollow-hover-lightness: $global-button-hollow-hover-lightness !default;
 $button-palette: $foundation-palette !default;
 
 $button-border-color: $global-button-border-color !default;
+$button-border-color-hover-lightness: $global-button-border-color-hover-lightness !default;
 
 //--------------------------------------
 // Content
@@ -63,12 +64,14 @@ $button-radius: $global-radius !default;
 /// @type Keyword
 $button-fill: solid !default;
 
+$button-solid-plus-hover-status: true !default;
 $button-hollow-hover-solid: true !default;
 $button-border-status: true !default;
 $button-border-radius-status: true !default;
 $button-dropdown-status: true !default;
 $button-disabled-status: true !default;
 $button-clear-status: true !default;
+$button-color-strict-status: false !default;
 
 //--------------------------------------
 // Sizes
@@ -235,22 +238,28 @@ $button-arrow-only-side-margin: 0.2em !default;
   //  $color: $button-color;
   //}
 
-  @if $button-hollow-hover-solid {
+  @if $button-fill == hollow {
     color: $background;
     background-color: transparent;
   }
 
   @else {
-    color: $color;
     background-color: $background;
+
+    @if $button-color-strict-status {
+      color: $button-color;
+    }
+
+    @else {
+      color: $color;
+    }
   }
 
-  @if ($button-border-status) and (not $button-hollow-hover-solid) {
-    border-color: $background - 50%;
-  }
-
-  @else if $button-hollow-hover-solid {
-    border-color: $background;
+  @if $button-border-status {
+    border-color: scale-color(
+      $background,
+      $lightness: $button-border-color-hover-lightness
+    );
   }
 
   @else {
@@ -258,8 +267,8 @@ $button-arrow-only-side-margin: 0.2em !default;
   }
 
   &:visited {
-    @if $button-hollow-hover-solid {
-      color: $background;
+    @if $button-color-strict-status {
+      color: $button-color;
     }
 
     @else {
@@ -270,32 +279,46 @@ $button-arrow-only-side-margin: 0.2em !default;
   &:hover,
   &:focus {
     z-index: 2;
-    color: $color;
+    background-color: $background-hover;
 
-    @if $button-hollow-hover-solid {
-      background-color: $background;
+    @if $button-color-strict-status {
+      color: $button-color;
     }
 
     @else {
-      background-color: $background-hover;
+      color: $color;
     }
   }
 }
 
 /// Removes background fill on hover and focus for hollow buttons.
-@mixin button-hollow {
-  &,
-  &:hover,
-  &:focus {
+@mixin button-hollow($background: $button-background) {
+  & {
     background-color: transparent;
   }
 
-  &.disabled,
-  &[disabled] {
-    &,
+  @if $button-hollow-hover-solid {
+    &:hover,
+    &:focus {
+      background-color: $background;
+    }
+  }
+
+  @else {
     &:hover,
     &:focus {
       background-color: transparent;
+    }
+  }
+
+  @if $button-disabled-status {
+    &.disabled,
+    &[disabled] {
+      &,
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
     }
   }
 }
@@ -317,13 +340,38 @@ $button-arrow-only-side-margin: 0.2em !default;
   &:hover,
   &:focus {
     z-index: 2;
-    color: $color-hover;
-    border-color: $color-hover;
 
-    &.disabled,
-    &[disabled] {
-      color: $color;
-      border: $border-width solid $color;
+    @if $button-hollow-hover-solid {
+      @if $button-color-strict-status {
+        color: $button-color;
+      }
+
+      @else {
+        color: color-pick-contrast($color, ($button-color, $button-color-alt));
+      }
+    }
+
+    @else {
+      color: $color-hover;
+    }
+
+    @if $button-hollow-hover-solid {
+      border-color: scale-color(
+        $color,
+        $lightness: $button-border-color-hover-lightness
+      );
+    }
+
+    @else {
+      border-color: $color-hover;
+    }
+
+    @if $button-disabled-status {
+      &.disabled,
+      &[disabled] {
+        color: $color;
+        border: $border-width solid $color;
+      }
     }
   }
 }
@@ -338,18 +386,24 @@ $button-arrow-only-side-margin: 0.2em !default;
   $color-hover: scale-color($color, $lightness: $hover-lightness);
 
   // Default and disabled states
-  &,
-  &.disabled,
-  &[disabled],
-  &.disabled:hover,
-  &[disabled]:hover,
-  &.disabled:focus,
-  &[disabled]:focus {
+  & {
     color: $color;
+  }
+
+  @if $button-disabled-status {
+    &.disabled,
+    &[disabled],
+    &.disabled:hover,
+    &[disabled]:hover,
+    &.disabled:focus,
+    &[disabled]:focus {
+      color: $color;
+    }
   }
 
   &:hover,
   &:focus {
+    z-index: 2;
     color: $color-hover;
   }
 }
@@ -448,7 +502,7 @@ $button-arrow-only-side-margin: 0.2em !default;
   }
 
   @else if $style == hollow {
-    @include button-hollow;
+    @include button-hollow($background);
     @include button-hollow-style($background);
   }
 
@@ -506,6 +560,7 @@ $button-arrow-only-side-margin: 0.2em !default;
 
       @else {
         &.#{$name} {
+          @include button-hollow($color);
           @include button-hollow-style($color);
         }
 
@@ -516,13 +571,14 @@ $button-arrow-only-side-margin: 0.2em !default;
     }
 
     // Hollow style
-    @if $button-fill == hollow {
+    @if ($button-fill == solid) and $button-solid-plus-hover-status {
       &.hollow {
         @include button-hollow;
         @include button-hollow-style;
 
         @each $name, $color in $button-palette {
           &.#{$name} {
+            @include button-hollow($color);
             @include button-hollow-style($color);
           }
         }
@@ -546,36 +602,27 @@ $button-arrow-only-side-margin: 0.2em !default;
     // Clear style
     @if $button-clear-status and ($button-fill != clear) {
       &.clear {
-        // @include button-hollow;
-        // @include button-hollow-style;
-
         @include button-clear-style;
 
-        background-color: transparent;
-        border-color: transparent;
+        @each $name, $color in $button-palette {
+          &.#{$name} {
+            @include button-clear-style($color);
+          }
+        }
 
         &,
         &:hover,
         &:focus {
-          &.disabled,
-          &[disabled] {
-            // border-color: transparent;
+          & {
             background-color: transparent;
+            border-color: transparent;
           }
-        }
 
-        @each $name, $color in $button-palette {
-          &.#{$name} {
-            @include button-hollow-style($color);
-
-            &,
-            &:hover,
-            &:focus {
-              &,
-              &.disabled,
-              &[disabled] {
-                border-color: transparent;
-              }
+          @if $button-disabled-status {
+            &.disabled,
+            &[disabled] {
+              background-color: transparent;
+              border-color: transparent;
             }
           }
         }
