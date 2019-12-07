@@ -1,5 +1,5 @@
 {
-  "name": "foundation-sites-scss-arder",
+  "name": "foundation-sites-scss-refubrished",
   "version": "1.2.1",
   "description": "A SCSS theme based on Foundation for sites",
   "main": "all.css.scss",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlekseyArder/foundation-sites-scss-arder.git"
+    "url": "git+https://github.com/alexeyyanukovich/foundation-sites-scss-refubrished.git"
   },
   "keywords": [
     "scss"
   ],
-  "author": "Aleksey Arder",
+  "author": "Alexey Ya",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AlekseyArder/foundation-sites-scss-arder/issues"
+    "url": "https://github.com/alexeyyanukovich/foundation-sites-scss-refubrished/issues"
   },
-  "homepage": "https://github.com/AlekseyArder/foundation-sites-scss-arder#readme"
+  "homepage": "https://github.com/alexeyyanukovich/foundation-sites-scss-refubrished#readme"
 }
