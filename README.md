@@ -1,4 +1,4 @@
-# foundation-sites-scss-arder
+# foundation-sites-scss-refubrished
 A SCSS theme based on Foundation for sites
 
 npm
