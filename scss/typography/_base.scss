@@ -27,7 +27,8 @@
 //
 $header-small-status: true !default;
 
-$code-kbd-samp-pre-status: true !default;
+$pre-tag-status: true !default;
+$kbd-tag-status: true !default;
 
 $code-decoration-status: true !default;
 $kbd-decoration-status: true !default;
@@ -39,6 +40,12 @@ $kbd-border-status: true !default;
 $code-border-radius-status: true !default;
 $kbd-border-radius-status: true !default;
 $preformated-border-radius-status: true !default;
+
+/// @type Boolean
+$enable-cite-block: true !default;
+
+/// @type Boolean
+$enable-code-inline: true !default;
 
 ////////////////////////////////////////
 // Header font styles
@@ -105,7 +112,7 @@ $header-sizes: (
     (
       $h1-font-size / (25 / $header-small-coefficient)
     ),
-    "h6, .h6": $h6-font-size
+    "h6, .h6": $h6-font-size,
   ),
   medium: (
     "h1, .h1": $h1-font-size * $header-medium-coefficient,
@@ -113,7 +120,7 @@ $header-sizes: (
     "h3, .h3": $h3-font-size * $header-medium-coefficient,
     "h4, .h4": $h4-font-size * $header-medium-coefficient,
     "h5, .h5": $h5-font-size * $header-medium-coefficient,
-    "h6, .h6": $h6-font-size * $header-medium-coefficient
+    "h6, .h6": $h6-font-size * $header-medium-coefficient,
   ),
   large: (
     "h1, .h1": $h1-font-size * $header-large-coefficient,
@@ -121,8 +128,8 @@ $header-sizes: (
     "h3, .h3": $h3-font-size * $header-large-coefficient,
     "h4, .h4": $h4-font-size * $header-large-coefficient,
     "h5, .h5": $h5-font-size * $header-large-coefficient,
-    "h6, .h6": $h6-font-size * $header-large-coefficient
-  )
+    "h6, .h6": $h6-font-size * $header-large-coefficient,
+  ),
 ) !default;
 
 // /// Styles for headings at various screen sizes. Each key is a breakpoint, and each value is a map of heading styles.
@@ -401,6 +408,7 @@ $blockquote-margin: 0 0 rem-calc(16) !default;
 ////////////////////////////////////////
 // Cite style
 ////////////////////////////////////////
+/// Use the `.cite-block` component as default for `<cite>` elements.
 
 //--------------------------------------
 // Colors
@@ -464,6 +472,7 @@ $abbr-underline: $abbr-underline-width dotted $abbr-underline-color !default;
 ////////////////////////////////////////
 // <code> tags
 ////////////////////////////////////////
+/// Use the `.code-inline` component as default for `<code>` elements.
 
 //--------------------------------------
 // Colors
@@ -926,25 +935,27 @@ $figcaption-line-height: inherit !default;
   }
 
   ////////////////////////////////////////
-  // Citations
+  // Inline Citations
 
-  cite {
-    font-size: $cite-font-size;
+  @if $enable-cite-block {
+    cite {
+      font-size: $cite-font-size;
 
-    @if $cite-color != inherit {
-      color: $cite-color;
-    }
+      @if $cite-color != inherit {
+        color: $cite-color;
+      }
 
-    // display: block;
+      // display: block;
 
-    &::before {
-      content: $cite-before-content;
-    }
+      &::before {
+        content: $cite-before-content;
+      }
 
-    @if $cite-link-color != $anchor-color {
-      a,
-      a:visited {
-        color: $cite-link-color;
+      @if $cite-link-color != $anchor-color {
+        a,
+        a:visited {
+          color: $cite-link-color;
+        }
       }
     }
   }
@@ -955,6 +966,14 @@ $figcaption-line-height: inherit !default;
   sub,
   sup {
     font-size: $sub-sup-font-size;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+
+  sub {
+    vertical-align: sub;
   }
 
   ////////////////////////////////////////
@@ -991,7 +1010,7 @@ $figcaption-line-height: inherit !default;
   ////////////////////////////////////////
   // Code
 
-  @if $code-kbd-samp-pre-status {
+  @if $enable-code-inline {
     code,
     samp {
       color: $code-color;
@@ -1017,7 +1036,7 @@ $figcaption-line-height: inherit !default;
   ////////////////////////////////////////
   // Keystrokes
 
-  @if $code-kbd-samp-pre-status {
+  @if $kbd-tag-status {
     kbd {
       color: $keystroke-color;
       font-family: $keystroke-font;
@@ -1044,7 +1063,7 @@ $figcaption-line-height: inherit !default;
   ////////////////////////////////////////
   // Preformated text
 
-  @if $code-kbd-samp-pre-status {
+  @if $pre-tag-status {
     pre {
       margin: $preformated-margin;
       padding: $preformated-padding;

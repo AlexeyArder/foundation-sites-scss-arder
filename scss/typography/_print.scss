@@ -27,11 +27,18 @@ $print-hrefs: true !default;
 
   @media print {
     * {
+      // Ensure a "black-on-white" print by removing backgrounds,
+      // using black text everywhere and forcing the browser to economize ink.
       @if $print-transparent-backgrounds {
         background: transparent !important;
+        color: black !important; // Black prints faster: h5bp.com/s
+        color-adjust: economy;
+      }
+      // Otherwise, prevent any economy by the browser.
+      @else {
+        color-adjust: exact;
       }
 
-      color: black !important; // Black prints faster: h5bp.com/s
       text-shadow: none !important;
       box-shadow: none !important;
     }

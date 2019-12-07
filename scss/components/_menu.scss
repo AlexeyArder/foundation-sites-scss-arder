@@ -25,6 +25,10 @@ $menu-item-background-hover: $global-menu-item-background-hover !default;
 /// @type Color
 $menu-border: $global-menu-border !default;
 
+/// Alternative text color of an active menu item..
+/// @type Color
+$menu-item-color-alt-active: $global-menu-item-color-alt-active !default;
+
 $menu-text-color: $global-menu-text-color !default;
 
 //--------------------------------------
@@ -442,7 +446,7 @@ $menu-border-style: solid !default;
   }
 
   @if $menu-item-color-active != $global-body-font-color {
-    color: $menu-item-color-active;
+    color: color-pick-contrast($menu-item-background-active, ($menu-item-color-active, $menu-item-color-alt-active));
   }
 }
 

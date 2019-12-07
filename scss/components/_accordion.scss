@@ -37,8 +37,13 @@ $accordion-content-border-color: $global-accordion-content-border-color !default
 // Content
 //
 
-$accordion-plusminus-plus-content: $global-accordion-plusminus-plus-content !default;
-$accordion-plusminus-minus-content: $global-accordion-plusminus-minus-content !default;
+/// Content for the plus icon when `$accordion-plusminus` is `true`
+/// @type String
+$accordion-plus-content: $global-accordion-plusminus-plus-content !default;
+
+/// Content for the minus icon when `$accordion-plusminus` is `true`
+/// @type String
+$accordion-minus-content: $global-accordion-plusminus-minus-content !default;
 
 //--------------------------------------
 // Border width
@@ -221,7 +226,7 @@ $accordion-plusminus-right: 1rem !default;
     &::before {
       #{$global-right}: $accordion-plusminus-right;
       position: absolute;
-      content: $accordion-plusminus-plus-content;
+      content: $accordion-plus-content;
 
       @if $accordion-plusminus-font-size != $font-size {
         margin-top: ($font-size - $accordion-plusminus-font-size) / 2;
@@ -234,7 +239,7 @@ $accordion-plusminus-right: 1rem !default;
     }
 
     .is-active > &::before {
-      content: $accordion-plusminus-minus-content;
+      content: $accordion-minus-content;
     }
   }
 }

@@ -63,22 +63,26 @@ $callout-border: $callout-border-width solid $callout-border-color !default;
 /// @type Number
 $callout-margin: 0 0 1rem 0 !default;
 
-/// Default inner padding for callouts.
-/// @type Number
-$callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
+/// Sizes for Callout paddings.
+/// @type Map
+$callout-sizes: (
+  small: rem-calc(8) rem-calc(10) 0,
+  default: rem-calc(14) rem-calc(16) rem-calc(6),
+  large: 3rem,
+) !default;
 
-$callout-padding-small-coefficient: 0.8 !default;
-$callout-padding-large-coefficient: 1.5 !default;
-$callout-padding-small: (
-  get-side($callout-padding, top) * $callout-padding-small-coefficient
-)
-  (get-side($callout-padding, right) * $callout-padding-small-coefficient)
-  (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
-$callout-padding-large: (
-  get-side($callout-padding, top) * $callout-padding-large-coefficient
-)
-  (get-side($callout-padding, right) * $callout-padding-large-coefficient)
-  (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
+// $callout-padding-small-coefficient: 0.8 !default;
+// $callout-padding-large-coefficient: 1.5 !default;
+// $callout-padding-small: (
+//   get-side($callout-padding, top) * $callout-padding-small-coefficient
+// )
+//   (get-side($callout-padding, right) * $callout-padding-small-coefficient)
+//   (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
+// $callout-padding-large: (
+//   get-side($callout-padding, top) * $callout-padding-large-coefficient
+// )
+//   (get-side($callout-padding, right) * $callout-padding-large-coefficient)
+//   (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
 
 ////////////////////////////////////////
 ////////////////////////////////////////
@@ -90,7 +94,7 @@ $callout-padding-large: (
 @mixin callout-base() {
   position: relative;
   margin: $callout-margin;
-  padding: $callout-padding;
+  padding: map-get($callout-sizes, default);
 
   @if $callout-border-status {
     border: $callout-border;
@@ -150,12 +154,10 @@ $callout-padding-large: (
       }
     }
 
-    &.small {
-      @include callout-size($callout-padding-small);
-    }
-
-    &.large {
-      @include callout-size($callout-padding-large);
+    @each $size, $padding in map-remove($callout-sizes, default) {
+      &.#{$size} {
+        @include callout-size($padding);
+      }
     }
   }
 }

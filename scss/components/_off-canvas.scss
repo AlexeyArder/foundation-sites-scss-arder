@@ -38,13 +38,13 @@ $offcanvas-fixed-reveal: true !default;
 /// Width map of a left/right off-canvas panel.
 /// @type Map
 $offcanvas-sizes: (
-  small: 250px
+  small: 250px,
 ) !default;
 
 /// Height map of a top/bottom off-canvas panel.
 /// @type Map
 $offcanvas-vertical-sizes: (
-  small: 250px
+  small: 250px,
 ) !default;
 
 /// Length of the animation on an off-canvas panel.
@@ -395,8 +395,13 @@ $offcanvas-overlay-zindex: 11 !default;
 @mixin off-canvas-content() {
   transform: none;
   backface-visibility: hidden;
-  transition: transform $offcanvas-transition-length
-    $offcanvas-transition-timing;
+
+  // Bind to has-transition-X class to prevent transition for transform:none
+  &.has-transition-overlap,
+  &.has-transition-push {
+    transition: transform $offcanvas-transition-length
+      $offcanvas-transition-timing;
+  }
 
   // Transform scope until the element is closed (makes sure transitionend gets triggered)
   &.has-transition-push {

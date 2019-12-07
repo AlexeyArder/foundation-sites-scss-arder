@@ -39,9 +39,15 @@ $pagination-item-hover-color: $global-pagination-item-hover-color !default;
 // Content
 //
 
+/// Content for the previous arrow when `$pagination-arrows` is `true`
+/// @type String
+$pagination-arrow-previous: $global-pagination-arrows-previous-content !default;
+
+/// Content for the next arrow when `$pagination-arrows` is `true`
+/// @type String
+$pagination-arrow-next: $global-pagination-arrows-next-content !default;
+
 $pagination-ellipsis-content: $global-pagination-ellipsis-content !default;
-$pagination-arrows-previous-content: $global-pagination-arrows-previous-content !default;
-$pagination-arrows-next-content: $global-pagination-arrows-next-content !default;
 
 //--------------------------------------
 // Radius
@@ -247,14 +253,14 @@ $pagination-arrows-margin-right: rem-calc(8) !default;
   @if $pagination-arrows-status {
     .pagination-previous a::before,
     .pagination-previous.disabled::before {
-      content: $pagination-arrows-previous-content;
+      content: $pagination-arrow-previous;
       display: inline-block;
       margin-#{$global-right}: $pagination-arrows-margin-right;
     }
 
     .pagination-next a::after,
     .pagination-next.disabled::after {
-      content: $pagination-arrows-next-content;
+      content: $pagination-arrow-next;
       display: inline-block;
       margin-#{$global-left}: $pagination-arrows-margin-right;
     }

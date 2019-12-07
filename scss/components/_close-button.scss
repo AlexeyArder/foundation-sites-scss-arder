@@ -32,30 +32,41 @@ $closebutton-svg-status: true !default;
 //--------------------------------------
 // Sizes
 //
+/// Default z-index for a close button.
+/// @type Number
+$closebutton-z-index: 10 !default;
+
 /// Right (or left) offset(s) for a close button.
 /// @type Number|Map
 $closebutton-offset-horizontal: (
   small: rem-calc(10),
-  medium: rem-calc(12)
+  medium: rem-calc(12),
 ) !default;
 
 /// Top (or bottom) offset(s) for a close button.
 /// @type Number|Map
 $closebutton-offset-vertical: (
   small: rem-calc(10),
-  medium: rem-calc(14)
+  medium: rem-calc(14),
 ) !default;
 
-/// Default font size(s) of the close button.
+/// Size(s) of the close button. Used to generate sizing modifiers.
 /// @type Number|Map
 $closebutton-size: (
   small: rem-calc(9),
-  medium: rem-calc(14)
+  medium: rem-calc(14),
 ) !default;
 
 /// The line-height of the close button. It affects the spacing of the element.
 /// @type Number
 $closebutton-lineheight: 1 !default;
+
+/// Button size to use as default
+/// @type String
+/// @see $closebutton-size
+/// @see $closebutton-offset-horizontal
+/// @see $closebutton-offset-vertical
+$closebutton-default-size: medium !default;
 
 $closebutton-svg-stroke-width: 10px !default;
 
@@ -111,6 +122,7 @@ $closebutton-svg-stroke-width: 10px !default;
   @include disable-mouse-outline;
 
   position: absolute;
+  z-index: $closebutton-z-index;
   padding: 0;
 
   // $x: nth($closebutton-position, 1);
@@ -170,13 +182,20 @@ $closebutton-svg-stroke-width: 10px !default;
   .close-button {
     @include close-button;
 
-    &.small {
-      @include close-button-size(small);
+    // Generate a placeholder and a class for each size
+    @each $name, $size in $closebutton-size {
+      @at-root {
+        %zf-close-button--#{$name} {
+          @include close-button-size($name);
+        }
+      }
+
+      &.#{$name} {
+        @extend %zf-close-button--#{$name};
+      }
     }
 
-    &,
-    &.medium {
-      @include close-button-size(medium);
-    }
+    // Use by default the placeholder of the default size
+    @extend %zf-close-button--#{$closebutton-default-size};
   }
 }

@@ -107,6 +107,13 @@ $global-menu-nested-margin: 1rem !default;
 //   xlarge: 1200px,
 //   xxlarge: 1440px
 // );
+// $breakpoints-hidpi: (
+//   hidpi-1: 1,
+//   hidpi-1-5: 1.5,
+//   hidpi-2: 2,
+//   retina: 2,
+//   hidpi-3: 3
+// );
 // $-zf-zero-breakpoint: small !default;
 // $print-breakpoint: large;
 // $breakpoint-classes: (small medium large);
@@ -145,7 +152,10 @@ $global-menu-nested-margin: 1rem !default;
 // // --------
 
 // // Status
-// $code-kbd-samp-pre-status: true !default;
+// $enable-cite-block: true !default;
+// $enable-code-inline: true;
+// $pre-tag-status: true !default;
+// $kbd-tag-status: true !default;
 // $code-decoration-status: true !default;
 // $kbd-decoration-status: true !default;
 // $blockquote-border-status: true !default;
@@ -535,9 +545,9 @@ $global-menu-nested-margin: 1rem !default;
 // // Radius
 // $button-radius: $global-radius !default;
 // // Status
-// /defaultfill for buttons. Can either be `solid` or `hollow`.
+// // default fill for buttons. Can either be `solid` or `hollow`.
 // $button-fill: solid !default;
-// $button-solid-plus-hover-status: true !default;
+// $button-solid-with-hover-class-status: true !default;
 // $button-hollow-hover-solid: true !default;
 // $button-border-status: true !default;
 // $button-border-radius-status: true !default;
@@ -573,7 +583,7 @@ $global-menu-nested-margin: 1rem !default;
 // ) !default;
 // $button-hollow-border-width: $global-border-width !default;
 // $button-line-height: 1 !default;
-// $button-font-weight: bold !default;
+// $button-font-weight: null !default;
 // $button-border-width: $global-border-width !default;
 // $button-border-style: solid !default;
 // $button-border-hollow-style: solid !default;
@@ -608,19 +618,11 @@ $global-menu-nested-margin: 1rem !default;
 // // Sizes
 // $callout-border: $callout-border-width solid $callout-border-color !default;
 // $callout-margin: 0 0 1rem 0 !default;
-// $callout-padding: rem-calc(14) rem-calc(16) rem-calc(6) !default;
-// $callout-padding-small-coefficient: 0.8 !default;
-// $callout-padding-large-coefficient: 1.5 !default;
-// $callout-padding-small: (
-//   get-side($callout-padding, top) * $callout-padding-small-coefficient
-// )
-//   (get-side($callout-padding, right) * $callout-padding-small-coefficient)
-//   (get-side($callout-padding, bottom) * $callout-padding-small-coefficient) !default;
-// $callout-padding-large: (
-//   get-side($callout-padding, top) * $callout-padding-large-coefficient
-// )
-//   (get-side($callout-padding, right) * $callout-padding-large-coefficient)
-//   (get-side($callout-padding, bottom) * $callout-padding-large-coefficient) !default;
+// $callout-sizes: (
+//   small: rem-calc(8) rem-calc(10) 0,
+//   default: rem-calc(14) rem-calc(16) rem-calc(6),
+//   large: 3rem,
+// ) !default;
 
 // // 13. Card
 // // --------
@@ -645,6 +647,7 @@ $global-menu-nested-margin: 1rem !default;
 // $closebutton-position: right top !default;
 // $closebutton-svg-status: true !default;
 // // Sizes
+// $closebutton-z-index: 10;
 // $closebutton-offset-horizontal: (
 //   small: rem-calc(10),
 //   medium: rem-calc(12)
@@ -657,6 +660,7 @@ $global-menu-nested-margin: 1rem !default;
 //   small: rem-calc(9),
 //   medium: rem-calc(14)
 // ) !default;
+// $closebutton-default-size: medium !default;
 // $closebutton-lineheight: 1 !default;
 // $closebutton-svg-stroke-width: 10px !default;
 
@@ -962,6 +966,7 @@ $flexbox-responsive-breakpoints: true;
 // $switch-radius-status: true !default;
 // $switch-different-sizes-status: true !default;
 // // Sizes
+// $switch-cursor-disabled: not-allowed !default;
 // $switch-height: 2rem !default;
 // $switch-height-tiny-coefficient: 0.8 !default;
 // $switch-height-small-coefficient: 0.9 !default;

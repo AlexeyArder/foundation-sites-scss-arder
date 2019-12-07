@@ -294,6 +294,7 @@ $table-thead-tfoot-padding: $table-padding !default;
 
 /// Adds the general styles for tables.
 /// @param {Keyword} $stripe [$table-stripe] - Uses keywords even, odd, or none to darken rows of the table. The default value is even.
+/// @param {Boolean} $nest [false] - Needed if you only want to apply this to a specific table.
 @mixin table($stripe: $table-stripe, $nest: false) {
   width: 100%;
   margin-bottom: $table-margin-bottom;

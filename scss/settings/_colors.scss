@@ -361,6 +361,7 @@ $global-menu-item-color-active: $white !default;
 $global-menu-item-background-active: get-color(primary) !default;
 $global-menu-item-background-hover: $light-gray !default;
 $global-menu-border: $light-gray !default;
+$global-menu-item-color-alt-active: $black !default;
 $global-menu-text-color: inherit !default;
 
 // 22. Menu Icon
@@ -435,6 +436,7 @@ $global-switch-background: $medium-gray !default;
 $global-switch-background-active: $primary-color !default;
 $global-switch-paddle-background: $white !default;
 $global-switch-container-color: $white !default;
+$global-switch-opacity-disabled: 0.5 !default;
 
 // 31. Table
 // ---------

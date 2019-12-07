@@ -21,6 +21,10 @@ $switch-background-active: $global-switch-background-active !default;
 /// @type Color
 $switch-paddle-background: $global-switch-paddle-background !default;
 
+/// Opacity of a disabled switch.
+/// @type Number
+$switch-opacity-disabled: $global-switch-opacity-disabled !default;
+
 $switch-container-color: $global-switch-container-color !default;
 
 //--------------------------------------
@@ -36,6 +40,10 @@ $switch-paddle-radius: $global-radius !default;
 /// Border radius of the switch
 /// @type Number
 $switch-radius: $global-radius !default;
+
+/// Cursor for a disabled switch.
+/// @type Cursor
+$switch-cursor-disabled: not-allowed !default;
 
 $switch-radius-status: true !default;
 $switch-different-sizes-status: true !default;
@@ -172,6 +180,12 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
     }
   }
 
+  // indicate a disabled switch
+  input:disabled ~ & {
+    cursor: $switch-cursor-disabled;
+    opacity: $switch-opacity-disabled;
+  }
+
   input:focus ~ & {
     @include disable-mouse-outline;
   }
@@ -214,7 +228,6 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
   $font-size: $switch-container-font-size,
   $width: $switch-width,
   $height: $switch-height,
-  
   $paddle-offset: $switch-paddle-offset
 ) {
   $paddle-height: $height - (rem-calc(strip-unit($paddle-offset)) * 2);
@@ -284,7 +297,6 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-container-font-size * $switch-height-tiny-coefficient,
         $switch-width * $switch-height-tiny-coefficient,
         $switch-height * $switch-height-tiny-coefficient,
-        
         $switch-paddle-offset
       );
     }
@@ -294,7 +306,6 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-container-font-size * $switch-height-small-coefficient,
         $switch-width * $switch-height-small-coefficient,
         $switch-height * $switch-height-small-coefficient,
-        
         $switch-paddle-offset
       );
     }
@@ -304,7 +315,6 @@ $switch-paddle-text-outer-side-margin: 6% !default; // ONLY PERCENTS
         $switch-container-font-size * $switch-height-large-coefficient,
         $switch-width * $switch-height-large-coefficient,
         $switch-height * $switch-height-large-coefficient,
-        
         $switch-paddle-offset
       );
     }

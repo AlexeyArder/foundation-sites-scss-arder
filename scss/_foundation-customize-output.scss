@@ -1,6 +1,6 @@
 /**
  * Foundation for Sites by ZURB
- * Version 6.5.2
+ * Version 6.6.0
  * foundation.zurb.com
  * Licensed under MIT Open Source
  */
@@ -53,8 +53,9 @@
 @import "~FoundationStyles/scss/prototype/prototype";
 
 @mixin foundation-everything(
+  $xy-grid: $xy-grid,
   $flex: true,
-  $xy-grid: true,
+  // $xy-grid: true,
   $foundation-typography: true,
   $foundation-forms: true,
   $foundation-button: true,
