@@ -1,6 +1,6 @@
 {
   "name": "foundation-sites-scss-customized",
-  "version": "1.8.2",
+  "version": "1.9.2",
   "description": "A SCSS theme based on Foundation for sites",
   "main": "all.css.scss",
   "scripts": {
