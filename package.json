@@ -1,5 +1,5 @@
 {
-  "name": "foundation-sites-scss-refubrished",
+  "name": "foundation-sites-scss-customized",
   "version": "1.8.2",
   "description": "A SCSS theme based on Foundation for sites",
   "main": "all.css.scss",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexeyyanukovich/foundation-sites-scss-refubrished.git"
+    "url": "git+https://github.com/alexeyyanukovich/foundation-sites-scss-customized.git"
   },
   "keywords": [
     "scss"
@@ -16,7 +16,7 @@
   "author": "Alexey Ya",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alexeyyanukovich/foundation-sites-scss-refubrished/issues"
+    "url": "https://github.com/alexeyyanukovich/foundation-sites-scss-customized/issues"
   },
-  "homepage": "https://github.com/alexeyyanukovich/foundation-sites-scss-refubrished#readme"
+  "homepage": "https://github.com/alexeyyanukovich/foundation-sites-scss-customized#readme"
 }
