@@ -157,7 +157,10 @@ $-zf-flex-justify: -zf-flex-justify($global-text-direction);
 
   html {
     box-sizing: border-box;
-    // font-size: $global-font-size; // Fix in _normalize.scss
+
+    @if $global-font-size != "100%" {
+      font-size: $global-font-size; // Fix in _normalize.scss
+    }
   }
 
   // Set box-sizing globally to handle padding and border widths
