@@ -1,3 +1,5 @@
+![](https://github.com/actions/alexeyyanukovich/foundation-sites-scss-customized/workflows/Deploy%20to%20NPM/badge.svg)
+
 # foundation-sites-scss-customized
 A SCSS theme based on Foundation for sites
 
