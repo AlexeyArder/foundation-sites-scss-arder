@@ -3,6 +3,9 @@
   "version": "1.9.5",
   "description": "A SCSS theme based on Foundation for sites",
   "main": "all.css.scss",
+  "dependencies": {
+    "foundation-sites": "^6.6.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
