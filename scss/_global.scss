@@ -1,5 +1,5 @@
-// Foundation for Sites by ZURB
-// foundation.zurb.com
+// Foundation for Sites
+// https://get.foundation
 // Licensed under MIT Open Source
 
 // sass-lint:disable no-color-literals, no-qualifying-elements
@@ -89,13 +89,13 @@ $global-lineheight: 1.35 !default;
 
 /// Font stack of the body.
 /// @type List
-$body-font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”,
-  “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
+$body-font-family: -apple-system, blinkmacsystemfont, “segoe ui”, “roboto”,
+  “oxygen”, “ubuntu”, “cantarell”, “fira sans”, “droid sans”, “helvetica neue”,
   sans-serif !default;
 
 /// Font stack used for elements that use monospaced type, such as code samples
 /// @type String | List
-$font-family-monospace: Consolas, "Liberation Mono", Courier, monospace !default;
+$font-family-monospace: consolas, "Liberation Mono", courier, monospace !default;
 
 /// Global value used for margin on components.
 /// @type Number
