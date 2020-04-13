@@ -1,10 +1,10 @@
 {
   "name": "foundation-sites-scss-customized",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "description": "A SCSS theme based on Foundation for sites",
   "main": "all.css.scss",
   "dependencies": {
-    "foundation-sites": "^6.6.0"
+    "foundation-sites": "^6.6.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
